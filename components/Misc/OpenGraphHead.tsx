@@ -1,20 +1,20 @@
-import Head from 'next/head'
+import Head from "next/head";
 const OpenGraphHead = () => (
   <Head>
-    <title>KL Lawingco | Software Engineer</title>
+    <title> Daniel Lu | Software Engineer</title>
     <meta name="description" content="My personal solace place on web-earth." />
-    <meta property="og:title" content="KL Lawingco | Software Engineer" />
-    <meta property="og:site_name" content="Marc Jhon Lawingco" />
-    <meta property="og:url" content="https://kllawingco.netlify.app/" />
+    <meta property="og:title" content="Daniel Lu | Software Engineer" />
+    <meta property="og:site_name" content="Daniellu" />
+    <meta property="og:url" content="https://daniellu.ca/" />
     <meta
       property="og:description"
-      content="Ohh you found me?. Howdy! I am Marc Jhon Lawingco. Or you could call me KL. That works too . . . I am a Software Engineer"
+      content="Ohh you found me?. Hey! I am Daniel Lu. I am a Software Engineer"
     />
     <meta property="og:type" content="profile" />
     <meta
       property="og:image"
-      content="https://kllawingco.netlify.app/KL_avatar.png"
+      content="https://daniellu.ca/github_avatar.png"
     ></meta>
   </Head>
-)
-export default OpenGraphHead
+);
+export default OpenGraphHead;

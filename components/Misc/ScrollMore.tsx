@@ -4,11 +4,11 @@ import {
   Text,
   useBreakpointValue,
   useColorModeValue,
-} from '@chakra-ui/react'
-import { RiMouseLine } from 'react-icons/ri'
-import { motion, Variants, AnimatePresence } from 'framer-motion'
-import useScrollDirection, { ScrollDirection } from 'hooks/useScrollDirection'
-import { mobileBreakpointsMap } from 'config/theme'
+} from "@chakra-ui/react";
+import { RiMouseLine } from "react-icons/ri";
+import { motion, Variants, AnimatePresence } from "framer-motion";
+import useScrollDirection, { ScrollDirection } from "hooks/useScrollDirection";
+import { mobileBreakpointsMap } from "config/theme";
 
 const scrollMoreVariants: Variants = {
   initial: {
@@ -20,18 +20,18 @@ const scrollMoreVariants: Variants = {
     transition: {
       duration: 0.5,
       delay: 1,
-      ease: 'easeIn',
+      ease: "easeIn",
     },
   },
   bounce: {
     y: [0, -18, 0],
     transition: {
       duration: 1.6,
-      ease: 'easeInOut',
+      ease: "easeInOut",
       loop: Infinity,
     },
   },
-}
+};
 
 const emailVariants: Variants = {
   hidden: {
@@ -47,23 +47,23 @@ const emailVariants: Variants = {
     y: [0, 250],
     transition: {
       duration: 0.5,
-      ease: 'easeOut',
+      ease: "easeOut",
     },
   },
-}
+};
 
 const ScrollMore = () => {
-  const isMobile = useBreakpointValue(mobileBreakpointsMap)
-  const scrollDirection = useScrollDirection(false, isMobile)
-  const emailColor = useColorModeValue('gray.800', 'gray.400')
-  const emailLine = useColorModeValue('teal.500', 'cyan.200')
+  const isMobile = useBreakpointValue(mobileBreakpointsMap);
+  const scrollDirection = useScrollDirection(false, isMobile);
+  const emailColor = useColorModeValue("gray.800", "gray.400");
+  const emailLine = useColorModeValue("teal.500", "cyan.200");
 
   return (
     <Box
       position="fixed"
       bottom="1em"
       right="3%"
-      display={isMobile ? 'none' : 'block'}
+      display={isMobile ? "none" : "block"}
     >
       <AnimatePresence>
         {[ScrollDirection.Initial, ScrollDirection.Up].includes(
@@ -71,7 +71,7 @@ const ScrollMore = () => {
         ) && (
           <motion.div
             initial="initial"
-            animate={['hidden', 'bounce']}
+            animate={["hidden", "bounce"]}
             variants={scrollMoreVariants}
           >
             <Icon
@@ -93,17 +93,17 @@ const ScrollMore = () => {
             variants={emailVariants}
             whileHover={{ y: -50 }}
             style={{
-              writingMode: 'vertical-rl',
-              position: 'fixed',
-              right: '8%',
-              bottom: '-8%',
+              writingMode: "vertical-rl",
+              position: "fixed",
+              right: "8%",
+              bottom: "-8%",
             }}
           >
             <Text
               as="a"
               paddingY={3}
               fontFamily="monospace"
-              href="mailto:marcjhon18@gmail.com"
+              href="mailto:business@daniellu.ca"
               target="_blank"
               rel="noreferrer"
               color={emailColor}
@@ -121,22 +121,22 @@ const ScrollMore = () => {
               justifyContent="center"
               _after={{
                 backgroundColor: emailLine,
-                width: '2px',
+                width: "2px",
                 opacity: 0.5,
-                content: '""',
+                content: "''",
                 flex: 1,
-                height: { base: '5em', xl: '8em' },
-                margin: 'auto',
-                marginTop: '10px',
+                height: { base: "5em", xl: "8em" },
+                margin: "auto",
+                marginTop: "10px",
               }}
             >
-              marcjhon@gmail.com{' '}
+              business@daniellu.ca{" "}
             </Text>
           </motion.div>
         )}
       </AnimatePresence>
     </Box>
-  )
-}
+  );
+};
 
-export default ScrollMore
+export default ScrollMore;

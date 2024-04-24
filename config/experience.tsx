@@ -1,44 +1,46 @@
-import { Link } from '@chakra-ui/react'
+import { Link } from "@chakra-ui/react";
 
-export type Company = 'Deloitte' | 'SCG' | 'Blotocol'
+export type Company = "Deloitte" | "SCG" | "Blotocol";
 
 export type CompanyDetail = {
-  name: string
-  longName: string
-  subDetail?: string
-  url: string
-  position: string
-  duration: string
+  name: string;
+  longName: string;
+  subDetail?: string;
+  url: string;
+  position: string;
+  duration: string;
   logo: {
-    light: string
-    dark?: string
-  }
-  roles?: JSX.Element[]
-}
+    light: string;
+    dark?: string;
+  };
+  roles?: JSX.Element[];
+};
 
 export const Experiences: {
-  [key in Company]: CompanyDetail
+  [key in Company]: CompanyDetail;
 } = {
   Deloitte: {
-    name: 'Deloitte',
-    longName: 'Deloitte Consulthing Phils. Delivery Center',
-    subDetail: 'Consulthing Phils. Delivery Center',
-    url: 'https://www2.deloitte.com/',
-    position: 'Software Engineer Consultant',
-    duration: 'Sep 2021 - Present',
+    name: "Deloitte",
+    longName: "Deloitte Consulthing Phils. Delivery Center",
+    subDetail: "Consulthing Phils. Delivery Center",
+    url: "https://www2.deloitte.com/",
+    position: "Software Engineer Consultant",
+    duration: "Sep 2021 - Present",
     logo: {
-      light: '/worked_at_logos/deloitte/Deloitte_logo_black.png',
-      dark: '/worked_at_logos/deloitte/Deloitte_logo.png',
+      light: "/worked_at_logos/deloitte/Deloitte_logo_black.png",
+      dark: "/worked_at_logos/deloitte/Deloitte_logo.png",
     },
     roles: [
       <>
-       Contributed to the design and development of a comprehensive .NET payment integration project for a client
-       That covered credit card payments and subscription management.
-       Introduced Stripe as a new payment provider within the system architecture.
-       Participated in triaging, fixing and adding new functionalitiesto multiple Azure powered APIs of the same client.
+        Contributed to the design and development of a comprehensive .NET
+        payment integration project for a client That covered credit card
+        payments and subscription management. Introduced Stripe as a new payment
+        provider within the system architecture. Participated in triaging,
+        fixing and adding new functionalitiesto multiple Azure powered APIs of
+        the same client.
       </>,
       <>
-        Worked as a Sitecore Backend on new{' '}
+        Worked as a Sitecore Backend on new{" "}
         <Link
           aria-label="Deloitte Digital AU"
           href="https://www.deloittedigital.com.au/"
@@ -49,8 +51,8 @@ export const Experiences: {
         </Link>
       </>,
       <>
-        Udergone training for .NET Sitecore 10,
-        Sitecore SXA and different topologies it provides.{' '} and Passed {' '}
+        Udergone training for .NET Sitecore 10, Sitecore SXA and different
+        topologies it provides. and Passed{" "}
         <Link
           aria-label="Sitecore 10 .NET Developer Certification"
           href="/certification/Lawingco-Sitecore 10 NET Developer Cert.pdf"
@@ -63,19 +65,19 @@ export const Experiences: {
     ],
   },
   SCG: {
-    name: 'Scentregroup',
-    longName: 'Scentregroup Limited AU',
-    subDetail: 'via Prosource BPO',
-    url: 'https://www.scentregroup.com/',
-    position: 'Software Engineer',
-    duration: 'Feb 2020 - Sep 2021',
+    name: "Scentregroup",
+    longName: "Scentregroup Limited AU",
+    subDetail: "via Prosource BPO",
+    url: "https://www.scentregroup.com/",
+    position: "Software Engineer",
+    duration: "Feb 2020 - Sep 2021",
     logo: {
-      light: '/worked_at_logos/scg/SCG_400x400.jpg',
-      dark: '/worked_at_logos/scg/SCG.png',
+      light: "/worked_at_logos/scg/SCG_400x400.jpg",
+      dark: "/worked_at_logos/scg/SCG.png",
     },
     roles: [
       <>
-        Revamping the legacy Partner Portal into a new{' '}
+        Revamping the legacy Partner Portal into a new{" "}
         <Link
           aria-label="Westfield Marketing Hub"
           href="https://partner.scentregroup.com/"
@@ -83,7 +85,7 @@ export const Experiences: {
           rel="noreferrer"
         >
           Westfield Marketing Hub
-        </Link>{' '}
+        </Link>{" "}
         using NextJS and Typescript. Restructuring the old express app into a
         newer architectural design approach.
       </>,
@@ -92,7 +94,7 @@ export const Experiences: {
         better.
       </>,
       <>
-        Worked on maintaining{' '}
+        Worked on maintaining{" "}
         <Link
           variant="primaryLink"
           href="https://www.westfield.com.au/"
@@ -100,7 +102,7 @@ export const Experiences: {
           rel="noreferrer"
         >
           Westfield
-        </Link>{' '}
+        </Link>{" "}
         main site and Graphql apis written in NodeJS.
       </>,
       <>
@@ -110,7 +112,7 @@ export const Experiences: {
       <>
         Hired at early 2020, first major task was helping with selecting a new
         marketing vendor that can scale and also enable us to have
-        personalisation as well, selecting{' '}
+        personalisation as well, selecting{" "}
         <Link
           aria-label="Braze"
           href="https://www.braze.com/"
@@ -118,21 +120,21 @@ export const Experiences: {
           rel="noreferrer"
         >
           Braze
-        </Link>{' '}
+        </Link>{" "}
         as a result.
       </>,
     ],
   },
   Blotocol: {
-    name: 'Blotocol',
-    longName: 'Blotocol Philippines',
-    subDetail: 'formerly IVP Global Inc.',
-    url: 'https://blotocol.com/',
-    position: 'Senior Software Engineer',
-    duration: 'Nov 2016 - Feb 2020',
+    name: "Blotocol",
+    longName: "Blotocol Philippines",
+    subDetail: "formerly IVP Global Inc.",
+    url: "https://blotocol.com/",
+    position: "Senior Software Engineer",
+    duration: "Nov 2016 - Feb 2020",
     logo: {
-      light: '/worked_at_logos/ivp/blotocol_logo-dark.png',
-      dark: '/worked_at_logos/ivp/blotocol-logo-white.png',
+      light: "/worked_at_logos/ivp/blotocol_logo-dark.png",
+      dark: "/worked_at_logos/ivp/blotocol-logo-white.png",
     },
     roles: [
       <>
@@ -154,10 +156,10 @@ export const Experiences: {
       </>,
     ],
   },
-}
+};
 
 export const ExperiencesList = [
   Experiences.Deloitte,
   Experiences.SCG,
   Experiences.Blotocol,
-]
+];

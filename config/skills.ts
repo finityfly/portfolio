@@ -1,18 +1,18 @@
-import { IconType } from 'react-icons'
+import { IconType } from "react-icons";
 import {
-  SiDotNet,
+  SiDotnet,
   SiJavascript,
   SiTypescript,
-  SiNodeDotJs,
+  SiNodedotjs,
   SiGraphql,
   SiApollographql,
   SiPhp,
   SiReact,
-  SiNextDotJs,
+  SiNextdotjs,
   SiRedux,
-  SiStyledComponents,
+  SiStyledcomponents,
   SiGhost,
-  SiVueDotJs,
+  SiVuedotjs,
   SiDocker,
   SiGooglecloud,
   SiCpanel,
@@ -23,8 +23,8 @@ import {
   SiMysql,
   SiMongodb,
   SiRedis,
-  SiSocketDotIo,
-  SiMaterialUi,
+  SiSocketdotio,
+  // SiMaterialUi,
   SiFramer,
   SiGit,
   SiGnubash,
@@ -32,223 +32,223 @@ import {
   SiUnity,
   SiMicrosoft,
   SiElectron,
-} from 'react-icons/si'
-import { BsQuestionSquare } from 'react-icons/bs'
-import { AiOutlineAntDesign } from 'react-icons/ai'
-import { FaSourcetree } from 'react-icons/fa'
-import { IoLogoPwa } from 'react-icons/io5'
+} from "react-icons/si";
+import { BsQuestionSquare } from "react-icons/bs";
+import { AiOutlineAntDesign } from "react-icons/ai";
+import { FaSourcetree } from "react-icons/fa";
+import { IoLogoPwa } from "react-icons/io5";
 
 export type SkillCategory =
-  | 'backend'
-  | 'frontend'
-  | 'cicd'
-  | 'database'
-  | 'ui frameworks'
-  | 'productivity boost'
-  | 'mobile'
-  | 'games'
-  | 'desktop'
+  | "backend"
+  | "frontend"
+  | "cicd"
+  | "database"
+  | "ui frameworks"
+  | "productivity boost"
+  | "mobile"
+  | "games"
+  | "desktop";
 
 export type Skill = {
-  name: string
-  icon: IconType
-}
+  name: string;
+  icon: IconType;
+};
 
 export const Skills: {
-  [key in SkillCategory]: Skill[]
+  [key in SkillCategory]: Skill[];
 } = {
   backend: [
     {
-      name: 'C# - .NET.Core',
-      icon: SiDotNet,
+      name: "C# - .NET.Core",
+      icon: SiDotnet,
     },
     {
-      name: 'Node',
-      icon: SiNodeDotJs,
+      name: "Node",
+      icon: SiNodedotjs,
     },
     {
-      name: 'Javascript (ES6+)',
+      name: "Javascript (ES6+)",
       icon: SiJavascript,
     },
     {
-      name: 'Typescript',
+      name: "Typescript",
       icon: SiTypescript,
     },
     {
-      name: 'Graphql (JS, C#)',
+      name: "Graphql (JS, C#)",
       icon: SiGraphql,
     },
     {
-      name: 'PHP (Wordpress, Slim)',
+      name: "PHP (Wordpress, Slim)",
       icon: SiPhp,
     },
   ],
   frontend: [
     {
-      name: 'React, RecoilJS',
+      name: "React, RecoilJS",
       icon: SiReact,
     },
     {
-      name: 'NextJS',
-      icon: SiNextDotJs,
+      name: "NextJS",
+      icon: SiNextdotjs,
     },
     {
-      name: 'Apollo Graphql',
+      name: "Apollo Graphql",
       icon: SiApollographql,
     },
     {
-      name: 'Redux',
+      name: "Redux",
       icon: SiRedux,
     },
     {
-      name: 'VueJS',
-      icon: SiVueDotJs,
+      name: "VueJS",
+      icon: SiVuedotjs,
     },
     {
-      name: 'Ghost',
+      name: "Ghost",
       icon: SiGhost,
     },
   ],
   database: [
     {
-      name: 'PostgreSQL',
+      name: "PostgreSQL",
       icon: SiPostgresql,
     },
     {
-      name: 'MsSQL',
+      name: "MsSQL",
       icon: SiMicrosoftsqlserver,
     },
     {
-      name: 'MySQL',
+      name: "MySQL",
       icon: SiMysql,
     },
     {
-      name: 'MongoDb',
+      name: "MongoDb",
       icon: SiMongodb,
     },
     {
-      name: 'Redis',
+      name: "Redis",
       icon: SiRedis,
     },
     {
-      name: 'SocketIO',
-      icon: SiSocketDotIo,
+      name: "SocketIO",
+      icon: SiSocketdotio,
     },
     {
-      name: 'Google Pubsub',
+      name: "Google Pubsub",
       icon: SiGooglecloud,
     },
   ],
   cicd: [
     {
-      name: 'Docker',
+      name: "Docker",
       icon: SiDocker,
     },
     {
-      name: 'GCP',
+      name: "GCP",
       icon: SiGooglecloud,
     },
     {
-      name: 'CPanel',
+      name: "CPanel",
       icon: SiCpanel,
     },
     {
-      name: 'Rancher',
+      name: "Rancher",
       icon: SiRancher,
     },
     {
-      name: 'GitlabCICD',
+      name: "GitlabCICD",
       icon: SiGitlab,
     },
     {
-      name: 'Buildkite',
+      name: "Buildkite",
       icon: BsQuestionSquare,
     },
   ],
-  'ui frameworks': [
+  "ui frameworks": [
     {
-      name: 'Styled Components',
-      icon: SiStyledComponents,
+      name: "Styled Components",
+      icon: SiStyledcomponents,
     },
     {
-      name: 'AntDesign',
+      name: "AntDesign",
       icon: AiOutlineAntDesign,
     },
+    // {
+    //   name: "MaterialUI",
+    //   icon: SiMaterialUi,
+    // },
     {
-      name: 'MaterialUI',
-      icon: SiMaterialUi,
-    },
-    {
-      name: 'Framer Motion',
+      name: "Framer Motion",
       icon: SiFramer,
     },
     {
-      name: 'ChakraUI',
+      name: "ChakraUI",
       icon: BsQuestionSquare,
     },
   ],
-  'productivity boost': [
+  "productivity boost": [
     {
-      name: 'VSCode',
+      name: "VSCode",
       icon: SiVisualstudiocode,
     },
     {
-      name: 'Git',
+      name: "Git",
       icon: SiGit,
     },
     {
-      name: 'Bash',
+      name: "Bash",
       icon: SiGnubash,
     },
     {
-      name: 'SourceTree',
+      name: "SourceTree",
       icon: FaSourcetree,
     },
   ],
   mobile: [
     {
-      name: 'React Native',
+      name: "React Native",
       icon: SiReact,
     },
     {
-      name: 'Web PWA',
+      name: "Web PWA",
       icon: IoLogoPwa,
     },
   ],
   games: [
     {
-      name: 'Unity3D',
+      name: "Unity3D",
       icon: SiUnity,
     },
   ],
   desktop: [
     {
-      name: 'Windows Forms, WPF',
+      name: "Windows Forms, WPF",
       icon: SiMicrosoft,
     },
     {
-      name: 'Electron',
+      name: "Electron",
       icon: SiElectron,
     },
   ],
-}
+};
 
 export const splitSkills = (srcArray: Skill[]) => {
-  const arrLength = srcArray.length
-  const isEvenChunk = arrLength % 2 === 0
+  const arrLength = srcArray.length;
+  const isEvenChunk = arrLength % 2 === 0;
 
-  let chunk = 4
+  let chunk = 4;
   if (isEvenChunk) {
-    chunk = arrLength / 2
+    chunk = arrLength / 2;
   } else if (arrLength <= 5 && arrLength > 2) {
-    chunk = 3
+    chunk = 3;
   }
 
-  let i = 0
-  let j = 0
-  const temporary = []
+  let i = 0;
+  let j = 0;
+  const temporary = [];
   for (i = 0, j = srcArray.length; i < j; i += chunk) {
-    temporary.push(srcArray.slice(i, i + chunk))
+    temporary.push(srcArray.slice(i, i + chunk));
   }
-  return temporary
-}
+  return temporary;
+};

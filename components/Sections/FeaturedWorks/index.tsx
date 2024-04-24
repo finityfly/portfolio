@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo } from "react";
 import {
   Heading,
   Text,
@@ -6,33 +6,33 @@ import {
   Grid,
   GridItem,
   useBreakpointValue,
-} from '@chakra-ui/react'
-import { motion } from 'framer-motion'
-import FeaturedCard from './FeaturedCard'
-import { fadeInUpSlower, galleryStagger } from 'config/animations'
-import { mobileBreakpointsMap } from 'config/theme'
-const MotionGrid = motion(Grid)
-const MotionGridItem = motion(GridItem)
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
+import FeaturedCard from "./FeaturedCard";
+import { fadeInUpSlower, galleryStagger } from "config/animations";
+import { mobileBreakpointsMap } from "config/theme";
+const MotionGrid = motion(Grid);
+const MotionGridItem = motion(GridItem);
 
 const FeaturedWorksSection = () => {
-  const isMobile = useBreakpointValue(mobileBreakpointsMap)
+  const isMobile = useBreakpointValue(mobileBreakpointsMap);
   return (
     <Stack
-      width={{ base: '99%', lg: '60%', xl: '75%' }}
+      width={{ base: "99%", lg: "60%", xl: "75%" }}
       height="100%"
       spacing={{ base: 6, xl: 8 }}
     >
       <Heading
         size="2xl"
         style={{
-          fontVariantCaps: 'small-caps',
+          fontVariantCaps: "small-caps",
         }}
       >
         Some of my works.
       </Heading>
       <Text variant="description">
-        Check out some of the works I made at freelancing, company projects and
-        even case studies.
+        Check out some of the projects I made for fun, for clients, or for
+        hackathons.
       </Text>
 
       <MotionGrid
@@ -44,12 +44,12 @@ const FeaturedWorksSection = () => {
         <MotionGridItem colSpan={6} variants={fadeInUpSlower}>
           <FeaturedCard
             idx={1}
-            title="Tobira!"
-            src="/works/tobira/IphoneX-tobira.webp"
-            description="Japanese social media platform for travelers to show off their
-          adventure to the world. I was incharge of Front end integration, made using React, Antd and Styled Components."
-            height={{ base: '130px', md: '225px', '2xl': '300px' }}
-            ctaUrl="https://tobira-app-test.netlify.app/"
+            title="Walk in the Park"
+            src="/works/walk_thumbnail.png"
+            description="A gamified mobile application designed to foster empathy, understanding, and cultural awareness. The project utilizes React Native for cross-platform capability, AI-driven content curation, and a Python-based server infrastructure"
+            height={{ base: "130px", md: "225px", "2xl": "300px" }}
+            ctaUrl="https://github.com/EdwinNgui/Walk-in-the-Park"
+            secondUrl="https://devpost.com/software/walk-in-the-park"
             objectPosition="right 20%"
             isMobile={isMobile}
           />
@@ -58,11 +58,12 @@ const FeaturedWorksSection = () => {
         <MotionGridItem colSpan={6} variants={fadeInUpSlower}>
           <FeaturedCard
             idx={2}
-            title="RSV"
-            description="RSV is a smart contract (ERC20) powered reservation system. I am incharge of backend using NET.Core 2.1."
-            src="/works/rsv.webp"
-            height={{ base: '130px', md: '225px', '2xl': '300px' }}
-            ctaUrl="https://solution.rsv.ltd/jp"
+            title="TRACY: Tennis Real-time Analysis Coaching Systems"
+            description="A full-stack web application that provides real-time analysis and coaching for tennis players. The React application uses computer vision to track the player's movements and provides feedback on their performance."
+            src="/works/tracy_thumbnail.png"
+            height={{ base: "130px", md: "225px", "2xl": "300px" }}
+            ctaUrl="https://github.com/EdwinNgui/TRACY"
+            secondUrl="https://devpost.com/software/tracy-dm41vu"
             isMobile={isMobile}
           />
         </MotionGridItem>
@@ -70,11 +71,12 @@ const FeaturedWorksSection = () => {
         <MotionGridItem colSpan={6} variants={fadeInUpSlower}>
           <FeaturedCard
             idx={3}
-            title="Agora School"
-            description="A quizz - reviewer LMS, I made as a freelancer. Backend were powered by PHPSlim and VueJS for Front end."
-            src="/works/agora.webp"
-            height={{ base: '130px', md: '225px', '2xl': '300px' }}
-            ctaUrl="https://dev.agora-school.com"
+            title="Melodica"
+            description="A modern web tool for musicians that leverages AI-powered technologies to separate instrument stems and provide other valuable utilities. The project uses React in combination with p5.js for the front-end and Flask for the back-end."
+            src="/works/melodica_thumbnail.png"
+            height={{ base: "130px", md: "225px", "2xl": "300px" }}
+            ctaUrl="https://github.com/FinityFly/melodica"
+            secondUrl="https://devpost.com/software/melodica-y0267b"
             objectPosition="right 20%"
             isMobile={isMobile}
           />
@@ -83,17 +85,31 @@ const FeaturedWorksSection = () => {
         <MotionGridItem colSpan={6} variants={fadeInUpSlower}>
           <FeaturedCard
             idx={4}
-            title="TMH Layla EC"
-            description="A Japanese Semi-conductor e-commerce made at my old place at IVP. I was working with backend using ASP.NET MVC"
-            src="/works/tmh.webp"
-            height={{ base: '130px', md: '225px', '2xl': '300px' }}
-            ctaUrl="https://www.layla-ec.com/"
+            title="Automatic Speech Recognition Neural Network Feature Extraction Analysis"
+            description="Over the course of 6 months, I created and trained a bidirectional GRU network using Tensorflow to generate test data for my research paper on speech feature extraction algorithms."
+            src="/works/paper.png"
+            height={{ base: "130px", md: "225px", "2xl": "300px" }}
+            ctaUrl="https://github.com/FinityFly/SpeechRecognition"
+            secondUrl="https://www.academia.edu/108988755/Investigating_the_Impact_of_Various_Feature_Extraction_Algorithms_on_Performance_in_Automatic_Speech_Recognition_Systems"
+            isMobile={isMobile}
+          />
+        </MotionGridItem>
+
+        <MotionGridItem colSpan={6} variants={fadeInUpSlower}>
+          <FeaturedCard
+            idx={5}
+            title="Mimeals"
+            description="Lead the development of a meal-planning web application that allows users to easily plan their meals for the week and easily organize a crucial aspect of everyday life"
+            src="/works/mimeals_thumbnail.jpeg"
+            height={{ base: "130px", md: "225px", "2xl": "300px" }}
+            ctaUrl="https://github.com/FinityFly/mimeals"
+            secondUrl="http://mimeals.azurewebsites.net"
             isMobile={isMobile}
           />
         </MotionGridItem>
       </MotionGrid>
     </Stack>
-  )
-}
+  );
+};
 
-export default memo(FeaturedWorksSection)
+export default memo(FeaturedWorksSection);

@@ -17,42 +17,42 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useColorMode,
-} from '@chakra-ui/react'
-import { BiRightArrow } from 'react-icons/bi'
-import styles from './styles.module.css'
-import { ExperiencesList } from 'config/experience'
-import { mobileBreakpointsMap } from 'config/theme'
+} from "@chakra-ui/react";
+import { BiRightArrow } from "react-icons/bi";
+import styles from "./styles.module.css";
+import { ExperiencesList } from "config/experience";
+import { mobileBreakpointsMap } from "config/theme";
 
 const ExperienceTab = () => {
-  const { colorMode } = useColorMode()
-  const emphasis = useColorModeValue('teal.500', 'cyan.200')
-  const borderColor = useColorModeValue('gray.300', 'gray.600')
-  const activeBordercolor = useColorModeValue('teal.500', '#97DFFC')
-  const isMobile = useBreakpointValue(mobileBreakpointsMap)
+  const { colorMode } = useColorMode();
+  const emphasis = useColorModeValue("teal.500", "cyan.200");
+  const borderColor = useColorModeValue("gray.300", "gray.600");
+  const activeBordercolor = useColorModeValue("teal.500", "#97DFFC");
+  const isMobile = useBreakpointValue(mobileBreakpointsMap);
 
   const tabOrientation =
     useBreakpointValue({
-      base: 'horizontal',
-      sm: 'horizontal',
-      md: 'vertical',
-      lg: 'vertical',
-      xl: 'vertical',
-    }) ?? ('vertical' as any)
+      base: "horizontal",
+      sm: "horizontal",
+      md: "vertical",
+      lg: "vertical",
+      xl: "vertical",
+    }) ?? ("vertical" as any);
 
   const tabMinWidth = useBreakpointValue({
-    base: '160px',
-    sm: '160px',
-    md: 'auto',
-    lg: 'auto',
-    xl: 'auto',
-  })
+    base: "160px",
+    sm: "160px",
+    md: "auto",
+    lg: "auto",
+    xl: "auto",
+  });
   return (
     <Tabs id="experienceTabs" orientation={tabOrientation} isLazy>
       <TabList
-        width={!isMobile ? '30%' : 'auto'}
+        width={!isMobile ? "30%" : "auto"}
         borderColor="transparent"
-        overflowX={isMobile ? 'scroll' : 'auto'}
-        overflowY={'hidden'}
+        overflowX={isMobile ? "scroll" : "auto"}
+        overflowY={"hidden"}
         className={styles.experienceTabs}
       >
         {ExperiencesList.map((company) => (
@@ -63,19 +63,19 @@ const ExperienceTab = () => {
             minWidth={tabMinWidth}
             boxShadow="none"
             borderColor={borderColor}
-            borderLeftWidth={tabOrientation === 'vertical' ? '4px' : '0'}
+            borderLeftWidth={tabOrientation === "vertical" ? "4px" : "0"}
             _selected={{
               borderColor: activeBordercolor,
-              boxShadow: 'none',
-              borderLeftWidth: tabOrientation === 'vertical' ? '4px' : '0',
-              borderBottomWidth: tabOrientation === 'horizontal' ? '4px' : '0',
-              background: 'whiteAlpha.100',
+              boxShadow: "none",
+              borderLeftWidth: tabOrientation === "vertical" ? "4px" : "0",
+              borderBottomWidth: tabOrientation === "horizontal" ? "4px" : "0",
+              background: "whiteAlpha.100",
             }}
-            borderBottomWidth={tabOrientation === 'horizontal' ? '4px' : '0'}
+            borderBottomWidth={tabOrientation === "horizontal" ? "4px" : "0"}
           >
             <Image
               src={
-                colorMode === 'dark' ? company.logo.dark : company.logo.light
+                colorMode === "dark" ? company.logo.dark : company.logo.light
               }
               alt={company.longName}
               maxWidth="88px"
@@ -114,7 +114,7 @@ const ExperienceTab = () => {
                     fontSize="x-small"
                     variant="description"
                   >
-                    {' '}
+                    {" "}
                     {company.subDetail}
                   </Text>
                 </Text>
@@ -145,7 +145,7 @@ const ExperienceTab = () => {
         ))}
       </TabPanels>
     </Tabs>
-  )
-}
+  );
+};
 
-export default ExperienceTab
+export default ExperienceTab;

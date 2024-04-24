@@ -1,54 +1,31 @@
-import { IconType } from 'react-icons'
-import {
-  FaInstagram,
-  FaLinkedin,
-  FaStackOverflow,
-  FaTwitter,
-  FaYoutube,
-  FaGithub,
-  FaDev,
-} from 'react-icons/fa'
+import { IconType } from "react-icons";
+import { FaLinkedin, FaGithub, FaCode, FaFilePdf } from "react-icons/fa";
 
 type SocialMedia = {
-  label: string
-  href: string
-  icon: IconType
-}
+  label: string;
+  href: string;
+  icon: IconType;
+};
 
 export const SocialMedias: SocialMedia[] = [
   {
-    label: 'Twitter',
-    href: 'https://twitter.com/keysl1831',
-    icon: FaTwitter,
-  },
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/kllawingco/',
-    icon: FaInstagram,
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/marclawingco/',
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/daniel-lu-9575a0176/",
     icon: FaLinkedin,
   },
   {
-    label: 'StackOverflow',
-    href: 'https://stackoverflow.com/users/3867490/keysl',
-    icon: FaStackOverflow,
-  },
-  {
-    label: 'Youtube',
-    href: 'https://www.youtube.com/channel/UCV-MiUVsKJrKJKKfUK58nhg',
-    icon: FaYoutube,
-  },
-  {
-    label: 'Github',
-    href: 'https://github.com/klawingco',
+    label: "Github",
+    href: "https://github.com/FinityFly",
     icon: FaGithub,
   },
   {
-    label: 'Dev.to',
-    href: 'https://dev.to/klawingco',
-    icon: FaDev,
+    label: "Devpost",
+    href: "https://devpost.com/FinityFly",
+    icon: FaCode,
   },
-]
+  {
+    label: "Resume",
+    href: "/DanielLu_CV.pdf",
+    icon: FaFilePdf,
+  },
+];

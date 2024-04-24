@@ -5,60 +5,60 @@ import {
   Link,
   SkeletonCircle,
   useColorModeValue,
-} from '@chakra-ui/react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useEffect } from 'react'
-import { avatarAnimation } from 'config/animations'
+} from "@chakra-ui/react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { avatarAnimation } from "config/animations";
 
 const AvatarImages = {
-  DarkMode: '/KL_avatar.png',
-  LightMode: './KL_avatar_light.png',
-}
+  DarkMode: "/github_avatar.png",
+  LightMode: "./github_avatar.png",
+};
 
 declare global {
   interface Window {
-    preloadedPictures?: HTMLImageElement[]
+    preloadedPictures?: HTMLImageElement[];
   }
 }
 
 const Avatar = () => {
-  const MotionBox = motion(Box)
+  const MotionBox = motion(Box);
   const imgAvatar = useColorModeValue(
     AvatarImages.LightMode,
     AvatarImages.DarkMode
-  )
+  );
   useEffect(() => {
     // Some nice preloading and caching
-    const images = [AvatarImages.DarkMode, AvatarImages.LightMode]
+    const images = [AvatarImages.DarkMode, AvatarImages.LightMode];
     const preloadedImages = images.map((imageSrc) => {
-      const img = new Image()
-      img.src = imageSrc
-      return img
-    })
-    window.preloadedPictures = preloadedImages
-  }, [])
+      const img = new Image();
+      img.src = imageSrc;
+      return img;
+    });
+    window.preloadedPictures = preloadedImages;
+  }, []);
   return (
     <AnimatePresence>
       <MotionBox
-        id="klAvatar"
-        boxSize={{ base: 64, lg: 'sm' }}
+        id="dlAvatar"
+        boxSize={{ base: 64, lg: "sm" }}
         padding={{ base: 8 }}
         marginBottom={{ base: 10, md: 0, lg: 0 }}
         initial="initial"
-        animate={'animate'}
+        animate={"animate"}
         variants={avatarAnimation}
         exit={{ opacity: 0 }}
       >
         <ChkImage
           src={imgAvatar}
-          alt="KL Lawingco Avatar"
+          alt="Daniel Lu Avatar"
           htmlWidth="250"
           htmlHeight="250"
           margin="auto"
           fallback={<SkeletonCircle height="100%" width="100%" />}
         />
-        <Text textAlign="center" fontSize="smaller" variant="description">
-          Art by{' '}
+        {/* <Text textAlign="center" fontSize="smaller" variant="description">
+          Art by{" "}
           <Link
             href="https://twitter.com/kojiro_ai"
             target="_blank"
@@ -67,10 +67,10 @@ const Avatar = () => {
           >
             KojiroArt
           </Link>
-        </Text>
+        </Text> */}
       </MotionBox>
     </AnimatePresence>
-  )
-}
+  );
+};
 
-export default Avatar
+export default Avatar;

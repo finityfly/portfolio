@@ -15,24 +15,24 @@ import {
   useColorModeValue,
   Divider,
   Text,
-} from '@chakra-ui/react'
-import styles from './styles.module.css'
-import { Skill, Skills, splitSkills } from 'config/skills'
+} from "@chakra-ui/react";
+import styles from "./styles.module.css";
+import { Skill, Skills, splitSkills } from "config/skills";
 
 type ISkillSetModal = {
-  isOpen: boolean
-  onClose(): void
-}
+  isOpen: boolean;
+  onClose(): void;
+};
 
 const SkillList = ({
   title,
   columns,
 }: {
-  title: string
-  columns: Skill[][]
+  title: string;
+  columns: Skill[][];
 }) => {
-  const emphasis = useColorModeValue('teal.500', 'cyan.200')
-  const [colOne, colTwo = []] = columns
+  const emphasis = useColorModeValue("teal.500", "cyan.200");
+  const [colOne, colTwo = []] = columns;
   return (
     <>
       <Heading as="div" size="sm" paddingBottom={1} variant="description">
@@ -68,18 +68,18 @@ const SkillList = ({
         </List>
       </SimpleGrid>
     </>
-  )
-}
+  );
+};
 const SkillSetModal = ({ isOpen, onClose }: ISkillSetModal) => {
-  const backendCols = splitSkills(Skills.backend)
-  const frontendCols = splitSkills(Skills.frontend)
-  const cicdCols = splitSkills(Skills.cicd)
-  const dataBaseCols = splitSkills(Skills.database)
-  const uiFrameWorkCols = splitSkills(Skills['ui frameworks'])
-  const productivityCols = splitSkills(Skills['productivity boost'])
-  const mobileCols = splitSkills(Skills.mobile)
-  const gameCols = splitSkills(Skills.games)
-  const desktopCols = splitSkills(Skills.desktop)
+  const backendCols = splitSkills(Skills.backend);
+  const frontendCols = splitSkills(Skills.frontend);
+  const cicdCols = splitSkills(Skills.cicd);
+  const dataBaseCols = splitSkills(Skills.database);
+  const uiFrameWorkCols = splitSkills(Skills["ui frameworks"]);
+  const productivityCols = splitSkills(Skills["productivity boost"]);
+  const mobileCols = splitSkills(Skills.mobile);
+  const gameCols = splitSkills(Skills.games);
+  const desktopCols = splitSkills(Skills.desktop);
   return (
     <Modal
       isOpen={isOpen}
@@ -107,7 +107,7 @@ const SkillSetModal = ({ isOpen, onClose }: ISkillSetModal) => {
         </ModalFooter>
       </ModalContent>
     </Modal>
-  )
-}
+  );
+};
 
-export default SkillSetModal
+export default SkillSetModal;
