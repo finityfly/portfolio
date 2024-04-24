@@ -3,6 +3,8 @@ import { Heading, Text, Stack, Link, Icon, Box } from "@chakra-ui/react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RiHeartPulseFill, RiCopyleftLine, RiGithubFill } from "react-icons/ri";
+import { SocialMedias } from "config/sidebar";
+import { simpleOpacity } from "config/animations";
 const rimuruVariant: Variants = {
   shake: {
     rotate: [0, 15, 0, -15, 0],
@@ -26,6 +28,7 @@ const rimuruVariant: Variants = {
 
 const GetInTouch = () => {
   const [ref, inView] = useInView();
+  const MotionBox = motion(Box);
   return (
     <Stack
       width={{ base: "99%", lg: "60%", xl: "75%" }}
@@ -62,6 +65,30 @@ const GetInTouch = () => {
         </Link>
         !
       </Text>
+
+      {/* make the items centered and spaced */}
+      <MotionBox
+        d="flex"
+        justifyContent="center"
+        alignItems="center"
+        variants={simpleOpacity}
+      >
+        {SocialMedias.map((socMedia) => (
+          <Link
+            variant="description"
+            key={socMedia.label}
+            aria-label={socMedia.label}
+            rel="noreferrer"
+            width={8}
+            mx={2}
+            href={socMedia.href}
+            target="_blank"
+            _focus={{ boxShadow: "none" }}
+          >
+            <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
+          </Link>
+        ))}
+      </MotionBox>
 
       <Box
         padding={0.5}

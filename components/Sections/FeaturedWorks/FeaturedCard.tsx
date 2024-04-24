@@ -1,4 +1,5 @@
 /* eslint-disable react/no-multi-comp */
+import { MouseEventHandler } from "react";
 import {
   Box,
   Image,
@@ -13,16 +14,22 @@ import {
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { SiGithub, SiCoderwall } from "react-icons/si";
+import { SiGithub } from "react-icons/si";
+import { IoMdOpen } from "react-icons/io";
 import { motion } from "framer-motion";
 import styles from "./styles.module.css";
 import { easing, DURATIONS } from "config/animations";
+
+type IWorkModal = {
+  onOpen(): void;
+};
 
 export type FeaturedCardProps = {
   // Still can't find what's correct value for responsive value
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   height: string | ResponsiveValue<any>;
   src: string;
+  onOpen: IWorkModal;
   idx: number;
   title: string;
   description: string;
@@ -63,6 +70,7 @@ const ProjectDescription = ({
   ctaUrl,
   secondUrl,
   isLeft,
+  onOpen,
 }: {
   idx?: number;
   title: string;
@@ -70,13 +78,14 @@ const ProjectDescription = ({
   ctaUrl: string;
   secondUrl: string;
   isLeft: boolean;
+  onOpen?: IWorkModal;
 }) => {
   const emphasis = useColorModeValue("teal.500", "cyan.200");
 
   return (
     <Container
       paddingX={5}
-      paddingY={1}
+      paddingY={5}
       display="flex"
       alignItems="center"
       justifyContent="space-around"
@@ -129,10 +138,9 @@ const ProjectDescription = ({
           borderColor={emphasis}
           color={emphasis}
           size="sm"
-          as="a"
-          href={ctaUrl}
-          rel="noreferrer"
-          target="_blank"
+          onClick={
+            onOpen as unknown as MouseEventHandler<HTMLButtonElement>
+          } /* eslint-disable-line */
           marginX={1}
           paddingX={2}
           marginY={{ base: 3, md: 0 }}
@@ -169,7 +177,7 @@ const ProjectDescription = ({
           marginY={{ base: 3, md: 0 }}
         >
           External&nbsp;
-          <Icon as={SiCoderwall} />
+          <Icon as={IoMdOpen} />
         </Button>
       </Container>
     </Container>
@@ -180,6 +188,7 @@ const FeaturedCard = ({
   idx,
   height,
   src,
+  onOpen,
   title,
   description,
   objectPosition,
@@ -227,6 +236,7 @@ const FeaturedCard = ({
           description={description}
           ctaUrl={ctaUrl}
           secondUrl={secondUrl}
+          onOpen={onOpen}
           isLeft={isLeftImage}
         />
         {!isLeftImage && <CoverImage />}

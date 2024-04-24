@@ -1,10 +1,21 @@
-.skillModal::-webkit-scrollbar{
- width: 0.5em;
+.skillModal::-webkit-scrollbar {
+  width: 0.5em;
 }
-.skillModal::-webkit-scrollbar-track-piece{
+.skillModal::-webkit-scrollbar-track-piece {
   width: 10px;
 }
-.skillModal::-webkit-scrollbar-thumb{
+.skillModal::-webkit-scrollbar-thumb {
+  background: var(--chakra-colors-gray-600);
+  border-radius: 1em;
+}
+
+.workModal::-webkit-scrollbar {
+  width: 0.5em;
+}
+.workModal::-webkit-scrollbar-track-piece {
+  width: 10px;
+}
+.workModal::-webkit-scrollbar-thumb {
   background: var(--chakra-colors-gray-600);
   border-radius: 1em;
 }

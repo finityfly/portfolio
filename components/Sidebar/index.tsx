@@ -61,7 +61,7 @@ const Sidebar = () => {
             variant="accent"
             fontWeight="light"
           >
-            Ohh you found me?. Hey! I am
+            Ohh you found me? Hey! I am
           </MotionText>
           <MotionHeading
             as="h1"
@@ -105,7 +105,7 @@ const Sidebar = () => {
 
           <MotionText
             variant="description"
-            fontSize="small"
+            fontSize="medium"
             paddingRight={{ lg: "12" }}
             variants={fadeInUp}
             maxWidth={{ base: "100%", lg: "80%" }}
@@ -115,9 +115,8 @@ const Sidebar = () => {
               {" "}
               Thank you!
             </Text>
-            <br />I am software engineer that specializes in full-stack web
-            development, machine learning, and data science. I am currently a
-            computer science student at Carleton University.
+            <br />I am a software engineer studying computer science based in
+            Ottawa at Carleton University.
           </MotionText>
           <MotionButton
             size="lg"

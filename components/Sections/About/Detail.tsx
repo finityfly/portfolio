@@ -52,7 +52,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
       </Heading>
       <Text variant="description">
         I`ve been programming professionally for {professionalYears} years now
-        and currently working as a <b>Software Engineer</b> that focuses on{" "}
+        and currently working as a <b>Software Engineer</b> that specializes in{" "}
         <b>full-stack web development</b>, <b>cloud engineering</b>,{" "}
         <Tooltip
           label="especially with stuff related to audio and video processing!"
@@ -63,10 +63,14 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
             <b>machine learning</b>
           </Text>
         </Tooltip>{" "}
-        and even some <b>mobile development</b> stuff now!
+        and some <b>mobile development</b> stuff now!
         <br /> <br />
-        Here are few technologies that are cup of my{" "}
-        <Tooltip label="coffee gaps tea!" aria-label="tea is mid" hasArrow>
+        Here are few technologies that are the cup of my{" "}
+        <Tooltip
+          label="good coffee gaps tea anyday"
+          aria-label="tea is mid"
+          hasArrow
+        >
           <Text as="span" variant="emphasis" textDecorationLine="line-through">
             tea
           </Text>
