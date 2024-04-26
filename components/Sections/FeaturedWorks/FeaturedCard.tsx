@@ -29,7 +29,7 @@ export type FeaturedCardProps = {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   height: string | ResponsiveValue<any>;
   src: string;
-  onOpen: IWorkModal;
+  onOpen: () => void;
   idx: number;
   title: string;
   description: string;
@@ -78,7 +78,7 @@ const ProjectDescription = ({
   ctaUrl: string;
   secondUrl: string;
   isLeft: boolean;
-  onOpen?: IWorkModal;
+  onOpen?: () => void;
 }) => {
   const emphasis = useColorModeValue("teal.500", "cyan.200");
 

@@ -10,6 +10,7 @@ import {
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { useDisclosure } from "@chakra-ui/react";
+import IWorkModal from "./WorkModal";
 import FeaturedCard from "./FeaturedCard";
 import { fadeInUpSlower, galleryStagger } from "config/animations";
 import { mobileBreakpointsMap } from "config/theme";
