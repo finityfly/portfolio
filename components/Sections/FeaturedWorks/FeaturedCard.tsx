@@ -34,8 +34,8 @@ export type FeaturedCardProps = {
   title: string;
   description: string;
   objectPosition?: string;
-  ctaUrl: string;
-  secondUrl: string;
+  url1: string;
+  url2: string;
   isMobile?: boolean;
 };
 
@@ -67,16 +67,16 @@ const ProjectDescription = ({
   idx,
   title,
   description,
-  ctaUrl,
-  secondUrl,
+  url1,
+  url2,
   isLeft,
   onOpen,
 }: {
   idx?: number;
   title: string;
   description: string;
-  ctaUrl: string;
-  secondUrl: string;
+  url1: string;
+  url2: string;
   isLeft: boolean;
   onOpen?: () => void;
 }) => {
@@ -153,7 +153,7 @@ const ProjectDescription = ({
           fontSize={{ base: "sm", "2xl": "md" }}
           size="sm"
           as="a"
-          href={ctaUrl}
+          href={url1}
           rel="noreferrer"
           target="_blank"
           marginX={1}
@@ -169,7 +169,7 @@ const ProjectDescription = ({
           fontSize={{ base: "sm", "2xl": "md" }}
           size="sm"
           as="a"
-          href={secondUrl}
+          href={url2}
           rel="noreferrer"
           target="_blank"
           marginX={1}
@@ -192,8 +192,8 @@ const FeaturedCard = ({
   title,
   description,
   objectPosition,
-  ctaUrl,
-  secondUrl,
+  url1,
+  url2,
   isMobile,
 }: FeaturedCardProps) => {
   const isLeftImage = isMobile ? false : idx % 2 === 0;
@@ -234,8 +234,8 @@ const FeaturedCard = ({
           idx={idx}
           title={title}
           description={description}
-          ctaUrl={ctaUrl}
-          secondUrl={secondUrl}
+          url1={url1}
+          url2={url2}
           onOpen={onOpen}
           isLeft={isLeftImage}
         />

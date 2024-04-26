@@ -4,34 +4,16 @@ import {
   SiJavascript,
   SiTypescript,
   SiNodedotjs,
-  SiGraphql,
-  SiApollographql,
   SiPhp,
   SiReact,
   SiNextdotjs,
-  SiRedux,
-  SiStyledcomponents,
-  SiGhost,
-  SiVuedotjs,
   SiDocker,
   SiGooglecloud,
-  SiCpanel,
-  SiRancher,
-  SiGitlab,
   SiPostgresql,
   SiMicrosoftsqlserver,
   SiMysql,
   SiMongodb,
-  SiRedis,
-  SiSocketdotio,
-  // SiMaterialUi,
-  SiFramer,
   SiGit,
-  SiGnubash,
-  SiVisualstudiocode,
-  SiUnity,
-  SiMicrosoft,
-  SiElectron,
 } from "react-icons/si";
 import { BsQuestionSquare } from "react-icons/bs";
 import { AiOutlineAntDesign } from "react-icons/ai";
@@ -41,10 +23,13 @@ import { IoLogoPwa } from "react-icons/io5";
 export type Work = {
   title: string;
   points: string[];
-  url: string;
-  secondUrl: string;
+  src: string[];
+  url1: string;
+  url2: string;
   date: string;
-  icon: IconType;
+  location: string;
+  technologies: IconType[];
+  icon: string;
 };
 
 export const Works: {
@@ -59,10 +44,13 @@ export const Works: {
         "Developed a cloud-based platform for audio and video processing.",
         "Developed a cloud-based platform for audio and video processing.",
       ],
-      url: "",
-      secondUrl: "",
+      src: ["/works/walk_thumbnail.png", "/works/tracy_thumbnail.png"],
+      url1: "",
+      url2: "",
       date: "2020 - Present",
-      icon: SiDotnet,
+      location: "Toronto, ON",
+      technologies: [SiDotnet, SiJavascript, SiTypescript, SiNodedotjs],
+      icon: "GenAI Icon, UofT Icon, Google Icon",
     },
   ],
 };
