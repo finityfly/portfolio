@@ -1,6 +1,6 @@
 import { Link } from "@chakra-ui/react";
 
-export type Company = "Deloitte" | "SCG" | "Blotocol";
+export type Company = "Spark_Youth_Robotics_Club" | "iLeap_Club";
 
 export type CompanyDetail = {
   name: string;
@@ -19,147 +19,66 @@ export type CompanyDetail = {
 export const Experiences: {
   [key in Company]: CompanyDetail;
 } = {
-  Deloitte: {
-    name: "Deloitte",
-    longName: "Deloitte Consulthing Phils. Delivery Center",
-    subDetail: "Consulthing Phils. Delivery Center",
-    url: "https://www2.deloitte.com/",
-    position: "Software Engineer Consultant",
-    duration: "Sep 2021 - Present",
+  Spark_Youth_Robotics_Club: {
+    name: "Spark Youth Robotics Club",
+    longName: "FIRST Robotics Team 8729: Spark Youth Robotics Club",
+    subDetail: "Kanata, Ontario",
+    url: "https://sparkyouthrobotics.netlify.app/",
+    position: "Software Subteam Lead, Bot Developer, and Mentor",
+    duration: "Jun 2021 - Present, Part-time",
     logo: {
-      light: "/worked_at_logos/deloitte/Deloitte_logo_black.png",
-      dark: "/worked_at_logos/deloitte/Deloitte_logo.png",
+      light: "/worked_at_logos/syrc/syrc_logo.png",
+      dark: "/worked_at_logos/syrc/syrc_logo.png",
     },
     roles: [
       <>
-        Contributed to the design and development of a comprehensive .NET
-        payment integration project for a client That covered credit card
-        payments and subscription management. Introduced Stripe as a new payment
-        provider within the system architecture. Participated in triaging,
-        fixing and adding new functionalitiesto multiple Azure powered APIs of
-        the same client.
+        Organized online workshops tailored toward children to spark interest in
+        robotics, software development, and engineering.
       </>,
       <>
-        Worked as a Sitecore Backend on new{" "}
-        <Link
-          aria-label="Deloitte Digital AU"
-          href="https://www.deloittedigital.com.au/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Deloitte Digital AU Site.
-        </Link>
+        Managed the autonomous and lighting software subteams during the FRC
+        build season.
       </>,
       <>
-        Udergone training for .NET Sitecore 10, Sitecore SXA and different
-        topologies it provides. and Passed{" "}
-        <Link
-          aria-label="Sitecore 10 .NET Developer Certification"
-          href="/certification/Lawingco-Sitecore 10 NET Developer Cert.pdf"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Sitecore 10 .NET Developer Certification.
-        </Link>
+        Trained team members on WPILib, PID systems, and the GitHub workflow;
+        responsible for preparing weekly lesson plans.
+      </>,
+      <>
+        Became the first team from Ottawa to qualify for the FIRST Championships
+        in 4 years, as rookies.
+      </>,
+      <>
+        Used Node.js paired with PostgreSQL to craft a general-purpose Discord
+        bot tailored towards streamlining various club tasks.
       </>,
     ],
   },
-  SCG: {
-    name: "Scentregroup",
-    longName: "Scentregroup Limited AU",
-    subDetail: "via Prosource BPO",
-    url: "https://www.scentregroup.com/",
-    position: "Software Engineer",
-    duration: "Feb 2020 - Sep 2021",
+  iLeap_Club: {
+    name: "iLeap Club",
+    longName: "Children & Youth Soft Skills Leadership Program",
+    subDetail: "Ottawa, Ontario",
+    url: "https://www.ileapclub.com/",
+    position: "Coordinator and Mentor",
+    duration: "Sept 2019 - Jun 2022, Part-time",
     logo: {
-      light: "/worked_at_logos/scg/SCG_400x400.jpg",
-      dark: "/worked_at_logos/scg/SCG.png",
+      light: "/worked_at_logos/ileap/ileap_logo.png",
+      dark: "/worked_at_logos/ileap/ileap_logo.png",
     },
     roles: [
       <>
-        Revamping the legacy Partner Portal into a new{" "}
-        <Link
-          aria-label="Westfield Marketing Hub"
-          href="https://partner.scentregroup.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Westfield Marketing Hub
-        </Link>{" "}
-        using NextJS and Typescript. Restructuring the old express app into a
-        newer architectural design approach.
+        Volunteered as a club meeting coordinator for weekly public speaking,
+        soft skills, and leadership meetings for young teenage leaders.
       </>,
+      <>Organized and administered weekly in-person and online meetings.</>,
       <>
-        Created multiple Contentful and Bynder extensions to improve BX process
-        better.
-      </>,
-      <>
-        Worked on maintaining{" "}
-        <Link
-          variant="primaryLink"
-          href="https://www.westfield.com.au/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Westfield
-        </Link>{" "}
-        main site and Graphql apis written in NodeJS.
-      </>,
-      <>
-        Migrating of existing marketing email related tools and batch jobs from
-        Responsys into new platform called Braze.
-      </>,
-      <>
-        Hired at early 2020, first major task was helping with selecting a new
-        marketing vendor that can scale and also enable us to have
-        personalisation as well, selecting{" "}
-        <Link
-          aria-label="Braze"
-          href="https://www.braze.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Braze
-        </Link>{" "}
-        as a result.
-      </>,
-    ],
-  },
-  Blotocol: {
-    name: "Blotocol",
-    longName: "Blotocol Philippines",
-    subDetail: "formerly IVP Global Inc.",
-    url: "https://blotocol.com/",
-    position: "Senior Software Engineer",
-    duration: "Nov 2016 - Feb 2020",
-    logo: {
-      light: "/worked_at_logos/ivp/blotocol_logo-dark.png",
-      dark: "/worked_at_logos/ivp/blotocol-logo-white.png",
-    },
-    roles: [
-      <>
-        Developed a Twitter Raffle Campaign / Contest Bot called Camps with
-        statistics similar to Facebook Ads.
-      </>,
-      <>
-        In 2019 got promoted as Senior Software Engineer and worked with Cryto
-        Exchange, Smart Contracts and other APIs using several techs such as
-        NodeJS, .NET Core and React.
-      </>,
-      <>
-        Create highly scalable Japanese e-commerce sites. Most notable clients
-        were TV Tokyo, Layla EC using .NET.
-      </>,
-      <>
-        Hired at 2016, Undergone Japanese language training first. Shortly
-        after, worked with in-house .NET MVC Framework called ERS.
+        Worked closely alongside colleagues to manage each week’s content and
+        provided valuable guidance and feedback to members.
       </>,
     ],
   },
 };
 
 export const ExperiencesList = [
-  Experiences.Deloitte,
-  Experiences.SCG,
-  Experiences.Blotocol,
+  Experiences.Spark_Youth_Robotics_Club,
+  Experiences.iLeap_Club,
 ];
