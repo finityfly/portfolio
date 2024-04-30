@@ -1,3 +1,5 @@
+"use client";
+
 import { memo } from "react";
 import { Heading, Text, Stack, Link, Icon, Box } from "@chakra-ui/react";
 import { motion, Variants } from "framer-motion";

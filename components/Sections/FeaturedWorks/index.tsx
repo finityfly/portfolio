@@ -1,3 +1,5 @@
+"use client";
+
 import { memo, useState } from "react";
 import {
   Heading,
@@ -12,13 +14,14 @@ import dynamic from "next/dynamic";
 import { useDisclosure } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import FeaturedCard from "./FeaturedCard";
+import WorkModal from "./WorkModal";
 import { fadeInUpSlower, galleryStagger } from "config/animations";
 import { mobileBreakpointsMap } from "config/theme";
 import { Work, Works } from "config/works";
 
 const MotionGrid = motion(Grid);
 const MotionGridItem = motion(GridItem);
-const WorkModal = dynamic(() => import("./WorkModal"));
+// const WorkModal = dynamic(() => import("./WorkModal"));
 
 const FeaturedWorksSection = () => {
   const isMobile = useBreakpointValue(mobileBreakpointsMap);

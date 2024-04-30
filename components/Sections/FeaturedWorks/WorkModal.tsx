@@ -18,13 +18,16 @@ import {
   useColorModeValue,
   Text,
   Flex,
-  IconButton,
+  Divider,
 } from "@chakra-ui/react";
-import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import getYouTubeID from "get-youtube-id";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { Carousel } from "react-responsive-carousel";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import styles from "./styles.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Work, Works } from "config/works";
@@ -66,9 +69,12 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
       scrollBehavior="inside"
     >
       <ModalOverlay />
-      <ModalContent maxW="40vw">
+      <ModalContent maxW="60vw">
         <ModalHeader
-          fontSize={{ base: "md", md: "large", "2xl": "xx-large" }}
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          fontSize={{ base: "lg", md: "3xl", "2xl": "4xl" }}
           fontWeight="bold"
           letterSpacing={1}
           textTransform="uppercase"
@@ -76,19 +82,30 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
           mx={4}
           mt={3}
         >
-          {title}
+          <span>{title}</span>
+          {selectedWork && (
+            <Image
+              src={selectedWork.icon}
+              maxHeight="50px"
+              alt={title}
+              marginEnd="25px"
+            />
+          )}
         </ModalHeader>
+        <Divider borderColor="#A6A6A6" width="90%" alignSelf={"center"} />
         <ModalCloseButton />
         <ModalBody className={styles.workModal}>
           {selectedWork && (
             <Box>
-              <Flex justifyContent="space-between" mb={4} fontWeight="bold">
-                <Text>{selectedWork.date}</Text>
-                <Text>{selectedWork.location}</Text>
-              </Flex>
-              <Flex ms={4}>
-                <ul>{formattedPoints}</ul>
-              </Flex>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <Flex justifyContent="space-between" mb={4} fontWeight="bold">
+                  <Text>{selectedWork.date}</Text>
+                  <Text>{selectedWork.location}</Text>
+                </Flex>
+                <Flex ms={4}>
+                  <ul>{formattedPoints}</ul>
+                </Flex>
+              </motion.div>
               <Box textAlign="center">
                 <Button
                   as="a"
@@ -113,11 +130,39 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                   Visit Website
                 </Button>
               </Box>
-              {/* i have no idea how to fix the red squigglies for the next few lines */}
-              {/* eslint-disable */}
-              <Carousel showThumbs={false} autoPlay={true}>
-                {selectedWork.video && (
-                  <div>
+              <Divider
+                borderColor="#A6A6A6"
+                width="100%"
+                alignSelf={"center"}
+                mb={4}
+              />
+              <Swiper
+                effect={"coverflow"}
+                grabCursor={true}
+                centeredSlides={true}
+                loop={true}
+                slidesPerView={"auto"}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 2.5,
+                }}
+                pagination={{ el: ".swiper-pagination", clickable: true }}
+                navigation={{
+                  nextEl: ".swiper-button-next",
+                  prevEl: ".swiper-button-prev",
+                  clickable: true,
+                }}
+                modules={[EffectCoverflow, Pagination, Navigation]}
+                className="swiper_container"
+                style={{
+                  "--swiper-navigation-color": emphasis,
+                  "--swiper-pagination-color": emphasis,
+                }}
+              >
+                {selectedWork.video != undefined && (
+                  <SwiperSlide>
                     <iframe
                       width="100%"
                       height="400px"
@@ -128,10 +173,11 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
                     />
-                  </div>
+                  </SwiperSlide>
                 )}
                 {selectedWork.src.map((src, index) => (
-                  <div key={index}>
+                  // eslint-disable-next-line react/jsx-key
+                  <SwiperSlide>
                     <Image
                       src={src}
                       alt={`Picture ${index + 1}`}
@@ -140,10 +186,29 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                       objectFit="contain"
                       flexShrink={0}
                     />
-                  </div>
+                  </SwiperSlide>
                 ))}
-              </Carousel>
-              {/* eslint-enable */}
+                <div className="slider-controller">
+                  <div
+                    className="swiper-button-prev slider-arrow"
+                    style={{ color: emphasis }}
+                  ></div>
+                  <div
+                    className="swiper-button-next slider-arrow"
+                    style={{ color: emphasis }}
+                  ></div>
+                  <div
+                    className="swiper-pagination"
+                    style={{ color: emphasis }}
+                  ></div>
+                </div>
+              </Swiper>
+              <Divider
+                borderColor="#A6A6A6"
+                width="100%"
+                alignSelf={"center"}
+                mt={4}
+              />
               <Text my={4} fontWeight="bold">
                 Technologies:
               </Text>

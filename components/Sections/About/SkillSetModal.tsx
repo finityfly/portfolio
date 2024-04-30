@@ -16,6 +16,7 @@ import {
   Divider,
   Text,
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import styles from "./styles.module.css";
 import { Skill, Skills, splitSkills } from "config/skills";
 
@@ -89,11 +90,13 @@ const SkillSetModal = ({ isOpen, onClose }: ISkillSetModal) => {
         <ModalHeader>Full Skill Set List</ModalHeader>
         <ModalCloseButton />
         <ModalBody className={styles.skillModal}>
-          <SkillList title="Backend Centric" columns={programmingCols} />
-          <SkillList title="Frontend Centric" columns={webCols} />
-          <SkillList title="Frameworks and Libraries" columns={flCols} />
-          <SkillList title="Cloud and Databases" columns={cloudCols} />
-          <SkillList title="Tools and Utility" columns={toolCols} />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <SkillList title="Backend Centric" columns={programmingCols} />
+            <SkillList title="Frontend Centric" columns={webCols} />
+            <SkillList title="Frameworks and Libraries" columns={flCols} />
+            <SkillList title="Cloud and Databases" columns={cloudCols} />
+            <SkillList title="Tools and Utility" columns={toolCols} />
+          </motion.div>
         </ModalBody>
         <ModalFooter>
           <Text fontSize="x-small">*Some micro frameworks not included </Text>

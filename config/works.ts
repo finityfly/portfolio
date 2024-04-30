@@ -81,7 +81,7 @@ export const Works: {
         SiAndroidstudio,
         SiGooglemaps,
       ],
-      icon: "GenAI Icon, UofT Icon, Google Icon",
+      icon: "/works/walk/genai_logo.png",
       video: "https://www.youtube.com/watch?v=z-P6PsqcVrk",
     },
     {
@@ -112,7 +112,7 @@ export const Works: {
         SiFlask,
         SiTensorflow,
       ],
-      icon: "Queens Icon",
+      icon: "/works/tracy/qhacks_logo.png",
       video: "https://www.youtube.com/watch?v=kUHZ4xdJxuQ",
     },
     {
@@ -141,7 +141,7 @@ export const Works: {
         SiP5Dotjs,
         SiThreedotjs,
       ],
-      icon: "McGill Icon",
+      icon: "/works/melodica/mais_logo.png",
       video: "https://www.youtube.com/watch?v=wo1KqoT2Wjo",
     },
     {
@@ -150,13 +150,13 @@ export const Works: {
         "Conducted research on <b>automatic speech recognition (ASR)</b> and <b>speech-to-text</b> technologies that investigated the performances of different <b>speech feature extraction algorithms</b> in ASR systems.",
         "Trained a <b>deep bidirectional GRU network</b> using <b>TensorFlow</b> to accurately transcribe continuous speech data using varying audio feature extraction algorithms, such as Mel spectrograms, Mel-Frequency Cepstral Coefficients (MFCCs), and discrete wavelet transforms.",
       ],
-      src: ["/works/paper.png"],
+      src: ["/works/asr/paper.png"],
       url1: "https://github.com/FinityFly/SpeechRecognition",
       url2: "https://www.academia.edu/108988755/Investigating_the_Impact_of_Various_Feature_Extraction_Algorithms_on_Performance_in_Automatic_Speech_Recognition_Systems",
       date: "Jun 2022 - Jan 2023",
-      location: "Merivale High School",
+      location: "International Baccalareate Diploma Programme",
       technologies: [SiPython, SiTensorflow, SiJupyter],
-      icon: "Merivale Icon",
+      icon: "/works/asr/ib_logo.png",
     },
     {
       title: "MiMeals",
@@ -185,7 +185,7 @@ export const Works: {
         SiDocker,
         SiMicrosoftazure,
       ],
-      icon: "Merivale Icon",
+      icon: "/works/mimeals/mhs_logo.png",
     },
   ],
 };
