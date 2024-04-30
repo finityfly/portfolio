@@ -1,53 +1,40 @@
 import { IconType } from "react-icons";
 import {
-  SiDotnet,
+  SiCplusplus,
+  SiPython,
   SiJavascript,
   SiTypescript,
-  SiNodedotjs,
-  SiGraphql,
-  SiApollographql,
+  SiCsharp,
+  SiMysql,
+  SiPostgresql,
+  SiMongodb,
+  SiHtml5,
   SiPhp,
+  SiCss3,
+  SiAmazonaws,
+  SiNodedotjs,
   SiReact,
   SiNextdotjs,
-  SiRedux,
-  SiStyledcomponents,
-  SiGhost,
-  SiVuedotjs,
+  SiLinux,
+  SiTensorflow,
+  SiPytorch,
+  SiTailwindcss,
+  SiFlask,
+  SiSelenium,
+  SiMicrosoftazure,
+  SiApache,
+  SiJira,
   SiDocker,
-  SiGooglecloud,
-  SiCpanel,
-  SiRancher,
-  SiGitlab,
-  SiPostgresql,
-  SiMicrosoftsqlserver,
-  SiMysql,
-  SiMongodb,
-  SiRedis,
-  SiSocketdotio,
-  // SiMaterialUi,
-  SiFramer,
-  SiGit,
-  SiGnubash,
-  SiVisualstudiocode,
-  SiUnity,
-  SiMicrosoft,
-  SiElectron,
+  SiOpencv,
 } from "react-icons/si";
-import { BsQuestionSquare } from "react-icons/bs";
-import { AiOutlineAntDesign } from "react-icons/ai";
-import { FaSourcetree } from "react-icons/fa";
-import { IoLogoPwa } from "react-icons/io5";
+import { FaJava, FaGit } from "react-icons/fa";
 
 export type SkillCategory =
-  | "backend"
-  | "frontend"
-  | "cicd"
-  | "database"
-  | "ui frameworks"
-  | "productivity boost"
-  | "mobile"
-  | "games"
-  | "desktop";
+  | "programming"
+  | "web"
+  | "frameworks_libraries"
+  | "cloud"
+  | "tools";
 
 export type Skill = {
   name: string;
@@ -57,178 +44,130 @@ export type Skill = {
 export const Skills: {
   [key in SkillCategory]: Skill[];
 } = {
-  backend: [
+  programming: [
     {
-      name: "C# - .NET.Core",
-      icon: SiDotnet,
+      name: "C/C++",
+      icon: SiCplusplus,
     },
     {
-      name: "Node",
-      icon: SiNodedotjs,
+      name: "Python",
+      icon: SiPython,
     },
     {
-      name: "Javascript (ES6+)",
+      name: "Java",
+      icon: FaJava,
+    },
+    {
+      name: "JavaScript",
       icon: SiJavascript,
     },
     {
-      name: "Typescript",
+      name: "TypeScript",
       icon: SiTypescript,
     },
     {
-      name: "Graphql (JS, C#)",
-      icon: SiGraphql,
-    },
-    {
-      name: "PHP (Wordpress, Slim)",
-      icon: SiPhp,
+      name: "C#",
+      icon: SiCsharp,
     },
   ],
-  frontend: [
+  web: [
     {
-      name: "React, RecoilJS",
+      name: "HTML5",
+      icon: SiHtml5,
+    },
+    {
+      name: "CSS3",
+      icon: SiCss3,
+    },
+    {
+      name: "React, React Native",
       icon: SiReact,
     },
     {
-      name: "NextJS",
+      name: "Next.js",
       icon: SiNextdotjs,
     },
     {
-      name: "Apollo Graphql",
-      icon: SiApollographql,
+      name: "Node.js",
+      icon: SiNodedotjs,
     },
     {
-      name: "Redux",
-      icon: SiRedux,
+      name: "PHP",
+      icon: SiPhp,
     },
     {
-      name: "VueJS",
-      icon: SiVuedotjs,
-    },
-    {
-      name: "Ghost",
-      icon: SiGhost,
+      name: "Apache",
+      icon: SiApache,
     },
   ],
-  database: [
+  frameworks_libraries: [
     {
-      name: "PostgreSQL",
-      icon: SiPostgresql,
+      name: "Flask",
+      icon: SiFlask,
     },
     {
-      name: "MsSQL",
-      icon: SiMicrosoftsqlserver,
+      name: "TensorFlow",
+      icon: SiTensorflow,
+    },
+    {
+      name: "PyTorch",
+      icon: SiPytorch,
+    },
+    {
+      name: "Tailwind CSS",
+      icon: SiTailwindcss,
+    },
+    {
+      name: "Selenium",
+      icon: SiSelenium,
+    },
+    {
+      name: "Tailwind CSS",
+      icon: SiTailwindcss,
+    },
+    {
+      name: "OpenCV",
+      icon: SiOpencv,
+    },
+  ],
+  cloud: [
+    {
+      name: "AWS",
+      icon: SiAmazonaws,
     },
     {
       name: "MySQL",
       icon: SiMysql,
     },
     {
-      name: "MongoDb",
+      name: "PostgreSQL",
+      icon: SiPostgresql,
+    },
+    {
+      name: "MongoDB",
       icon: SiMongodb,
     },
     {
-      name: "Redis",
-      icon: SiRedis,
-    },
-    {
-      name: "SocketIO",
-      icon: SiSocketdotio,
-    },
-    {
-      name: "Google Pubsub",
-      icon: SiGooglecloud,
+      name: "Microsoft Azure",
+      icon: SiMicrosoftazure,
     },
   ],
-  cicd: [
+  tools: [
+    {
+      name: "Git",
+      icon: FaGit,
+    },
     {
       name: "Docker",
       icon: SiDocker,
     },
     {
-      name: "GCP",
-      icon: SiGooglecloud,
+      name: "Linux",
+      icon: SiLinux,
     },
     {
-      name: "CPanel",
-      icon: SiCpanel,
-    },
-    {
-      name: "Rancher",
-      icon: SiRancher,
-    },
-    {
-      name: "GitlabCICD",
-      icon: SiGitlab,
-    },
-    {
-      name: "Buildkite",
-      icon: BsQuestionSquare,
-    },
-  ],
-  "ui frameworks": [
-    {
-      name: "Styled Components",
-      icon: SiStyledcomponents,
-    },
-    {
-      name: "AntDesign",
-      icon: AiOutlineAntDesign,
-    },
-    // {
-    //   name: "MaterialUI",
-    //   icon: SiMaterialUi,
-    // },
-    {
-      name: "Framer Motion",
-      icon: SiFramer,
-    },
-    {
-      name: "ChakraUI",
-      icon: BsQuestionSquare,
-    },
-  ],
-  "productivity boost": [
-    {
-      name: "VSCode",
-      icon: SiVisualstudiocode,
-    },
-    {
-      name: "Git",
-      icon: SiGit,
-    },
-    {
-      name: "Bash",
-      icon: SiGnubash,
-    },
-    {
-      name: "SourceTree",
-      icon: FaSourcetree,
-    },
-  ],
-  mobile: [
-    {
-      name: "React Native",
-      icon: SiReact,
-    },
-    {
-      name: "Web PWA",
-      icon: IoLogoPwa,
-    },
-  ],
-  games: [
-    {
-      name: "Unity3D",
-      icon: SiUnity,
-    },
-  ],
-  desktop: [
-    {
-      name: "Windows Forms, WPF",
-      icon: SiMicrosoft,
-    },
-    {
-      name: "Electron",
-      icon: SiElectron,
+      name: "Jira",
+      icon: SiJira,
     },
   ],
 };

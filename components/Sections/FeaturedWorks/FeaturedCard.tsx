@@ -13,6 +13,7 @@ import {
   Container,
   Stack,
   useColorModeValue,
+  useTheme,
 } from "@chakra-ui/react";
 import { SiGithub } from "react-icons/si";
 import { IoMdOpen } from "react-icons/io";
@@ -80,7 +81,17 @@ const ProjectDescription = ({
   isLeft: boolean;
   onOpen?: () => void;
 }) => {
-  const emphasis = useColorModeValue("teal.500", "cyan.200");
+  const emphasis = useColorModeValue("#319795", "#9decf9");
+
+  const applyBoldFormatting = (text: string) => {
+    const boldRegex = /<b>(.*?)<\/b>/g;
+    const formattedText = text.replace(
+      boldRegex,
+      (_: string, content: string) =>
+        `<span style="font-weight: bold; color: ${emphasis}">${content}</span>`
+    );
+    return formattedText;
+  };
 
   return (
     <Container
@@ -88,20 +99,25 @@ const ProjectDescription = ({
       paddingY={5}
       display="flex"
       alignItems="center"
-      justifyContent="space-around"
+      justifyContent="space-between"
       flexDirection="column"
     >
       <Stack spacing={1} width="100%">
         <Text
           fontSize={{ base: "md", md: "large", "2xl": "xx-large" }}
           fontWeight="bold"
-          letterSpacing={2}
-          width="90%"
+          letterSpacing={1}
+          width="100%"
           alignSelf={isLeft ? "flex-end" : "flex-start"}
           textTransform="uppercase"
           as="span"
         >
-          <Text variant="accentAlternative" fontSize="md" as="span">
+          <Text
+            variant="accentAlternative"
+            fontSize="md"
+            as="span"
+            alignSelf={isLeft ? "flex-end" : "flex-start"}
+          >
             #0{idx}
             {"  "}
           </Text>
@@ -121,9 +137,8 @@ const ProjectDescription = ({
         alignSelf={isLeft ? "flex-end" : "flex-start"}
         wordBreak="break-word"
         paddingY={{ base: 3, md: 0 }}
-      >
-        {description}
-      </Text>
+        dangerouslySetInnerHTML={{ __html: applyBoldFormatting(description) }}
+      />
       <Container
         display="flex"
         justifyContent="center"

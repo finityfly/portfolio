@@ -1,14 +1,35 @@
-
-.featureCard{
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    border-radius: 0.80em;
-
+.featureCard {
+  position: relative;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 0.8em;
 }
+
 /* .featureCard img{
     transition: all 0.1s ease-in-out;
 }
 .featureCard:hover img{
     transform: scale(1.1);
 } */
+.workModal {
+  /* 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  padding: 1em;
+  */
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.workModal::-webkit-scrollbar {
+  width: 0.5em;
+}
+.workModal::-webkit-scrollbar-track-piece {
+  width: 10px;
+}
+.workModal::-webkit-scrollbar-thumb {
+  background: var(--chakra-colors-gray-600);
+  border-radius: 1em;
+}

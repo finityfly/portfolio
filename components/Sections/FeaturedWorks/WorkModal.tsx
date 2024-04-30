@@ -1,7 +1,7 @@
 "use client";
 
 /* eslint-disable react/no-multi-comp */
-import { useState } from "react";
+import { useState, Component } from "react";
 import {
   Modal,
   ModalOverlay,
@@ -20,9 +20,13 @@ import {
   Flex,
   IconButton,
 } from "@chakra-ui/react";
+import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
+import getYouTubeID from "get-youtube-id";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Carousel } from "react-responsive-carousel";
 import styles from "./styles.module.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Work, Works } from "config/works";
 
 type IWorkModal = {
@@ -32,31 +36,27 @@ type IWorkModal = {
 };
 
 const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
+  const emphasis = useColorModeValue("#319795", "#9decf9");
   const selectedWork: Work | undefined = Works.work.find(
     (work) => work.title === title
   );
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const goToPreviousImage = () => {
-    setCurrentImageIndex((prevIndex) => {
-      if (prevIndex === 0) {
-        return selectedWork?.src?.length ? selectedWork.src.length - 1 : 0;
-      } else {
-        return prevIndex - 1;
-      }
-    });
+  const applyBoldFormatting = (text: string) => {
+    const boldRegex = /<b>(.*?)<\/b>/g;
+    const formattedText = text.replace(
+      boldRegex,
+      (_: string, content: string) =>
+        `<span style="font-weight: bold; color: ${emphasis}">${content}</span>`
+    );
+    return formattedText;
   };
 
-  const goToNextImage = () => {
-    setCurrentImageIndex((prevIndex) => {
-      if (prevIndex === (selectedWork?.src?.length ?? 0) - 1) {
-        return 0;
-      } else {
-        return prevIndex + 1;
-      }
-    });
-  };
+  const formattedPoints = selectedWork?.points.map((point, index) => (
+    <li
+      key={index}
+      dangerouslySetInnerHTML={{ __html: applyBoldFormatting(point) }}
+    />
+  ));
 
   return (
     <Modal
@@ -66,8 +66,18 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
       scrollBehavior="inside"
     >
       <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>{title}</ModalHeader>
+      <ModalContent maxW="40vw">
+        <ModalHeader
+          fontSize={{ base: "md", md: "large", "2xl": "xx-large" }}
+          fontWeight="bold"
+          letterSpacing={1}
+          textTransform="uppercase"
+          color={emphasis}
+          mx={4}
+          mt={3}
+        >
+          {title}
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody className={styles.workModal}>
           {selectedWork && (
@@ -76,11 +86,9 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                 <Text>{selectedWork.date}</Text>
                 <Text>{selectedWork.location}</Text>
               </Flex>
-              <ul>
-                {selectedWork.points.map((point, index) => (
-                  <li key={index}>{point}</li>
-                ))}
-              </ul>
+              <Flex ms={4}>
+                <ul>{formattedPoints}</ul>
+              </Flex>
               <Box textAlign="center">
                 <Button
                   as="a"
@@ -105,21 +113,26 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                   Visit Website
                 </Button>
               </Box>
-              <Text mb={4} fontWeight="bold">
-                Pictures:
-              </Text>
-              <Box position="relative" overflow="hidden">
-                <motion.div
-                  style={{
-                    display: "flex",
-                    width: `${selectedWork.src.length * 100}%`,
-                    marginLeft: `-${currentImageIndex * 100}%`,
-                  }}
-                  transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                >
-                  {selectedWork.src.map((src, index) => (
+              {/* i have no idea how to fix the red squigglies for the next few lines */}
+              {/* eslint-disable */}
+              <Carousel showThumbs={false} autoPlay={true}>
+                {selectedWork.video && (
+                  <div>
+                    <iframe
+                      width="100%"
+                      height="400px"
+                      src={`https://www.youtube.com/embed/${getYouTubeID(
+                        selectedWork.video
+                      )}`}
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                )}
+                {selectedWork.src.map((src, index) => (
+                  <div key={index}>
                     <Image
-                      key={index}
                       src={src}
                       alt={`Picture ${index + 1}`}
                       maxH="400px"
@@ -127,32 +140,11 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                       objectFit="contain"
                       flexShrink={0}
                     />
-                  ))}
-                </motion.div>
-                <IconButton
-                  icon={<FaChevronLeft />}
-                  aria-label="Previous"
-                  variant="ghost"
-                  position="absolute"
-                  left={0}
-                  top="50%"
-                  transform="translateY(-50%)"
-                  onClick={goToPreviousImage}
-                  isDisabled={selectedWork.src.length <= 1}
-                />
-                <IconButton
-                  icon={<FaChevronRight />}
-                  aria-label="Next"
-                  variant="ghost"
-                  position="absolute"
-                  right={0}
-                  top="50%"
-                  transform="translateY(-50%)"
-                  onClick={goToNextImage}
-                  isDisabled={selectedWork.src.length <= 1}
-                />
-              </Box>
-              <Text mb={4} fontWeight="bold">
+                  </div>
+                ))}
+              </Carousel>
+              {/* eslint-enable */}
+              <Text my={4} fontWeight="bold">
                 Technologies:
               </Text>
               <Grid templateColumns="repeat(4, 1fr)" gap={4}>

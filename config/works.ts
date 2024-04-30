@@ -87,7 +87,7 @@ export const Works: {
     {
       title: "TRACY",
       points: [
-        "Achieved <b>3rd Best Hack in QHacks 2024",
+        "Achieved <b>3rd Best Hack in QHacks 2024</b>",
         "Developed an accessible, real-time web application for <b>tennis analysis and coaching</b>, implementing <b>computer vision algorithms</b> and a <b>CRNN</b> powered by <b>OpenCV</b> and <b>TensorFlow</b>.",
         "Effectively tracks <b>rapid ball and human movements in 3D space from a singular viewpoint</b> and delivers personalized insights to enhance the skills of tennis enthusiasts.",
         "Engineered a sleek and responsive web interface using <b>React.js</b>, seamlessly integrating advanced statistical computations, captivating data visualizations, and intuitive natural language feedback.",
@@ -145,9 +145,9 @@ export const Works: {
       video: "https://www.youtube.com/watch?v=wo1KqoT2Wjo",
     },
     {
-      title: "Automatic Speech Recognition Research Project",
+      title: "ASR Research Project",
       points: [
-        "Conducted research on <b>automatic speech recognition</b> and <b>speech-to-text</b> technologies that investigated the performances of different <b>speech feature extraction algorithms</b> in ASR systems.",
+        "Conducted research on <b>automatic speech recognition (ASR)</b> and <b>speech-to-text</b> technologies that investigated the performances of different <b>speech feature extraction algorithms</b> in ASR systems.",
         "Trained a <b>deep bidirectional GRU network</b> using <b>TensorFlow</b> to accurately transcribe continuous speech data using varying audio feature extraction algorithms, such as Mel spectrograms, Mel-Frequency Cepstral Coefficients (MFCCs), and discrete wavelet transforms.",
       ],
       src: ["/works/paper.png"],
