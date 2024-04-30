@@ -103,7 +103,7 @@ const ScrollMore = () => {
               as="a"
               paddingY={3}
               fontFamily="monospace"
-              href="mailto:business@daniellu.ca"
+              href="mailto:personal@daniellu.ca"
               target="_blank"
               rel="noreferrer"
               color={emailColor}
@@ -130,7 +130,7 @@ const ScrollMore = () => {
                 marginTop: "10px",
               }}
             >
-              business@daniellu.ca{" "}
+              personal@daniellu.ca{" "}
             </Text>
           </motion.div>
         )}
