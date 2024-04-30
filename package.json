@@ -25,8 +25,7 @@
     "react-intersection-observer": "^8.32.0",
     "react-multi-carousel": "^2.8.5",
     "react-responsive-carousel": "^3.2.23",
-    "swiper": "^11.1.1",
-    "tailwind-merge": "^2.3.0"
+    "swiper": "^11.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",

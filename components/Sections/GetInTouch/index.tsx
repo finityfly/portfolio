@@ -5,8 +5,6 @@ import { Heading, Text, Stack, Link, Icon, Box } from "@chakra-ui/react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RiHeartPulseFill, RiCopyleftLine, RiGithubFill } from "react-icons/ri";
-import { cn } from "@../../utils/cn";
-import { Spotlight } from "../../Misc/Spotlight";
 import { SocialMedias } from "config/sidebar";
 import { simpleOpacity } from "config/animations";
 
@@ -42,10 +40,6 @@ const GetInTouch = () => {
       as="footer"
       position="relative"
     >
-      {/* <Spotlight
-        className="-top-40 left-0 md:left-60 md:-top-20"
-        fill="white"
-      /> */}
       <Heading
         size="2xl"
         style={{
