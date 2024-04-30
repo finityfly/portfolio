@@ -32,6 +32,7 @@ const rimuruVariant: Variants = {
 const GetInTouch = () => {
   const [ref, inView] = useInView();
   const MotionBox = motion(Box);
+  const currentYear = new Date().getFullYear();
   return (
     <Stack
       width={{ base: "99%", lg: "60%", xl: "75%" }}
@@ -114,7 +115,7 @@ const GetInTouch = () => {
           <Text as="span">
             <Icon as={RiGithubFill} h={6} w={6} /> <br />
             Designed and Made with <Icon as={RiHeartPulseFill} /> <br />
-            Daniel Lu <Icon as={RiCopyleftLine} /> 2021
+            Daniel Lu <Icon as={RiCopyleftLine} /> currentYear
           </Text>
         </Link>
       </Box>
