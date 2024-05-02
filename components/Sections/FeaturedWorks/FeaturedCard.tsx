@@ -214,19 +214,26 @@ const FeaturedCard = ({
   const isLeftImage = isMobile ? false : idx % 2 === 0;
   const bg = useColorModeValue("blackAlpha.50", "whiteAlpha.200");
   const CoverImage = () => (
-    <MotionImage
-      height={height}
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
       width="100%"
-      src={src}
-      alt={title}
-      objectFit="cover"
-      objectPosition={objectPosition}
-      loading="lazy"
-      opacity={0.75}
-      whileHover={variants.hover}
-      whileTap={variants.tap}
-      fallback={<Skeleton height={height} width="100%" />}
-    />
+    >
+      <MotionImage
+        height={height}
+        width="100%"
+        src={src}
+        alt={title}
+        objectFit="cover"
+        objectPosition={objectPosition}
+        loading="lazy"
+        opacity={0.75}
+        whileHover={variants.hover}
+        whileTap={variants.tap}
+        fallback={<Skeleton height={height} width="100%" />}
+      />
+    </Box>
   );
 
   return (

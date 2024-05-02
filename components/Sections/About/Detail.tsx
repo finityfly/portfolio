@@ -22,7 +22,7 @@ import {
   SiAmazonaws,
   SiCodeforces,
 } from "react-icons/si";
-import { GiCoffeePot } from "react-icons/gi";
+import { LuCupSoda } from "react-icons/lu";
 import { IoMdOpen } from "react-icons/io";
 
 type ISkillSetModal = {
@@ -67,15 +67,15 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
         <br /> <br />
         Here are few technologies that are the cup of my{" "}
         <Tooltip
-          label="good coffee gaps tea anyday"
-          aria-label="tea is mid"
+          label="50% sugar less ice thanks"
+          aria-label="best boba order"
           hasArrow
         >
           <Text as="span" variant="emphasis" textDecorationLine="line-through">
             tea
           </Text>
         </Tooltip>{" "}
-        coffee <Icon as={GiCoffeePot} color={emphasis} />.
+        boba <Icon as={LuCupSoda} color={emphasis} />.
       </Text>
 
       <SimpleGrid columns={2} spacing={4}>

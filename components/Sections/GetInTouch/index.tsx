@@ -115,7 +115,7 @@ const GetInTouch = () => {
           <Text as="span">
             <Icon as={RiGithubFill} h={6} w={6} /> <br />
             Designed and Made with <Icon as={RiHeartPulseFill} /> <br />
-            Daniel Lu <Icon as={RiCopyleftLine} /> currentYear
+            Daniel Lu <Icon as={RiCopyleftLine} /> {currentYear}
           </Text>
         </Link>
       </Box>
