@@ -53,9 +53,9 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
       <Text variant="description">
         I`ve been programming professionally for {professionalYears} years now
         and currently working as a <b>Software Engineer</b> that specializes in{" "}
-        <b>full-stack web development</b>, <b>cloud engineering</b>,{" "}
+        <b>full-stack web development</b>, <b>software testing</b>,{" "}
         <Tooltip
-          label="especially with stuff related to audio and video processing!"
+          label="especially with audio and video processing"
           aria-label="audio and video processing"
           hasArrow
         >
@@ -63,7 +63,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
             <b>machine learning</b>
           </Text>
         </Tooltip>{" "}
-        and some <b>mobile development</b> stuff now!
+        and some <b>cloud engineering</b> now!
         <br /> <br />
         Here are few technologies that are the cup of my{" "}
         <Tooltip
