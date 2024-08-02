@@ -122,10 +122,6 @@ export const Skills: {
       icon: SiSelenium,
     },
     {
-      name: "Tailwind CSS",
-      icon: SiTailwindcss,
-    },
-    {
       name: "OpenCV",
       icon: SiOpencv,
     },
