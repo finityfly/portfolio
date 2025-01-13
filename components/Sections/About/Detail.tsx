@@ -65,17 +65,8 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
         </Tooltip>{" "}
         and some <b>cloud engineering</b> now!
         <br /> <br />
-        Here are few technologies that are the cup of my{" "}
-        <Tooltip
-          label="50% sugar less ice thanks"
-          aria-label="best boba order"
-          hasArrow
-        >
-          <Text as="span" variant="emphasis" textDecorationLine="line-through">
-            tea
-          </Text>
-        </Tooltip>{" "}
-        boba <Icon as={LuCupSoda} color={emphasis} />.
+        Here are few technologies that are the cup of my tea{" "}
+        <Icon as={LuCupSoda} color={emphasis} />.
       </Text>
 
       <SimpleGrid columns={2} spacing={4}>

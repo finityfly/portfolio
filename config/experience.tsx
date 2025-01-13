@@ -19,6 +19,35 @@ export type CompanyDetail = {
 export const Experiences: {
   [key in Company]: CompanyDetail;
 } = {
+  QNX: {
+    name: "Blackberry QNX",
+    longName: "Blackberry QNX",
+    subDetail: "Ottawa, Ontario",
+    url: "https://blackberry.qnx.com/en",
+    position: "Software Developer",
+    duration: "Jan 2025 - Apr 2025, Co-op",
+    logo: {
+      light: "/worked_at_logos/qnx/qnx_logo.png",
+      dark: "/worked_at_logos/qnx/qnx_logo.png",
+    },
+    roles: [
+      <>
+        Expanded test coverage for QNX’s RTOS by designing and implementing
+        Pytest-based tests for network manager components (io-pkt and io-sock),
+        ensuring safety certification standards for product release are met.
+      </>,
+      <>
+        Developed tools and automated tests in Bash, C, and Python to support
+        QNX systems and address client patch requests, enhancing operational
+        efficiency, and improving testing accuracy.
+      </>,
+      <>
+        Gained practical experience working in Linux/Unix environments by
+        writing OS-level code and automating tasks with shell scripting to
+        streamline operations.
+      </>,
+    ],
+  },
   Spark_Youth_Robotics_Club: {
     name: "Spark Youth Robotics Club",
     longName: "FIRST Robotics Team 8729: Spark Youth Robotics Club",
@@ -53,32 +82,32 @@ export const Experiences: {
       </>,
     ],
   },
-  iLeap_Club: {
-    name: "iLeap Club",
-    longName: "Children & Youth Soft Skills Leadership Program",
-    subDetail: "Ottawa, Ontario",
-    url: "https://www.ileapclub.com/",
-    position: "Coordinator and Mentor",
-    duration: "Sept 2019 - Jun 2022, Part-time",
-    logo: {
-      light: "/worked_at_logos/ileap/ileap_logo.png",
-      dark: "/worked_at_logos/ileap/ileap_logo.png",
-    },
-    roles: [
-      <>
-        Volunteered as a club meeting coordinator for weekly public speaking,
-        soft skills, and leadership meetings for young teenage leaders.
-      </>,
-      <>Organized and administered weekly in-person and online meetings.</>,
-      <>
-        Worked closely alongside colleagues to manage each week’s content and
-        provided valuable guidance and feedback to members.
-      </>,
-    ],
-  },
+  // iLeap_Club: {
+  //   name: "iLeap Club",
+  //   longName: "Children & Youth Soft Skills Leadership Program",
+  //   subDetail: "Ottawa, Ontario",
+  //   url: "https://www.ileapclub.com/",
+  //   position: "Coordinator and Mentor",
+  //   duration: "Sept 2019 - Jun 2022, Part-time",
+  //   logo: {
+  //     light: "/worked_at_logos/ileap/ileap_logo.png",
+  //     dark: "/worked_at_logos/ileap/ileap_logo.png",
+  //   },
+  //   roles: [
+  //     <>
+  //       Volunteered as a club meeting coordinator for weekly public speaking,
+  //       soft skills, and leadership meetings for young teenage leaders.
+  //     </>,
+  //     <>Organized and administered weekly in-person and online meetings.</>,
+  //     <>
+  //       Worked closely alongside colleagues to manage each week’s content and
+  //       provided valuable guidance and feedback to members.
+  //     </>,
+  //   ],
+  // },
 };
 
 export const ExperiencesList = [
+  Experiences.QNX,
   Experiences.Spark_Youth_Robotics_Club,
-  Experiences.iLeap_Club,
 ];

@@ -128,12 +128,12 @@ const Sidebar = () => {
             width="120px"
             variants={simpleOpacity}
             as={"a"}
-            href="mailto:personal@daniellu.ca"
+            href="/main.pdf"
             target="_blank"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Get in touch!
+            Resume/CV
           </MotionButton>
 
           <MotionBox d="flex" variants={simpleOpacity}>

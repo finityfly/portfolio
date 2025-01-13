@@ -102,18 +102,6 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
             </FadeInLayout>
             <FadeInLayout>
               <Box
-                id="jobs"
-                className="contentRow"
-                paddingTop={{ base: 0, lg: 20, xl: 0 }}
-                paddingBottom={{ base: 12, lg: 10 }}
-                paddingX={0}
-                flexDirection={"row"}
-              >
-                <FeaturedWorks />
-              </Box>
-            </FadeInLayout>
-            <FadeInLayout>
-              <Box
                 id="works"
                 className="contentRow"
                 paddingTop={{ base: 0, lg: 20, xl: 20 }}
@@ -122,6 +110,18 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                 flexDirection={"row"}
               >
                 <Experience />
+              </Box>
+            </FadeInLayout>
+            <FadeInLayout>
+              <Box
+                id="jobs"
+                className="contentRow"
+                paddingTop={{ base: 0, lg: 20, xl: 0 }}
+                paddingBottom={{ base: 12, lg: 10 }}
+                paddingX={0}
+                flexDirection={"row"}
+              >
+                <FeaturedWorks />
               </Box>
             </FadeInLayout>
             {/* <FadeInLayout>
