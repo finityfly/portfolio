@@ -1,6 +1,6 @@
 import { Link } from "@chakra-ui/react";
 
-export type Company = "Spark_Youth_Robotics_Club" | "iLeap_Club";
+export type Company = "QNX" | "Spark_Youth_Robotics_Club";
 
 export type CompanyDetail = {
   name: string;
