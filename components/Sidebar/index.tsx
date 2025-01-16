@@ -128,7 +128,7 @@ const Sidebar = () => {
             width="120px"
             variants={simpleOpacity}
             as={"a"}
-            href="/main.pdf"
+            href="/CV_DanielLu.pdf"
             target="_blank"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
