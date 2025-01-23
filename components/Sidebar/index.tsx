@@ -61,7 +61,7 @@ const Sidebar = () => {
             variant="accent"
             fontWeight="light"
           >
-            Ohh you found me? Hey! I am
+            Hi! I am
           </MotionText>
           <MotionHeading
             as="h1"
@@ -84,14 +84,6 @@ const Sidebar = () => {
           >
             Lu.
           </MotionHeading>
-          {/* <MotionText
-            colorScheme="gray"
-            fontSize="smaller"
-            className={styles.marginTopForce}
-            variants={fadeInUp}
-          >
-            Or you could call me KL. That works too . . .
-          </MotionText> */}
 
           <MotionHeading
             as="h3"
@@ -110,13 +102,14 @@ const Sidebar = () => {
             variants={fadeInUp}
             maxWidth={{ base: "100%", lg: "80%" }}
           >
-            Hey! How nice of you to look at my personal site,
+            Welcome to my personal site,
             <Text variant="emphasis" as="span">
               {" "}
-              Thank you!
+              I&apos;m glad you&apos;re here!{" "}
             </Text>
             <br />I am a software engineer studying computer science based in
-            Ottawa at Carleton University.
+            Ottawa at Carleton University. I&apos;m currently working as a
+            software test engineer at Blackberry QNX.
           </MotionText>
           <MotionButton
             size="lg"
@@ -133,7 +126,7 @@ const Sidebar = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            Resume/CV
+            View Resume/CV
           </MotionButton>
 
           <MotionBox d="flex" variants={simpleOpacity}>

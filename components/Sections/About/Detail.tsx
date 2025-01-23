@@ -53,7 +53,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
       <Text variant="description">
         I`ve been programming professionally for {professionalYears} years now
         and currently working as a <b>Software Engineer</b> that specializes in{" "}
-        <b>full-stack web development</b>, <b>software testing</b>,{" "}
+        <b>full-stack software development</b>, <b>embedded systems</b>,{" "}
         <Tooltip
           label="especially with audio and video processing"
           aria-label="audio and video processing"
