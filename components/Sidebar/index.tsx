@@ -61,7 +61,7 @@ const Sidebar = () => {
             variant="accent"
             fontWeight="light"
           >
-            Hi! I am
+            Hi, nice of you to stop by! I am
           </MotionText>
           <MotionHeading
             as="h1"
@@ -126,7 +126,7 @@ const Sidebar = () => {
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            View Resume/CV
+            View Resume
           </MotionButton>
 
           <MotionBox d="flex" variants={simpleOpacity}>
