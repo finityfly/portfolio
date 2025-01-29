@@ -55,7 +55,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
         and currently working as a <b>Software Engineer</b> that specializes in{" "}
         <b>full-stack software development</b>, <b>embedded systems</b>,{" "}
         <Tooltip
-          label="especially with audio and video processing"
+          label="specializing in audio and video processing"
           aria-label="audio and video processing"
           hasArrow
         >
@@ -63,7 +63,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
             <b>machine learning</b>
           </Text>
         </Tooltip>{" "}
-        and some <b>cloud engineering</b> now!
+        and some <b>blockchain</b> now!
         <br /> <br />
         Here are few technologies that are the cup of my tea{" "}
         <Icon as={LuCupSoda} color={emphasis} />.

@@ -105,11 +105,20 @@ const Sidebar = () => {
             Welcome to my personal site,
             <Text variant="emphasis" as="span">
               {" "}
-              I&apos;m glad you&apos;re here!{" "}
+              I&apos;m glad you&apos;re here!
             </Text>
-            <br />I am a software engineer studying computer science based in
-            Ottawa at Carleton University. I&apos;m currently working as a
-            software test engineer at Blackberry QNX.
+            <br />I am a software engineer studying computer science at
+            <Text variant="emphasis" as="span">
+              {" "}
+              Carleton University.
+            </Text>
+            <br />
+            I&apos;m currently working as a software test engineer at
+            <Text variant="emphasis" as="span">
+              {" "}
+              Blackberry QNX
+            </Text>
+            .
           </MotionText>
           <MotionButton
             size="lg"

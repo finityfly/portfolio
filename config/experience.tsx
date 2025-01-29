@@ -32,19 +32,20 @@ export const Experiences: {
     },
     roles: [
       <>
-        Expanded test coverage for QNX’s RTOS by designing and implementing
-        Pytest-based tests for network manager components (io-pkt and io-sock),
-        ensuring safety certification standards for product release are met.
-      </>,
-      <>
-        Developed tools and automated tests in Bash, C, and Python to support
+        Developed tools and automated tests in Python, C, and Bash to support
         QNX systems and address client patch requests, enhancing operational
-        efficiency, and improving testing accuracy.
+        efficiency and improving testing accuracy.
       </>,
       <>
-        Gained practical experience working in Linux/Unix environments by
-        writing OS-level code and automating tasks with shell scripting to
-        streamline operations.
+        Designed and deployed a scalable, permanent network testing environment,
+        enabling seamless remote access for development teams across APAC and
+        EU, enhancing global collaboration and testing efficiency.
+      </>,
+      <>
+        Expanded test coverage for QNX’s RTOS by designing and implementing
+        automated Pytest-based tests for the network stack (io-pkt network
+        manager, packet filter), ensuring safety certification standards for
+        product release are met.
       </>,
     ],
   },
