@@ -64,6 +64,8 @@ export const Works: {
         "/works/cloudq/home.png",
         "/works/cloudq/eventCreate.png",
         "/works/cloudq/award.jpg",
+        "/works/cloudq/judge1.jpg",
+        "/works/cloudq/judge2.jpg",
       ],
       url1: "https://github.com/FinityFly/CloudQ",
       url2: "https://devpost.com/software/cloudq",
