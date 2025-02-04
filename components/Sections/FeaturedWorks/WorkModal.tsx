@@ -154,6 +154,7 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                   prevEl: ".swiper-button-prev",
                   clickable: true,
                 }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
                 modules={[EffectCoverflow, Pagination, Navigation]}
                 className="swiper_container"
                 style={{

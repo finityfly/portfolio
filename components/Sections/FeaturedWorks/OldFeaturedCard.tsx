@@ -26,6 +26,8 @@ type IWorkModal = {
 };
 
 export type FeaturedCardProps = {
+  // Still can't find what's correct value for responsive value
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   height: string | ResponsiveValue<any>;
   src: string;
   onOpen: () => void;
@@ -93,16 +95,16 @@ const ProjectDescription = ({
 
   return (
     <Container
-      paddingX={{ base: 4, md: 6 }}
-      paddingY={{ base: 4, md: 6 }}
+      paddingX={5}
+      paddingY={5}
       display="flex"
       alignItems="center"
       justifyContent="space-between"
       flexDirection="column"
     >
-      <Stack spacing={2} width="100%">
+      <Stack spacing={1} width="100%">
         <Text
-          fontSize={{ base: "md", md: "lg", "2xl": "xl" }}
+          fontSize={{ base: "md", md: "large", "2xl": "xx-large" }}
           fontWeight="bold"
           letterSpacing={1}
           width="100%"
@@ -129,12 +131,12 @@ const ProjectDescription = ({
         />
       </Stack>
       <Text
-        fontSize="sm"
+        fontSize="smaller"
         variant="accentAlternative"
         width="90%"
         alignSelf={isLeft ? "flex-end" : "flex-start"}
         wordBreak="break-word"
-        paddingY={{ base: 3, md: 2 }}
+        paddingY={{ base: 3, md: 0 }}
         dangerouslySetInnerHTML={{ __html: applyBoldFormatting(description) }}
       />
       <Container
@@ -143,7 +145,6 @@ const ProjectDescription = ({
         flexDirection="row"
         width="100%"
         paddingY={2}
-        gap={2}
       >
         <Button
           variant="outlineAlternative"
@@ -153,8 +154,12 @@ const ProjectDescription = ({
           borderRadius="5px"
           color={emphasis}
           size="sm"
-          onClick={onOpen as unknown as MouseEventHandler<HTMLButtonElement>}
-          paddingX={4}
+          onClick={
+            onOpen as unknown as MouseEventHandler<HTMLButtonElement>
+          } /* eslint-disable-line */
+          marginX={1}
+          paddingX={2}
+          marginY={{ base: 3, md: 0 }}
         >
           More Info
         </Button>
@@ -168,7 +173,9 @@ const ProjectDescription = ({
           href={url1}
           rel="noreferrer"
           target="_blank"
-          paddingX={4}
+          marginX={1}
+          paddingX={2}
+          marginY={{ base: 3, md: 0 }}
         >
           GitHub&nbsp;
           <Icon as={SiGithub} />
@@ -183,7 +190,9 @@ const ProjectDescription = ({
           href={url2}
           rel="noreferrer"
           target="_blank"
-          paddingX={4}
+          marginX={1}
+          paddingX={2}
+          marginY={{ base: 3, md: 0 }}
         >
           External&nbsp;
           <Icon as={IoMdOpen} />
@@ -213,9 +222,8 @@ const FeaturedCard = ({
       justifyContent="center"
       alignItems="center"
       width="100%"
-      height="auto"
+      height="ayto"
       maxHeight="100%"
-      padding={{ base: 4, md: 6 }}
     >
       <MotionImage
         height="auto"
@@ -243,11 +251,10 @@ const FeaturedCard = ({
       className={styles.featureCard}
       borderColor={bg}
       borderWidth="1px"
-      marginBottom={{ base: 4, md: 6 }}
     >
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
-        spacing={{ base: 4, md: 6 }}
+        spacing={{ base: 3, md: 0 }}
         display={{ base: "flex", md: "grid" }}
         flexDirection={{ base: "column-reverse", md: "initial" }}
       >
