@@ -11,10 +11,10 @@ import {
   ModalBody,
   ModalFooter,
   Box,
+  Button,
   Grid,
   GridItem,
   Image,
-  Button,
   useColorModeValue,
   Text,
   Flex,
@@ -23,7 +23,7 @@ import {
 import { motion } from "framer-motion";
 import getYouTubeID from "get-youtube-id";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
+import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -31,6 +31,8 @@ import "swiper/css/navigation";
 import styles from "./styles.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Work, Works } from "config/works";
+
+const MotionButton = motion(Button);
 
 type IWorkModal = {
   isOpen: boolean;
@@ -40,6 +42,7 @@ type IWorkModal = {
 
 const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
   const emphasis = useColorModeValue("#319795", "#9decf9");
+  const hoverBoxShadowColor = useColorModeValue("#319795", "#9decf9");
   const selectedWork: Work | undefined = Works.work.find(
     (work) => work.title === title
   );
@@ -60,6 +63,25 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
       dangerouslySetInnerHTML={{ __html: applyBoldFormatting(point) }}
     />
   ));
+
+  const renderTechnologies = () => {
+    const rows = [];
+    const technologies = selectedWork?.technologies || [];
+    for (let i = 0; i < technologies.length; i += 4) {
+      const rowItems = technologies.slice(i, i + 4);
+      rows.push(
+        <Flex justifyContent={"space-evenly"} gap={2} key={i}>
+          {rowItems.map((Icon, index) => (
+            <Box textAlign="center" key={index} display="flex" flexDirection="column" alignItems="center">
+              <Icon size="40px" />
+              <Text mt={2}>{Icon.name.slice(2)}</Text>
+            </Box>
+          ))}
+        </Flex>
+      );
+    }
+    return rows;
+  };
 
   return (
     <Modal
@@ -106,30 +128,44 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                   <ul>{formattedPoints}</ul>
                 </Flex>
               </motion.div>
-              <Box textAlign="center">
-                <Button
+              <Flex justifyContent="center" gap={4} my={4}>
+                <MotionButton
+                  variant="outline"
+                  fontWeight="light"
+                  fontSize="md"
+                  borderRadius="5px"
+                  size="md"
                   as="a"
                   href={selectedWork.url1}
-                  target="_blank"
                   rel="noreferrer"
-                  colorScheme="teal"
-                  mx={4}
-                  my={4}
+                  target="_blank"
+                  whileHover={{ 
+                    boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`, 
+                    scale: 1.05,
+                    transition: { duration: 0.2 },
+                  }}
                 >
                   View on GitHub
-                </Button>
-                <Button
+                </MotionButton>
+                <MotionButton
+                  variant="outline"
+                  fontWeight="light"
+                  fontSize="md"
+                  borderRadius="5px"
+                  size="md"
                   as="a"
                   href={selectedWork.url2}
-                  target="_blank"
                   rel="noreferrer"
-                  colorScheme="teal"
-                  mx={4}
-                  my={4}
+                  target="_blank"
+                  whileHover={{ 
+                    boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`, 
+                    scale: 1.05,
+                    transition: { duration: 0.2 },
+                  }}
                 >
                   Visit Website
-                </Button>
-              </Box>
+                </MotionButton>
+              </Flex>
               <Divider
                 borderColor="#A6A6A6"
                 width="100%"
@@ -155,7 +191,7 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                   clickable: true,
                 }}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
-                modules={[EffectCoverflow, Pagination, Navigation]}
+                modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                 className="swiper_container"
                 style={{
                   "--swiper-navigation-color": emphasis,
@@ -177,8 +213,7 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                   </SwiperSlide>
                 )}
                 {selectedWork.src.map((src, index) => (
-                  // eslint-disable-next-line react/jsx-key
-                  <SwiperSlide>
+                  <SwiperSlide key={index}>
                     <Image
                       src={src}
                       alt={`Picture ${index + 1}`}
@@ -213,13 +248,9 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
               <Text my={4} fontWeight="bold">
                 Technologies:
               </Text>
-              <Grid templateColumns="repeat(4, 1fr)" gap={4}>
-                {selectedWork.technologies.map((Icon, index) => (
-                  <GridItem key={index}>
-                    <Icon size="40px" />
-                  </GridItem>
-                ))}
-              </Grid>
+              <Box>
+                {renderTechnologies()}
+              </Box>
             </Box>
           )}
         </ModalBody>

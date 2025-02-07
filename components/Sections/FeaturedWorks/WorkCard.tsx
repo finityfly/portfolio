@@ -1,9 +1,9 @@
 import { Box, Image, Text, Stack, Divider, Button, useColorModeValue, Flex, useColorMode } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { ThemeMode } from "config/theme";
+import { ResponsiveValue } from "@chakra-ui/react";
 
 const MotionBox = motion(Box);
-const MotionImage = motion(Image);
 const MotionButton = motion(Button);
 
 type ProfileCardProps = {
@@ -22,7 +22,8 @@ type ProfileCardProps = {
 const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1, url2, isMobile, onOpen }: ProfileCardProps) => {
   const { colorMode } = useColorMode();
   const emphasis = useColorModeValue("#319795", "#9decf9");
-  const flexDirection = index % 2 === 0 ? { base: "column", md: "row" } : { base: "column", md: "row-reverse" };
+  // const flexDirection = index % 2 === 0 ? { base: "column", md: "row" } : { base: "column", md: "row-reverse" };
+  const flexDirection: ResponsiveValue<"row" | "row-reverse" | "column" | "column-reverse"> = index % 2 === 0 ? { base: "column", md: "row" } : { base: "column", md: "row-reverse" };
 
   const boxShadowColor = colorMode === ThemeMode.Dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)";
   const hoverBoxShadowColor = colorMode === ThemeMode.Dark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.2)";
@@ -62,8 +63,6 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
             objectFit="cover"
             height="100%"
             width="100%"
-            // whileHover={{ scale: 1.1 }}
-            // transition={{ duration: 0.3 }}
           />
         </Box>
         <Box flex="1" p={5} maxW={{ base: "100%", md: "50%" }}>
