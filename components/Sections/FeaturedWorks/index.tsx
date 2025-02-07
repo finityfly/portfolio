@@ -77,8 +77,8 @@ const FeaturedWorksSection = () => {
               <WorkCard
                 index={index}
                 title={work.title}
-                location={work.title}
-                description="Lorem ipsum dolor sit amet, vehicula ero felis loreum fittona fringilla scelerisque. Interdum et malesuada fames ac ante ipsum primis faucibus."
+                location={work.location}
+                description={work.points[0]}
                 imageSrc={work.src[0]}
                 logoSrc={work.icon}
                 url1={work.url1}

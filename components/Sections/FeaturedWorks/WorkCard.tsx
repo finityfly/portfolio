@@ -27,6 +27,16 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
   const boxShadowColor = colorMode === ThemeMode.Dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)";
   const hoverBoxShadowColor = colorMode === ThemeMode.Dark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.2)";
 
+  const applyBoldFormatting = (text: string) => {
+    const boldRegex = /<b>(.*?)<\/b>/g;
+    const formattedText = text.replace(
+      boldRegex,
+      (_: string, content: string) =>
+        `<span style="font-weight: bold; color: ${emphasis}">${content}</span>`
+    );
+    return formattedText;
+  };
+
   return (
     <MotionBox
       bg={useColorModeValue("white", "gray.700")}
@@ -57,7 +67,7 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
           />
         </Box>
         <Box flex="1" p={5} maxW={{ base: "100%", md: "50%" }}>
-          <Stack spacing={2}>
+          <Stack spacing={1}>
             <Flex justify="space-between" align="center">
               <Text fontWeight="bold" fontSize="xl">
                 {title}
@@ -66,19 +76,17 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
                 as="span"
                 borderRadius="full"
                 overflow="hidden"
-                width="40px"
-                height="40px"
+                width="30px"
+                height="30px"
               >
                 <Image src={logoSrc} alt={`${title} logo`} objectFit="cover" />
               </Box>
             </Flex>
-            <Text fontSize="sm" color={emphasis}>
+            <Text fontSize="sm" color={emphasis} py={1}>
               {location}
             </Text>
-            <Divider borderColor="gray.200" />
-            <Text fontSize="sm" color="gray.600">
-              {description}
-            </Text>
+            <Divider borderColor="gray.400" />
+            <Text fontSize="sm" color="gray.200" py={2} dangerouslySetInnerHTML={{ __html: applyBoldFormatting(description) }} />
           </Stack>
           <MotionButton
             mt={4}
