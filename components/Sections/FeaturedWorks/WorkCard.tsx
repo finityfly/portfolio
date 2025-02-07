@@ -43,7 +43,6 @@ const WorkCard = ({
 }: ProfileCardProps) => {
   const { colorMode } = useColorMode();
   const emphasis = useColorModeValue("#319795", "#9decf9");
-  // const flexDirection = index % 2 === 0 ? { base: "column", md: "row" } : { base: "column", md: "row-reverse" };
   const flexDirection: ResponsiveValue<
     "row" | "row-reverse" | "column" | "column-reverse"
   > =
@@ -80,7 +79,6 @@ const WorkCard = ({
       borderColor={useColorModeValue("gray.200", "gray.600")}
       width="95%"
       ml="16px"
-      maxHeight="400px"
       whileHover={{
         boxShadow: `0px 3px 12px 0px ${hoverBoxShadowColor}`,
         scale: 1.02,
