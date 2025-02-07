@@ -10,8 +10,8 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { ThemeMode } from "config/theme";
 import { ResponsiveValue } from "@chakra-ui/react";
+import { ThemeMode } from "config/theme";
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
