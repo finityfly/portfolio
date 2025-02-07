@@ -4,7 +4,6 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        {/* @ts-expect-error Server Component */}
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
@@ -19,7 +18,6 @@ class MyDocument extends Document {
         </Head>
         <body>
           <Main />
-          {/* @ts-expect-error Server Component */}
           <NextScript />
         </body>
       </Html>
