@@ -10,7 +10,6 @@ function DLSite({ Component, pageProps }: AppProps): JSX.Element {
     <AnimatePresence exitBeforeEnter>
       <ChakraProvider theme={theme}>
         <FavIconProvider>
-          {/* @ts-expect-error Server Component */}
           <Component {...pageProps} />
         </FavIconProvider>
       </ChakraProvider>
