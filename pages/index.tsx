@@ -7,7 +7,6 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
@@ -21,10 +20,11 @@ import FeaturedWorks from "components/Sections/FeaturedWorks";
 import GetInTouch from "components/Sections/GetInTouch";
 import ScrollMore from "components/Misc/ScrollMore";
 import { Article } from "types/article";
+
 // These are on bottom sections so no need to render it instantly
-const DevToArticles = dynamic(
-  () => import("components/Sections/DevToArticles")
-);
+// const DevToArticles = dynamic(
+//   () => import("components/Sections/DevToArticles")
+// );
 // const GetInTouch = dynamic(() => import("components/Sections/GetInTouch"));
 
 const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
@@ -50,7 +50,6 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
         `}
       </Script>
       <Analytics />
-      <SpeedInsights />
       <OpenGraphHead />
       <Menu />
       <Grid
