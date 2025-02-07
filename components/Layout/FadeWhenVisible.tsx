@@ -5,7 +5,7 @@ import { fadeInUpSlower } from "config/animations";
 const FadeInWhenVisible = ({ children }: { children: React.ReactNode }) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    threshold: 0.3,
+    threshold: 0.07,
   });
 
   useEffect(() => {

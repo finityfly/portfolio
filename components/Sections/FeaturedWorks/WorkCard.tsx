@@ -1,4 +1,14 @@
-import { Box, Image, Text, Stack, Divider, Button, useColorModeValue, Flex, useColorMode } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Text,
+  Stack,
+  Divider,
+  Button,
+  useColorModeValue,
+  Flex,
+  useColorMode,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { ThemeMode } from "config/theme";
 import { ResponsiveValue } from "@chakra-ui/react";
@@ -19,14 +29,36 @@ type ProfileCardProps = {
   onOpen: () => void;
 };
 
-const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1, url2, isMobile, onOpen }: ProfileCardProps) => {
+const WorkCard = ({
+  index,
+  title,
+  location,
+  description,
+  imageSrc,
+  logoSrc,
+  url1,
+  url2,
+  isMobile,
+  onOpen,
+}: ProfileCardProps) => {
   const { colorMode } = useColorMode();
   const emphasis = useColorModeValue("#319795", "#9decf9");
   // const flexDirection = index % 2 === 0 ? { base: "column", md: "row" } : { base: "column", md: "row-reverse" };
-  const flexDirection: ResponsiveValue<"row" | "row-reverse" | "column" | "column-reverse"> = index % 2 === 0 ? { base: "column", md: "row" } : { base: "column", md: "row-reverse" };
+  const flexDirection: ResponsiveValue<
+    "row" | "row-reverse" | "column" | "column-reverse"
+  > =
+    index % 2 === 0
+      ? { base: "column", md: "row" }
+      : { base: "column", md: "row-reverse" };
 
-  const boxShadowColor = colorMode === ThemeMode.Dark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)";
-  const hoverBoxShadowColor = colorMode === ThemeMode.Dark ? "rgba(255, 255, 255, 0.3)" : "rgba(0, 0, 0, 0.2)";
+  const boxShadowColor =
+    colorMode === ThemeMode.Dark
+      ? "rgba(255, 255, 255, 0.2)"
+      : "rgba(0, 0, 0, 0.1)";
+  const hoverBoxShadowColor =
+    colorMode === ThemeMode.Dark
+      ? "rgba(255, 255, 255, 0.3)"
+      : "rgba(0, 0, 0, 0.2)";
 
   const applyBoldFormatting = (text: string) => {
     const boldRegex = /<b>(.*?)<\/b>/g;
@@ -49,8 +81,8 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
       width="95%"
       ml="16px"
       maxHeight="400px"
-      whileHover={{ 
-        boxShadow: `0px 3px 12px 0px ${hoverBoxShadowColor}`, 
+      whileHover={{
+        boxShadow: `0px 3px 12px 0px ${hoverBoxShadowColor}`,
         scale: 1.02,
         transition: { duration: 0.2 },
       }}
@@ -85,7 +117,14 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
               {location}
             </Text>
             <Divider borderColor="gray.400" />
-            <Text fontSize="sm" color="gray.200" py={2} dangerouslySetInnerHTML={{ __html: applyBoldFormatting(description) }} />
+            <Text
+              fontSize="sm"
+              color="gray.200"
+              py={2}
+              dangerouslySetInnerHTML={{
+                __html: applyBoldFormatting(description),
+              }}
+            />
           </Stack>
           <MotionButton
             mt={4}
@@ -93,8 +132,8 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
             variant="outline"
             width="full"
             onClick={onOpen}
-            whileHover={{ 
-              boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`, 
+            whileHover={{
+              boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
               scale: 1.05,
               transition: { duration: 0.2 },
             }}
@@ -113,8 +152,8 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
               rel="noreferrer"
               target="_blank"
               width="50%"
-              whileHover={{ 
-                boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`, 
+              whileHover={{
+                boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
                 scale: 1.05,
                 transition: { duration: 0.2 },
               }}
@@ -132,8 +171,8 @@ const WorkCard = ({ index, title, location, description, imageSrc, logoSrc, url1
               rel="noreferrer"
               target="_blank"
               width="50%"
-              whileHover={{ 
-                boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`, 
+              whileHover={{
+                boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
                 scale: 1.05,
                 transition: { duration: 0.2 },
               }}

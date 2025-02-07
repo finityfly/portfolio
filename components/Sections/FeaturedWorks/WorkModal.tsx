@@ -23,7 +23,12 @@ import {
 import { motion } from "framer-motion";
 import getYouTubeID from "get-youtube-id";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectCoverflow, Pagination, Navigation, Autoplay } from "swiper/modules";
+import {
+  EffectCoverflow,
+  Pagination,
+  Navigation,
+  Autoplay,
+} from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
@@ -31,7 +36,12 @@ import "swiper/css/navigation";
 import styles from "./styles.module.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Work, Works } from "config/works";
-import { fadeInUp, fadeInUpSlower, simpleOpacity, stagger } from "config/animations";
+import {
+  fadeInUp,
+  fadeInUpSlower,
+  simpleOpacity,
+  stagger,
+} from "config/animations";
 
 const MotionButton = motion(Button);
 
@@ -73,7 +83,13 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
       rows.push(
         <Flex justifyContent={"space-evenly"} gap={2} key={i}>
           {rowItems.map((Icon, index) => (
-            <Box textAlign="center" key={index} display="flex" flexDirection="column" alignItems="center">
+            <Box
+              textAlign="center"
+              key={index}
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+            >
               <Icon size="40px" />
               <Text mt={2}>{Icon.name.slice(2)}</Text>
             </Box>
@@ -92,7 +108,7 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
       scrollBehavior="inside"
     >
       <ModalOverlay />
-      <ModalContent 
+      <ModalContent
         as={motion.div}
         initial="initial"
         animate="animate"
@@ -152,8 +168,8 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                     href={selectedWork.url1}
                     rel="noreferrer"
                     target="_blank"
-                    whileHover={{ 
-                      boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`, 
+                    whileHover={{
+                      boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
                       scale: 1.05,
                       transition: { duration: 0.2 },
                     }}
@@ -170,8 +186,8 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                     href={selectedWork.url2}
                     rel="noreferrer"
                     target="_blank"
-                    whileHover={{ 
-                      boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`, 
+                    whileHover={{
+                      boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
                       scale: 1.05,
                       transition: { duration: 0.2 },
                     }}
@@ -271,9 +287,7 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                 <Text my={4} fontWeight="bold">
                   Technologies:
                 </Text>
-                <Box>
-                  {renderTechnologies()}
-                </Box>
+                <Box>{renderTechnologies()}</Box>
               </motion.div>
             </Box>
           )}
