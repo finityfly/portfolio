@@ -6,6 +6,8 @@ import {
   Box,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
@@ -47,6 +49,8 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS_ID}');
         `}
       </Script>
+      <Analytics />
+      <SpeedInsights />
       <OpenGraphHead />
       <Menu />
       <Grid
