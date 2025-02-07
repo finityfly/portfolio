@@ -20,6 +20,8 @@ import {
   scaleUp,
 } from "config/animations";
 import { SocialMedias } from "config/sidebar";
+import { ThemeMode } from "config/theme";
+
 const Sidebar = () => {
   const { colorMode } = useColorMode();
   const display = useBreakpointValue({ base: "none", lg: "block" });
@@ -29,6 +31,11 @@ const Sidebar = () => {
   const MotionStack = motion(Stack);
   const MotionButton = motion(Button);
   const MotionBox = motion(Box);
+
+  const hoverBoxShadowColor =
+    colorMode === ThemeMode.Dark
+      ? "rgba(255, 255, 255, 0.4)"
+      : "rgba(0, 0, 0, 0.3)";
 
   return (
     <MotionBox
@@ -132,7 +139,11 @@ const Sidebar = () => {
             as={"a"}
             href="/CV_DanielLu.pdf"
             target="_blank"
-            whileHover={{ scale: 1.1 }}
+            whileHover={{
+              boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,
+              scale: 1.05,
+              transition: { duration: 0.1 },
+            }}
             whileTap={{ scale: 0.9 }}
           >
             View Resume

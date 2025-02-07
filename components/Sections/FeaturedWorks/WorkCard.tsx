@@ -53,12 +53,12 @@ const WorkCard = ({
 
   const boxShadowColor =
     colorMode === ThemeMode.Dark
-      ? "rgba(255, 255, 255, 0.2)"
-      : "rgba(0, 0, 0, 0.1)";
-  const hoverBoxShadowColor =
-    colorMode === ThemeMode.Dark
       ? "rgba(255, 255, 255, 0.3)"
       : "rgba(0, 0, 0, 0.2)";
+  const hoverBoxShadowColor =
+    colorMode === ThemeMode.Dark
+      ? "rgba(255, 255, 255, 0.4)"
+      : "rgba(0, 0, 0, 0.3)";
 
   const applyBoldFormatting = (text: string) => {
     const boldRegex = /<b>(.*?)<\/b>/g;
@@ -84,7 +84,7 @@ const WorkCard = ({
       whileHover={{
         boxShadow: `0px 3px 12px 0px ${hoverBoxShadowColor}`,
         scale: 1.02,
-        transition: { duration: 0.2 },
+        transition: { duration: 0.1 },
       }}
     >
       <Flex direction={flexDirection}>
@@ -119,7 +119,6 @@ const WorkCard = ({
             <Divider borderColor="gray.400" />
             <Text
               fontSize="sm"
-              color="gray.200"
               py={2}
               dangerouslySetInnerHTML={{
                 __html: applyBoldFormatting(description),
@@ -131,12 +130,14 @@ const WorkCard = ({
             colorScheme="teal"
             variant="outline"
             width="full"
+            borderRadius="5px"
             onClick={onOpen}
             whileHover={{
-              boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
-              scale: 1.05,
-              transition: { duration: 0.2 },
+              boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,
+              scale: 1.03,
+              transition: { duration: 0.1 },
             }}
+            whileTap={{ scale: 0.9 }}
           >
             More Info
           </MotionButton>
@@ -153,10 +154,11 @@ const WorkCard = ({
               target="_blank"
               width="50%"
               whileHover={{
-                boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
+                boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,
                 scale: 1.05,
-                transition: { duration: 0.2 },
+                transition: { duration: 0.1 },
               }}
+              whileTap={{ scale: 0.9 }}
             >
               GitHub
             </MotionButton>
@@ -172,10 +174,11 @@ const WorkCard = ({
               target="_blank"
               width="50%"
               whileHover={{
-                boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
+                boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,
                 scale: 1.05,
-                transition: { duration: 0.2 },
+                transition: { duration: 0.1 },
               }}
+              whileTap={{ scale: 0.9 }}
             >
               External
             </MotionButton>

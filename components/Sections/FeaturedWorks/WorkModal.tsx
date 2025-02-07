@@ -171,8 +171,9 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                     whileHover={{
                       boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
                       scale: 1.05,
-                      transition: { duration: 0.2 },
+                      transition: { duration: 0.1 },
                     }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     View on GitHub
                   </MotionButton>
@@ -189,8 +190,9 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                     whileHover={{
                       boxShadow: `0px 0px 6px 0px ${hoverBoxShadowColor}`,
                       scale: 1.05,
-                      transition: { duration: 0.2 },
+                      transition: { duration: 0.1 },
                     }}
+                    whileTap={{ scale: 0.9 }}
                   >
                     Visit Website
                   </MotionButton>
