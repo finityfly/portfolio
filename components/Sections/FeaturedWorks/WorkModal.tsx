@@ -188,7 +188,14 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                         color={emphasis}
                         display="block"
                       />
-                      <Text as="span" display="block" variant="description" dangerouslySetInnerHTML={{ __html: applyBoldFormatting(point) }} />
+                      <Text
+                        as="span"
+                        display="block"
+                        variant="description"
+                        dangerouslySetInnerHTML={{
+                          __html: applyBoldFormatting(point),
+                        }}
+                      />
                     </ListItem>
                   ))}
                 </List>
