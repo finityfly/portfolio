@@ -12,6 +12,9 @@ import {
   ModalFooter,
   Box,
   Button,
+  List,
+  ListIcon,
+  ListItem,
   Grid,
   GridItem,
   Image,
@@ -22,6 +25,7 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import getYouTubeID from "get-youtube-id";
+import { BiRightArrow } from "react-icons/bi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import {
   EffectCoverflow,
@@ -144,15 +148,50 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
             <Box>
               {/* Description Section */}
               <motion.div variants={fadeInUpSlower}>
-                <Flex justifyContent="space-between" mb={4} fontWeight="bold">
+                <Flex justifyContent="space-between" py={2} fontWeight="bold">
                   <Text>{selectedWork.date}</Text>
                   <Text>{selectedWork.location}</Text>
                 </Flex>
               </motion.div>
               <motion.div variants={fadeInUpSlower}>
-                <Flex ms={4}>
+                {/* <Flex ms={4}>
                   <ul>{formattedPoints}</ul>
-                </Flex>
+                </Flex> */}
+                {/* <List spacing={3} pt={5}>
+                  <ListItem
+                    fontSize="sm"
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="flex-start"
+                  >
+                    <ListIcon
+                      as={BiRightArrow}
+                      color={emphasis}
+                      display="block"
+                    />
+                    <Text as="span" display="block" variant="description">
+                      {formattedPoints}
+                    </Text>
+                  </ListItem>
+                </List> */}
+                <List spacing={3} pt={2}>
+                  {selectedWork?.points?.map((point, idx) => (
+                    <ListItem
+                      key={`${selectedWork.title}-desc-${idx}`}
+                      fontSize="md"
+                      display="flex"
+                      alignItems="center"
+                      justifyContent="flex-start"
+                    >
+                      <ListIcon
+                        as={BiRightArrow}
+                        color={emphasis}
+                        display="block"
+                      />
+                      <Text as="span" display="block" variant="description" dangerouslySetInnerHTML={{ __html: applyBoldFormatting(point) }} />
+                    </ListItem>
+                  ))}
+                </List>
               </motion.div>
 
               {/* Buttons Section */}

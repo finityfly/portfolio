@@ -125,7 +125,7 @@ const WorkCard = ({
           </Stack>
           <MotionButton
             mt={4}
-            colorScheme="teal"
+            color={emphasis}
             variant="outline"
             width="full"
             borderRadius="5px"
