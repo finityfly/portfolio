@@ -154,26 +154,6 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                 </Flex>
               </motion.div>
               <motion.div variants={fadeInUpSlower}>
-                {/* <Flex ms={4}>
-                  <ul>{formattedPoints}</ul>
-                </Flex> */}
-                {/* <List spacing={3} pt={5}>
-                  <ListItem
-                    fontSize="sm"
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="flex-start"
-                  >
-                    <ListIcon
-                      as={BiRightArrow}
-                      color={emphasis}
-                      display="block"
-                    />
-                    <Text as="span" display="block" variant="description">
-                      {formattedPoints}
-                    </Text>
-                  </ListItem>
-                </List> */}
                 <List spacing={3} pt={2}>
                   {selectedWork?.points?.map((point, idx) => (
                     <ListItem
@@ -272,7 +252,7 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                     prevEl: ".swiper-button-prev",
                     clickable: true,
                   }}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
+                  autoplay={{ delay: 3000, disableOnInteraction: true }}
                   modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                   className="swiper_container"
                   style={{
