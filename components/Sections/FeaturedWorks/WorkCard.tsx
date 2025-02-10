@@ -12,8 +12,8 @@ import {
 import { motion } from "framer-motion";
 import { ResponsiveValue } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { ThemeMode } from "config/theme";
 import styles from "./styles.module.css";
+import { ThemeMode } from "config/theme";
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
