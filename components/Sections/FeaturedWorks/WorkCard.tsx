@@ -12,6 +12,8 @@ import {
 import { motion } from "framer-motion";
 import { ResponsiveValue } from "@chakra-ui/react";
 import { ThemeMode } from "config/theme";
+import { useEffect } from "react";
+import styles from "./styles.module.css";
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
@@ -69,6 +71,19 @@ const WorkCard = ({
     return formattedText;
   };
 
+  useEffect(() => {
+    const updateCursor = ({ clientX: x, clientY: y }: MouseEvent) => {
+      document.documentElement.style.setProperty("--x", x.toString());
+      document.documentElement.style.setProperty("--y", y.toString());
+    };
+
+    document.body.addEventListener("pointermove", updateCursor);
+
+    return () => {
+      document.body.removeEventListener("pointermove", updateCursor);
+    };
+  }, []);
+
   return (
     <MotionBox
       bg={useColorModeValue("white", "gray.700")}
@@ -95,7 +110,12 @@ const WorkCard = ({
             width="100%"
           />
         </Box>
-        <Box flex="1" p={5} maxW={{ base: "100%", md: "50%" }}>
+        <Box
+          flex="1"
+          p={5}
+          maxW={{ base: "100%", md: "50%" }}
+          className={styles.card}
+        >
           <Stack spacing={1}>
             <Flex justify="space-between" align="center">
               <Text fontWeight="bold" fontSize="xl">

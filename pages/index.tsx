@@ -28,14 +28,36 @@ import { Article } from "types/article";
 // const GetInTouch = dynamic(() => import("components/Sections/GetInTouch"));
 
 const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
-  const sideBarPadding = useBreakpointValue({ base: "5", md: "8", lg: "14" });
-  const mainContent = useBreakpointValue({
+  const sideBarPadding = useBreakpointValue<string | number>({
+    base: "5",
+    md: "8",
+    lg: "14",
+  });
+  const mainContent = useBreakpointValue<string | number>({
     base: "5",
     md: "14",
     lg: "14",
     xl: 0,
   });
-  const paddTop = useBreakpointValue({ base: "20", sm: 20, md: 20 });
+  const paddTop = useBreakpointValue<string | number>({
+    base: "20",
+    sm: 20,
+    md: 20,
+  });
+
+  // useEffect(() => {
+  //   const updateCursor = ({ clientX: x, clientY: y }: MouseEvent) => {
+  //     document.documentElement.style.setProperty("--x", x.toString());
+  //     document.documentElement.style.setProperty("--y", y.toString());
+  //   };
+
+  //   document.body.addEventListener("pointermove", updateCursor);
+
+  //   return () => {
+  //     document.body.removeEventListener("pointermove", updateCursor);
+  //   };
+  // }, []);
+
   return (
     <>
       <Script
