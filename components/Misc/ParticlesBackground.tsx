@@ -1,6 +1,8 @@
-// components/ParticlesBackground.tsx
+// import React, { useCallback } from "react";
+import Particles from "@tsparticles/react";
+// import { loadLinksPreset } from "@tsparticles/preset-links";
+// import type { Engine } from "@tsparticles/engine";
 import React, { useCallback } from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadLinksPreset } from "@tsparticles/preset-links";
 import type { Engine } from "@tsparticles/engine";
 
@@ -12,7 +14,7 @@ const ParticlesBackground: React.FC = () => {
   return (
     <Particles
       id="tsparticles"
-      init={particlesInit}
+      init={particlesInit} // fix this later
       options={{
         preset: "links",
         background: {
