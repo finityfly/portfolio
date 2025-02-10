@@ -81,7 +81,7 @@ export const Works: {
         SiTailwindcss,
         SiTwilio,
       ],
-      icon: "/works/cloudq/mcgill_logo.png",
+      icon: "/works/cloudq/mcgill.png",
       video: "https://youtu.be/wR3TyrAX_EQ?si=6-UZQ1P1yg_L02zG",
     },
     {

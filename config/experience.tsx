@@ -1,6 +1,6 @@
 import { Link } from "@chakra-ui/react";
 
-export type Company = "QNX" | "Spark_Youth_Robotics_Club";
+export type Company = "QNX" | "Trend_Micro" | "Spark_Youth_Robotics_Club";
 
 export type CompanyDetail = {
   name: string;
@@ -22,9 +22,9 @@ export const Experiences: {
   QNX: {
     name: "Blackberry QNX",
     longName: "Blackberry QNX",
-    subDetail: "Ottawa, Ontario",
+    subDetail: "Kanata, Ontario",
     url: "https://blackberry.qnx.com/en",
-    position: "Software Developer",
+    position: "Software Developer in Test",
     duration: "Jan 2025 - Apr 2025, Co-op",
     logo: {
       light: "/worked_at_logos/qnx/qnx_logo.png",
@@ -48,6 +48,19 @@ export const Experiences: {
         product release are met.
       </>,
     ],
+  },
+  Trend_Micro: {
+    name: "Trend Micro",
+    longName: "Trend Micro",
+    subDetail: "Kanata, Ontario",
+    url: "https://www.trendmicro.com/en_ca/business.html",
+    position: "Software Developer",
+    duration: "May 2025 - Aug 2025, Incoming Co-op",
+    logo: {
+      light: "/worked_at_logos/trend_micro/trend_micro_light.png",
+      dark: "/worked_at_logos/trend_micro/trend_micro_dark.png",
+    },
+    roles: [<>Incoming SWE coop for the Summer 2025 term.</>],
   },
   Spark_Youth_Robotics_Club: {
     name: "Spark Youth Robotics Club",
@@ -109,6 +122,7 @@ export const Experiences: {
 };
 
 export const ExperiencesList = [
+  Experiences.Trend_Micro,
   Experiences.QNX,
   Experiences.Spark_Youth_Robotics_Club,
 ];

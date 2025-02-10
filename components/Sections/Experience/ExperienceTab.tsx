@@ -69,7 +69,7 @@ const ExperienceTab = () => {
         overflowY={"hidden"}
         className={styles.experienceTabs}
       >
-        {ExperiencesList.map((company) => (
+        {(ExperiencesList as any[]).map((company) => (
           <Tab
             key={`Tab-${company.name}`}
             fontSize="smaller"
@@ -100,7 +100,7 @@ const ExperienceTab = () => {
                 colorMode === "dark" ? company.logo.dark : company.logo.light
               }
               alt={company.longName}
-              maxWidth="88px"
+              maxWidth="100px"
               fallback={<Skeleton height="100%" width="100%" />}
               _hover={{
                 transform: "scale(1.1)",

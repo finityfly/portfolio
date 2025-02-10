@@ -11,8 +11,8 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { ResponsiveValue } from "@chakra-ui/react";
-import { ThemeMode } from "config/theme";
 import { useEffect } from "react";
+import { ThemeMode } from "config/theme";
 import styles from "./styles.module.css";
 
 const MotionBox = motion(Box);
@@ -141,10 +141,10 @@ const WorkCard = ({
               </Text>
               <Box
                 as="span"
-                borderRadius="full"
-                overflow="hidden"
-                width="30px"
+                borderRadius="0px"
+                // overflow="hidden"
                 height="30px"
+                width="30px"
               >
                 <Image src={logoSrc} alt={`${title} logo`} objectFit="cover" />
               </Box>
