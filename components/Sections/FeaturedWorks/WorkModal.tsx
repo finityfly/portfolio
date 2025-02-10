@@ -250,15 +250,16 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
                   navigation={{
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
-                    clickable: true,
                   }}
                   autoplay={{ delay: 3000, disableOnInteraction: true }}
                   modules={[EffectCoverflow, Pagination, Navigation, Autoplay]}
                   className="swiper_container"
-                  style={{
-                    "--swiper-navigation-color": emphasis,
-                    "--swiper-pagination-color": emphasis,
-                  }}
+                  style={
+                    {
+                      "--swiper-navigation-color": emphasis,
+                      "--swiper-pagination-color": emphasis,
+                    } as React.CSSProperties
+                  }
                 >
                   {selectedWork.video != undefined && (
                     <SwiperSlide>

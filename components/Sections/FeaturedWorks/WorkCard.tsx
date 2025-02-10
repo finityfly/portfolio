@@ -61,6 +61,18 @@ const WorkCard = ({
       ? "rgba(255, 255, 255, 0.4)"
       : "rgba(0, 0, 0, 0.3)";
 
+  const spotlightColor = useColorModeValue(
+    "hsl(0 0% 0% / 0.1)",
+    "hsl(0 0% 100% / 0.05)"
+  );
+
+  const spotlightColorStrong = useColorModeValue(
+    "hsl(0 0% 0% / 0.4)",
+    "hsl(0 0% 100% / 0.4)"
+  );
+
+  const maskColor = useColorModeValue("white", "black");
+
   const applyBoldFormatting = (text: string) => {
     const boldRegex = /<b>(.*?)<\/b>/g;
     const formattedText = text.replace(
@@ -96,7 +108,6 @@ const WorkCard = ({
       ml="16px"
       whileHover={{
         boxShadow: `0px 3px 12px 0px ${hoverBoxShadowColor}`,
-        scale: 1.02,
         transition: { duration: 0.1 },
       }}
     >
@@ -115,6 +126,13 @@ const WorkCard = ({
           p={5}
           maxW={{ base: "100%", md: "50%" }}
           className={styles.card}
+          style={
+            {
+              "--spotlight-color": spotlightColor,
+              "--spotlight-color-strong": spotlightColorStrong,
+              "--mask-color": maskColor,
+            } as React.CSSProperties
+          }
         >
           <Stack spacing={1}>
             <Flex justify="space-between" align="center">

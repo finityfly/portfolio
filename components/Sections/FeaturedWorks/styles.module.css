@@ -20,8 +20,8 @@
   inset: 0;
   background: radial-gradient(
     circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-    hsl(0 0% 100% / 0.15),
-    transparent 15vmin
+    var(--spotlight-color),
+    transparent 30vmin
   );
   background-attachment: fixed;
   opacity: var(--active, 0);
@@ -35,16 +35,17 @@
   inset: 0;
   background: radial-gradient(
       circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
-      hsl(0 0% 100% / 0.5),
-      transparent 15vmin
+      var(--spotlight-color-strong),
+      transparent 30vmin
     ),
     transparent;
   background-attachment: fixed;
   pointer-events: none;
-  mask: linear-gradient(white, white) 50% 0 / 100% 4px no-repeat,
-    linear-gradient(white, white) 50% 100% / 100% 4px no-repeat,
-    linear-gradient(white, white) 0 50% / 4px 100% no-repeat,
-    linear-gradient(white, white) 100% 50% / 4px 100% no-repeat;
+
+  mask: linear-gradient(black, black) 50% 0 / 100% 4px no-repeat,
+    linear-gradient(black, black) 50% 100% / 100% 4px no-repeat,
+    linear-gradient(black, black) 0 50% / 4px 100% no-repeat,
+    linear-gradient(black, black) 100% 50% / 4px 100% no-repeat;
 }
 
 .workModal {

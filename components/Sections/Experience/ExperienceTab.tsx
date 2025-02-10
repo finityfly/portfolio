@@ -20,6 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { BiRightArrow } from "react-icons/bi";
 import styles from "./styles.module.css";
+import { ThemeMode } from "config/theme";
 import { ExperiencesList } from "config/experience";
 import { mobileBreakpointsMap } from "config/theme";
 
@@ -46,6 +47,19 @@ const ExperienceTab = () => {
     lg: "auto",
     xl: "auto",
   });
+
+  const spotlightColor = useColorModeValue(
+    "hsl(0 0% 0% / 0.1)",
+    "hsl(0 0% 100% / 0.05)"
+  );
+
+  const spotlightColorStrong = useColorModeValue(
+    "hsl(0 0% 0% / 0.3)",
+    "hsl(0 0% 100% / 0.3)"
+  );
+
+  const maskColor = useColorModeValue("white", "black");
+
   return (
     <Tabs id="experienceTabs" orientation={tabOrientation} isLazy>
       <TabList
@@ -72,6 +86,14 @@ const ExperienceTab = () => {
               background: "whiteAlpha.100",
             }}
             borderBottomWidth={tabOrientation === "horizontal" ? "4px" : "0"}
+            className={styles.card}
+            style={
+              {
+                "--spotlight-color": spotlightColor,
+                "--spotlight-color-strong": spotlightColorStrong,
+                "--mask-color": maskColor,
+              } as React.CSSProperties
+            }
           >
             <Image
               src={
@@ -80,6 +102,10 @@ const ExperienceTab = () => {
               alt={company.longName}
               maxWidth="88px"
               fallback={<Skeleton height="100%" width="100%" />}
+              _hover={{
+                transform: "scale(1.1)",
+                transition: "all 0.2s",
+              }}
             ></Image>
           </Tab>
         ))}
