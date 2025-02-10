@@ -6,6 +6,9 @@ import {
   Box,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import React, { useEffect } from "react";
+import { loadLinksPreset } from "@tsparticles/preset-links";
+import { Engine, tsParticles } from "@tsparticles/engine";
 import { Analytics } from "@vercel/analytics/react";
 import dynamic from "next/dynamic";
 import Script from "next/script";
@@ -20,6 +23,7 @@ import FeaturedWorks from "components/Sections/FeaturedWorks";
 import GetInTouch from "components/Sections/GetInTouch";
 import ScrollMore from "components/Misc/ScrollMore";
 import { Article } from "types/article";
+import ParticlesBackground from "components/Misc/ParticlesBackground";
 
 // These are on bottom sections so no need to render it instantly
 // const DevToArticles = dynamic(
@@ -45,23 +49,84 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
     md: 20,
   });
 
-  // useEffect(() => {
-  //   const updateCursor = ({ clientX: x, clientY: y }: MouseEvent) => {
-  //     document.documentElement.style.setProperty("--x", x.toString());
-  //     document.documentElement.style.setProperty("--y", y.toString());
-  //   };
+  useEffect(() => {
+    const initializeParticles = async () => {
+      await loadLinksPreset(tsParticles);
 
-  //   document.body.addEventListener("pointermove", updateCursor);
+      await tsParticles.load({
+        id: "tsparticles",
+        options: {
+          preset: "links",
+          background: {
+            color: "#000000", // Set your desired background color
+          },
+          particles: {
+            color: {
+              value: "#ffffff", // Set your desired particle color
+            },
+            links: {
+              color: "#ffffff", // Set your desired link color
+              distance: 150,
+              enable: true,
+              opacity: 0.5,
+              width: 1,
+            },
+            move: {
+              enable: true,
+              speed: 2,
+            },
+            number: {
+              density: {
+                enable: true,
+                // area: 800,
+              },
+              value: 80,
+            },
+            opacity: {
+              value: 0.5,
+            },
+            shape: {
+              type: "circle",
+            },
+            size: {
+              value: { min: 1, max: 3 },
+            },
+          },
+          interactivity: {
+            events: {
+              onHover: {
+                enable: true,
+                mode: "repulse",
+              },
+              onClick: {
+                enable: true,
+                mode: "push",
+              },
+            },
+            modes: {
+              repulse: {
+                distance: 100,
+                duration: 0.4,
+              },
+              push: {
+                quantity: 4,
+              },
+            },
+          },
+        },
+      });
+    };
 
-  //   return () => {
-  //     document.body.removeEventListener("pointermove", updateCursor);
-  //   };
-  // }, []);
+    initializeParticles();
+  }, []);
 
   return (
     <>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS_ID}`}
+      />
+      <Script
+        src={`https://cdn.jsdelivr.net/npm/@tsparticles/preset-links@3/tsparticles.preset.links.min.js`}
       />
       <Script id="google-analytics">
         {`
@@ -74,6 +139,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
       <Analytics />
       <OpenGraphHead />
       <Menu />
+      <ParticlesBackground />
       <Grid
         id="mainGrid"
         templateColumns={{
