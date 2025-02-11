@@ -6,6 +6,8 @@ const DetailSection = () => (
     width={{ base: "99%", lg: "60%", xl: "75%" }}
     height="100%"
     spacing={{ base: 6, xl: 8 }}
+    backdropFilter="blur(3px)"
+    borderRadius="lg"
   >
     <Heading
       size="2xl"

@@ -39,6 +39,8 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
       width={{ base: "100%", lg: "70%" }}
       spacing={{ base: 6, xl: 8 }}
       as="section"
+      backdropFilter="blur(3px)"
+      borderRadius="lg"
     >
       <Heading
         as="h4"
