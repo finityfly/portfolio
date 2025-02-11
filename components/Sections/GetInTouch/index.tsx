@@ -62,13 +62,13 @@ const GetInTouch = () => {
         </Text>
       </Heading>
       <Text variant="description">
-        Feel free to message me on any of my social media or shoot me an{" "}
+        Feel free to message me on any of my social media or shoot me an email @{" "}
         <Link
-          href="mailto:personal@daniellu.ca"
+          href="mailto:daniellu@cmail.carleton.ca"
           target="_blank"
           rel="noreferrer"
         >
-          email
+          daniellu@cmail.carleton.ca
         </Link>
         !
       </Text>
