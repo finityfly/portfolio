@@ -49,7 +49,7 @@ const ParticlesBackground: React.FC = () => {
           color: nodes,
           distance: 150,
           enable: true,
-          opacity: 0.4,
+          opacity: 0.2,
           width: 1,
         },
         move: {
@@ -64,7 +64,7 @@ const ParticlesBackground: React.FC = () => {
           value: 30,
         },
         opacity: {
-          value: 0.3,
+          value: 0.1,
         },
         shape: {
           type: "circle",
