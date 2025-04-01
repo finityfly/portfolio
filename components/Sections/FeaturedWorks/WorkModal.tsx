@@ -321,11 +321,6 @@ const WorkModal = ({ isOpen, onClose, title }: IWorkModal) => {
             </Box>
           )}
         </ModalBody>
-        <ModalFooter>
-          <Text fontSize="x-small">
-            *There will be stuff here very very soon don&apos;t worry
-          </Text>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   );
