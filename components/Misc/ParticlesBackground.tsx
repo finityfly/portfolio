@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useCallback } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import {
-  type Container,
-  type ISourceOptions,
+  Container,
+  ISourceOptions,
   MoveDirection,
   OutMode,
 } from "@tsparticles/engine";
@@ -49,7 +49,7 @@ const ParticlesBackground: React.FC = () => {
           color: nodes,
           distance: 150,
           enable: true,
-          opacity: 0.5,
+          opacity: 0.2,
           width: 1,
         },
         move: {
@@ -61,10 +61,10 @@ const ParticlesBackground: React.FC = () => {
             enable: true,
             area: 400,
           },
-          value: 40,
+          value: 30,
         },
         opacity: {
-          value: 0.5,
+          value: 0.1,
         },
         shape: {
           type: "circle",
