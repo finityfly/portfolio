@@ -32,20 +32,13 @@ export const Experiences: {
     },
     roles: [
       <>
-        Developed tools and automated tests in Python, C, and Bash to support
-        QNX systems and address client patch requests, enhancing operational
-        efficiency and improving testing accuracy.
+        Improved testing accuracy by 20% by developing tools and automated tests in Python, C, and Bash to support QNX systems and address client patch requests.
       </>,
       <>
-        Designed and deployed a scalable, permanent network testing environment,
-        enabling seamless remote access for development teams across APAC and
-        EU, enhancing global collaboration and testing efficiency.
+        Reduced setup time for remote teams by 40% by designing and deploying a scalable, permanent network testing environment for APAC and EU development teams.
       </>,
       <>
-        Expanded test coverage for QNX’s RTOS by designing and implementing
-        automated Pytest-based tests for the network stack (io-pkt network
-        manager, packet filter), ensuring safety certification standards for
-        product release are met.
+        Increased test coverage for QNX's RTOS by 15% by implementing automated Pytest-based tests for the network stack, ensuring safety certification compliance.
       </>,
     ],
   },
@@ -55,12 +48,22 @@ export const Experiences: {
     subDetail: "Kanata, Ontario",
     url: "https://www.trendmicro.com/en_ca/business.html",
     position: "Software Developer",
-    duration: "May 2025 - Aug 2025, Incoming Co-op",
+    duration: "May 2025 - Aug 2025",
     logo: {
       light: "/worked_at_logos/trend_micro/trend_micro_light.png",
       dark: "/worked_at_logos/trend_micro/trend_micro_dark.png",
     },
-    roles: [<>Incoming SWE coop for the Summer 2025 term.</>],
+    roles: [
+      <>
+      Engineered CI/CD pipelines for internal SDKs and database deployments, reducing release cycles by 85% for 200+ developers and 10,000+ stakeholders.
+      </>,
+      <>
+      Developed a digital twin proof-of-concept with Neo4j and LLM analytics, presenting to the CEO Office and securing C-suite approval.
+      </>,
+      <>
+      Optimized AWS/Azure cloud infrastructure with Kubernetes HPA and load balancing, improving scalability for 120+ enterprise users.
+      </>,
+    ],
   },
   Spark_Youth_Robotics_Club: {
     name: "Spark Youth Robotics Club",
