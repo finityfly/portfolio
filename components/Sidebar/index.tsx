@@ -137,7 +137,7 @@ const Sidebar = () => {
             width="120px"
             variants={simpleOpacity}
             as={"a"}
-            href="/CV_DanielLu.pdf"
+            href="/DanielLu_Resume.pdf"
             target="_blank"
             whileHover={{
               boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,

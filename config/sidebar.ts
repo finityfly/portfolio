@@ -25,7 +25,7 @@ export const SocialMedias: SocialMedia[] = [
   },
   {
     label: "Resume",
-    href: "/CV_DanielLu.pdf",
+    href: "/DanielLu_Resume.pdf",
     icon: FaFilePdf,
   },
 ];
