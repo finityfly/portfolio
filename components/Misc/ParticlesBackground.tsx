@@ -96,7 +96,7 @@ const ParticlesBackground: React.FC = () => {
         },
       },
     }),
-    [bg]
+    [bg, nodes]
   );
 
   return init ? (

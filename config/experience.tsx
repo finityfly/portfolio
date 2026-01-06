@@ -1,6 +1,6 @@
 import { Link } from "@chakra-ui/react";
 
-export type Company = "QNX" | "Trend_Micro" | "Spark_Youth_Robotics_Club";
+export type Company = "QNX" | "Trend_Micro" | "uOttahack" | "Spark_Youth_Robotics_Club";
 
 export type CompanyDetail = {
   name: string;
@@ -24,21 +24,22 @@ export const Experiences: {
     longName: "Blackberry QNX",
     subDetail: "Kanata, Ontario",
     url: "https://blackberry.qnx.com/en",
-    position: "Software Developer in Test",
-    duration: "Jan 2025 - Apr 2025, Co-op",
+    position: "Software Test Developer",
+    duration: "Jan 2025 - Apr 2025",
     logo: {
       light: "/worked_at_logos/qnx/qnx_logo.png",
       dark: "/worked_at_logos/qnx/qnx_logo.png",
     },
     roles: [
       <>
-        Improved testing accuracy by 20% by developing tools and automated tests in Python, C, and Bash to support QNX systems and address client patch requests.
+        Engineered automated test frameworks in <b>Python (Pytest)</b> for the{" "}
+        <b>QNX RTOS</b>, increasing test coverage by <b>15%</b> in a
+        safety-certified, regulated environment.
       </>,
       <>
-        Reduced setup time for remote teams by 40% by designing and deploying a scalable, permanent network testing environment for APAC and EU development teams.
-      </>,
-      <>
-        Increased test coverage for QNX's RTOS by 15% by implementing automated Pytest-based tests for the network stack, ensuring safety certification compliance.
+        <b>Boosted shipping speeds</b> and improved system validation accuracy
+        by <b>20%</b> by developing reliable automation scripts and robust
+        testing tools in <b>Python, C, and Bash</b>.
       </>,
     ],
   },
@@ -55,14 +56,49 @@ export const Experiences: {
     },
     roles: [
       <>
-      Engineered CI/CD pipelines for internal SDKs and database deployments, reducing release cycles by 85% for 200+ developers and 10,000+ stakeholders.
+        Led development of a <b>digital twin PoC</b>, creating a{" "}
+        <b>RAG system</b> with <b>LangChain</b>, <b>Neo4j</b>,{" "}
+        <b>PGVector</b>, and <b>Model Context Protocol (MCP)</b> for
+        predictive infrastructure security analytics.
       </>,
       <>
-      Developed a digital twin proof-of-concept with Neo4j and LLM analytics, presenting to the CEO Office and securing C-suite approval.
+        Delivered an executive presentation to{" "}
+        <b>Trend Micro CEO Office</b> in Taiwan; pitched its technical value to
+        an audience of <b>70+</b> and securing approval from{" "}
+        <b>C-suite stakeholders</b>.
       </>,
       <>
-      Optimized AWS/Azure cloud infrastructure with Kubernetes HPA and load balancing, improving scalability for 120+ enterprise users.
+        Enhanced system performance and scalability for{" "}
+        <b>120+ active enterprise users</b> by architecting cloud
+        infrastructure optimizations across <b>AWS/Azure</b> with{" "}
+        <b>Kubernetes HPA</b> and <b>pod load balancing</b>.
       </>,
+      <>
+        Engineered <b>CI/CD pipelines</b> for internal SDKs and database
+        deployment systems serving <b>200+ developers and 10,000+
+        stakeholders</b>, reducing release cycles by <b>65%</b> from a whole
+        day.
+      </>,
+    ],
+  },
+  uOttahack: {
+    name: "uOttahack",
+    longName: "uOttahack",
+    subDetail: "Ottawa, Ontario",
+    url: "https://uottahack.ca/",
+    position: "Software Developer and Cloud Engineer",
+    duration: "Sep 2025 - Current",
+    logo: {
+      light: "/worked_at_logos/uottahack/uottahack_logo.png",
+      dark: "/worked_at_logos/uottahack/uottahack_logo.png",
+    },
+    roles: [
+      <>
+        Developing and maintaining the official uOttahack website ecosystem for 2000+ annual hackers using <b>React</b>, <b>Angular</b>, <b>MongoDB</b>, <b>Docker</b>, and <b>Rails</b>.
+      </>,
+      <>
+        Scaled the uOttaHack website to handle 3x traffic during peak registration periods via AWS horizontal scaling and load balancing optimizations.
+      </>
     ],
   },
   Spark_Youth_Robotics_Club: {
@@ -127,5 +163,6 @@ export const Experiences: {
 export const ExperiencesList = [
   Experiences.Trend_Micro,
   Experiences.QNX,
+  Experiences.uOttahack,
   Experiences.Spark_Youth_Robotics_Club,
 ];

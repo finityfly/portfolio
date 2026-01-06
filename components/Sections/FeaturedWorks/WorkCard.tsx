@@ -112,13 +112,23 @@ const WorkCard = ({
       }}
     >
       <Flex direction={flexDirection}>
-        <Box flex="1" maxW={{ base: "100%", md: "50%" }}>
+        <Box
+          flex="1"
+          maxW={{ base: "100%", md: "50%" }}
+          onClick={onOpen}
+          cursor="pointer"
+          overflow="hidden"
+        >
           <Image
             src={imageSrc}
             alt={title}
             objectFit="cover"
             height="100%"
             width="100%"
+            transition="transform 0.2s ease-in-out"
+            _hover={{
+              transform: "scale(1.05)",
+            }}
           />
         </Box>
         <Box

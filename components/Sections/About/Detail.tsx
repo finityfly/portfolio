@@ -55,17 +55,27 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
       <Text variant="description">
         I`ve been programming professionally for {professionalYears} years now
         and currently working as a <b>Software Engineer</b> that specializes in{" "}
-        <b>full-stack software development</b>, <b>embedded systems</b>,{" "}
+        <b>full-stack software development</b>,{" "}
         <Tooltip
-          label="specializing in audio and video processing"
-          aria-label="audio and video processing"
+          label="AWS, Azure"
+          aria-label="cloud engineering"
+          hasArrow
+        >
+          <Text as="span" variant="emphasis">
+            <b>cloud engineering</b>
+          </Text>
+        </Tooltip>
+        , and {" "}
+        <Tooltip
+          label="Interested in federated learning, transfer learning, computer vision"
+          aria-label="machine learning"
           hasArrow
         >
           <Text as="span" variant="emphasis">
             <b>machine learning</b>
           </Text>
-        </Tooltip>{" "}
-        and some <b>blockchain</b> now!
+        </Tooltip>
+        !
         <br /> <br />
         Here are few technologies that are the cup of my tea{" "}
         <Icon as={LuCupSoda} color={emphasis} />.

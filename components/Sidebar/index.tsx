@@ -120,10 +120,10 @@ const Sidebar = () => {
               Carleton University.
             </Text>
             <br />
-            I&apos;m currently working as a software engineer at
+            I&apos;ve previously worked as a software engineer at
             <Text variant="emphasis" as="span">
               {" "}
-              Trend Micro
+              Trend Micro and Blackberry QNX
             </Text>
             .
           </MotionText>
