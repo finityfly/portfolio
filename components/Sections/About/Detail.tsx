@@ -66,7 +66,8 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
             <b>cloud engineering</b>
           </Text>
         </Tooltip>
-        , and{" "}{/* eslint-disable-next-line prettier/prettier */}
+        {/* eslint-disable-next-line prettier/prettier */}
+        , and{" "}
         <Tooltip
           label="Interested in federated learning, transfer learning, computer vision"
           aria-label="machine learning"
