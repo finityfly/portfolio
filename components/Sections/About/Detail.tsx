@@ -56,21 +56,13 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
         I`ve been programming professionally for {professionalYears} years now
         and currently working as a <b>Software Engineer</b> that specializes in{" "}
         <b>full-stack software development</b>,{" "}
-        <Tooltip
-          label="AWS, Azure"
-          aria-label="cloud engineering"
-          hasArrow
-        >
+        <Tooltip label="AWS, Azure" aria-label="cloud engineering" hasArrow>
           <Text as="span" variant="emphasis">
             <b>cloud engineering</b>
           </Text>
         </Tooltip>
         , and {" "}
-        <Tooltip
-          label="Interested in federated learning, transfer learning, computer vision"
-          aria-label="machine learning"
-          hasArrow
-        >
+        <Tooltip label="Interested in federated learning, transfer learning, computer vision" aria-label="machine learning" hasArrow>
           <Text as="span" variant="emphasis">
             <b>machine learning</b>
           </Text>
