@@ -11,7 +11,7 @@ const OpenGraphHead = () => (
       content="Hey I'm Daniel, glad you're here!"
     />
     <meta property="og:type" content="profile" />
-    <meta property="og:image" content="https://daniellu.ca/pfp.png"></meta>
+    <meta property="og:image" content="https://daniellu.ca/logo.png"></meta>
   </Head>
 );
 export default OpenGraphHead;
