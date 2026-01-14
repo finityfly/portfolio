@@ -50,24 +50,19 @@ const Avatar = () => {
         exit={{ opacity: 0 }}
       >
         <ChkImage
+          borderRadius="full"
+          boxSize="250px"
+          objectFit="cover"
+          objectPosition="0 20%"
           src={imgAvatar}
-          alt="Daniel Lu Avatar"
-          htmlWidth="250"
-          htmlHeight="250"
+          alt="Daniel Lu"
+          htmlWidth="300"
+          htmlHeight="300"
           margin="auto"
-          fallback={<SkeletonCircle height="100%" width="100%" />}
+          fallback={<SkeletonCircle height="250px" width="250px" />}
+          border="3px solid"
+          borderColor={useColorModeValue("teal.500", "cyan.200")}
         />
-        {/* <Text textAlign="center" fontSize="smaller" variant="description">
-          Art by{" "}
-          <Link
-            href="https://twitter.com/kojiro_ai"
-            target="_blank"
-            aria-label="KojiroArt"
-            rel="noreferrer"
-          >
-            KojiroArt
-          </Link>
-        </Text> */}
       </MotionBox>
     </AnimatePresence>
   );
