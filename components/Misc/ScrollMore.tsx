@@ -62,11 +62,9 @@ const ScrollMore = () => {
   const [isAboutVisible, setIsAboutVisible] = useState(true);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsAboutVisible(entry.isIntersecting);
-      }
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsAboutVisible(entry.isIntersecting);
+    });
     const target = document.getElementById("aboutMe");
     if (target) {
       observer.observe(target);
