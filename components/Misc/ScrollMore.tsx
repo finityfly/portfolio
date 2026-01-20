@@ -1,13 +1,14 @@
+import { useState, useEffect } from "react";
 import {
   Box,
   Icon,
   Text,
   useBreakpointValue,
   useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import { RiMouseLine } from "react-icons/ri";
 import { motion, Variants, AnimatePresence } from "framer-motion";
-import useScrollDirection, { ScrollDirection } from "hooks/useScrollDirection";
 import { mobileBreakpointsMap } from "config/theme";
 
 const scrollMoreVariants: Variants = {
@@ -54,9 +55,24 @@ const emailVariants: Variants = {
 
 const ScrollMore = () => {
   const isMobile = useBreakpointValue(mobileBreakpointsMap);
-  const scrollDirection = useScrollDirection(false, isMobile);
   const emailColor = useColorModeValue("gray.800", "gray.400");
   const emailLine = useColorModeValue("teal.500", "cyan.200");
+  const toast = useToast();
+
+  const [isAboutVisible, setIsAboutVisible] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsAboutVisible(entry.isIntersecting);
+      }
+    );
+    const target = document.getElementById("aboutMe");
+    if (target) observer.observe(target);
+    return () => {
+      if (target) observer.unobserve(target);
+    };
+  }, []);
 
   return (
     <Box
@@ -66,9 +82,7 @@ const ScrollMore = () => {
       display={isMobile ? "none" : "block"}
     >
       <AnimatePresence>
-        {[ScrollDirection.Initial, ScrollDirection.Up].includes(
-          scrollDirection
-        ) && (
+        {isAboutVisible && (
           <motion.div
             initial="initial"
             animate={["hidden", "bounce"]}
@@ -85,7 +99,7 @@ const ScrollMore = () => {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {scrollDirection === ScrollDirection.Down && (
+        {!isAboutVisible && (
           <motion.div
             initial="hidden"
             animate="show"
@@ -100,12 +114,19 @@ const ScrollMore = () => {
             }}
           >
             <Text
-              as="a"
+              as="span"
+              cursor="pointer"
               paddingY={3}
               fontFamily="monospace"
-              href="mailto:personal@daniellu.ca"
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => {
+                navigator.clipboard.writeText("daniellu@cmail.carleton.ca");
+                toast({
+                  title: "Email copied!",
+                  status: "success",
+                  duration: 3000,
+                  isClosable: true,
+                });
+              }}
               color={emailColor}
               _hover={{
                 color: emailLine,
@@ -130,7 +151,7 @@ const ScrollMore = () => {
                 marginTop: "10px",
               }}
             >
-              personal@daniellu.ca{" "}
+              daniellu@cmail.carleton.ca{" "}
             </Text>
           </motion.div>
         )}

@@ -79,6 +79,17 @@ const theme = extendTheme({
             textDecoration: "none",
           },
         }),
+        sidebar: (props: ThemeComponentProps<ChakraTheme>) => ({
+          color: mode("gray.700", "gray.400")(props),
+          textTransform: "uppercase",
+          fontWeight: "bold",
+          fontSize: "sm",
+          letterSpacing: "wider",
+          _hover: {
+            color: mode("gray.900", "white")(props),
+            textDecoration: "none",
+          },
+        }),
       },
     },
     Text: {

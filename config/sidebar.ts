@@ -1,5 +1,5 @@
 import { IconType } from "react-icons";
-import { FaLinkedin, FaGithub, FaCode, FaFilePdf } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaTwitter, FaFilePdf } from "react-icons/fa";
 
 type SocialMedia = {
   label: string;
@@ -9,23 +9,23 @@ type SocialMedia = {
 
 export const SocialMedias: SocialMedia[] = [
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/daniel-lu-9575a0176/",
-    icon: FaLinkedin,
-  },
-  {
     label: "Github",
     href: "https://github.com/FinityFly",
     icon: FaGithub,
   },
   {
-    label: "Devpost",
-    href: "https://devpost.com/FinityFly",
-    icon: FaCode,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/daniel-lu-9575a0176/",
+    icon: FaLinkedin,
   },
   {
-    label: "Resume",
-    href: "/DanielLu_Resume.pdf",
-    icon: FaFilePdf,
+    label: "Twitter",
+    href: "https://x.com/im_daniel_lu",
+    icon: FaTwitter,
   },
+  // {
+  //   label: "Resume",
+  //   href: "/DanielLu_Resume.pdf",
+  //   icon: FaFilePdf,
+  // },
 ];

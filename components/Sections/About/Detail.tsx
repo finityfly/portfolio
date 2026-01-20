@@ -8,21 +8,18 @@ import {
   Icon,
   SimpleGrid,
   Box,
-  Tooltip,
   Stack,
   useColorModeValue,
 } from "@chakra-ui/react";
 import {
   SiPython,
-  SiJavascript,
-  SiTensorflow,
   SiCplusplus,
-  SiReact,
-  SiNodedotjs,
   SiAmazonaws,
-  SiCodeforces,
+  SiDocker,
+  SiRust,
+  SiPytorch,
+  SiNextdotjs,
 } from "react-icons/si";
-import { LuCupSoda } from "react-icons/lu";
 import { IoMdOpen } from "react-icons/io";
 
 type ISkillSetModal = {
@@ -31,16 +28,12 @@ type ISkillSetModal = {
 
 const Detail = ({ onOpen }: ISkillSetModal) => {
   const emphasis = useColorModeValue("teal.500", "cyan.200");
-  const currentYear = new Date().getFullYear();
-  const professionalYears = currentYear - 2020;
 
   return (
     <Stack
       width={{ base: "100%", lg: "70%" }}
       spacing={{ base: 6, xl: 8 }}
       as="section"
-      backdropFilter="blur(3px)"
-      borderRadius="lg"
     >
       <Heading
         as="h4"
@@ -50,36 +43,11 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
           fontVariantCaps: "small-caps",
         }}
       >
-        What i do.
+        I ship neat things.
       </Heading>
-      <Text variant="description">
-        I`ve been programming professionally for {professionalYears} years now
-        and currently working as a <b>Software Engineer</b> that specializes in{" "}
-        <b>full-stack software development</b>,{" "}
-        {/* eslint-disable-next-line prettier/prettier */}
-        <Tooltip
-          label="AWS, Azure"
-          aria-label="cloud engineering"
-          hasArrow
-        >
-          <Text as="span" variant="emphasis">
-            <b>cloud engineering</b>
-          </Text>
-        </Tooltip>
-        {/* eslint-disable-next-line prettier/prettier */}, and{" "}
-        <Tooltip
-          label="Interested in federated learning, transfer learning, computer vision"
-          aria-label="machine learning"
-          hasArrow
-        >
-          <Text as="span" variant="emphasis">
-            <b>machine learning</b>
-          </Text>
-        </Tooltip>
-        !
-        <br /> <br />
-        Here are few technologies that are the cup of my tea{" "}
-        <Icon as={LuCupSoda} color={emphasis} />.
+      <Text variant="description" fontSize="lg">
+        I engineer high-performance distributed systems and scalable full-stack applications.
+        My focus is on <Text as="span" variant="emphasis">velocity</Text>, <Text as="span" variant="emphasis">robustness</Text>, and <Text as="span" variant="emphasis">shipping code</Text> that matters.
       </Text>
 
       <SimpleGrid columns={2} spacing={4}>
@@ -90,37 +58,32 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
           </ListItem>
           <ListItem fontSize="small" display="flex" alignItems="center">
             <ListIcon as={SiCplusplus} color={emphasis} fontSize="2em" />
-            C/C++
+            C++
           </ListItem>
           <ListItem fontSize="small" display="flex" alignItems="center">
-            <ListIcon as={SiJavascript} color={emphasis} fontSize="2em" />
-            Javascript
+            <ListIcon as={SiNextdotjs} color={emphasis} fontSize="2em" />
+            Next.js / React
           </ListItem>
-
           <ListItem fontSize="small" display="flex" alignItems="center">
-            <ListIcon as={SiNodedotjs} color={emphasis} fontSize="2em" />
-            Node
+            <ListIcon as={SiRust} color={emphasis} fontSize="2em" />
+            Rust
           </ListItem>
         </List>
         <List spacing={3}>
           <ListItem fontSize="small" display="flex" alignItems="center">
-            <ListIcon as={SiReact} color={emphasis} fontSize="2em" />
-            React/NextJS
-          </ListItem>
-          <ListItem fontSize="small" display="flex" alignItems="center">
-            <ListIcon as={SiTensorflow} color={emphasis} fontSize="2em" />
-            Tensorflow
+            <ListIcon as={SiPytorch} color={emphasis} fontSize="2em" />
+            LangChain / RAG
           </ListItem>
           <ListItem fontSize="small" display="flex" alignItems="center">
             <ListIcon as={SiAmazonaws} color={emphasis} fontSize="2em" />
-            AWS
+            AWS & Cloud Infrastructure
           </ListItem>
           <ListItem fontSize="small" display="flex" alignItems="center">
-            <ListIcon as={SiCodeforces} color={emphasis} fontSize="2em" />
-            Data Structures and Algorithms
+            <ListIcon as={SiDocker} color={emphasis} fontSize="2em" />
+            Docker & Kubernetes
           </ListItem>
         </List>
-        <Box>
+        {/* <Box>
           <Text
             as="button"
             variant="emphasis"
@@ -128,9 +91,9 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
             textAlign="left"
             onClick={onOpen}
           >
-            See my full arsenal <Icon as={IoMdOpen} />
+            View Full Stack <Icon as={IoMdOpen} />
           </Text>
-        </Box>
+        </Box> */}
       </SimpleGrid>
     </Stack>
   );

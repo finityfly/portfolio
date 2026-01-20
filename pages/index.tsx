@@ -117,9 +117,9 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                 <Avatar />
               </Box>
             </FadeInLayout>
-            <FadeInLayout>
+            {/* <FadeInLayout>
               <Box
-                id="works"
+                id="jobs"
                 className="contentRow"
                 paddingTop={{ base: 0, lg: 20, xl: 20 }}
                 paddingBottom={{ base: 12, lg: 10 }}
@@ -128,10 +128,10 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
               >
                 <Experience />
               </Box>
-            </FadeInLayout>
+            </FadeInLayout> */}
             <FadeInLayout>
               <Box
-                id="jobs"
+                id="works"
                 className="contentRow"
                 paddingTop={{ base: 0, lg: 20, xl: 0 }}
                 paddingBottom={{ base: 12, lg: 10 }}

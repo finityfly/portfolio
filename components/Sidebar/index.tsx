@@ -20,12 +20,13 @@ import {
   scaleUp,
 } from "config/animations";
 import { SocialMedias } from "config/sidebar";
-import { ThemeMode } from "config/theme";
+import { ThemeMode, mobileBreakpointsMap } from "config/theme";
 
 const Sidebar = () => {
   const { colorMode } = useColorMode();
   const display = useBreakpointValue({ base: "none", lg: "block" });
   const surNameSize = useBreakpointValue({ base: "3xl", md: "4xl" });
+  const isMobile = useBreakpointValue(mobileBreakpointsMap);
   const MotionHeading = motion(Heading);
   const MotionText = motion(Text);
   const MotionStack = motion(Stack);
@@ -68,14 +69,14 @@ const Sidebar = () => {
             variant="accent"
             fontWeight="light"
           >
-            Hi, nice of you to stop by! I am
+            Hi, I'm
           </MotionText>
           <MotionHeading
             as="h1"
             size="2xl"
             paddingRight={{ lg: "20" }}
             textTransform="uppercase"
-            variants={fadeInUp}
+            variants={letterSpace}
           >
             Daniel
           </MotionHeading>
@@ -86,8 +87,6 @@ const Sidebar = () => {
             className={styles.marginTopForce}
             textTransform="uppercase"
             variants={letterSpace}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
           >
             Lu.
           </MotionHeading>
@@ -99,34 +98,27 @@ const Sidebar = () => {
             className={styles.marginTopSmall}
             variants={fadeInUp}
           >
-            Software Engineer
+            prev @ Trend Micro & Blackberry QNX
           </MotionHeading>
 
-          <MotionText
-            variant="description"
-            fontSize="medium"
-            paddingRight={{ lg: "12" }}
-            variants={fadeInUp}
-            maxWidth={{ base: "100%", lg: "80%" }}
-          >
-            Welcome to my personal site,
-            <Text variant="emphasis" as="span">
-              {" "}
-              I&apos;m glad you&apos;re here!
-            </Text>
-            <br />I am a software engineer studying computer science at
-            <Text variant="emphasis" as="span">
-              {" "}
-              Carleton University.
-            </Text>
-            <br />
-            I&apos;ve previously worked as a software engineer at
-            <Text variant="emphasis" as="span">
-              {" "}
-              Trend Micro and Blackberry QNX
-            </Text>
-            .
-          </MotionText>
+          <MotionBox d="flex" flexWrap="wrap" variants={fadeInUp} gap={12} mb={4}>
+            {SocialMedias.map((socMedia) => (
+              <Link
+                variant="description"
+                key={socMedia.label}
+                aria-label={socMedia.label}
+                rel="noreferrer"
+                href={socMedia.href}
+                target="_blank"
+                _focus={{ boxShadow: "none" }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
+                  <Text>{socMedia.label}</Text>
+                </Stack>
+              </Link>
+            ))}
+          </MotionBox>
           <MotionButton
             size="lg"
             variant="outline"
@@ -148,23 +140,6 @@ const Sidebar = () => {
           >
             View Resume
           </MotionButton>
-
-          <MotionBox d="flex" variants={simpleOpacity}>
-            {SocialMedias.map((socMedia) => (
-              <Link
-                variant="description"
-                key={socMedia.label}
-                aria-label={socMedia.label}
-                rel="noreferrer"
-                width={8}
-                href={socMedia.href}
-                target="_blank"
-                _focus={{ boxShadow: "none" }}
-              >
-                <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
-              </Link>
-            ))}
-          </MotionBox>
         </MotionStack>
       </Container>
     </MotionBox>

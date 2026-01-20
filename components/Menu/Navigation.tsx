@@ -1,4 +1,4 @@
-import { memo, useCallback } from "react";
+import { memo, useCallback, useState, useEffect } from "react";
 import {
   Container,
   Button,
@@ -15,7 +15,6 @@ import styles from "./styles.module.css";
 import MobileMenu from "./toggle";
 import { ThemeMode, mobileBreakpointsMap } from "config/theme";
 import { easing, menuAnim } from "config/animations";
-import useScrollDirection, { ScrollDirection } from "hooks/useScrollDirection";
 
 const Navigation = () => {
   const { toggleColorMode, colorMode } = useColorMode();
@@ -46,7 +45,21 @@ const Navigation = () => {
     },
     [isMobile, toggleOpen]
   );
-  const scrollDirection = useScrollDirection();
+  
+  const [isAboutVisible, setIsAboutVisible] = useState(true);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsAboutVisible(entry.isIntersecting);
+      }
+    );
+    const target = document.getElementById("aboutMe");
+    if (target) observer.observe(target);
+    return () => {
+      if (target) observer.unobserve(target);
+    };
+  }, []);
 
   return (
     <>
@@ -76,7 +89,7 @@ const Navigation = () => {
         className={styles.menu}
         right={{
           lg:
-            !isMobile && scrollDirection === ScrollDirection.Down
+            !isMobile && !isAboutVisible
               ? "2%"
               : "3.5%",
         }}
@@ -84,7 +97,7 @@ const Navigation = () => {
         animate={(!isMobile || isOpen) && "show"}
         style={{
           width:
-            !isMobile && scrollDirection === ScrollDirection.Down
+            !isMobile && !isAboutVisible
               ? "12%"
               : "100%",
           top: !isOpen && isMobile && "-100vh",
@@ -104,12 +117,12 @@ const Navigation = () => {
           justifyContent={{ base: "center", lg: "flex-end" }}
           direction={{
             base: "column",
-            lg: scrollDirection === ScrollDirection.Down ? "column" : "row",
+            lg: !isAboutVisible ? "column" : "row",
           }}
           paddingX={{ base: "", sm: "10", lg: "0" }}
           paddingY={{
             base: "10",
-            lg: scrollDirection === ScrollDirection.Down ? "10" : "3",
+            lg: !isAboutVisible ? "10" : "3",
           }}
           height={{ base: "100vh", lg: "auto" }}
           paddingRight="0"
@@ -157,7 +170,7 @@ const Navigation = () => {
               Works
             </Button>
           </Box>
-          <Box
+          {/* <Box
             width={{ base: "100%", lg: "auto" }}
             textAlign={{ base: "center", lg: "left" }}
             marginY={{ base: 2, lg: 0 }}
@@ -177,7 +190,7 @@ const Navigation = () => {
             >
               Experience
             </Button>
-          </Box>
+          </Box> */}
           <Box
             width={{ base: "100%", lg: "auto" }}
             textAlign={{ base: "center", lg: "left" }}

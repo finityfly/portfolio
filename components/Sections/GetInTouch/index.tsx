@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { Heading, Text, Stack, Link, Icon, Box } from "@chakra-ui/react";
+import { Heading, Text, Stack, Link, Icon, Box, useToast } from "@chakra-ui/react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RiHeartPulseFill, RiCopyleftLine, RiGithubFill } from "react-icons/ri";
@@ -33,6 +33,8 @@ const GetInTouch = () => {
   const [ref, inView] = useInView();
   const MotionBox = motion(Box);
   const currentYear = new Date().getFullYear();
+  const toast = useToast();
+
   return (
     <Stack
       width={{ base: "99%", lg: "60%", xl: "75%" }}
@@ -62,23 +64,30 @@ const GetInTouch = () => {
         </Text>
       </Heading>
       <Text variant="description">
-        Feel free to message me on any of my social media or shoot me an email @{" "}
+        Shoot me an email @{" "}
         <Link
-          href="mailto:daniellu@cmail.carleton.ca"
-          target="_blank"
-          rel="noreferrer"
+          as="span"
+          cursor="pointer"
+          onClick={() => {
+            navigator.clipboard.writeText("daniellu@cmail.carleton.ca");
+            toast({
+              title: "Email copied!",
+              status: "success",
+              duration: 3000,
+              isClosable: true,
+            });
+          }}
         >
           daniellu@cmail.carleton.ca
         </Link>
-        !
+        {" "}or any social media!
       </Text>
-
-      {/* make the items centered and spaced */}
-      <MotionBox
-        d="flex"
+      <Box
+        display="flex"
         justifyContent="center"
         alignItems="center"
-        variants={simpleOpacity}
+        gap={12}
+        flexWrap="wrap"
       >
         {SocialMedias.map((socMedia) => (
           <Link
@@ -86,16 +95,17 @@ const GetInTouch = () => {
             key={socMedia.label}
             aria-label={socMedia.label}
             rel="noreferrer"
-            width={8}
-            mx={2}
             href={socMedia.href}
             target="_blank"
             _focus={{ boxShadow: "none" }}
           >
-            <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
+            <Stack direction="row" alignItems="center">
+              <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
+              <Text>{socMedia.label}</Text>
+            </Stack>
           </Link>
         ))}
-      </MotionBox>
+      </Box>
 
       <Box
         padding={0.5}
