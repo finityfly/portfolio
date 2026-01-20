@@ -46,7 +46,7 @@ const FeaturedWorksSection = () => {
             fontVariantCaps: "small-caps",
           }}
         >
-          What I've been up to 
+          What I&apos;ve been up to
         </Heading>
         {/* <Text variant="description">
           Check out some of the projects I made for fun, for clients, or for

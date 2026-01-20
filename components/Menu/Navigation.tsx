@@ -45,19 +45,21 @@ const Navigation = () => {
     },
     [isMobile, toggleOpen]
   );
-  
+
   const [isAboutVisible, setIsAboutVisible] = useState(true);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsAboutVisible(entry.isIntersecting);
-      }
-    );
+    const observer = new IntersectionObserver(([entry]) => {
+      setIsAboutVisible(entry.isIntersecting);
+    });
     const target = document.getElementById("aboutMe");
-    if (target) observer.observe(target);
+    if (target) {
+      observer.observe(target);
+    }
     return () => {
-      if (target) observer.unobserve(target);
+      if (target) {
+        observer.unobserve(target);
+      }
     };
   }, []);
 
@@ -88,18 +90,12 @@ const Navigation = () => {
         maxWidth={{ base: "100%", sm: "100%", lg: "50%", xl: "60%" }}
         className={styles.menu}
         right={{
-          lg:
-            !isMobile && !isAboutVisible
-              ? "2%"
-              : "3.5%",
+          lg: !isMobile && !isAboutVisible ? "2%" : "3.5%",
         }}
         initial="hide"
         animate={(!isMobile || isOpen) && "show"}
         style={{
-          width:
-            !isMobile && !isAboutVisible
-              ? "12%"
-              : "100%",
+          width: !isMobile && !isAboutVisible ? "12%" : "100%",
           top: !isOpen && isMobile && "-100vh",
           opacity: !isOpen && isMobile && "0",
           left: isOpen && isMobile && 0,

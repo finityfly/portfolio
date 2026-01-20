@@ -68,9 +68,13 @@ const ScrollMore = () => {
       }
     );
     const target = document.getElementById("aboutMe");
-    if (target) observer.observe(target);
+    if (target) {
+      observer.observe(target);
+    }
     return () => {
-      if (target) observer.unobserve(target);
+      if (target) {
+        observer.unobserve(target);
+      }
     };
   }, []);
 

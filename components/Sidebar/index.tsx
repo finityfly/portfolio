@@ -69,7 +69,7 @@ const Sidebar = () => {
             variant="accent"
             fontWeight="light"
           >
-            Hi, I'm
+            Hi, I&apos;m
           </MotionText>
           <MotionHeading
             as="h1"
@@ -101,7 +101,13 @@ const Sidebar = () => {
             prev @ Trend Micro & Blackberry QNX
           </MotionHeading>
 
-          <MotionBox d="flex" flexWrap="wrap" variants={fadeInUp} gap={12} mb={4}>
+          <MotionBox
+            d="flex"
+            flexWrap="wrap"
+            variants={fadeInUp}
+            gap={12}
+            mb={4}
+          >
             {SocialMedias.map((socMedia) => (
               <Link
                 variant="description"

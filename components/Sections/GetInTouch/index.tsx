@@ -1,7 +1,15 @@
 "use client";
 
 import { memo } from "react";
-import { Heading, Text, Stack, Link, Icon, Box, useToast } from "@chakra-ui/react";
+import {
+  Heading,
+  Text,
+  Stack,
+  Link,
+  Icon,
+  Box,
+  useToast,
+} from "@chakra-ui/react";
 import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RiHeartPulseFill, RiCopyleftLine, RiGithubFill } from "react-icons/ri";
@@ -79,8 +87,8 @@ const GetInTouch = () => {
           }}
         >
           daniellu@cmail.carleton.ca
-        </Link>
-        {" "}or any social media!
+        </Link>{" "}
+        or any social media!
       </Text>
       <Box
         display="flex"

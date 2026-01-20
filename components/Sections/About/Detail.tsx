@@ -46,8 +46,20 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
         I ship neat things.
       </Heading>
       <Text variant="description" fontSize="lg">
-        I engineer high-performance distributed systems and scalable full-stack applications.
-        My focus is on <Text as="span" variant="emphasis">velocity</Text>, <Text as="span" variant="emphasis">robustness</Text>, and <Text as="span" variant="emphasis">shipping code</Text> that matters.
+        I engineer high-performance distributed systems and scalable full-stack
+        applications. My focus is on{" "}
+        <Text as="span" variant="emphasis">
+          velocity
+        </Text>
+        ,{" "}
+        <Text as="span" variant="emphasis">
+          robustness
+        </Text>
+        , and{" "}
+        <Text as="span" variant="emphasis">
+          shipping code
+        </Text>{" "}
+        that matters.
       </Text>
 
       <SimpleGrid columns={2} spacing={4}>
