@@ -91,15 +91,23 @@ const Sidebar = () => {
             Lu.
           </MotionHeading>
 
-          <MotionHeading
-            as="h3"
-            size="md"
-            variant="emphasis"
-            className={styles.marginTopSmall}
-            variants={fadeInUp}
-          >
-            prev @ Trend Micro & Blackberry QNX
-          </MotionHeading>
+          <Stack direction="row" spacing={2}>
+            <MotionHeading
+              as="h3"
+              size="md"
+              variants={fadeInUp}
+            >
+              prev @
+            </MotionHeading>
+            <MotionHeading
+              as="h3"
+              size="md"
+              variant="emphasis"
+              variants={fadeInUp}
+            >
+              Trend Micro & Blackberry QNX
+            </MotionHeading>
+          </Stack>
 
           <MotionBox
             d="flex"
