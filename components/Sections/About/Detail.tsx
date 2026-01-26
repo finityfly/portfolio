@@ -100,7 +100,6 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
 
   return (
     <Box width={{ base: "100%", lg: "70%" }}>
-      {/* @ts-expect-error - TypeScript limitation with complex union types in Chakra UI */}
       <Stack spacing={6}>
         <Heading
           as="h4"
