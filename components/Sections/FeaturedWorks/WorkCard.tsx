@@ -1,33 +1,33 @@
-"use client"
+"use client";
 
-import { useRef, useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { cn } from "@/lib/utils"
-import { useColorModeValue, useToken } from "@chakra-ui/react"
+import { useRef, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useColorModeValue, useToken } from "@chakra-ui/react";
+import { cn } from "@/lib/utils";
 
 export type WorkCardProps = {
-  title: string
-  subtitle: string
-  description: string
-  mediaSrc: string
-  mediaType?: "video" | "image"
-  href: string
-}
+  title: string;
+  subtitle: string;
+  description: string;
+  mediaSrc: string;
+  mediaType?: "video" | "image";
+  href: string;
+};
 
 // Helper function to detect media type from file extension
 const detectMediaType = (src: string): "video" | "image" => {
-  const lowerSrc = src.toLowerCase()
+  const lowerSrc = src.toLowerCase();
   if (lowerSrc.endsWith(".webm")) {
-    return "video"
+    return "video";
   }
   // Support jpg, jpeg, png, svg, gif as images
   if (lowerSrc.match(/\.(jpg|jpeg|png|svg|gif)$/)) {
-    return "image"
+    return "image";
   }
   // Default to image if unknown
-  return "image"
-}
+  return "image";
+};
 
 export function WorkCard({
   title,
@@ -37,51 +37,51 @@ export function WorkCard({
   mediaType,
   href,
 }: WorkCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [isHovered, setIsHovered] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   // Auto-detect media type if not provided, prioritizing webm videos
-  const detectedMediaType = mediaType || detectMediaType(mediaSrc)
-  const isVideo = detectedMediaType === "video"
+  const detectedMediaType = mediaType || detectMediaType(mediaSrc);
+  const isVideo = detectedMediaType === "video";
 
   const handleMouseEnter = () => {
-    setIsHovered(true)
+    setIsHovered(true);
     if (videoRef.current && isVideo) {
-      videoRef.current.play()
+      videoRef.current.play();
     }
-  }
+  };
 
   const handleMouseLeave = () => {
-    setIsHovered(false)
+    setIsHovered(false);
     if (videoRef.current && isVideo) {
-      videoRef.current.pause()
-      videoRef.current.currentTime = 0
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
-  }
+  };
 
   // Strip HTML tags from description for display
   const stripHtml = (html: string) => {
     if (typeof window === "undefined") {
       // Server-side: use regex to strip HTML tags
-      return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ")
+      return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ");
     }
-    const tmp = document.createElement("DIV")
-    tmp.innerHTML = html
-    return tmp.textContent || tmp.innerText || ""
-  }
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = html;
+    return tmp.textContent || tmp.innerText || "";
+  };
 
-  const cleanDescription = stripHtml(description)
+  const cleanDescription = stripHtml(description);
 
   // Get colors based on Chakra UI color mode
-  const emphasis = useColorModeValue("teal.500", "cyan.200")
-  const emphasisColor = useToken("colors", emphasis)
-  const bgColor = useColorModeValue("#ffffff", "#374151")
-  const borderColor = useColorModeValue("#e5e7eb", "#4b5563")
-  const hoverBorderColor = useColorModeValue("#14b8a6", "#67e8f9")
-  const textColor = useColorModeValue("#111827", "#ffffff")
-  const descriptionColor = useColorModeValue("#374151", "#d1d5db")
-  const mutedColor = useColorModeValue("#6b7280", "#9ca3af")
-  const mediaBg = useColorModeValue("#f3f4f6", "#1f2937")
+  const emphasis = useColorModeValue("teal.500", "cyan.200");
+  const emphasisColor = useToken("colors", emphasis);
+  const bgColor = useColorModeValue("#ffffff", "#374151");
+  const borderColor = useColorModeValue("#e5e7eb", "#4b5563");
+  const hoverBorderColor = useColorModeValue("#14b8a6", "#67e8f9");
+  const textColor = useColorModeValue("#111827", "#ffffff");
+  const descriptionColor = useColorModeValue("#374151", "#d1d5db");
+  const mutedColor = useColorModeValue("#6b7280", "#9ca3af");
+  const mediaBg = useColorModeValue("#f3f4f6", "#1f2937");
 
   return (
     <Link
@@ -106,16 +106,16 @@ export function WorkCard({
           minHeight: "300px", // Fixed minimum height to prevent mismatches
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = hoverBorderColor
+          e.currentTarget.style.borderColor = hoverBorderColor;
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = borderColor
+          e.currentTarget.style.borderColor = borderColor;
         }}
       >
         {/* Media Container - Takes up ~65% of card height using flex */}
-        <div 
+        <div
           className="relative w-full overflow-hidden flex-shrink-0"
-          style={{ 
+          style={{
             backgroundColor: mediaBg,
             flex: "0 0 65%", // 65% of card height for image
           }}
@@ -147,7 +147,7 @@ export function WorkCard({
                 unoptimized={mediaSrc.toLowerCase().endsWith(".gif")}
               />
             )}
-            
+
             {/* Subtle overlay on hover */}
             <div
               className={cn(
@@ -160,7 +160,7 @@ export function WorkCard({
         </div>
 
         {/* Content - Compressed to ~35% of card height using flex */}
-        <div 
+        <div
           className="px-5 py-3 flex flex-col flex-shrink-0"
           style={{
             flex: "0 0 35%", // 35% of card height for text content
@@ -171,16 +171,16 @@ export function WorkCard({
               "text-base font-semibold leading-tight mb-1.5",
               "line-clamp-1"
             )}
-            style={{ 
+            style={{
               color: emphasisColor, // Use emphasis color for title
             }}
           >
             {title}
           </h3>
-          
-          <p 
+
+          <p
             className="text-xs leading-snug mb-2 flex-1"
-            style={{ 
+            style={{
               color: descriptionColor,
               display: "-webkit-box",
               WebkitLineClamp: 2,
@@ -198,14 +198,14 @@ export function WorkCard({
               "transition-all duration-200",
               "group-hover:gap-2"
             )}
-            style={{ 
+            style={{
               color: mutedColor,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = textColor
+              e.currentTarget.style.color = textColor;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = mutedColor
+              e.currentTarget.style.color = mutedColor;
             }}
           >
             <span>View Project</span>
@@ -226,7 +226,7 @@ export function WorkCard({
         </div>
       </article>
     </Link>
-  )
+  );
 }
 
-export default WorkCard
+export default WorkCard;

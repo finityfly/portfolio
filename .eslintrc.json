@@ -22,20 +22,13 @@
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "no-multi-str": "error",
     "no-useless-escape": "error",
-    "no-trailing-spaces": "error",
+    "no-trailing-spaces": "off",
     "react/no-multi-comp": "error",
     "import/first": "error",
     "import/order": "error",
     "linebreak-style": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
-    "prettier/prettier": [
-      "error",
-      {
-        "trailingComma": "es5",
-        "singleQuote": false,
-        "endOfLine": "auto"
-      }
-    ]
+    "prettier/prettier": "off"
   },
   "globals": {
     "React": "writable"
