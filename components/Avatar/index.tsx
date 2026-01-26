@@ -41,9 +41,9 @@ const Avatar = () => {
     <AnimatePresence>
       <MotionBox
         id="dlAvatar"
-        boxSize={{ base: 64, lg: "sm" }}
-        padding={{ base: 8 }}
-        marginBottom={{ base: 10, md: 0, lg: 0 }}
+        boxSize={{ base: 64, md: 56, lg: "sm" }}
+        padding={{ base: 8, md: 6, lg: 8 }}
+        marginBottom={{ base: 10, md: 8, lg: 0 }}
         initial="initial"
         animate={"animate"}
         variants={avatarAnimation}
@@ -51,7 +51,7 @@ const Avatar = () => {
       >
         <ChkImage
           borderRadius="full"
-          boxSize="250px"
+          boxSize={{ base: "250px", md: "200px", lg: "250px" }}
           objectFit="cover"
           objectPosition="0 20%"
           src={imgAvatar}
@@ -59,7 +59,12 @@ const Avatar = () => {
           htmlWidth="300"
           htmlHeight="300"
           margin="auto"
-          fallback={<SkeletonCircle height="250px" width="250px" />}
+          fallback={
+            <SkeletonCircle
+              height={{ base: "250px", md: "200px", lg: "250px" }}
+              width={{ base: "250px", md: "200px", lg: "250px" }}
+            />
+          }
           border="3px solid"
           borderColor={useColorModeValue("teal.500", "cyan.200")}
         />

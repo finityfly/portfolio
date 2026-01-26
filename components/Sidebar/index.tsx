@@ -107,9 +107,9 @@ const Sidebar = () => {
 
           <MotionBox
             d="flex"
-            flexWrap="wrap"
+            flexDirection="row"
             variants={fadeInUp}
-            gap={12}
+            gap={{ base: 4, lg: 12 }}
             mb={4}
           >
             {SocialMedias.map((socMedia) => (

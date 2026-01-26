@@ -99,8 +99,8 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
   };
 
   return (
-    <Box width={{ base: "100%", lg: "70%" }}>
-      <Stack spacing={6}>
+    <Box width={{ base: "100%", md: "100%", lg: "70%" }}>
+      <Stack spacing={{ base: 6, md: 4, lg: 6 }}>
         <Heading
           as="h4"
           size="2xl"

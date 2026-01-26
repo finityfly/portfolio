@@ -107,11 +107,13 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                 display="flex"
                 alignItems="center"
                 paddingTop={{ base: 0, lg: 20, xl: 0 }}
-                paddingBottom={{ base: 12, lg: 0 }}
+                paddingBottom={{ base: 12, md: 12, lg: 0 }}
                 flexDirection={{
                   base: "column-reverse",
+                  md: "column-reverse",
                   lg: "row",
                 }}
+                gap={{ base: 0, md: 6, lg: 0 }}
               >
                 <About />
                 <Avatar />
