@@ -1,11 +1,7 @@
 "use client";
 
 import { memo, useState } from "react";
-import {
-  Heading,
-  Stack,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Heading, Stack, useBreakpointValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useDisclosure } from "@chakra-ui/react";
 import WorkCard from "./WorkCard";
@@ -52,21 +48,25 @@ const FeaturedWorksSection = () => {
         >
           {Works.work.map((work: Work, index: number) => {
             // Auto-detect media type: prioritize webm videos, then support jpg, png, svg, gif
-            const mediaSrc = work.src[0] || ""
-            const lowerSrc = mediaSrc.toLowerCase()
-            let mediaType: "video" | "image" | undefined
-            
+            const mediaSrc = work.src[0] || "";
+            const lowerSrc = mediaSrc.toLowerCase();
+            let mediaType: "video" | "image" | undefined;
+
             if (lowerSrc.endsWith(".webm")) {
-              mediaType = "video"
+              mediaType = "video";
             } else if (lowerSrc.match(/\.(jpg|jpeg|png|svg|gif)$/)) {
-              mediaType = "image"
+              mediaType = "image";
             } else {
               // Default to image if extension is unknown
-              mediaType = "image"
+              mediaType = "image";
             }
 
             return (
-              <MotionDiv key={index} variants={fadeInUpSlower} className="h-full">
+              <MotionDiv
+                key={index}
+                variants={fadeInUpSlower}
+                className="h-full"
+              >
                 <WorkCard
                   title={work.title}
                   subtitle={work.location}
@@ -76,7 +76,7 @@ const FeaturedWorksSection = () => {
                   href={work.url2}
                 />
               </MotionDiv>
-            )
+            );
           })}
         </MotionDiv>
       </Stack>

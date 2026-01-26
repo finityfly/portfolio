@@ -92,11 +92,7 @@ const Sidebar = () => {
           </MotionHeading>
 
           <Stack direction="row" spacing={2}>
-            <MotionHeading
-              as="h3"
-              size="md"
-              variants={fadeInUp}
-            >
+            <MotionHeading as="h3" size="md" variants={fadeInUp}>
               prev @
             </MotionHeading>
             <MotionHeading
