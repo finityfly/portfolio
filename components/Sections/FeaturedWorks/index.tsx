@@ -3,24 +3,18 @@
 import { memo, useState } from "react";
 import {
   Heading,
-  Text,
   Stack,
-  Grid,
-  GridItem,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
 import { useDisclosure } from "@chakra-ui/react";
-import { IconType } from "react-icons";
 import WorkCard from "./WorkCard";
 import WorkModal from "./WorkModal";
 import { fadeInUpSlower, galleryStagger } from "config/animations";
 import { mobileBreakpointsMap } from "config/theme";
 import { Work, Works } from "config/works";
 
-const MotionGrid = motion(Grid);
-const MotionGridItem = motion(GridItem);
+const MotionDiv = motion.div;
 // const WorkModal = dynamic(() => import("./WorkModal"));
 
 const FeaturedWorksSection = () => {
@@ -52,29 +46,39 @@ const FeaturedWorksSection = () => {
           Check out some of the projects I made for fun, for clients, or for
           hackathons.
         </Text> */}
-        <MotionGrid
-          templateRows="repeat(1, 1fr)"
-          templateColumns="repeat(6, 1fr)"
-          gap={{ base: 5, md: 6 }}
+        <MotionDiv
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
           variants={galleryStagger}
         >
-          {Works.work.map((work: Work, index: number) => (
-            <MotionGridItem key={index} colSpan={6} variants={fadeInUpSlower}>
-              <WorkCard
-                index={index}
-                title={work.title}
-                location={work.location}
-                description={work.points[0]}
-                imageSrc={work.src[0]}
-                logoSrc={work.icon}
-                url1={work.url1}
-                url2={work.url2}
-                isMobile={isMobile}
-                onOpen={() => openModal(work.title)}
-              />
-            </MotionGridItem>
-          ))}
-        </MotionGrid>
+          {Works.work.map((work: Work, index: number) => {
+            // Auto-detect media type: prioritize webm videos, then support jpg, png, svg, gif
+            const mediaSrc = work.src[0] || ""
+            const lowerSrc = mediaSrc.toLowerCase()
+            let mediaType: "video" | "image" | undefined
+            
+            if (lowerSrc.endsWith(".webm")) {
+              mediaType = "video"
+            } else if (lowerSrc.match(/\.(jpg|jpeg|png|svg|gif)$/)) {
+              mediaType = "image"
+            } else {
+              // Default to image if extension is unknown
+              mediaType = "image"
+            }
+
+            return (
+              <MotionDiv key={index} variants={fadeInUpSlower} className="h-full">
+                <WorkCard
+                  title={work.title}
+                  subtitle={work.location}
+                  description={work.points[0]}
+                  mediaSrc={mediaSrc}
+                  mediaType={mediaType}
+                  href={work.url2}
+                />
+              </MotionDiv>
+            )
+          })}
+        </MotionDiv>
       </Stack>
       <WorkModal isOpen={isOpen} onClose={onClose} title={selectedWork} />
     </>

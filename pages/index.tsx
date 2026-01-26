@@ -103,7 +103,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
               <Box
                 id="aboutMe"
                 className="contentRow"
-                minH={{ lg: "100vh" }}
+                minH={{ base: "100dvh", md: "100dvh", lg: "100dvh" }}
                 display="flex"
                 alignItems="center"
                 paddingTop={{ base: 0, lg: 20, xl: 0 }}

@@ -1,238 +1,232 @@
-import {
-  Box,
-  Image,
-  Text,
-  Stack,
-  Divider,
-  Button,
-  useColorModeValue,
-  Flex,
-  useColorMode,
-} from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { ResponsiveValue } from "@chakra-ui/react";
-import { useEffect } from "react";
-import styles from "./styles.module.css";
-import { ThemeMode } from "config/theme";
+"use client"
 
-const MotionBox = motion(Box);
-const MotionButton = motion(Button);
+import { useRef, useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { cn } from "@/lib/utils"
+import { useColorModeValue, useToken } from "@chakra-ui/react"
 
-type ProfileCardProps = {
-  index: number;
-  title: string;
-  location: string;
-  description: string;
-  imageSrc: string;
-  logoSrc: string;
-  url1: string;
-  url2: string;
-  isMobile?: boolean;
-  onOpen: () => void;
-};
+export type WorkCardProps = {
+  title: string
+  subtitle: string
+  description: string
+  mediaSrc: string
+  mediaType?: "video" | "image"
+  href: string
+}
 
-const WorkCard = ({
-  index,
+// Helper function to detect media type from file extension
+const detectMediaType = (src: string): "video" | "image" => {
+  const lowerSrc = src.toLowerCase()
+  if (lowerSrc.endsWith(".webm")) {
+    return "video"
+  }
+  // Support jpg, jpeg, png, svg, gif as images
+  if (lowerSrc.match(/\.(jpg|jpeg|png|svg|gif)$/)) {
+    return "image"
+  }
+  // Default to image if unknown
+  return "image"
+}
+
+export function WorkCard({
   title,
-  location,
+  subtitle,
   description,
-  imageSrc,
-  logoSrc,
-  url1,
-  url2,
-  isMobile,
-  onOpen,
-}: ProfileCardProps) => {
-  const { colorMode } = useColorMode();
-  const emphasis = useColorModeValue("#319795", "#9decf9");
-  const flexDirection: ResponsiveValue<
-    "row" | "row-reverse" | "column" | "column-reverse"
-  > =
-    index % 2 === 0
-      ? { base: "column", md: "row" }
-      : { base: "column", md: "row-reverse" };
+  mediaSrc,
+  mediaType,
+  href,
+}: WorkCardProps) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
 
-  const boxShadowColor =
-    colorMode === ThemeMode.Dark
-      ? "rgba(255, 255, 255, 0.3)"
-      : "rgba(0, 0, 0, 0.2)";
-  const hoverBoxShadowColor =
-    colorMode === ThemeMode.Dark
-      ? "rgba(255, 255, 255, 0.4)"
-      : "rgba(0, 0, 0, 0.3)";
+  // Auto-detect media type if not provided, prioritizing webm videos
+  const detectedMediaType = mediaType || detectMediaType(mediaSrc)
+  const isVideo = detectedMediaType === "video"
 
-  const spotlightColor = useColorModeValue(
-    "hsl(0 0% 0% / 0.1)",
-    "hsl(0 0% 100% / 0.05)"
-  );
+  const handleMouseEnter = () => {
+    setIsHovered(true)
+    if (videoRef.current && isVideo) {
+      videoRef.current.play()
+    }
+  }
 
-  const spotlightColorStrong = useColorModeValue(
-    "hsl(0 0% 0% / 0.4)",
-    "hsl(0 0% 100% / 0.4)"
-  );
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    if (videoRef.current && isVideo) {
+      videoRef.current.pause()
+      videoRef.current.currentTime = 0
+    }
+  }
 
-  const maskColor = useColorModeValue("white", "black");
+  // Strip HTML tags from description for display
+  const stripHtml = (html: string) => {
+    if (typeof window === "undefined") {
+      // Server-side: use regex to strip HTML tags
+      return html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, " ")
+    }
+    const tmp = document.createElement("DIV")
+    tmp.innerHTML = html
+    return tmp.textContent || tmp.innerText || ""
+  }
 
-  const applyBoldFormatting = (text: string) => {
-    const boldRegex = /<b>(.*?)<\/b>/g;
-    const formattedText = text.replace(
-      boldRegex,
-      (_: string, content: string) =>
-        `<span style="font-weight: bold; color: ${emphasis}">${content}</span>`
-    );
-    return formattedText;
-  };
+  const cleanDescription = stripHtml(description)
 
-  useEffect(() => {
-    const updateCursor = ({ clientX: x, clientY: y }: MouseEvent) => {
-      document.documentElement.style.setProperty("--x", x.toString());
-      document.documentElement.style.setProperty("--y", y.toString());
-    };
-
-    document.body.addEventListener("pointermove", updateCursor);
-
-    return () => {
-      document.body.removeEventListener("pointermove", updateCursor);
-    };
-  }, []);
+  // Get colors based on Chakra UI color mode
+  const emphasis = useColorModeValue("teal.500", "cyan.200")
+  const emphasisColor = useToken("colors", emphasis)
+  const bgColor = useColorModeValue("#ffffff", "#374151")
+  const borderColor = useColorModeValue("#e5e7eb", "#4b5563")
+  const hoverBorderColor = useColorModeValue("#14b8a6", "#67e8f9")
+  const textColor = useColorModeValue("#111827", "#ffffff")
+  const descriptionColor = useColorModeValue("#374151", "#d1d5db")
+  const mutedColor = useColorModeValue("#6b7280", "#9ca3af")
+  const mediaBg = useColorModeValue("#f3f4f6", "#1f2937")
 
   return (
-    <MotionBox
-      bg={useColorModeValue("white", "gray.700")}
-      borderRadius="lg"
-      boxShadow={`0px 2px 6px 0px ${boxShadowColor}`}
-      overflow="hidden"
-      borderWidth="1px"
-      borderColor={useColorModeValue("gray.200", "gray.600")}
-      width="95%"
-      ml="16px"
-      whileHover={{
-        boxShadow: `0px 3px 12px 0px ${hoverBoxShadowColor}`,
-        transition: { duration: 0.1 },
-      }}
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block h-full"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      <Flex direction={flexDirection}>
-        <Box
-          flex="1"
-          maxW={{ base: "100%", md: "50%" }}
-          onClick={onOpen}
-          cursor="pointer"
-          overflow="hidden"
+      <article
+        className={cn(
+          "relative overflow-hidden rounded-xl",
+          "transition-all duration-300 ease-out",
+          "hover:shadow-lg hover:-translate-y-1",
+          "flex flex-col"
+        )}
+        style={{
+          backgroundColor: bgColor,
+          border: `1px solid ${borderColor}`,
+          height: "100%",
+          minHeight: "300px", // Fixed minimum height to prevent mismatches
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.borderColor = hoverBorderColor
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.borderColor = borderColor
+        }}
+      >
+        {/* Media Container - Takes up ~65% of card height using flex */}
+        <div 
+          className="relative w-full overflow-hidden flex-shrink-0"
+          style={{ 
+            backgroundColor: mediaBg,
+            flex: "0 0 65%", // 65% of card height for image
+          }}
         >
-          <Image
-            src={imageSrc}
-            alt={title}
-            objectFit="cover"
-            height="100%"
-            width="100%"
-            transition="transform 0.2s ease-in-out"
-            _hover={{
-              transform: "scale(1.05)",
-            }}
-          />
-        </Box>
-        <Box
-          flex="1"
-          p={5}
-          maxW={{ base: "100%", md: "50%" }}
-          className={styles.card}
-          style={
-            {
-              "--spotlight-color": spotlightColor,
-              "--spotlight-color-strong": spotlightColorStrong,
-              "--mask-color": maskColor,
-            } as React.CSSProperties
-          }
-        >
-          <Stack spacing={1}>
-            <Flex justify="space-between" align="center">
-              <Text fontWeight="bold" fontSize="xl">
-                {title}
-              </Text>
-              <Box
-                as="span"
-                borderRadius="0px"
-                // overflow="hidden"
-                height="30px"
-                width="30px"
-              >
-                <Image src={logoSrc} alt={`${title} logo`} objectFit="cover" />
-              </Box>
-            </Flex>
-            <Text fontSize="sm" color={emphasis} py={1}>
-              {location}
-            </Text>
-            <Divider borderColor="gray.400" />
-            <Text
-              fontSize="sm"
-              py={2}
-              dangerouslySetInnerHTML={{
-                __html: applyBoldFormatting(description),
-              }}
+          <div className="absolute inset-0 h-full w-full">
+            {isVideo ? (
+              <video
+                ref={videoRef}
+                src={mediaSrc}
+                muted
+                loop
+                playsInline
+                className={cn(
+                  "h-full w-full object-cover",
+                  "transition-transform duration-500 ease-out",
+                  "group-hover:scale-105"
+                )}
+              />
+            ) : (
+              <Image
+                src={mediaSrc || "/placeholder.svg"}
+                alt={title}
+                fill
+                className={cn(
+                  "object-cover",
+                  "transition-transform duration-500 ease-out",
+                  "group-hover:scale-105"
+                )}
+                unoptimized={mediaSrc.toLowerCase().endsWith(".gif")}
+              />
+            )}
+            
+            {/* Subtle overlay on hover */}
+            <div
+              className={cn(
+                "absolute inset-0",
+                "transition-colors duration-300",
+                "group-hover:bg-white/5"
+              )}
             />
-          </Stack>
-          <MotionButton
-            mt={4}
-            color={emphasis}
-            variant="outline"
-            width="full"
-            borderRadius="5px"
-            onClick={onOpen}
-            whileHover={{
-              boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,
-              scale: 1.03,
-              transition: { duration: 0.1 },
-            }}
-            whileTap={{ scale: 0.9 }}
-          >
-            More Info
-          </MotionButton>
-          <Flex mt={4} gap={2}>
-            <MotionButton
-              variant="outline"
-              fontWeight="light"
-              fontSize="sm"
-              borderRadius="5px"
-              size="sm"
-              as="a"
-              href={url1}
-              rel="noreferrer"
-              target="_blank"
-              width="50%"
-              whileHover={{
-                boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,
-                scale: 1.05,
-                transition: { duration: 0.1 },
-              }}
-              whileTap={{ scale: 0.9 }}
-            >
-              GitHub
-            </MotionButton>
-            <MotionButton
-              variant="outline"
-              fontWeight="light"
-              fontSize="sm"
-              borderRadius="5px"
-              size="sm"
-              as="a"
-              href={url2}
-              rel="noreferrer"
-              target="_blank"
-              width="50%"
-              whileHover={{
-                boxShadow: `0px 0px 8px 0px ${hoverBoxShadowColor}`,
-                scale: 1.05,
-                transition: { duration: 0.1 },
-              }}
-              whileTap={{ scale: 0.9 }}
-            >
-              External
-            </MotionButton>
-          </Flex>
-        </Box>
-      </Flex>
-    </MotionBox>
-  );
-};
+          </div>
+        </div>
 
-export default WorkCard;
+        {/* Content - Compressed to ~35% of card height using flex */}
+        <div 
+          className="px-5 py-3 flex flex-col flex-shrink-0"
+          style={{
+            flex: "0 0 35%", // 35% of card height for text content
+          }}
+        >
+          <h3
+            className={cn(
+              "text-base font-semibold leading-tight mb-1.5",
+              "line-clamp-1"
+            )}
+            style={{ 
+              color: emphasisColor, // Use emphasis color for title
+            }}
+          >
+            {title}
+          </h3>
+          
+          <p 
+            className="text-xs leading-snug mb-2 flex-1"
+            style={{ 
+              color: descriptionColor,
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {cleanDescription}
+          </p>
+
+          {/* Arrow indicator */}
+          <div
+            className={cn(
+              "flex items-center gap-1.5 text-xs font-medium",
+              "transition-all duration-200",
+              "group-hover:gap-2"
+            )}
+            style={{ 
+              color: mutedColor,
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = textColor
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = mutedColor
+            }}
+          >
+            <span>View Project</span>
+            <svg
+              className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </div>
+        </div>
+      </article>
+    </Link>
+  )
+}
+
+export default WorkCard
