@@ -113,7 +113,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
         I ship neat things.
       </Heading>
       <Text variant="description" fontSize="lg">
-        Check out some of the stuff I&apos;ve been working on below!
+        Check out some of the stuff I&apos;ve been working on!
         {/* I engineer high-performance distributed systems and scalable full-stack
         applications. My focus is on{" "}
         <Text as="span" variant="emphasis">
