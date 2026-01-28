@@ -77,6 +77,7 @@ export const Works: {
       thumbnail: "/works/asr/paper.png",
       url: "https://www.academia.edu/108988755/Investigating_the_Impact_of_Various_Feature_Extraction_Algorithms_on_Performance_in_Automatic_Speech_Recognition_Systems",
       date: "Jun 2022 - Jan 2023",
+      thumbnailFit: "contain",
     },
     {
       title: "Walk in the Park",
