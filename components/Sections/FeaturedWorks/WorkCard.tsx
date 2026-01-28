@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useColorModeValue, useToken } from "@chakra-ui/react";
@@ -8,11 +7,11 @@ import { cn } from "@/lib/utils";
 
 export type WorkCardProps = {
   title: string;
-  subtitle: string;
   description: string;
   mediaSrc: string;
   mediaType?: "video" | "image";
   href: string;
+  thumbnailFit?: "cover" | "contain";
 };
 
 // Helper function to detect media type from file extension
@@ -31,33 +30,15 @@ const detectMediaType = (src: string): "video" | "image" => {
 
 export function WorkCard({
   title,
-  subtitle,
   description,
   mediaSrc,
   mediaType,
   href,
+  thumbnailFit = "cover",
 }: WorkCardProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
   // Auto-detect media type if not provided, prioritizing webm videos
   const detectedMediaType = mediaType || detectMediaType(mediaSrc);
   const isVideo = detectedMediaType === "video";
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    if (videoRef.current && isVideo) {
-      videoRef.current.play();
-    }
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    if (videoRef.current && isVideo) {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
 
   // Strip HTML tags from description for display
   const stripHtml = (html: string) => {
@@ -89,8 +70,6 @@ export function WorkCard({
       target="_blank"
       rel="noopener noreferrer"
       className="group block h-full"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
     >
       <article
         className={cn(
@@ -123,13 +102,14 @@ export function WorkCard({
           <div className="absolute inset-0 h-full w-full">
             {isVideo ? (
               <video
-                ref={videoRef}
                 src={mediaSrc}
                 muted
                 loop
                 playsInline
+                autoPlay
                 className={cn(
-                  "h-full w-full object-cover",
+                  "h-full w-full",
+                  thumbnailFit === "contain" ? "object-contain" : "object-cover",
                   "transition-transform duration-500 ease-out",
                   "group-hover:scale-105"
                 )}
@@ -140,7 +120,7 @@ export function WorkCard({
                 alt={title}
                 fill
                 className={cn(
-                  "object-cover",
+                  thumbnailFit === "contain" ? "object-contain" : "object-cover",
                   "transition-transform duration-500 ease-out",
                   "group-hover:scale-105"
                 )}

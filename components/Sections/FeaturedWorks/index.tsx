@@ -44,7 +44,7 @@ const FeaturedWorksSection = () => {
       >
         {Works.work.map((work: Work, index: number) => {
           // Auto-detect media type: prioritize webm videos, then support jpg, png, svg, gif
-          const mediaSrc = work.src[0] || "";
+          const mediaSrc = work.thumbnail || "";
           const lowerSrc = mediaSrc.toLowerCase();
           let mediaType: "video" | "image" | undefined;
 
@@ -65,11 +65,11 @@ const FeaturedWorksSection = () => {
             >
               <WorkCard
                 title={work.title}
-                subtitle={work.location}
-                description={work.points[0]}
+                description={work.description}
                 mediaSrc={mediaSrc}
                 mediaType={mediaType}
-                href={work.url2}
+                href={work.url}
+                thumbnailFit={work.thumbnailFit}
               />
             </MotionDiv>
           );

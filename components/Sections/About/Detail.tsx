@@ -157,7 +157,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
                   letterSpacing="0.5px"
                 >
                   {projectCount} {projectCount === 1 ? "project" : "projects"}{" "}
-                  waiting below ↓
+                  waiting below...
                 </Text>
               </motion.div>
               <motion.div variants={arrowBounceVariants} animate="animate">
