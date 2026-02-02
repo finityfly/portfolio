@@ -42,9 +42,10 @@ const Sidebar = () => {
     <MotionBox
       initial="initial"
       animate="animate"
-      position={{ xl: "fixed" }}
+      position={{ lg: "relative", xl: "fixed" }}
       maxWidth={{ xl: "34%" }}
       top={{ lg: 0 }}
+      zIndex={1}
     >
       <motion.div
         id="sidebarCircle"

@@ -25,6 +25,11 @@ import ScrollMore from "components/Misc/ScrollMore";
 import { Article } from "types/article";
 import ParticlesBackground from "components/Misc/ParticlesBackground";
 
+const SidebarScene3D = dynamic(
+  () => import("components/Misc/SidebarScene3D"),
+  { ssr: false }
+);
+
 // These are on bottom sections so no need to render it instantly
 // const DevToArticles = dynamic(
 //   () => import("components/Sections/DevToArticles")
@@ -88,7 +93,10 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           alignContent="center"
           as="div"
           flexDirection={"row"}
+          position="relative"
+          minH={{ lg: "100vh" }}
         >
+          <SidebarScene3D />
           <Sidebar />
         </GridItem>
         <GridItem
