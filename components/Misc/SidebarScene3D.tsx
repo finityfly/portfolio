@@ -1,5 +1,8 @@
 "use client";
 
+/* eslint-disable react/no-multi-comp -- R3F scene uses inner Scene + mesh components */
+/* eslint-disable react/no-unknown-property -- Three.js/R3F primitives use intensity, position, geometry, etc. */
+
 import { useRef, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
@@ -34,7 +37,9 @@ function SphereArc({ color, parallaxRefs }: { color: string; parallaxRefs: Paral
   }, []);
 
   useFrame((_state, delta) => {
-    if (!ref.current) return;
+    if (!ref.current) {
+      return;
+    }
     const { mouse, scroll } = parallaxRefs;
     smoothMouse.current.x = lerp(smoothMouse.current.x, mouse.current.x, SMOOTH);
     smoothMouse.current.y = lerp(smoothMouse.current.y, mouse.current.y, SMOOTH);

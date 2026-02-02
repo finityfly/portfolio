@@ -1,5 +1,8 @@
 "use client";
 
+/* eslint-disable react/no-multi-comp -- R3F scene uses inner Scene + mesh components */
+/* eslint-disable react/no-unknown-property -- Three.js/R3F primitives use intensity, position, geometry, etc. */
+
 import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";

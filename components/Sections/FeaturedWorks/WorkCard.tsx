@@ -67,6 +67,7 @@ export function WorkCard({
   return (
     <Link
       href={href}
+      passHref
       target="_blank"
       rel="noopener noreferrer"
       className="group block h-full"
