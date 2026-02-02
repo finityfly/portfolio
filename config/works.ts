@@ -64,6 +64,14 @@ export const Works: {
       date: "January 2025",
     },
     {
+      title: "Clitris",
+      description: "A minimalistic, high-fidelity, guideline Tetris implementation for the command line",
+      thumbnail: "/works/clitris/demo.webm",
+      url: "https://github.com/FinityFly/clitris",
+      date: "January 2025",
+      thumbnailFit: "contain",
+    },
+    {
       title: "TRACY",
       description: "Real-time CV for tennis coaching, leveraging TrackNetV2 and convolutional RNNs (QHacks 2024 3rd place)",
       thumbnail: "/works/tracy/demo.webm",

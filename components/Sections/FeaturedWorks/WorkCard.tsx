@@ -82,7 +82,7 @@ export function WorkCard({
           backgroundColor: bgColor,
           border: `1px solid ${borderColor}`,
           height: "100%",
-          minHeight: "300px", // Fixed minimum height to prevent mismatches
+          minHeight: "350px",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.borderColor = hoverBorderColor;
@@ -91,12 +91,11 @@ export function WorkCard({
           e.currentTarget.style.borderColor = borderColor;
         }}
       >
-        {/* Media Container - Takes up ~65% of card height using flex */}
         <div
           className="relative w-full overflow-hidden flex-shrink-0"
           style={{
             backgroundColor: mediaBg,
-            flex: "0 0 65%", // 65% of card height for image
+            flex: "0 0 70%", // 5% of card height for image
           }}
         >
           <div className="absolute inset-0 h-full w-full">
@@ -143,7 +142,7 @@ export function WorkCard({
         <div
           className="px-5 py-3 flex flex-col flex-shrink-0"
           style={{
-            flex: "0 0 35%", // 35% of card height for text content
+            flex: "0 0 30%", // 25% of card height for text content
           }}
         >
           <h3
