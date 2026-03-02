@@ -92,7 +92,20 @@ const Sidebar = () => {
             Lu.
           </MotionHeading>
 
-          <Stack direction="row" spacing={2}>
+          <Stack direction="row" spacing={1}>
+            <MotionHeading as="h3" size="md" variants={fadeInUp}>
+              inc @
+            </MotionHeading>
+            <MotionHeading
+              as="h3"
+              size="md"
+              variant="emphasis"
+              variants={fadeInUp}
+            >
+              Shopify
+            </MotionHeading>
+          </Stack>
+          <Stack direction="row" spacing={1}>
             <MotionHeading as="h3" size="md" variants={fadeInUp}>
               prev @
             </MotionHeading>
@@ -102,7 +115,18 @@ const Sidebar = () => {
               variant="emphasis"
               variants={fadeInUp}
             >
-              Trend Micro & Blackberry QNX
+              Trend Micro
+            </MotionHeading>
+            <MotionHeading as="h3" size="md" variants={fadeInUp}>
+              &amp;
+            </MotionHeading>
+            <MotionHeading
+              as="h3"
+              size="md"
+              variant="emphasis"
+              variants={fadeInUp}
+            >
+              Blackberry QNX
             </MotionHeading>
           </Stack>
 
