@@ -104,7 +104,6 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
 
   const emphasis = useColorModeValue("teal.500", "cyan.200");
   const projectCount = Works.work.length;
-  const [isVisible, setIsVisible] = useState(true);
 
   const handleScrollToWorks = () => {
     const worksSection = document.getElementById("works");
@@ -220,7 +219,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
               <Box mt={4}>
                 <motion.div
                   initial="initial"
-                  animate={isVisible ? "animate" : "initial"}
+                  animate="animate"
                   variants={scrollIndicatorVariants}
                 >
                   <Flex
