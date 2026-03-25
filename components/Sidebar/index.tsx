@@ -92,43 +92,13 @@ const Sidebar = () => {
             Lu.
           </MotionHeading>
 
-          <Stack direction="row" spacing={1}>
-            <MotionHeading as="h3" size="md" variants={fadeInUp}>
-              inc @
-            </MotionHeading>
-            <MotionHeading
-              as="h3"
-              size="md"
-              variant="emphasis"
-              variants={fadeInUp}
-            >
-              Shopify
-            </MotionHeading>
-          </Stack>
-          <Stack direction="row" spacing={1}>
-            <MotionHeading as="h3" size="md" variants={fadeInUp}>
-              prev @
-            </MotionHeading>
-            <MotionHeading
-              as="h3"
-              size="md"
-              variant="emphasis"
-              variants={fadeInUp}
-            >
-              Trend Micro
-            </MotionHeading>
-            <MotionHeading as="h3" size="md" variants={fadeInUp}>
-              &amp;
-            </MotionHeading>
-            <MotionHeading
-              as="h3"
-              size="md"
-              variant="emphasis"
-              variants={fadeInUp}
-            >
-              Blackberry QNX
-            </MotionHeading>
-          </Stack>
+          <MotionText
+            variants={fadeInUp}
+            fontWeight="light"
+          >
+            I'm a CS student studying at Carleton University.
+            I dedicate my free time to contributing to Hugging Face while deepening my understanding of NLP, transformer optimization, and low-latency inference.
+          </MotionText>
 
           <MotionBox
             d="flex"
