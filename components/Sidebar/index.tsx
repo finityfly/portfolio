@@ -96,7 +96,7 @@ const Sidebar = () => {
             variants={fadeInUp}
             fontWeight="light"
           >
-            I'm a CS student studying at Carleton University.
+            I&apos;m a CS student studying at Carleton University.
             I dedicate my free time to contributing to Hugging Face while deepening my understanding of NLP, transformer optimization, and low-latency inference.
           </MotionText>
 
