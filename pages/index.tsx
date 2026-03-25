@@ -6,6 +6,7 @@ import {
   Box,
   Text,
   Flex,
+  Icon,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
