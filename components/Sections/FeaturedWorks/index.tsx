@@ -26,14 +26,14 @@ const FeaturedWorksSection = () => {
       height="100%"
       spacing={{ base: 6, xl: 8 }}
     >
-      <Heading
+      {/* <Heading
         size="2xl"
         style={{
           fontVariantCaps: "small-caps",
         }}
       >
         What I&apos;ve been up to
-      </Heading>
+      </Heading> */}
       {/* <Text variant="description">
         Check out some of the projects I made for fun, for clients, or for
         hackathons.
