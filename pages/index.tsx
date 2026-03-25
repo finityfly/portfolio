@@ -4,9 +4,12 @@ import {
   GridItem,
   Stack,
   Box,
+  Text,
+  Flex,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
+import { motion, Variants } from "framer-motion";
 import { loadLinksPreset } from "@tsparticles/preset-links";
 import { Engine, tsParticles } from "@tsparticles/engine";
 import { Analytics } from "@vercel/analytics/react";
@@ -139,6 +142,49 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                 <Experience />
               </Box>
             </FadeInLayout> */}
+            <FadeInLayout>
+              <Box mt={4}>
+                <motion.div
+                  initial="initial"
+                  animate={isVisible ? "animate" : "initial"}
+                  variants={scrollIndicatorVariants}
+                >
+                  <Flex
+                    direction="column"
+                    align="flex-start"
+                    gap={3}
+                    cursor="pointer"
+                    onClick={handleScrollToWorks}
+                    _hover={{
+                      "& > *": {
+                        opacity: 0.8,
+                      },
+                    }}
+                    transition="all 0.2s"
+                  >
+                    <motion.div variants={typewriterVariants}>
+                      <Text
+                        variant="description"
+                        fontSize="sm"
+                        fontWeight="medium"
+                        color={emphasis}
+                        letterSpacing="0.5px"
+                      >
+                        {projectCount} {projectCount === 1 ? "project" : "projects"}{" "}
+                        waiting below...
+                      </Text>
+                    </motion.div>
+                    <motion.div variants={arrowBounceVariants} animate="animate">
+                      <Flex align="center" gap={2} color={emphasis}>
+                        <Icon as={RiArrowDownSLine} w={6} h={6} />
+                        <Icon as={RiArrowDownSLine} w={5} h={5} opacity={0.7} />
+                        <Icon as={RiArrowDownSLine} w={4} h={4} opacity={0.5} />
+                      </Flex>
+                    </motion.div>
+                  </Flex>
+                </motion.div>
+              </Box>
+            </FadeInLayout>
             <FadeInLayout>
               <Box
                 id="works"
