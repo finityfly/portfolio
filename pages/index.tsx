@@ -107,7 +107,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           overflow="hidden"
         >
           <Stack w="100" spacing={24}>
-            <FadeInLayout>
+            {/* <FadeInLayout>
               <Box
                 id="aboutMe"
                 className="contentRow"
@@ -126,7 +126,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                 <About />
                 {/* <Avatar /> */}
               </Box>
-            </FadeInLayout>
+            </FadeInLayout> */}
             {/* <FadeInLayout>
               <Box
                 id="jobs"
