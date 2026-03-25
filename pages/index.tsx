@@ -105,31 +105,6 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
   const emphasis = useColorModeValue("teal.500", "cyan.200");
   const projectCount = Works.work.length;
 
-  const handleScrollToWorks = () => {
-    const worksSection = document.getElementById("works");
-    if (worksSection) {
-      worksSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const worksSection = document.getElementById("works");
-      if (worksSection) {
-        const rect = worksSection.getBoundingClientRect();
-        setIsVisible(rect.top > window.innerHeight * 0.5);
-      }
-    };
-  
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-  
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       <Script
