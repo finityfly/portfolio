@@ -9,13 +9,13 @@ import {
   Icon,
   useBreakpointValue,
   useColorModeValue,
+  useToken,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { loadLinksPreset } from "@tsparticles/preset-links";
-import { Engine, tsParticles } from "@tsparticles/engine";
 import { Analytics } from "@vercel/analytics/react";
+import confetti from "canvas-confetti";
 import dynamic from "next/dynamic";
 import Script from "next/script";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
@@ -103,65 +103,48 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
   });
 
   const emphasis = useColorModeValue("teal.500", "cyan.200");
+  const [
+    teal500,
+    teal300,
+    blue400,
+    purple400,
+    cyan500,
+    cyan200,
+    pink200,
+    purple200,
+  ] = useToken("colors", [
+    "teal.500",
+    "teal.300",
+    "blue.400",
+    "purple.400",
+    "cyan.500",
+    "cyan.200",
+    "pink.200",
+    "purple.200",
+  ]);
   const projectCount = Works.work.length;
 
-  const generateConfetti = async () => {
-    await loadLinksPreset(tsParticles);
+  const generateConfetti = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = (rect.left + rect.width / 2) / window.innerWidth;
+    const y = (rect.top + rect.height / 2) / window.innerHeight;
 
-    tsParticles.load({
-      id: "tsparticles-confetti",
-      options: {
-        fullScreen: {
-          enable: true,
-          zIndex: 9999,
-        },
-        particles: {
-          number: {
-            value: 0,
-          },
-          color: {
-            value: ["#00FFFF", "#14b8a6", "#ffffff"],
-          },
-          shape: {
-            type: ["circle", "square"],
-          },
-          opacity: {
-            value: 1,
-          },
-          size: {
-            value: { min: 2, max: 6 },
-          },
-          move: {
-            enable: true,
-            speed: { min: 10, max: 20 },
-            direction: "none",
-            outModes: {
-              default: "destroy",
-            },
-          },
-        },
-        emitters: {
-          direction: "top",
-          rate: {
-            delay: 0,
-            quantity: 80,
-          },
-          size: {
-            width: 0,
-            height: 0,
-          },
-          position: {
-            x: 50,
-            y: 80,
-          },
-        },
-      },
+    const isTeal = emphasis === "teal.500";
+    const colors = isTeal
+      ? [teal500, teal300, blue400, purple400]
+      : [cyan500, cyan200, pink200, purple200];
+
+    confetti({
+      particleCount: 30,
+      spread: 70,
+      origin: { x, y },
+      colors: colors,
+      disableForReducedMotion: true,
+      zIndex: 9999,
+      startVelocity: 16,
+      gravity: 0.9,
+      shapes: ["circle", "square"],
     });
-  
-    // cleanup after burst
-    setTimeout(() => {
-      tsParticles.domItem(0)?.destroy();
-    }, 1200);
   };
 
   return (
@@ -216,7 +199,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           colSpan={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }}
           overflow="hidden"
         >
-          <Stack w="100%" spacing={24} pt={{ base: 24, md: 28, lg: 32 }}>
+          <Stack w="100%" spacing={12} pt={{ base: 16, md: 20, lg: 20 }}>
             {/* <FadeInLayout>
               <Box
                 id="aboutMe"
@@ -250,7 +233,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
               </Box>
             </FadeInLayout> */}
             <FadeInLayout>
-              <Box mt={4}>
+              <Box mt={4} mb={{ base: 2, md: 4, lg: 6, xl: 10 }}>
                 <motion.div
                   initial="initial"
                   animate="animate"
@@ -259,6 +242,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                   <Flex
                     direction="column"
                     align="flex-start"
+                    w="fit-content"
                     gap={3}
                     cursor="pointer"
                     onClick={generateConfetti}
@@ -296,7 +280,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
               <Box
                 id="works"
                 className="contentRow"
-                paddingTop={{ base: 0, lg: 20, xl: 0 }}
+                paddingTop={0}
                 paddingBottom={{ base: 12, lg: 10 }}
                 paddingX={0}
                 flexDirection={"row"}

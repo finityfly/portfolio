@@ -43,7 +43,7 @@ const Sidebar = () => {
       initial="initial"
       animate="animate"
       position={{ lg: "relative", xl: "fixed" }}
-      maxWidth={{ xl: "34%" }}
+      maxWidth={{ xl: "24%" }}
       top={{ lg: 0 }}
       zIndex={1}
     >
@@ -76,35 +76,45 @@ const Sidebar = () => {
             as="h1"
             size="2xl"
             paddingRight={{ lg: "20" }}
-            textTransform="uppercase"
+            // textTransform="uppercase"
             variants={letterSpace}
+            fontFamily="name"
           >
-            Daniel
-          </MotionHeading>
-          <MotionHeading
-            as="h2"
-            size={surNameSize}
-            variant="emphasis"
-            className={styles.marginTopForce}
-            textTransform="uppercase"
-            variants={letterSpace}
-          >
-            Lu.
+            Daniel Lu
           </MotionHeading>
 
           <MotionText
             variants={fadeInUp}
-            fontSize="sm"
+            fontSize="md"
             fontWeight="light"
           >
-            I&apos;m a CS student studying at Carleton University.
+            I&apos;m a CS student studying at{" "}
+            <Link
+              href="https://carleton.ca"
+              target="_blank"
+              rel="noreferrer"
+              variant="emphasis"
+            >
+              Carleton University
+            </Link>
+            .
           </MotionText>
           <MotionText
             variants={fadeInUp}
-            fontSize="sm"
+            fontSize="md"
             fontWeight="light"
           >
-            I dedicate my free time to contributing to Hugging Face while deepening my understanding of NLP, transformer optimization, and low-latency inference.
+            I spend my free time contributing to{" "}
+            <Link
+              href="https://huggingface.co"
+              target="_blank"
+              rel="noreferrer"
+              variant="emphasis"
+            >
+              Hugging Face
+            </Link>{" "}
+            while deepening my understanding of NLP, transformer optimization, and
+            low-latency inference.
           </MotionText>
 
           <MotionBox

@@ -62,6 +62,7 @@ const theme = extendTheme({
   config,
   fonts: {
     body: "Poppins",
+    name: "Newsreader",
   },
   colors,
   styles,

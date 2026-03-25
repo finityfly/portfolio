@@ -56,6 +56,7 @@ const GetInTouch = () => {
         style={{
           fontVariantCaps: "small-caps",
         }}
+        fontFamily="name"
         position="relative"
         zIndex={20}
       >
