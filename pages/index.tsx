@@ -124,7 +124,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                 gap={{ base: 0, md: 6, lg: 0 }}
               >
                 <About />
-                {/* <Avatar /> */}
+                <Avatar />
               </Box>
             </FadeInLayout> */}
             {/* <FadeInLayout>
