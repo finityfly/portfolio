@@ -105,6 +105,65 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
   const emphasis = useColorModeValue("teal.500", "cyan.200");
   const projectCount = Works.work.length;
 
+  const generateConfetti = async () => {
+    await loadLinksPreset(tsParticles);
+
+    tsParticles.load({
+      id: "tsparticles-confetti",
+      options: {
+        fullScreen: {
+          enable: true,
+          zIndex: 9999,
+        },
+        particles: {
+          number: {
+            value: 0,
+          },
+          color: {
+            value: ["#00FFFF", "#14b8a6", "#ffffff"],
+          },
+          shape: {
+            type: ["circle", "square"],
+          },
+          opacity: {
+            value: 1,
+          },
+          size: {
+            value: { min: 2, max: 6 },
+          },
+          move: {
+            enable: true,
+            speed: { min: 10, max: 20 },
+            direction: "none",
+            outModes: {
+              default: "destroy",
+            },
+          },
+        },
+        emitters: {
+          direction: "top",
+          rate: {
+            delay: 0,
+            quantity: 80,
+          },
+          size: {
+            width: 0,
+            height: 0,
+          },
+          position: {
+            x: 50,
+            y: 80,
+          },
+        },
+      },
+    });
+  
+    // cleanup after burst
+    setTimeout(() => {
+      tsParticles.domItem(0)?.destroy();
+    }, 1200);
+  };
+
   return (
     <>
       <Script
@@ -130,7 +189,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           xl: "repeat(5, 1fr)",
         }}
         templateRows={{
-          sm: "repeat(1, 0)",
+          base: "auto",
           lg: "repeat(2, 1fr)",
         }}
         gap={4}
@@ -157,7 +216,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           colSpan={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }}
           overflow="hidden"
         >
-          <Stack w="100" spacing={24} pt={{ base: 24, md: 28, lg: 32 }}>
+          <Stack w="100%" spacing={24} pt={{ base: 24, md: 28, lg: 32 }}>
             {/* <FadeInLayout>
               <Box
                 id="aboutMe"
@@ -202,7 +261,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                     align="flex-start"
                     gap={3}
                     cursor="pointer"
-                    onClick={handleScrollToWorks}
+                    onClick={generateConfetti}
                     _hover={{
                       "& > *": {
                         opacity: 0.8,
