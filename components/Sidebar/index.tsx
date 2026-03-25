@@ -94,11 +94,16 @@ const Sidebar = () => {
 
           <MotionText
             variants={fadeInUp}
-            as="h6"
+            fontSize="sm"
             fontWeight="light"
           >
             I&apos;m a CS student studying at Carleton University.
-            {" "}
+          </MotionText>
+          <MotionText
+            variants={fadeInUp}
+            fontSize="sm"
+            fontWeight="light"
+          >
             I dedicate my free time to contributing to Hugging Face while deepening my understanding of NLP, transformer optimization, and low-latency inference.
           </MotionText>
 
