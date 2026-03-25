@@ -8,9 +8,11 @@ import {
   Flex,
   Icon,
   useBreakpointValue,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, Variants } from "framer-motion";
+import { RiArrowDownSLine } from "react-icons/ri";
 import { loadLinksPreset } from "@tsparticles/preset-links";
 import { Engine, tsParticles } from "@tsparticles/engine";
 import { Analytics } from "@vercel/analytics/react";
@@ -26,6 +28,7 @@ import Experience from "components/Sections/Experience";
 import FeaturedWorks from "components/Sections/FeaturedWorks";
 import GetInTouch from "components/Sections/GetInTouch";
 import ScrollMore from "components/Misc/ScrollMore";
+import { Works } from "config/works";
 import { Article } from "types/article";
 import ParticlesBackground from "components/Misc/ParticlesBackground";
 
@@ -39,6 +42,47 @@ const SidebarScene3D = dynamic(
 //   () => import("components/Sections/DevToArticles")
 // );
 // const GetInTouch = dynamic(() => import("components/Sections/GetInTouch"));
+
+const scrollIndicatorVariants: Variants = {
+  initial: {
+    opacity: 0,
+    y: -10,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: 0.8,
+      ease: "easeOut",
+    },
+  },
+};
+
+const arrowBounceVariants: Variants = {
+  animate: {
+    y: [0, 8, 0],
+    transition: {
+      duration: 1.5,
+      ease: "easeInOut",
+      repeat: Infinity,
+      repeatDelay: 0.3,
+    },
+  },
+};
+
+const typewriterVariants: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      delay: 1.2,
+    },
+  },
+};
 
 const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
   const sideBarPadding = useBreakpointValue<string | number>({
@@ -57,6 +101,35 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
     sm: 20,
     md: 20,
   });
+
+  const emphasis = useColorModeValue("teal.500", "cyan.200");
+  const projectCount = Works.work.length;
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleScrollToWorks = () => {
+    const worksSection = document.getElementById("works");
+    if (worksSection) {
+      worksSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      const worksSection = document.getElementById("works");
+      if (worksSection) {
+        const rect = worksSection.getBoundingClientRect();
+        setIsVisible(rect.top > window.innerHeight * 0.5);
+      }
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+  
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -110,7 +183,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           colSpan={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }}
           overflow="hidden"
         >
-          <Stack w="100" spacing={24}>
+          <Stack w="100" spacing={24} pt={{ base: 24, md: 28, lg: 32 }}>
             {/* <FadeInLayout>
               <Box
                 id="aboutMe"
