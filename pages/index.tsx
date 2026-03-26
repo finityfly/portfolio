@@ -235,7 +235,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
               </Box>
             </FadeInLayout> */}
             <FadeInLayout>
-            <Box mt={4} mb={{ base: 8, md: 8, lg: 8, xl: 12 }}>
+              <Box mt={4} mb={{ base: 8, md: 8, lg: 8, xl: 12 }}>
                 <motion.div
                   initial="initial"
                   animate="animate"
