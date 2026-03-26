@@ -24,7 +24,7 @@ import { ThemeMode, mobileBreakpointsMap } from "config/theme";
 
 const Sidebar = () => {
   const { colorMode } = useColorMode();
-  const display = useBreakpointValue({ base: "none", lg: "block" });
+  const display = useBreakpointValue({ base: "none", xl: "block" });
   const surNameSize = useBreakpointValue({ base: "3xl", md: "4xl" });
   const isMobile = useBreakpointValue(mobileBreakpointsMap);
   const MotionHeading = motion(Heading);
@@ -43,7 +43,8 @@ const Sidebar = () => {
       initial="initial"
       animate="animate"
       position={{ lg: "relative", xl: "fixed" }}
-      maxWidth={{ xl: "24%" }}
+      width={{ base: "100%", lg: "100%", xl: "auto" }}
+      maxWidth={{ base: "100%", lg: "100%", xl: "24%" }}
       top={{ lg: 0 }}
       zIndex={1}
     >
@@ -59,11 +60,12 @@ const Sidebar = () => {
       <Container
         padding={0}
         margin={0}
+        maxW="100%"
         height={{ xl: "100vh" }}
         display={{ xl: "flex" }}
         alignItems={{ xl: "center" }}
       >
-        <MotionStack variants={stagger} spacing={6} w="100">
+        <MotionStack variants={stagger} spacing={6} w="100%">
           <MotionText
             variants={fadeInUp}
             delay={1}
@@ -75,7 +77,6 @@ const Sidebar = () => {
           <MotionHeading
             as="h1"
             size="2xl"
-            paddingRight={{ lg: "20" }}
             // textTransform="uppercase"
             variants={letterSpace}
             fontFamily="name"
@@ -121,7 +122,7 @@ const Sidebar = () => {
             d="flex"
             flexDirection="row"
             variants={fadeInUp}
-            gap={{ base: 4, lg: 12 }}
+            gap={{ base: 4, lg: 8, xl: 12 }}
             mb={4}
           >
             {SocialMedias.map((socMedia) => (

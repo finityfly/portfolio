@@ -141,7 +141,7 @@ export function WorkCard({
 
         {/* Content - Compressed to ~35% of card height using flex */}
         <div
-          className="px-5 py-3 flex flex-col flex-shrink-0"
+          className="px-4 py-3 flex flex-col flex-shrink-0"
           style={{
             flex: "0 0 30%", // 25% of card height for text content
           }}
@@ -153,6 +153,7 @@ export function WorkCard({
             )}
             style={{
               color: emphasisColor, // Use emphasis color for title
+              // fontFamily: "var(--chakra-fonts-name)",
             }}
           >
             {title}

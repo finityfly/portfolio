@@ -88,12 +88,13 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
   const sideBarPadding = useBreakpointValue<string | number>({
     base: "5",
     md: "8",
-    lg: "14",
+    lg: "8",
+    xl: "14",
   });
   const mainContent = useBreakpointValue<string | number>({
     base: "5",
-    md: "14",
-    lg: "14",
+    md: "8",
+    lg: "8",
     xl: 0,
   });
   const paddTop = useBreakpointValue<string | number>({
@@ -180,6 +181,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
         <GridItem
           padding={sideBarPadding}
           marginTop={paddTop}
+          marginBottom={0}
           rowSpan={2}
           colSpan={{ base: 1, sm: 1, md: 1, lg: 1, xl: 2 }}
           display="flex"
@@ -187,7 +189,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           as="div"
           flexDirection={"row"}
           position="relative"
-          minH={{ lg: "100vh" }}
+          minH={{ base: "auto", xl: "100vh" }}
         >
           <SidebarScene3D />
           <Sidebar />
@@ -199,7 +201,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           colSpan={{ base: 1, sm: 2, md: 2, lg: 3, xl: 3 }}
           overflow="hidden"
         >
-          <Stack w="100%" spacing={12} pt={{ base: 16, md: 20, lg: 20 }}>
+          <Stack w="100%" spacing={12} mt={{ base: 0, md: 0, lg: 0, xl: 16 }}>
             {/* <FadeInLayout>
               <Box
                 id="aboutMe"
@@ -233,7 +235,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
               </Box>
             </FadeInLayout> */}
             <FadeInLayout>
-              <Box mt={4} mb={{ base: 2, md: 4, lg: 6, xl: 10 }}>
+            <Box mt={4} mb={{ base: 8, md: 8, lg: 8, xl: 12 }}>
                 <motion.div
                   initial="initial"
                   animate="animate"

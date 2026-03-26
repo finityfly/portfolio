@@ -9,7 +9,7 @@ import * as THREE from "three";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 import { Canvas } from "@react-three/fiber";
 
-const SPHERE_OPACITY = 0.1;
+const SPHERE_OPACITY = 0.05;
 const ROTATION_SPEED = 0.05;
 const SPHERE_RADIUS = 0.42;
 const SPHERE_OFFSET_X = -0.2;
@@ -107,7 +107,7 @@ export default function SidebarScene3D() {
       top={0}
       left={0}
       bottom={0}
-      width={{ lg: "33.333%", xl: "34%" }}
+      width={{ lg: "40%", xl: "34%" }}
       height="100vh"
       display={{ base: "none", lg: "block" }}
       zIndex={0}
