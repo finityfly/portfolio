@@ -25,9 +25,13 @@ export interface MarkdownPost extends CorkboardPostBase {
 export interface MediaPost extends CorkboardPostBase {
   kind: "audio" | "image" | "video";
   /**
-   * Public path or remote URL to the media file.
+  * Public path or remote URL to the media file.
    * For local files, place them under /public/corkboard and reference
    * them like "/corkboard/your-file.ext".
+  *
+  * Notes:
+  * - kind: "image" supports direct remote image URLs.
+  * - kind: "video" supports direct video URLs and YouTube links.
    */
   src: string;
   /**
@@ -52,16 +56,16 @@ export type CorkboardPost = MarkdownPost | MediaPost;
  *   and point `src` at a file inside /public/corkboard or a remote URL.
  */
 export const corkboardPosts: CorkboardPost[] = [
-  // {
-  //   id: "welcome-note",
-  //   kind: "markdown",
-  //   title: "Welcome to the corkboard",
-  //   date: "2026-03-26",
-  //   tags: ["meta"],
-  //   summary:
-  //     "A space for quick notes, half-baked ideas, and anything that doesn’t fit neatly elsewhere.",
-  //   markdownPath: "content/corkboard/welcome-note.md",
-  // },
+  {
+    id: "lorem-markdown",
+    kind: "markdown",
+    title: "Lorem Markdownum",
+    date: "2026-03-26",
+    tags: ["lorem"],
+    summary:
+      "Et pectore dixut iugulo",
+    markdownPath: "content/corkboard/lorem-markdown.md",
+  },
   // {
   //   id: "sample-audio",
   //   kind: "audio",
@@ -72,16 +76,16 @@ export const corkboardPosts: CorkboardPost[] = [
   //   description:
   //     "Drop your own mp3 files into `/public/corkboard` and point `src` at them.",
   // },
-  // {
-  //   id: "sample-image",
-  //   kind: "image",
-  //   title: "Sample image pin",
-  //   date: "2026-03-26",
-  //   tags: ["image", "demo"],
-  //   src: "/corkboard/sample-image.jpg",
-  //   description:
-  //     "Use this for screenshots, reference photos, or anything else you’d normally pin to a real corkboard.",
-  // },
+  {
+    id: "mimikyu-image",
+    kind: "image",
+    title: "Mimikyu.",
+    date: "2026-03-25",
+    tags: ["image"],
+    src: "/mimi.jpg",
+    description:
+      "Mimikyu.",
+  },
   // {
   //   id: "sample-video",
   //   kind: "video",
