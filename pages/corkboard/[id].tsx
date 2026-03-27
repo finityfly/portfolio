@@ -1,4 +1,4 @@
-/* eslint-disable react/no-multi-comp, react/prop-types */
+/* eslint-disable react/no-multi-comp, react/prop-types, @typescript-eslint/no-var-requires */
 import fs from "fs/promises";
 import path from "path";
 import {
