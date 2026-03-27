@@ -52,6 +52,7 @@ export function WorkCard({
   };
 
   const cleanDescription = stripHtml(description);
+  const mediaObjectFit = thumbnailFit === "contain" ? "contain" : "fill";
 
   // Get colors based on Chakra UI color mode
   const emphasis = useColorModeValue("teal.500", "cyan.200");
@@ -108,11 +109,14 @@ export function WorkCard({
                 playsInline
                 autoPlay
                 className={cn(
-                  "h-full w-full",
-                  thumbnailFit === "contain" ? "object-contain" : "object-cover",
+                  "h-full w-full block",
                   "transition-transform duration-500 ease-out",
                   "group-hover:scale-105"
                 )}
+                style={{
+                  objectFit: mediaObjectFit,
+                  objectPosition: "center",
+                }}
               />
             ) : (
               <Image
@@ -120,10 +124,13 @@ export function WorkCard({
                 alt={title}
                 fill
                 className={cn(
-                  thumbnailFit === "contain" ? "object-contain" : "object-cover",
                   "transition-transform duration-500 ease-out",
                   "group-hover:scale-105"
                 )}
+                style={{
+                  objectFit: mediaObjectFit,
+                  objectPosition: "center",
+                }}
                 unoptimized={mediaSrc.toLowerCase().endsWith(".gif")}
               />
             )}

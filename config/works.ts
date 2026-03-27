@@ -69,7 +69,6 @@ export const Works: {
       thumbnail: "/works/clitris/demo.webm",
       url: "https://github.com/FinityFly/clitris",
       date: "January 2025",
-      thumbnailFit: "contain",
     },
     {
       title: "TRACY",

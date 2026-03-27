@@ -14,7 +14,6 @@ import { motion, Variants } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { RiHeartPulseFill, RiCopyleftLine, RiGithubFill } from "react-icons/ri";
 import { SocialMedias } from "config/sidebar";
-import { simpleOpacity } from "config/animations";
 
 const rimuruVariant: Variants = {
   shake: {
@@ -133,8 +132,7 @@ const GetInTouch = () => {
         >
           <Text as="span">
             <Icon as={RiGithubFill} h={6} w={6} /> <br />
-            Designed and Made with <Icon as={RiHeartPulseFill} /> <br />
-            Daniel Lu <Icon as={RiCopyleftLine} /> {currentYear}
+            Daniel Lu <Icon as={RiHeartPulseFill} /> {currentYear}
           </Text>
         </Link>
       </Box>

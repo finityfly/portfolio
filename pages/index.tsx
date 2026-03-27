@@ -33,7 +33,7 @@ import { Article } from "types/article";
 import ParticlesBackground from "components/Misc/ParticlesBackground";
 
 const SidebarScene3D = dynamic(
-  () => import("components/Misc/SidebarScene3D"),
+  () => import("@/components/Sidebar/SidebarScene3D"),
   { ssr: false }
 );
 
@@ -137,6 +137,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
 
     confetti({
       particleCount: 30,
+      angle: 90,
       spread: 70,
       origin: { x, y },
       colors: colors,
@@ -164,7 +165,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
       <Analytics />
       <OpenGraphHead />
       <Menu />
-      <ParticlesBackground />
+      {/* <ParticlesBackground /> */}
       <Grid
         id="mainGrid"
         templateColumns={{
@@ -191,7 +192,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
           position="relative"
           minH={{ base: "auto", xl: "100vh" }}
         >
-          <SidebarScene3D />
+          {/* <SidebarScene3D /> */}
           <Sidebar />
         </GridItem>
         <GridItem
@@ -234,7 +235,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                 <Experience />
               </Box>
             </FadeInLayout> */}
-            <FadeInLayout>
+            {/* <FadeInLayout>
               <Box mt={4} mb={{ base: 8, md: 8, lg: 8, xl: 12 }}>
                 <motion.div
                   initial="initial"
@@ -263,6 +264,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                         color={emphasis}
                         letterSpacing="0.5px"
                       >
+                        Check out{" "}
                         {projectCount} {projectCount === 1 ? "project" : "projects"}{" "}
                         waiting below...
                       </Text>
@@ -277,7 +279,7 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
                   </Flex>
                 </motion.div>
               </Box>
-            </FadeInLayout>
+            </FadeInLayout> */}
             <FadeInLayout>
               <Box
                 id="works"
@@ -320,15 +322,5 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
     </>
   );
 };
-
-export async function getStaticProps() {
-  const res = await fetch("https://dev.to/api/articles?username=klawingco");
-  const articles = await res.json();
-  return {
-    props: {
-      articles,
-    },
-  };
-}
 
 export default Portfolio;

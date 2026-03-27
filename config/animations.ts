@@ -24,14 +24,14 @@ const fadeInUp = {
 
 const fadeInUpSlower = {
   initial: {
-    y: 80,
+    y: 34,
     opacity: 0,
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: DURATIONS.Normal,
+      duration: 0.4,
       ease: easing,
     },
   },

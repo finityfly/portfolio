@@ -11,16 +11,17 @@ const Logo = () => {
   const [isLogoLoaded, setLogoLoaded] = useState(false);
   const MotionImage = motion(Image);
   const isMobile = useBreakpointValue(mobileBreakpointsMap);
+
   return (
-    <AnimatePresence>
-      <Link href="/" passHref>
+    <Link href="/" aria-label="Back to portfolio home">
+      <AnimatePresence>
         {colorMode === ThemeMode.Dark ? (
           <MotionImage
             className={!isMobile ? styles.logo : ""}
             boxSize={isMobile ? "30px" : "50px"}
             objectFit="cover"
-            src="./logo_dark_trans.png"
-            fallbackSrc="./logo_dark_trans.png"
+            src="/logo_dark_trans.png"
+            fallbackSrc="/logo_dark_trans.png"
             alt="Daniel Lu Logo"
             variants={simpleOpacity}
             initial="initial"
@@ -33,8 +34,8 @@ const Logo = () => {
             className={!isMobile ? styles.logo : ""}
             boxSize={isMobile ? "30px" : "50px"}
             objectFit="cover"
-            src="./logo_trans.png"
-            fallbackSrc="./logo_trans.png"
+            src="/logo_trans.png"
+            fallbackSrc="/logo_trans.png"
             alt="Daniel Lu Logo"
             variants={simpleOpacity}
             initial="initial"
@@ -43,8 +44,8 @@ const Logo = () => {
             zIndex={2}
           />
         )}
-      </Link>
-    </AnimatePresence>
+      </AnimatePresence>
+    </Link>
   );
 };
 

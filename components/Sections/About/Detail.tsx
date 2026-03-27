@@ -156,6 +156,7 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
                   color={emphasis}
                   letterSpacing="0.5px"
                 >
+                  Check out{" "}
                   {projectCount} {projectCount === 1 ? "project" : "projects"}{" "}
                   waiting below...
                 </Text>
