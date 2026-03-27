@@ -127,7 +127,7 @@ const CorkboardPage = () => {
             </Stack>
           </FadeInLayout>
 
-          <FadeInLayout>
+          <FadeInLayout delay={0.1}>
             {posts.length === 0 ? (
               <Stack
                 align="center"
