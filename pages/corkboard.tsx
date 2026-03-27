@@ -99,7 +99,7 @@ const CorkboardPage = () => {
         <Container maxW="6xl" pb={16}>
           <FadeInLayout>
             <Stack spacing={6} mb={10}>
-              <Box>
+              <Box ml={{ base: 2, md: 0 }}>
                 <NextLink href="/" prefetch passHref legacyBehavior>
                   <MotionLink
                     aria-label="Back to portfolio"
@@ -115,13 +115,14 @@ const CorkboardPage = () => {
               <Heading
                 size="2xl"
                 fontFamily="name"
+                pl={{ base: 2, md: 0 }}
                 style={{
                   fontVariantCaps: "small-caps",
                 }}
               >
                 Corkboard
               </Heading>
-              <Text variant="description" maxW="70%">
+              <Text variant="description" maxW={{ base: "90%", md: "70%" }} pl={{ base: 2, md: 0 }}>
                 My digital corkboard for half-baked ideas and anything that doesn&apos;t fit neatly elsewhere.
               </Text>
             </Stack>

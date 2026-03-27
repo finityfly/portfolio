@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import {
   Container,
+  Box,
   useColorModeValue,
   useBreakpointValue,
 } from "@chakra-ui/react";
@@ -58,7 +59,9 @@ const Menu = () => {
         maxWidth={{ base: "100vw", xl: "100%" }}
         margin={0}
       >
-        <Logo />
+        <Box position="relative" zIndex={1401}>
+          <Logo />
+        </Box>
         <Navigation />
       </Container>
     </motion.div>

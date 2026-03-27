@@ -143,7 +143,8 @@ const Navigation = () => {
         alignItems="center"
         paddingTop={1}
         className={styles.menuBar}
-        zIndex={100}
+        position="relative"
+        zIndex={1401}
         top="3%"
       >
         <IconButton
