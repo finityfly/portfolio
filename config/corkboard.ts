@@ -52,45 +52,45 @@ export type CorkboardPost = MarkdownPost | MediaPost;
  *   and point `src` at a file inside /public/corkboard or a remote URL.
  */
 export const corkboardPosts: CorkboardPost[] = [
-  {
-    id: "welcome-note",
-    kind: "markdown",
-    title: "Welcome to the corkboard",
-    date: "2026-03-26",
-    tags: ["meta"],
-    summary:
-      "A space for quick notes, half-baked ideas, and anything that doesn’t fit neatly elsewhere.",
-    markdownPath: "content/corkboard/welcome-note.md",
-  },
-  {
-    id: "sample-audio",
-    kind: "audio",
-    title: "Sample audio post",
-    date: "2026-03-26",
-    tags: ["audio", "demo"],
-    src: "/corkboard/sample-audio.mp3",
-    description:
-      "Drop your own mp3 files into `/public/corkboard` and point `src` at them.",
-  },
-  {
-    id: "sample-image",
-    kind: "image",
-    title: "Sample image pin",
-    date: "2026-03-26",
-    tags: ["image", "demo"],
-    src: "/corkboard/sample-image.jpg",
-    description:
-      "Use this for screenshots, reference photos, or anything else you’d normally pin to a real corkboard.",
-  },
-  {
-    id: "sample-video",
-    kind: "video",
-    title: "Sample video note",
-    date: "2026-03-26",
-    tags: ["video", "demo"],
-    src: "/corkboard/sample-video.mp4",
-    description:
-      "You can also embed short video clips here – local files or hosted URLs.",
-  },
+  // {
+  //   id: "welcome-note",
+  //   kind: "markdown",
+  //   title: "Welcome to the corkboard",
+  //   date: "2026-03-26",
+  //   tags: ["meta"],
+  //   summary:
+  //     "A space for quick notes, half-baked ideas, and anything that doesn’t fit neatly elsewhere.",
+  //   markdownPath: "content/corkboard/welcome-note.md",
+  // },
+  // {
+  //   id: "sample-audio",
+  //   kind: "audio",
+  //   title: "Sample audio post",
+  //   date: "2026-03-26",
+  //   tags: ["audio", "demo"],
+  //   src: "/corkboard/sample-audio.mp3",
+  //   description:
+  //     "Drop your own mp3 files into `/public/corkboard` and point `src` at them.",
+  // },
+  // {
+  //   id: "sample-image",
+  //   kind: "image",
+  //   title: "Sample image pin",
+  //   date: "2026-03-26",
+  //   tags: ["image", "demo"],
+  //   src: "/corkboard/sample-image.jpg",
+  //   description:
+  //     "Use this for screenshots, reference photos, or anything else you’d normally pin to a real corkboard.",
+  // },
+  // {
+  //   id: "sample-video",
+  //   kind: "video",
+  //   title: "Sample video note",
+  //   date: "2026-03-26",
+  //   tags: ["video", "demo"],
+  //   src: "/corkboard/sample-video.mp4",
+  //   description:
+  //     "You can also embed short video clips here – local files or hosted URLs.",
+  // },
 ];
 

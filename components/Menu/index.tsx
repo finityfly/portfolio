@@ -14,7 +14,6 @@ import useScrollDirection, { ScrollDirection } from "hooks/useScrollDirection";
 const mobileMenuVariants: Variants = {
   hidden: {
     opacity: [1, 0.85, 0],
-    y: -80,
     transition: {
       ease: "easeInOut",
       duration: 0.35,
@@ -22,7 +21,6 @@ const mobileMenuVariants: Variants = {
   },
   show: {
     opacity: [0, 0.85, 1],
-    y: 0,
     transition: {
       ease: "easeInOut",
       duration: 0.28,

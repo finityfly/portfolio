@@ -1,5 +1,4 @@
-// @ts-nocheck
-import { memo, useCallback, useState, useEffect } from "react";
+import { memo, useCallback, useState, useEffect, MouseEvent } from "react";
 import {
   Container,
   Button,
@@ -25,7 +24,7 @@ const Navigation = () => {
   const { toggleColorMode, colorMode } = useColorMode();
   const MotionContainer = motion(Container);
   const [isOpen, toggleOpen] = useCycle(false, true);
-  const isMobile = useBreakpointValue(mobileBreakpointsMap as any) as boolean;
+  const isMobile = useBreakpointValue(mobileBreakpointsMap) ?? false;
   const menuButtonSize = useBreakpointValue({
     base: "xl",
     md: "sm",
@@ -65,7 +64,7 @@ const Navigation = () => {
   const worksHref = isCorkboardRoute ? "/#works" : "#works";
   const contactHref = isCorkboardRoute ? "/#contact" : "#contact";
   const onMenuItemClick = useCallback(
-    (e) => {
+    (e: MouseEvent<HTMLElement>) => {
       e.stopPropagation();
       if (isMobile) {
         toggleOpen();
@@ -95,7 +94,7 @@ const Navigation = () => {
   }, [router]);
 
   const onThemeToggleClick = useCallback(
-    async (e) => {
+    async (e: MouseEvent<HTMLElement>) => {
       e.stopPropagation();
       const rect = e.currentTarget.getBoundingClientRect();
       const x = (rect.left + rect.width / 2) / window.innerWidth;

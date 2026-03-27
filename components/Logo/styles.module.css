@@ -1,10 +1,17 @@
 .logo{
-  position: fixed;
-  top: 3%;
-  left: 3.5%;
+  position: relative;
   cursor: pointer;
   z-index: 100;
 }
+
+@media (min-width: 80em) {
+  .logo {
+    position: fixed;
+    top: 3%;
+    left: 3.5%;
+  }
+}
+
 .sidebar{
   border: 3px solid #97DFFC;
   border-radius: 100%;

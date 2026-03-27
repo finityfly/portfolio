@@ -1,50 +1,46 @@
-import { memo, useState } from "react";
-import { useColorMode, Image, useBreakpointValue } from "@chakra-ui/react";
+import { memo } from "react";
+import { useColorMode, Image } from "@chakra-ui/react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "./styles.module.css";
-import { ThemeMode, mobileBreakpointsMap } from "config/theme";
-import { simpleOpacity } from "config/animations";
+import { ThemeMode } from "config/theme";
+
+const logoEntrance = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 1,
+      ease: "easeOut",
+    },
+  },
+};
 
 const Logo = () => {
   const { colorMode } = useColorMode();
-  const [isLogoLoaded, setLogoLoaded] = useState(false);
   const MotionImage = motion(Image);
-  const isMobile = useBreakpointValue(mobileBreakpointsMap);
+  const logoSrc =
+    colorMode === ThemeMode.Dark ? "/logo_dark_trans.png" : "/logo_trans.png";
 
   return (
-    <Link href="/" aria-label="Back to portfolio home">
-      <AnimatePresence>
-        {colorMode === ThemeMode.Dark ? (
-          <MotionImage
-            className={!isMobile ? styles.logo : ""}
-            boxSize={isMobile ? "30px" : "50px"}
-            objectFit="cover"
-            src="/logo_dark_trans.png"
-            fallbackSrc="/logo_dark_trans.png"
-            alt="Daniel Lu Logo"
-            variants={simpleOpacity}
-            initial="initial"
-            animate={isLogoLoaded && "animate"}
-            onLoad={() => setLogoLoaded(true)}
-            zIndex={2}
-          />
-        ) : (
-          <MotionImage
-            className={!isMobile ? styles.logo : ""}
-            boxSize={isMobile ? "30px" : "50px"}
-            objectFit="cover"
-            src="/logo_trans.png"
-            fallbackSrc="/logo_trans.png"
-            alt="Daniel Lu Logo"
-            variants={simpleOpacity}
-            initial="initial"
-            animate={isLogoLoaded && "animate"}
-            onLoad={() => setLogoLoaded(true)}
-            zIndex={2}
-          />
-        )}
-      </AnimatePresence>
+    <Link href="/" passHref legacyBehavior>
+      <a aria-label="Back to portfolio home">
+        <MotionImage
+          className={styles.logo}
+          boxSize={{ base: "30px", xl: "50px" }}
+          objectFit="cover"
+          src={logoSrc}
+          alt="Daniel Lu Logo"
+          variants={logoEntrance}
+          initial="initial"
+          animate="animate"
+          zIndex={2}
+          loading="eager"
+          style={{ willChange: "opacity, transform" }}
+        />
+      </a>
     </Link>
   );
 };

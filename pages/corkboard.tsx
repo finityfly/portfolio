@@ -1,18 +1,19 @@
-// @ts-nocheck
 import {
   Box,
   Container,
   Heading,
   Icon,
+  Image,
   Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
 import { motion } from "framer-motion";
-import { useRouter } from "next/router";
-import NextLink from "next/link";
 import { ArrowBackIcon } from "@chakra-ui/icons";
+import NextLink from "next/link";
+import { useRouter } from "next/router";
+import { useEffect, useMemo } from "react";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
 import Menu from "components/Menu";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
@@ -22,7 +23,6 @@ import {
   MarkdownPost,
   MediaPost,
 } from "config/corkboard";
-import { useEffect, useMemo } from "react";
 
 const formatDate = (iso: string) => {
   // Expecting YYYY-MM-DD; keep formatting fully deterministic for SSR/CSR
@@ -67,6 +67,10 @@ const CorkboardPage = () => {
     "rgba(15, 23, 42, 0.02)",
     "rgba(148, 163, 184, 0.08)"
   );
+  const emptyStateImageSrc = useColorModeValue(
+    "/mimikyu_shadow.png",
+    "/mimikyu.png"
+  );
 
   const posts = useMemo(() => [...corkboardPosts].sort(byNewestFirst), []);
   const getDescription = (post: CorkboardPost): string => {
@@ -86,7 +90,7 @@ const CorkboardPage = () => {
     });
   }, [posts, router]);
 
-  const content: any = (
+  return (
     <>
       <Analytics />
       <OpenGraphHead />
@@ -118,104 +122,118 @@ const CorkboardPage = () => {
                 Corkboard
               </Heading>
               <Text variant="description" maxW="70%">
-                A low-pressure space for quick notes, audio snippets, and visual
-                pins. Edit everything from{" "}
-                <Text as="span" fontFamily="mono">
-                  config/corkboard.ts
-                </Text>
-                .
+                My digital corkboard for half-baked ideas and anything that doesn&apos;t fit neatly elsewhere.
               </Text>
             </Stack>
           </FadeInLayout>
 
           <FadeInLayout>
-            <MotionDiv
-              initial="initial"
-              animate="animate"
-              variants={{
-                initial: {},
-                animate: {
-                  transition: {
-                    delayChildren: 0.08,
-                    staggerChildren: 0.09,
-                  },
-                },
-              }}
-            >
-              <Stack spacing={0}>
-                {posts.map((post) => {
-                const description = getDescription(post);
-                return (
-                  <MotionDiv
-                    key={post.id}
-                    variants={{
-                      initial: { opacity: 0, y: 14 },
-                      animate: {
-                        opacity: 1,
-                        y: 0,
-                        transition: { duration: 0.35, ease: "easeOut" },
-                      },
-                    }}
-                  >
-                    <NextLink
-                      href={`/corkboard/${post.id}`}
-                      prefetch
-                      passHref
-                      legacyBehavior
-                    >
-                      <Box as="a" _hover={{ textDecoration: "none" }}>
-                      <Box
-                        as="article"
-                        display="flex"
-                        flexDirection={{ base: "column", md: "row" }}
-                        alignItems={{ base: "flex-start", md: "center" }}
-                        justifyContent="space-between"
-                        paddingY={4}
-                        paddingX={{ base: 3, md: 4 }}
-                        borderBottomWidth="1px"
-                        borderColor={rowBorderColor}
-                        gap={{ base: 2, md: 6 }}
-                        _hover={{
-                          backgroundColor: rowHoverBg,
-                        }}
-                        transition="background-color 0.15s ease-out"
-                      >
-                        <Stack spacing={1}>
-                          <Heading size="sm">{post.title}</Heading>
-                          {description && (
-                            <Text
-                              fontSize="sm"
-                              variant="description"
-                              noOfLines={2}
-                            >
-                              {description}
-                            </Text>
-                          )}
-                        </Stack>
-                        <Text
-                          fontSize="xs"
-                          variant="accentAlternative"
-                          textTransform="uppercase"
-                          letterSpacing="0.12em"
-                          whiteSpace="nowrap"
-                        >
-                          {formatDate(post.date)}
-                        </Text>
-                      </Box>
-                    </Box>
-                    </NextLink>
-                  </MotionDiv>
-                );
-              })}
+            {posts.length === 0 ? (
+              <Stack
+                align="center"
+                justify="center"
+                textAlign="center"
+                spacing={4}
+                py={{ base: 16, md: 24 }}
+              >
+                <Image
+                  src={emptyStateImageSrc}
+                  alt="Mimikyu waiting"
+                  boxSize={{ base: "140px", md: "180px" }}
+                  objectFit="contain"
+                  opacity={0.92}
+                />
+                <Text fontSize="sm" variant="description" letterSpacing="0.02em">
+                  Nothing pinned yet 😔
+                </Text>
               </Stack>
-            </MotionDiv>
+            ) : (
+              <MotionDiv
+                initial="initial"
+                animate="animate"
+                variants={{
+                  initial: {},
+                  animate: {
+                    transition: {
+                      delayChildren: 0.08,
+                      staggerChildren: 0.09,
+                    },
+                  },
+                }}
+              >
+                <Stack spacing={0}>
+                  {posts.map((post) => {
+                    const description = getDescription(post);
+                    return (
+                      <MotionDiv
+                        key={post.id}
+                        variants={{
+                          initial: { opacity: 0, y: 14 },
+                          animate: {
+                            opacity: 1,
+                            y: 0,
+                            transition: { duration: 0.35, ease: "easeOut" },
+                          },
+                        }}
+                      >
+                        <NextLink
+                          href={`/corkboard/${post.id}`}
+                          prefetch
+                          passHref
+                          legacyBehavior
+                        >
+                          <Box as="a" _hover={{ textDecoration: "none" }}>
+                            <Box
+                              as="article"
+                              display="flex"
+                              flexDirection={{ base: "column", md: "row" }}
+                              alignItems={{ base: "flex-start", md: "center" }}
+                              justifyContent="space-between"
+                              paddingY={4}
+                              paddingX={{ base: 3, md: 4 }}
+                              borderBottomWidth="1px"
+                              borderColor={rowBorderColor}
+                              gap={{ base: 2, md: 6 }}
+                              _hover={{
+                                backgroundColor: rowHoverBg,
+                              }}
+                              transition="background-color 0.15s ease-out"
+                            >
+                              <Stack spacing={1}>
+                                <Heading size="sm">{post.title}</Heading>
+                                {description && (
+                                  <Text
+                                    fontSize="sm"
+                                    variant="description"
+                                    noOfLines={2}
+                                  >
+                                    {description}
+                                  </Text>
+                                )}
+                              </Stack>
+                              <Text
+                                fontSize="xs"
+                                variant="accentAlternative"
+                                textTransform="uppercase"
+                                letterSpacing="0.12em"
+                                whiteSpace="nowrap"
+                              >
+                                {formatDate(post.date)}
+                              </Text>
+                            </Box>
+                          </Box>
+                        </NextLink>
+                      </MotionDiv>
+                    );
+                  })}
+                </Stack>
+              </MotionDiv>
+            )}
           </FadeInLayout>
         </Container>
       </Box>
     </>
   );
-
-  return content;
 };
 
 export default CorkboardPage;

@@ -1,3 +1,6 @@
+/* eslint-disable react/no-multi-comp, react/prop-types */
+import fs from "fs/promises";
+import path from "path";
 import {
   Box,
   Code,
@@ -14,14 +17,13 @@ import {
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Analytics } from "@vercel/analytics/react";
+import { motion } from "framer-motion";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
-import { motion } from "framer-motion";
-import fs from "fs/promises";
-import path from "path";
-import { RiMusic2Line, RiPlayCircleLine } from "react-icons/ri";
 import ReactMarkdown from "react-markdown";
+import { RiMusic2Line, RiPlayCircleLine } from "react-icons/ri";
 import remarkGfm from "remark-gfm";
+import styles from "./PostMedia.module.css";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
 import Menu from "components/Menu";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
@@ -31,7 +33,6 @@ import {
   MarkdownPost,
   MediaPost,
 } from "config/corkboard";
-import styles from "./PostMedia.module.css";
 
 const formatDate = (iso: string) => {
   const [year, month, day] = iso.split("-");
@@ -187,6 +188,7 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({ post }) => {
   return (
     <>
       <Analytics />
+      <OpenGraphHead />
       <Menu />
       <Box as="main" bg={bg} minH="100vh" paddingTop={{ base: 20, md: 24 }}>
         <Container maxW={{ base: "95%", md: "4xl" }} pb={16}>
