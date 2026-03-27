@@ -2,8 +2,10 @@ import {
   Box,
   Code,
   Container,
+  Flex,
   Heading,
   Icon,
+  Image,
   Link,
   Stack,
   Text,
@@ -17,6 +19,7 @@ import NextLink from "next/link";
 import { motion } from "framer-motion";
 import fs from "fs/promises";
 import path from "path";
+import { RiMusic2Line, RiPlayCircleLine } from "react-icons/ri";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
@@ -28,6 +31,7 @@ import {
   MarkdownPost,
   MediaPost,
 } from "config/corkboard";
+import styles from "./PostMedia.module.css";
 
 const formatDate = (iso: string) => {
   const [year, month, day] = iso.split("-");
@@ -161,8 +165,19 @@ const MotionLink = motion.a;
 
 const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({ post }) => {
   const bg = useColorModeValue("gray.100", "black");
-  const surfaceBg = useColorModeValue("white", "whiteAlpha.50");
-  const borderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.200");
+  const bodyText = useColorModeValue("gray.700", "whiteAlpha.900");
+  const mediaShellBg = useColorModeValue(
+    "rgba(255, 255, 255, 0.72)",
+    "rgba(255, 255, 255, 0.06)"
+  );
+  const mediaShellBorder = useColorModeValue(
+    "rgba(15, 23, 42, 0.12)",
+    "rgba(255, 255, 255, 0.14)"
+  );
+  const mediaBadgeBg = useColorModeValue(
+    "rgba(15, 23, 42, 0.08)",
+    "rgba(255, 255, 255, 0.08)"
+  );
 
   const isMarkdown = (p: RenderableCorkboardPost): p is MarkdownPostWithContent =>
     p.kind === "markdown";
@@ -177,11 +192,7 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({ post }) => {
         <Container maxW={{ base: "95%", md: "4xl" }} pb={16}>
           <FadeInLayout>
             <Box
-              borderWidth="1px"
-              borderColor={borderColor}
-              borderRadius="1em"
               padding={{ base: 5, md: 7 }}
-              backgroundColor={surfaceBg}
             >
               <Stack spacing={4}>
                 <Box>
@@ -212,12 +223,49 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({ post }) => {
                 </Stack>
 
                 {isMedia(post) && (
-                  <Stack spacing={3}>
+                  <Stack spacing={4}>
                     {post.kind === "audio" && (
-                      <Box>
+                      <Box
+                        borderRadius="xl"
+                        borderWidth="1px"
+                        borderColor={mediaShellBorder}
+                        background={mediaShellBg}
+                        backdropFilter="blur(10px)"
+                        px={{ base: 3, md: 4 }}
+                        py={{ base: 3, md: 4 }}
+                      >
+                        <Flex align="center" gap={3} mb={3}>
+                          {post.thumbnail ? (
+                            <Image
+                              src={post.thumbnail}
+                              alt={`${post.title} thumbnail`}
+                              boxSize={{ base: "48px", md: "54px" }}
+                              borderRadius="lg"
+                              objectFit="cover"
+                            />
+                          ) : (
+                            <Flex
+                              boxSize={{ base: "48px", md: "54px" }}
+                              borderRadius="lg"
+                              align="center"
+                              justify="center"
+                              background={mediaBadgeBg}
+                            >
+                              <Icon as={RiMusic2Line} boxSize={6} />
+                            </Flex>
+                          )}
+                          <Box>
+                            <Text fontSize="sm" fontWeight="semibold">
+                              {post.title}
+                            </Text>
+                            <Text fontSize="xs" color={bodyText}>
+                              Audio note
+                            </Text>
+                          </Box>
+                        </Flex>
                         <audio
+                          className={styles.audioPlayer}
                           controls
-                          style={{ width: "100%" }}
                           src={post.src}
                         >
                           Your browser does not support the audio element.
@@ -235,18 +283,34 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({ post }) => {
                       </Box>
                     )}
                     {post.kind === "video" && (
-                      <AspectRatio ratio={16 / 9}>
-                        <video
-                          controls
-                          src={post.src}
-                          style={{ borderRadius: "0.75rem" }}
-                        >
-                          Your browser does not support the video tag.
-                        </video>
-                      </AspectRatio>
+                      <Box
+                        borderRadius="xl"
+                        borderWidth="1px"
+                        borderColor={mediaShellBorder}
+                        background={mediaShellBg}
+                        backdropFilter="blur(10px)"
+                        p={{ base: 2, md: 3 }}
+                      >
+                        <Flex align="center" gap={2} px={1} mb={2}>
+                          <Icon as={RiPlayCircleLine} boxSize={5} />
+                          <Text fontSize="xs" textTransform="uppercase" letterSpacing="0.12em" color={bodyText}>
+                            Video
+                          </Text>
+                        </Flex>
+                        <AspectRatio ratio={16 / 9}>
+                          <video
+                            className={styles.videoPlayer}
+                            controls
+                            src={post.src}
+                            poster={post.thumbnail}
+                          >
+                            Your browser does not support the video tag.
+                          </video>
+                        </AspectRatio>
+                      </Box>
                     )}
                     {post.description && (
-                      <Text fontSize="sm" variant="description">
+                      <Text fontSize="sm" color={bodyText}>
                         {post.description}
                       </Text>
                     )}

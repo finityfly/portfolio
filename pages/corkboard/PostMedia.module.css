@@ -1,0 +1,39 @@
+.audioPlayer {
+  width: 100%;
+  height: 46px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.videoPlayer {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.95rem;
+  background: #0f172a;
+  box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28);
+}
+
+.audioPlayer::-webkit-media-controls-enclosure {
+  border-radius: 999px;
+}
+
+.audioPlayer::-webkit-media-controls-panel {
+  background: linear-gradient(
+    135deg,
+    rgba(148, 163, 184, 0.28),
+    rgba(15, 23, 42, 0.08)
+  );
+}
+
+.videoPlayer::-webkit-media-controls-panel {
+  background: linear-gradient(
+    to top,
+    rgba(2, 6, 23, 0.82),
+    rgba(2, 6, 23, 0.32)
+  );
+}
+
+.videoPlayer::-webkit-media-controls-play-button,
+.audioPlayer::-webkit-media-controls-play-button {
+  filter: saturate(1.25) brightness(1.05);
+}
