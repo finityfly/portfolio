@@ -1,5 +1,5 @@
 import { IconType } from "react-icons";
-import { FaLinkedin, FaGithub, FaTwitter, FaFilePdf } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaXTwitter } from "react-icons/fa6";
 
 type SocialMedia = {
   label: string;
@@ -10,7 +10,7 @@ type SocialMedia = {
 export const SocialMedias: SocialMedia[] = [
   {
     label: "Github",
-    href: "https://github.com/FinityFly",
+    href: "https://github.com/finityfly",
     icon: FaGithub,
   },
   {
@@ -20,8 +20,8 @@ export const SocialMedias: SocialMedia[] = [
   },
   {
     label: "Twitter",
-    href: "https://x.com/im_daniel_lu",
-    icon: FaTwitter,
+    href: "https://x.com/daniel_jmlu",
+    icon: FaXTwitter,
   },
   // {
   //   label: "Resume",
