@@ -66,35 +66,35 @@ export const corkboardPosts: CorkboardPost[] = [
       "Et pectore dixut iugulo",
     markdownPath: "content/corkboard/lorem-markdown.md",
   },
-  // {
-  //   id: "sample-audio",
-  //   kind: "audio",
-  //   title: "Sample audio post",
-  //   date: "2026-03-26",
-  //   tags: ["audio", "demo"],
-  //   src: "/corkboard/sample-audio.mp3",
-  //   description:
-  //     "Drop your own mp3 files into `/public/corkboard` and point `src` at them.",
-  // },
+  {
+    id: "been-so-long",
+    kind: "audio",
+    title: "been so long - mflo",
+    date: "2026-03-26",
+    tags: ["audio", "demo"],
+    src: "/corkboard/been_so_long.mp3",
+    description:
+      "one of my favourite songs by mflo, check them out if you like what you hear!",
+  },
   {
     id: "mimikyu-image",
     kind: "image",
-    title: "Mimikyu.",
+    title: "mimikyu.",
     date: "2026-03-25",
     tags: ["image"],
-    src: "/mimi.jpg",
+    src: "/corkboard/mimi.jpg",
     description:
-      "Mimikyu.",
+      "mimikyu.",
   },
-  // {
-  //   id: "sample-video",
-  //   kind: "video",
-  //   title: "Sample video note",
-  //   date: "2026-03-26",
-  //   tags: ["video", "demo"],
-  //   src: "/corkboard/sample-video.mp4",
-  //   description:
-  //     "You can also embed short video clips here – local files or hosted URLs.",
-  // },
+  {
+    id: "manuel-whammy",
+    kind: "video",
+    title: "the best riff in the world",
+    date: "2026-03-26",
+    tags: ["video", "demo"],
+    src: "https://www.youtube.com/watch?v=XGmoZn0nbrY",
+    description:
+      "all credit goes to manual gardner-fernandes 🐐",
+  },
 ];
 

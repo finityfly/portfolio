@@ -61,8 +61,11 @@ const Menu = () => {
   const router = useRouter();
   const { colorMode, toggleColorMode } = useColorMode();
   const [isAtTop, setIsAtTop] = useState(true);
+  const [isMobileNav, setIsMobileNav] = useState(false);
+  const [isScrollingUp, setIsScrollingUp] = useState(true);
   const [hasPlayedTopBarEntrance, setHasPlayedTopBarEntrance] = useState(false);
   const pendingSectionRef = useRef<string | null>(null);
+  const lastScrollYRef = useRef(0);
   const spineColor = useColorModeValue("#C7D2C0", "#2B3528");
   const iconColor = useColorModeValue("#526E52", "#A3B18A");
   const topBg = useColorModeValue("rgba(243, 244, 239, 0.94)", "rgba(15, 17, 12, 0.94)");
@@ -70,7 +73,30 @@ const Menu = () => {
   const themeFade = "background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease";
 
   useEffect(() => {
+    if (typeof window === "undefined") {
+      return () => undefined;
+    }
+
+    const mediaQuery = window.matchMedia("(max-width: 991px)");
+    const handleChange = (event: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobileNav(event.matches);
+    };
+
+    handleChange(mediaQuery);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", handleChange);
+      return () => mediaQuery.removeEventListener("change", handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  useEffect(() => {
     let ticking = false;
+
+    lastScrollYRef.current = window.scrollY;
 
     const onScroll = () => {
       if (ticking) {
@@ -79,7 +105,15 @@ const Menu = () => {
 
       ticking = true;
       window.requestAnimationFrame(() => {
-        setIsAtTop(window.scrollY <= 50);
+        const currentScrollY = window.scrollY;
+        const delta = currentScrollY - lastScrollYRef.current;
+
+        setIsAtTop(currentScrollY <= 50);
+        if (isMobileNav && Math.abs(delta) > 4) {
+          setIsScrollingUp(delta < 0);
+        }
+
+        lastScrollYRef.current = currentScrollY;
         ticking = false;
       });
     };
@@ -87,7 +121,7 @@ const Menu = () => {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isMobileNav]);
 
   useEffect(() => {
     const onRouteComplete = () => {
@@ -231,6 +265,8 @@ const Menu = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const shouldShowTopBar = isAtTop || (isMobileNav && isScrollingUp);
+
   return (
     <motion.div
       className={styles.navShell}
@@ -242,8 +278,8 @@ const Menu = () => {
         className={styles.topBar}
         initial={{ opacity: 0, y: -10 }}
         animate={{
-          opacity: isAtTop ? 1 : 0,
-          y: isAtTop ? 0 : -10,
+          opacity: shouldShowTopBar ? 1 : 0,
+          y: shouldShowTopBar ? 0 : -10,
         }}
         transition={{
           ...SPRING_PHYSICS,
@@ -254,7 +290,7 @@ const Menu = () => {
             setHasPlayedTopBarEntrance(true);
           }
         }}
-        style={{ pointerEvents: isAtTop ? "auto" : "none" }}
+        style={{ pointerEvents: shouldShowTopBar ? "auto" : "none" }}
       >
         <Container
           maxW="5xl"
@@ -282,7 +318,6 @@ const Menu = () => {
               display={{ base: "none", lg: "inline-flex" }}
               transition={themeFade}
               _hover={{ textDecoration: "none", color: "sage.500" }}
-              data-nav-sfx
             >
               陆
             </Link>
@@ -304,7 +339,6 @@ const Menu = () => {
                   _hover={{ color: "sage.500", textDecoration: "none" }}
                   _focus={{ boxShadow: "none", outline: "none" }}
                   _focusVisible={{ boxShadow: "none", outline: "none" }}
-                  data-nav-sfx
                 >
                   {link.label}
                 </Link>
@@ -324,7 +358,6 @@ const Menu = () => {
                 _hover={{ color: "sage.500", textDecoration: "none" }}
                 _focus={{ boxShadow: "none", outline: "none" }}
                 _focusVisible={{ boxShadow: "none", outline: "none" }}
-                data-nav-sfx
               >
                 cv
               </Link>
@@ -339,7 +372,7 @@ const Menu = () => {
                 _hover={{ background: "transparent", color: "sage.500" }}
                 _focus={{ boxShadow: "none", outline: "none" }}
                 _focusVisible={{ boxShadow: "none", outline: "none" }}
-                data-nav-sfx
+                data-nav-sfx="theme"
               />
             </Flex>
           </Flex>
@@ -390,7 +423,6 @@ const Menu = () => {
                     _hover={{ background: "transparent", color: "sage.500", transform: "translateY(-1px)" }}
                     _focus={{ boxShadow: "none", outline: "none" }}
                     _focusVisible={{ boxShadow: "none", outline: "none" }}
-                    data-nav-sfx
                   />
                 </motion.div>
                 {contextualDockLinks.map((link) => (
@@ -411,7 +443,6 @@ const Menu = () => {
                       _focus={{ boxShadow: "none", outline: "none" }}
                       _focusVisible={{ boxShadow: "none", outline: "none" }}
                       transition="transform 0.3s ease, color 0.3s ease"
-                      data-nav-sfx
                     >
                       {link.label}
                     </Link>
@@ -435,7 +466,6 @@ const Menu = () => {
                       _focus={{ boxShadow: "none", outline: "none" }}
                       _focusVisible={{ boxShadow: "none", outline: "none" }}
                       transition="transform 0.3s ease, color 0.3s ease"
-                      data-nav-sfx
                     >
                       cv
                     </Link>
@@ -454,7 +484,7 @@ const Menu = () => {
                     _hover={{ background: "transparent", color: "sage.500" }}
                     _focus={{ boxShadow: "none", outline: "none" }}
                     _focusVisible={{ boxShadow: "none", outline: "none" }}
-                    data-nav-sfx
+                    data-nav-sfx="theme"
                   />
                 </motion.div>
               </Flex>

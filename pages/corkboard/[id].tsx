@@ -13,7 +13,6 @@ import {
   Stack,
   Text,
   useColorModeValue,
-  AspectRatio,
 } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Analytics } from "@vercel/analytics/react";
@@ -21,16 +20,18 @@ import { motion } from "framer-motion";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import ReactMarkdown from "react-markdown";
-import { RiMusic2Line, RiPlayCircleLine } from "react-icons/ri";
 import {
   atomOneDark,
   atomOneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
-import styles from "./PostMedia.module.css";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
 import Menu from "components/Menu";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
+import {
+  CustomAudioPlayer,
+  CustomVideoPlayer,
+} from "components/Corkboard/MediaPlayers";
 import {
   corkboardPosts,
   MarkdownPost,
@@ -142,6 +143,15 @@ const getYouTubeEmbedUrl = (src: string): string | null => {
   }
 
   return null;
+};
+
+const getMediaMetaLabel = (src: string): string => {
+  const cleanPath = src.split("?")[0].split("#")[0];
+  const filename = cleanPath.split("/").filter(Boolean).pop() || "media";
+  const extension = filename.includes(".")
+    ? filename.split(".").pop()?.toUpperCase() || "MEDIA"
+    : "MEDIA";
+  return extension;
 };
 
 type MarkdownPostWithContent = MarkdownPost & {
@@ -328,18 +338,6 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
   readingTimeMinutes,
 }) => {
   const bodyText = useColorModeValue("gray.700", "whiteAlpha.900");
-  const mediaShellBg = useColorModeValue(
-    "rgba(255, 255, 255, 0.72)",
-    "rgba(255, 255, 255, 0.06)"
-  );
-  const mediaShellBorder = useColorModeValue(
-    "rgba(15, 23, 42, 0.12)",
-    "rgba(255, 255, 255, 0.14)"
-  );
-  const mediaBadgeBg = useColorModeValue(
-    "rgba(15, 23, 42, 0.08)",
-    "rgba(255, 255, 255, 0.08)"
-  );
 
   const isMarkdown = (p: RenderableCorkboardPost): p is MarkdownPostWithContent =>
     p.kind === "markdown";
@@ -368,7 +366,6 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                       whileHover={{ x: -3 }}
                       whileTap={{ x: -1, scale: 0.98 }}
                       transition={{ duration: 0.18, ease: "easeOut" }}
-                      data-nav-sfx
                     >
                       <Icon as={ArrowBackIcon} boxSize={5} />
                     </MotionLink>
@@ -394,52 +391,11 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                 {isMedia(post) && (
                   <Stack spacing={4}>
                     {post.kind === "audio" && (
-                      <Box
-                        borderRadius="xl"
-                        borderWidth="1px"
-                        borderColor={mediaShellBorder}
-                        background={mediaShellBg}
-                        backdropFilter="blur(10px)"
-                        px={{ base: 3, md: 4 }}
-                        py={{ base: 3, md: 4 }}
-                      >
-                        <Flex align="center" gap={3} mb={3}>
-                          {post.thumbnail ? (
-                            <Image
-                              src={post.thumbnail}
-                              alt={`${post.title} thumbnail`}
-                              boxSize={{ base: "48px", md: "54px" }}
-                              borderRadius="lg"
-                              objectFit="cover"
-                            />
-                          ) : (
-                            <Flex
-                              boxSize={{ base: "48px", md: "54px" }}
-                              borderRadius="lg"
-                              align="center"
-                              justify="center"
-                              background={mediaBadgeBg}
-                            >
-                              <Icon as={RiMusic2Line} boxSize={6} />
-                            </Flex>
-                          )}
-                          <Box>
-                            <Text fontSize="sm" fontWeight="semibold">
-                              {post.title}
-                            </Text>
-                            <Text fontSize="xs" color={bodyText}>
-                              Audio note
-                            </Text>
-                          </Box>
-                        </Flex>
-                        <audio
-                          className={styles.audioPlayer}
-                          controls
-                          src={post.src}
-                        >
-                          Your browser does not support the audio element.
-                        </audio>
-                      </Box>
+                      <CustomAudioPlayer
+                        src={post.src}
+                        title={post.title}
+                        thumbnail={post.thumbnail}
+                      />
                     )}
                     {post.kind === "image" && (
                       <Box borderRadius="lg" overflow="hidden">
@@ -452,43 +408,13 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                       </Box>
                     )}
                     {post.kind === "video" && (
-                      <Box
-                        borderRadius="xl"
-                        borderWidth="1px"
-                        borderColor={mediaShellBorder}
-                        background={mediaShellBg}
-                        backdropFilter="blur(10px)"
-                        p={{ base: 2, md: 3 }}
-                      >
-                        <Flex align="center" gap={2} px={1} mb={2}>
-                          <Icon as={RiPlayCircleLine} boxSize={5} />
-                          <Text fontSize="xs" textTransform="uppercase" letterSpacing="0.12em" color={bodyText}>
-                            Video
-                          </Text>
-                        </Flex>
-                        <AspectRatio ratio={16 / 9}>
-                          {youtubeEmbedSrc ? (
-                            <iframe
-                              src={youtubeEmbedSrc}
-                              title={post.title}
-                              loading="lazy"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                              referrerPolicy="strict-origin-when-cross-origin"
-                              allowFullScreen
-                              style={{ border: 0, borderRadius: "0.95rem" }}
-                            />
-                          ) : (
-                            <video
-                              className={styles.videoPlayer}
-                              controls
-                              src={post.src}
-                              poster={post.thumbnail}
-                            >
-                              Your browser does not support the video tag.
-                            </video>
-                          )}
-                        </AspectRatio>
-                      </Box>
+                      <CustomVideoPlayer
+                        src={post.src}
+                        title={post.title}
+                        thumbnail={post.thumbnail}
+                        poster={post.thumbnail}
+                        youtubeEmbedSrc={youtubeEmbedSrc}
+                      />
                     )}
                     {post.description && (
                       <Text fontSize="md" color={bodyText}>

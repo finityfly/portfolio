@@ -68,7 +68,6 @@ export function WorkCard({
       passHref
       target="_blank"
       rel="noopener noreferrer"
-      data-nav-sfx
       className="group block h-full"
     >
       <article

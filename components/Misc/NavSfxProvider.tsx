@@ -39,7 +39,7 @@ const NavSfxProvider = ({ children }: NavSfxProviderProps) => {
         return;
       }
 
-      if (navTarget.getAttribute("data-nav-sfx") === "off") {
+      if (navTarget.getAttribute("data-nav-sfx") !== "theme") {
         return;
       }
 

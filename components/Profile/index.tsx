@@ -66,7 +66,6 @@ const Profile = () => {
               rel="noreferrer"
               variant="emphasis"
               fontWeight="medium"
-              data-nav-sfx
             >
               Carleton University
             </Link>
@@ -87,7 +86,6 @@ const Profile = () => {
               rel="noreferrer"
               variant="emphasis"
               fontWeight="medium"
-              data-nav-sfx
             >
               Hugging Face
             </Link>

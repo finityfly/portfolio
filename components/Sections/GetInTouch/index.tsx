@@ -113,7 +113,6 @@ const GetInTouch = () => {
               letterSpacing="0.05em"
               variant="description"
               _hover={{ color: "sage.500", textDecoration: "none" }}
-              data-nav-sfx
             >
               {socMedia.label}
             </Link>
