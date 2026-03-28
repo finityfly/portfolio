@@ -68,6 +68,7 @@ export function WorkCard({
       passHref
       target="_blank"
       rel="noopener noreferrer"
+      data-nav-sfx
       className="group block h-full"
     >
       <article
@@ -118,9 +119,10 @@ export function WorkCard({
             style={{
               color: descriptionColor,
               display: "-webkit-box",
-              WebkitLineClamp: 1,
+              WebkitLineClamp: 3,
               WebkitBoxOrient: "vertical",
               overflow: "hidden",
+              minHeight: "4.9em",
             }}
           >
             {cleanDescription}

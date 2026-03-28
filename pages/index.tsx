@@ -8,7 +8,7 @@ import Script from "next/script";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
 import Menu from "components/Menu";
-import Sidebar from "components/Sidebar";
+import Profile from "components/Profile";
 import Footer from "components/Footer";
 import FeaturedWorks from "components/Sections/FeaturedWorks";
 import GetInTouch from "components/Sections/GetInTouch";
@@ -38,28 +38,28 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
         maxW={{ base: "5xl", lg: "min(70vw, 56rem)" }}
         px={{ base: 6, md: 8 }}
         pt={{ base: 36, md: 40 }}
-        pb={{ base: 14, md: 20 }}
+        pb={{ base: 12, md: 16 }}
       >
         <Box w="100%">
           <FadeInLayout delay={0}>
-            <Box as="section" id="aboutMe" className="contentRow" mb="160px">
-              <Sidebar />
+            <Box as="section" id="aboutMe" className="contentRow" mb="100px">
+              <Profile />
             </Box>
           </FadeInLayout>
 
-          <FadeInLayout delay={0.8}>
+          <FadeInLayout delay={0.6}>
             <Box
               as="section"
               id="works"
               className="contentRow"
-              mb="160px"
+              mb="100px"
             >
               <FeaturedWorks />
             </Box>
           </FadeInLayout>
 
           <FadeInLayout delay={0.2}>
-            <Box as="section" id="contact" className="contentRow" mb="160px">
+            <Box as="section" id="contact" className="contentRow" mb="100px">
               <GetInTouch />
             </Box>
           </FadeInLayout>

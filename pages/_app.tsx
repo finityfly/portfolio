@@ -5,6 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import theme from "config/theme";
 import FavIconProvider from "components/Misc/FavIconProvider";
 import SmoothScroll from "components/Misc/SmoothScroll";
+import NavSfxProvider from "components/Misc/NavSfxProvider";
 
 function DLSite({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -12,7 +13,9 @@ function DLSite({ Component, pageProps }: AppProps): JSX.Element {
       <AnimatePresence exitBeforeEnter>
         <ChakraProvider theme={theme}>
           <FavIconProvider>
-            <Component {...pageProps} />
+            <NavSfxProvider>
+              <Component {...pageProps} />
+            </NavSfxProvider>
           </FavIconProvider>
         </ChakraProvider>
       </AnimatePresence>

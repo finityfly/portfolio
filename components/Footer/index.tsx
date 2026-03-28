@@ -27,6 +27,7 @@ const Footer = () => {
           className="linkUnderline"
           _focus={{ boxShadow: "none" }}
           _hover={{ color: "emphasis", textDecoration: "none" }}
+          data-nav-sfx
         >
           <Text as="span" display="inline-block" lineHeight="1.8">
             <Icon as={RiGithubFill} h={6} w={6} />

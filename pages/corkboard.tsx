@@ -107,6 +107,7 @@ const CorkboardPage = () => {
                     whileHover={{ x: -3 }}
                     whileTap={{ x: -1, scale: 0.98 }}
                     transition={{ duration: 0.18, ease: "easeOut" }}
+                    data-nav-sfx
                   >
                     <Icon as={ArrowBackIcon} boxSize={5} />
                   </MotionLink>
@@ -125,8 +126,8 @@ const CorkboardPage = () => {
               >
                 corkboard
               </Heading>
-              <Text variant="description" maxW={{ base: "90%", md: "70%" }} pl={{ base: 2, md: 0 }}>
-                my digital space for half-baked ideas and anything that doesn&apos;t fit neatly elsewhere.
+              <Text variant="description" maxW="90%" pl={{ base: 2, md: 0 }}>
+                My digital space for half-baked ideas and anything that doesn&apos;t fit neatly elsewhere.
               </Text>
             </Stack>
           </FadeInLayout>
@@ -186,7 +187,7 @@ const CorkboardPage = () => {
                           passHref
                           legacyBehavior
                         >
-                          <Box as="a" _hover={{ textDecoration: "none" }}>
+                          <Box as="a" _hover={{ textDecoration: "none" }} data-nav-sfx>
                             <Box
                               as="article"
                               display="flex"

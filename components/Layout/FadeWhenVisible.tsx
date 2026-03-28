@@ -14,7 +14,7 @@ const FadeInWhenVisible = ({
 }: FadeInWhenVisibleProps) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    threshold: 0.1,
+    threshold: 0.05,
     triggerOnce: true,
   });
 

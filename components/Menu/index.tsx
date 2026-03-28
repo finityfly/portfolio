@@ -112,14 +112,71 @@ const Menu = () => {
     };
   }, [router]);
 
-  const links = [
-    { label: "me", href: "/", sectionId: "top" },
+  type NavVisibility = {
+    top?: {
+      home?: "show" | "hide" | "only";
+      hideOn?: string[];
+    };
+    dock?: {
+      enabled: boolean;
+    };
+  };
+
+  type NavLink = {
+    label: string;
+    href: string;
+    sectionId?: string;
+    visibility?: NavVisibility;
+  };
+
+  const links: NavLink[] = [
+    {
+      label: "me",
+      href: "/",
+      sectionId: "top",
+      visibility: {
+        top: { home: "hide" },
+        dock: { enabled: false },
+      },
+    },
     { label: "works", href: "/", sectionId: "works" },
     { label: "contact", href: "/", sectionId: "contact" },
-    { label: "corkboard", href: "/corkboard" },
+    {
+      label: "corkboard",
+      href: "/corkboard",
+      visibility: {
+        top: { hideOn: ["/corkboard"] },
+      },
+    },
   ];
 
-  const dockLinks = links.filter((link) => link.label !== "me");
+  const isHomeRoute = router.pathname === "/";
+  const matchesRoute = (routes?: string[]) =>
+    routes?.some((route) => router.pathname.startsWith(route)) ?? false;
+  const isTopVisible = (link: NavLink) => {
+    const topVisibility = link.visibility?.top;
+    if (!topVisibility) {
+      return true;
+    }
+
+    if (matchesRoute(topVisibility.hideOn)) {
+      return false;
+    }
+
+    if (topVisibility.home === "only") {
+      return isHomeRoute;
+    }
+
+    if (topVisibility.home === "hide") {
+      return !isHomeRoute;
+    }
+
+    return true;
+  };
+  const isDockVisible = (link: NavLink) => link.visibility?.dock?.enabled ?? true;
+
+  const topLinks = links.filter(isTopVisible);
+  const dockLinks = links.filter(isDockVisible);
   const isCorkboardRoute = router.pathname.startsWith("/corkboard");
   const isCorkboardHome = router.pathname === "/corkboard";
   const isCorkboardPost =
@@ -225,12 +282,13 @@ const Menu = () => {
               display={{ base: "none", lg: "inline-flex" }}
               transition={themeFade}
               _hover={{ textDecoration: "none", color: "sage.500" }}
+              data-nav-sfx
             >
-              Daniel Lu
+              陆
             </Link>
 
             <Flex align="center" gap={{ base: 5, md: 7 }}>
-              {links.map((link) => (
+              {topLinks.map((link) => (
                 <Link
                   key={`top-${link.label}`}
                   className="linkUnderline"
@@ -240,11 +298,13 @@ const Menu = () => {
                   userSelect="none"
                   variant="description"
                   fontSize="sm"
+                  fontWeight="medium"
                   letterSpacing="0.04em"
                   textTransform="lowercase"
                   _hover={{ color: "sage.500", textDecoration: "none" }}
                   _focus={{ boxShadow: "none", outline: "none" }}
                   _focusVisible={{ boxShadow: "none", outline: "none" }}
+                  data-nav-sfx
                 >
                   {link.label}
                 </Link>
@@ -258,11 +318,13 @@ const Menu = () => {
                 userSelect="none"
                 variant="description"
                 fontSize="sm"
+                fontWeight="medium"
                 letterSpacing="0.04em"
                 textTransform="lowercase"
                 _hover={{ color: "sage.500", textDecoration: "none" }}
                 _focus={{ boxShadow: "none", outline: "none" }}
                 _focusVisible={{ boxShadow: "none", outline: "none" }}
+                data-nav-sfx
               >
                 cv
               </Link>
@@ -277,6 +339,7 @@ const Menu = () => {
                 _hover={{ background: "transparent", color: "sage.500" }}
                 _focus={{ boxShadow: "none", outline: "none" }}
                 _focusVisible={{ boxShadow: "none", outline: "none" }}
+                data-nav-sfx
               />
             </Flex>
           </Flex>
@@ -327,6 +390,7 @@ const Menu = () => {
                     _hover={{ background: "transparent", color: "sage.500", transform: "translateY(-1px)" }}
                     _focus={{ boxShadow: "none", outline: "none" }}
                     _focusVisible={{ boxShadow: "none", outline: "none" }}
+                    data-nav-sfx
                   />
                 </motion.div>
                 {contextualDockLinks.map((link) => (
@@ -340,12 +404,14 @@ const Menu = () => {
                       userSelect="none"
                       variant="description"
                       fontSize="sm"
+                      fontWeight="medium"
                       letterSpacing="0.04em"
                       textTransform="lowercase"
                       _hover={{ color: "sage.500", textDecoration: "none", transform: "translateX(2px)" }}
                       _focus={{ boxShadow: "none", outline: "none" }}
                       _focusVisible={{ boxShadow: "none", outline: "none" }}
                       transition="transform 0.3s ease, color 0.3s ease"
+                      data-nav-sfx
                     >
                       {link.label}
                     </Link>
@@ -362,12 +428,14 @@ const Menu = () => {
                       userSelect="none"
                       variant="description"
                       fontSize="sm"
+                      fontWeight="medium"
                       letterSpacing="0.04em"
                       textTransform="lowercase"
                       _hover={{ color: "sage.500", textDecoration: "none", transform: "translateX(2px)" }}
                       _focus={{ boxShadow: "none", outline: "none" }}
                       _focusVisible={{ boxShadow: "none", outline: "none" }}
                       transition="transform 0.3s ease, color 0.3s ease"
+                      data-nav-sfx
                     >
                       cv
                     </Link>
@@ -386,6 +454,7 @@ const Menu = () => {
                     _hover={{ background: "transparent", color: "sage.500" }}
                     _focus={{ boxShadow: "none", outline: "none" }}
                     _focusVisible={{ boxShadow: "none", outline: "none" }}
+                    data-nav-sfx
                   />
                 </motion.div>
               </Flex>

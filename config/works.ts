@@ -58,7 +58,7 @@ export const Works: {
     },
     {
       title: "CloudQ",
-      description: "Destroys queues with a decentralized virtual queue management system with Starknet (McHacks 2025 winner)",
+      description: "Streamlines queues with a decentralized virtual queue management system with Starknet (McHacks 2025 winner)",
       thumbnail: "/works/cloudq/demo.webm",
       url: "https://github.com/FinityFly/CloudQ",
       date: "January 2025",

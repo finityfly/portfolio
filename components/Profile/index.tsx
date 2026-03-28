@@ -26,7 +26,7 @@ const introGroup = {
   },
 };
 
-const Sidebar = () => {
+const Profile = () => {
   const MotionHeading = motion(Heading);
   const MotionStack = motion(Stack);
 
@@ -56,7 +56,6 @@ const Sidebar = () => {
             fontSize="md"
             fontWeight="normal"
             color="body"
-            textTransform="lowercase"
             maxW="38rem"
           >
             Computer science student at{" "}
@@ -67,6 +66,7 @@ const Sidebar = () => {
               rel="noreferrer"
               variant="emphasis"
               fontWeight="medium"
+              data-nav-sfx
             >
               Carleton University
             </Link>
@@ -77,7 +77,6 @@ const Sidebar = () => {
             fontSize="md"
             fontWeight="normal"
             color="body"
-            textTransform="lowercase"
             maxW="38rem"
           >
             In my free time, I contribute to the{" "}
@@ -88,6 +87,7 @@ const Sidebar = () => {
               rel="noreferrer"
               variant="emphasis"
               fontWeight="medium"
+              data-nav-sfx
             >
               Hugging Face
             </Link>
@@ -99,4 +99,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Profile;

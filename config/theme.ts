@@ -147,7 +147,7 @@ const theme = extendTheme({
             textDecoration: "none",
           },
         }),
-        sidebar: () => ({
+        profile: () => ({
           color: "body",
           fontWeight: "bold",
           fontSize: "sm",

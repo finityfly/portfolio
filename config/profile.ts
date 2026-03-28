@@ -23,9 +23,4 @@ export const SocialMedias: SocialMedia[] = [
     href: "https://x.com/daniel_jmlu",
     icon: FaXTwitter,
   },
-  // {
-  //   label: "Resume",
-  //   href: "/DanielLu_Resume.pdf",
-  //   icon: FaFilePdf,
-  // },
 ];

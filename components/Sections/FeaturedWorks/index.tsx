@@ -25,9 +25,9 @@ function FeaturedWorksSection() {
         >
           selected works
         </Heading>
-        <Text variant="description" maxW="42rem" textTransform="lowercase">
-          More cool stuff on the way, but here are some highlights for now!
-        </Text>
+        {/* <Text variant="description" maxW="42rem">
+          Last updated: March 2026
+        </Text> */}
       </Stack>
       <MotionDiv
         className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"

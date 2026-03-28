@@ -368,6 +368,7 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                       whileHover={{ x: -3 }}
                       whileTap={{ x: -1, scale: 0.98 }}
                       transition={{ duration: 0.18, ease: "easeOut" }}
+                      data-nav-sfx
                     >
                       <Icon as={ArrowBackIcon} boxSize={5} />
                     </MotionLink>

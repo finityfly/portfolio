@@ -2,17 +2,25 @@
 
 import { Fragment, memo } from "react";
 import {
+  Box,
   Heading,
   Text,
   Stack,
   Link,
   useToast,
   HStack,
+  IconButton,
+  useColorModeValue,
 } from "@chakra-ui/react";
-import { SocialMedias } from "config/sidebar";
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import { SocialMedias } from "config/profile";
 
 const GetInTouch = () => {
   const toast = useToast();
+  const toastBg = useColorModeValue("#ECF2E5", "#141A12");
+  const toastBorder = useColorModeValue("#D4DCCE", "#263220");
+  const toastText = useColorModeValue("#1B2219", "#E8EFE2");
+  const toastAccent = useColorModeValue("#5A7D59", "#AFC98D");
 
   return (
     <Stack
@@ -33,17 +41,55 @@ const GetInTouch = () => {
         get in touch
       </Heading>
       <Text variant="description" maxW="40rem">
-        shoot me an email at{" "}
+        Shoot me an email at{" "}
         <Link
           as="span"
           cursor="pointer"
           onClick={() => {
             navigator.clipboard.writeText("daniellu@cmail.carleton.ca");
             toast({
-              title: "Email copied!",
-              status: "success",
-              duration: 3000,
-              isClosable: true,
+              position: "top",
+              duration: 2600,
+              render: ({ onClose }) => (
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  gap={3}
+                  px={4}
+                  py={3}
+                  borderRadius="12px"
+                  border="1px solid"
+                  borderColor={toastBorder}
+                  backgroundColor={toastBg}
+                  color={toastText}
+                  boxShadow="0 10px 30px rgba(0, 0, 0, 0.25)"
+                  minW={{ base: "240px", sm: "280px" }}
+                >
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    justifyContent="center"
+                    boxSize="32px"
+                    borderRadius="10px"
+                    backgroundColor={toastAccent}
+                    color="black"
+                  >
+                    <CheckIcon boxSize={4} />
+                  </Box>
+                  <Text fontSize="sm" fontWeight="medium" letterSpacing="0.01em">
+                    Email copied!
+                  </Text>
+                  <Box ml="auto">
+                    <IconButton
+                      aria-label="Close toast"
+                      size="xs"
+                      variant="ghost"
+                      icon={<CloseIcon boxSize={2.5} />}
+                      onClick={onClose}
+                    />
+                  </Box>
+                </Box>
+              ),
             });
           }}
           variant="emphasis"
@@ -67,6 +113,7 @@ const GetInTouch = () => {
               letterSpacing="0.05em"
               variant="description"
               _hover={{ color: "sage.500", textDecoration: "none" }}
+              data-nav-sfx
             >
               {socMedia.label}
             </Link>
