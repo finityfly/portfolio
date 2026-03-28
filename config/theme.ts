@@ -1,10 +1,7 @@
 import {
   extendTheme,
   ColorMode,
-  ChakraTheme,
-  ThemeComponentProps,
 } from "@chakra-ui/react";
-import { mode } from "@chakra-ui/theme-tools";
 
 interface IThemeMode {
   Light: ColorMode;
@@ -25,36 +22,72 @@ export const mobileBreakpointsMap = {
 
 // Theme Config
 const config = {
-  initialColorMode: ThemeMode.Light,
+  initialColorMode: ThemeMode.Dark,
   useSystemColorMode: false,
 };
 
-const colors = {
-  black: "#121212",
+// Centralized text colors: update only these to retheme body/emphasis text app-wide.
+const BODY_TEXT_HEX = {
+  light: "#4D5A50",
+  dark: "#acbbb1",
 };
 
+const EMPHASIS_HEX = {
+  light: "#74a771",
+  dark: "#afc98d",
+};
+
+const colors = {
+  sage: {
+    500: EMPHASIS_HEX.dark,
+    600: "#A3B18A",
+    700: EMPHASIS_HEX.light,
+  },
+  border: {
+    dark: "#1D241B",
+    light: "#D4DCCE",
+  },
+};
+
+const THEME_FADE_DURATION = "300ms";
+const THEME_FADE_EASING = "ease";
+
 const styles = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  global: (props: any) => ({
+  global: () => ({
     body: {
-      color: mode("gray.800", "whiteAlpha.900")(props),
-      bg: mode("gray.100", "#121212")(props),
+      color: "body",
+      bg: "panel",
+      lineHeight: 1.75,
+      letterSpacing: "0.01em",
+      transitionProperty: "background-color, color",
+      transitionDuration: THEME_FADE_DURATION,
+      transitionTimingFunction: THEME_FADE_EASING,
+    },
+    "#__next, main, section, footer, header": {
+      transitionProperty: "background-color, border-color, color",
+      transitionDuration: THEME_FADE_DURATION,
+      transitionTimingFunction: THEME_FADE_EASING,
+    },
+    "a, button, svg, .chakra-heading, .chakra-text, .chakra-link, .chakra-icon, .chakra-button, .chakra-container, .chakra-box, .chakra-flex, .chakra-stack": {
+      transitionProperty: "background-color, border-color, color, fill, stroke",
+      transitionDuration: THEME_FADE_DURATION,
+      transitionTimingFunction: THEME_FADE_EASING,
     },
   }),
 };
 
 const textVariants = {
-  emphasis: (props: ThemeComponentProps<ChakraTheme>) => ({
-    color: mode("teal.500", "cyan.200")(props),
+  emphasis: () => ({
+    color: "accent",
   }),
-  description: (props: ThemeComponentProps<ChakraTheme>) => ({
-    color: mode("gray.800", "gray.400")(props),
+  description: () => ({
+    color: "body",
   }),
-  accent: (props: ThemeComponentProps<ChakraTheme>) => ({
-    color: mode("black.400", "cyan.200")(props),
+  accent: () => ({
+    color: "accent",
   }),
-  accentAlternative: (props: ThemeComponentProps<ChakraTheme>) => ({
-    color: mode("#595959", "#A6A6A6")(props),
+  accentAlternative: () => ({
+    color: "accentAlternative",
   }),
 };
 
@@ -63,31 +96,64 @@ const theme = extendTheme({
   fonts: {
     body: "Poppins",
     name: "Newsreader",
+    heading: "Newsreader",
   },
   colors,
+  semanticTokens: {
+    colors: {
+      accent: {
+        default: EMPHASIS_HEX.light,
+        _dark: EMPHASIS_HEX.dark,
+      },
+      body: {
+        default: BODY_TEXT_HEX.light,
+        _dark: BODY_TEXT_HEX.dark,
+      },
+      accentAlternative: {
+        default: "#5D665E",
+        _dark: "#727B74",
+      },
+      heading: {
+        default: "#1B2219",
+        _dark: "#F2F2F2",
+      },
+      panel: {
+        default: "#F3F4EF",
+        _dark: "#0F110C",
+      },
+      panelBorder: {
+        default: "#D4DCCE",
+        _dark: "#1D241B",
+      },
+    },
+  },
   styles,
   components: {
     Link: {
-      baseStyle: (props: any) => ({
-        color: mode("teal.500", "cyan.200")(props),
+      baseStyle: () => ({
+        color: "accent",
+        textDecoration: "none",
+        _hover: {
+          color: "accent",
+          textDecoration: "none",
+        },
       }),
       variants: {
         ...textVariants,
-        description: (props: ThemeComponentProps<ChakraTheme>) => ({
-          color: mode("gray.800", "gray.400")(props),
+        description: () => ({
+          color: "body",
           _hover: {
-            color: mode("teal.500", "cyan.200")(props),
+            color: "accent",
             textDecoration: "none",
           },
         }),
-        sidebar: (props: ThemeComponentProps<ChakraTheme>) => ({
-          color: mode("gray.700", "gray.400")(props),
-          textTransform: "uppercase",
+        sidebar: () => ({
+          color: "body",
           fontWeight: "bold",
           fontSize: "sm",
           letterSpacing: "wider",
           _hover: {
-            color: mode("gray.900", "white")(props),
+            color: "heading",
             textDecoration: "none",
           },
         }),
@@ -101,33 +167,30 @@ const theme = extendTheme({
     },
     Button: {
       variants: {
-        outline: (props: any) => ({
-          borderColor: mode("black.400", "cyan.200")(props),
+        outline: () => ({
+          borderColor: "accent",
         }),
-        outlineAlternative: (props: any) => ({
+        outlineAlternative: () => ({
           borderWidth: "1px",
-          borderRadius: 0,
-          borderColor: mode("#595959", "whiteAlpha.500")(props),
+          borderRadius: "4px",
+          borderColor: "panelBorder",
           _hover: {
-            backgroundColor: mode(
-              "rgba(49, 151, 149, 0.06)",
-              "rgba(157, 236, 249, 0.06)"
-            )(props),
+            backgroundColor: "panel",
           },
         }),
       },
     },
     Icon: {
       variants: {
-        accent: (props: any) => ({
-          borderColor: mode("gray.800", "gray.400")(props),
+        accent: () => ({
+          borderColor: "panelBorder",
         }),
       },
     },
     Divider: {
       variants: {
-        solid: (props: any) => ({
-          borderColor: mode("gray.800", "gray.400")(props),
+        solid: () => ({
+          borderColor: "panelBorder",
           marginLeft: "auto",
           marginRight: "auto",
         }),

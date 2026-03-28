@@ -1,60 +1,55 @@
-
-
-.menu{
+.navShell {
   position: fixed;
-  top:0;
-  right: 3.5%;
+  inset: 0;
   z-index: 1200;
-}
-.mobileMenuContainer{
-  position: fixed;
-  z-index: 1300;
-  top: 0;
-  height: 68px;
-  display: flex;
-  justify-content: space-between;
-  justify-items: flex-end;
+  pointer-events: none;
 }
 
-.navBtn{
-  --underline-color: #97DFFC;
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  border-right: 1px solid transparent;
-  position: relative;
-  padding-bottom: 6px;
-  background-color: transparent !important;
-  box-shadow: none !important;
-}
-
-.navBtn::after {
-  content: "";
+.topBar {
   position: absolute;
+  top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background-color: var(--underline-color);
-  transform: scaleX(0);
-  transform-origin: left;
-  opacity: 0;
-  transition: transform 450ms ease, opacity 450ms ease;
+  width: 100%;
+  pointer-events: none;
 }
 
-.navBtn:hover,
-.navBtn:focus,
-.navBtn:active {
-  background-color: transparent;
+.dockContainer {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
 }
 
-.navBtn:hover::after,
-.navBtn:focus::after,
-.navBtn:active::after {
-  transform: scaleX(1);
-  opacity: 1;
+.dockInner {
+  display: flex;
+  align-items: stretch;
+  pointer-events: auto;
 }
 
-.navBtn.dark {
-  --underline-color: #121212;
+.dockSpine {
+  width: 1px;
+  align-self: stretch;
+  opacity: 0.8;
+}
+
+@media (max-width: 1280px) {
+  .dockContainer {
+    right: 1.25rem;
+  }
+}
+
+@media (max-width: 991px) {
+  .dockContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .dockContainer {
+    right: 0.75rem;
+  }
 }

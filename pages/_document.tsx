@@ -5,6 +5,11 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: "if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }",
+            }}
+          />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"

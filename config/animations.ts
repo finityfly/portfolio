@@ -7,59 +7,83 @@ const DURATIONS = {
 };
 const easing = [0.6, -0.05, 0.01, 0.99];
 
+const SPRING_PHYSICS = {
+  type: "spring" as const,
+  stiffness: 112,
+  damping: 22,
+  mass: 1,
+};
+
+const RISE_DISTANCE = 20;
+
 const fadeInUp = {
   initial: {
-    y: 60,
+    y: RISE_DISTANCE,
     opacity: 0,
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: DURATIONS.Fast,
-      ease: easing,
+      ...SPRING_PHYSICS,
     },
   },
 };
 
 const fadeInUpSlower = {
   initial: {
-    y: 34,
+    y: RISE_DISTANCE,
     opacity: 0,
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: 0.4,
-      ease: easing,
+      ...SPRING_PHYSICS,
+    },
+  },
+};
+
+const riseIn = {
+  initial: {
+    y: RISE_DISTANCE,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      ...SPRING_PHYSICS,
     },
   },
 };
 
 const letterSpace = {
   initial: {
+    y: RISE_DISTANCE,
     opacity: 0,
+    letterSpacing: "-0.05em",
   },
   animate: {
-    letterSpacing: ["0px", "-10px", "0px"],
+    y: 0,
+    letterSpacing: "0.02em",
     opacity: 1,
     transition: {
-      duration: DURATIONS.Slow,
-      ease: easing,
+      ...SPRING_PHYSICS,
     },
   },
 };
 
 const simpleOpacity = {
   initial: {
+    y: RISE_DISTANCE,
     opacity: 0,
   },
   animate: {
+    y: 0,
     opacity: 1,
     transition: {
-      duration: DURATIONS.Fast,
-      ease: easing,
+      ...SPRING_PHYSICS,
     },
   },
 };
@@ -73,16 +97,14 @@ const scaleUp = {
     opacity: [0, 1],
     scale: [1, 1.05, 1],
     transition: {
-      duration: DURATIONS.VerySlow,
-      ease: easing,
+      ...SPRING_PHYSICS,
     },
   },
   lightMode: {
     opacity: [0, 1],
     scale: [0.99, 1.05, 1],
     transition: {
-      duration: DURATIONS.VerySlow,
-      ease: easing,
+      ...SPRING_PHYSICS,
     },
   },
 };
@@ -92,16 +114,14 @@ const menuAnim = {
     y: 0,
     opacity: 1,
     transition: {
-      ease: easing,
-      duration: DURATIONS.VeryFast,
+      ...SPRING_PHYSICS,
     },
   },
   hide: {
     opacity: 0,
-    y: -100,
+    y: -20,
     transition: {
-      ease: easing,
-      duration: DURATIONS.VeryFast,
+      ...SPRING_PHYSICS,
     },
   },
 };
@@ -109,14 +129,13 @@ const menuAnim = {
 const avatarAnimation = {
   initial: {
     opacity: 0,
-    y: 60,
+    y: RISE_DISTANCE,
   },
   animate: {
     y: 0,
     opacity: 1,
     transition: {
-      duration: DURATIONS.Fast,
-      ease: easing,
+      ...SPRING_PHYSICS,
     },
   },
   exit: {
@@ -134,7 +153,7 @@ const stagger = {
 const galleryStagger = {
   animate: {
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.1,
     },
   },
 };
@@ -144,6 +163,7 @@ export {
   easing,
   fadeInUp,
   fadeInUpSlower,
+  riseIn,
   letterSpace,
   stagger,
   galleryStagger,
@@ -151,4 +171,6 @@ export {
   menuAnim,
   scaleUp,
   avatarAnimation,
+  SPRING_PHYSICS,
+  RISE_DISTANCE,
 };

@@ -14,7 +14,8 @@ const FadeInWhenVisible = ({
 }: FadeInWhenVisibleProps) => {
   const controls = useAnimation();
   const [ref, inView] = useInView({
-    threshold: 0.07,
+    threshold: 0.1,
+    triggerOnce: true,
   });
 
   const variants = {
@@ -37,9 +38,9 @@ const FadeInWhenVisible = ({
   return (
     <motion.div
       style={{ margin: 0 }}
+      initial="initial"
       ref={ref}
       animate={controls}
-      initial="initial"
       variants={variants}
     >
       {children}

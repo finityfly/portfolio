@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useColorModeValue, useToken } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 import { cn } from "@/lib/utils";
 
 export type WorkCardProps = {
@@ -36,6 +36,7 @@ export function WorkCard({
   href,
   thumbnailFit = "cover",
 }: WorkCardProps) {
+  void thumbnailFit;
   // Auto-detect media type if not provided, prioritizing webm videos
   const detectedMediaType = mediaType || detectMediaType(mediaSrc);
   const isVideo = detectedMediaType === "video";
@@ -52,18 +53,14 @@ export function WorkCard({
   };
 
   const cleanDescription = stripHtml(description);
-  const mediaObjectFit = thumbnailFit === "contain" ? "contain" : "fill";
+  const mediaObjectFit = "cover" as const;
 
-  // Get colors based on Chakra UI color mode
-  const emphasis = useColorModeValue("teal.500", "cyan.200");
-  const emphasisColor = useToken("colors", emphasis);
-  const bgColor = useColorModeValue("#ffffff", "#374151");
-  const borderColor = useColorModeValue("#e5e7eb", "#4b5563");
-  const hoverBorderColor = useColorModeValue("#14b8a6", "#67e8f9");
-  const textColor = useColorModeValue("#111827", "#ffffff");
-  const descriptionColor = useColorModeValue("#374151", "#d1d5db");
-  const mutedColor = useColorModeValue("#6b7280", "#9ca3af");
-  const mediaBg = useColorModeValue("#f3f4f6", "#1f2937");
+  const borderColor = useColorModeValue("#C7D2C0", "#2B3528");
+  const hoverBorderColor = useColorModeValue("#8EA187", "#4B5E45");
+  const titleColor = "var(--chakra-colors-accent)";
+  const descriptionColor = "var(--chakra-colors-body)";
+  const mediaBg = useColorModeValue("#ECEFE8", "#0F110C");
+  const cardBg = "transparent";
 
   return (
     <Link
@@ -75,29 +72,66 @@ export function WorkCard({
     >
       <article
         className={cn(
-          "relative overflow-hidden rounded-xl",
+          "relative overflow-hidden",
           "transition-all duration-300 ease-out",
-          "hover:shadow-lg hover:-translate-y-1",
           "flex flex-col"
         )}
         style={{
-          backgroundColor: bgColor,
+          backgroundColor: cardBg,
           border: `1px solid ${borderColor}`,
           height: "100%",
-          minHeight: "350px",
+          minHeight: "390px",
+          borderRadius: "4px",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.borderColor = hoverBorderColor;
+          e.currentTarget.style.transform = "translateY(-1px)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.borderColor = borderColor;
+          e.currentTarget.style.transform = "translateY(0)";
         }}
       >
+        <div className="px-5 pt-5 pb-4 flex flex-col gap-2.5">
+          <div className="flex items-center justify-between gap-3">
+            <h3
+              className={cn("text-[1.15rem] font-semibold leading-tight")}
+              style={{
+                color: titleColor,
+              }}
+            >
+              {title}
+            </h3>
+            <span
+              className={cn(
+                "text-xs tracking-wide whitespace-nowrap",
+                "opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              )}
+              style={{ color: titleColor, textTransform: "lowercase" }}
+            >
+              view project →
+            </span>
+          </div>
+
+          <p
+            className="text-[0.92rem] leading-relaxed"
+            style={{
+              color: descriptionColor,
+              display: "-webkit-box",
+              WebkitLineClamp: 1,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {cleanDescription}
+          </p>
+        </div>
+
         <div
-          className="relative w-full overflow-hidden flex-shrink-0"
+          className="relative w-full overflow-hidden aspect-[4/3]"
           style={{
             backgroundColor: mediaBg,
-            flex: "0 0 70%", // 5% of card height for image
+            borderTop: `1px solid ${borderColor}`,
           }}
         >
           <div className="absolute inset-0 h-full w-full">
@@ -111,7 +145,7 @@ export function WorkCard({
                 className={cn(
                   "h-full w-full block",
                   "transition-transform duration-500 ease-out",
-                  "group-hover:scale-105"
+                  "group-hover:scale-[1.02]"
                 )}
                 style={{
                   objectFit: mediaObjectFit,
@@ -125,7 +159,7 @@ export function WorkCard({
                 fill
                 className={cn(
                   "transition-transform duration-500 ease-out",
-                  "group-hover:scale-105"
+                  "group-hover:scale-[1.02]"
                 )}
                 style={{
                   objectFit: mediaObjectFit,
@@ -134,82 +168,6 @@ export function WorkCard({
                 unoptimized={mediaSrc.toLowerCase().endsWith(".gif")}
               />
             )}
-
-            {/* Subtle overlay on hover */}
-            <div
-              className={cn(
-                "absolute inset-0",
-                "transition-colors duration-300",
-                "group-hover:bg-white/5"
-              )}
-            />
-          </div>
-        </div>
-
-        {/* Content - Compressed to ~35% of card height using flex */}
-        <div
-          className="px-4 py-3 flex flex-col flex-shrink-0"
-          style={{
-            flex: "0 0 30%", // 25% of card height for text content
-          }}
-        >
-          <h3
-            className={cn(
-              "text-base font-semibold leading-tight mb-1.5",
-              "line-clamp-1"
-            )}
-            style={{
-              color: emphasisColor, // Use emphasis color for title
-              // fontFamily: "var(--chakra-fonts-name)",
-            }}
-          >
-            {title}
-          </h3>
-
-          <p
-            className="text-xs leading-snug mb-2 flex-1"
-            style={{
-              color: descriptionColor,
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
-            {cleanDescription}
-          </p>
-
-          {/* Arrow indicator */}
-          <div
-            className={cn(
-              "flex items-center gap-1.5 text-xs font-medium",
-              "transition-all duration-200",
-              "group-hover:gap-2"
-            )}
-            style={{
-              color: mutedColor,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = textColor;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = mutedColor;
-            }}
-          >
-            <span>View Project</span>
-            <svg
-              className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
           </div>
         </div>
       </article>

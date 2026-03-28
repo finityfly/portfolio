@@ -1,12 +1,12 @@
 import {
   Box,
   Container,
+  Flex,
   Heading,
   Icon,
   Image,
   Stack,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
 import { motion } from "framer-motion";
@@ -17,6 +17,7 @@ import { useEffect, useMemo } from "react";
 import OpenGraphHead from "components/Misc/OpenGraphHead";
 import Menu from "components/Menu";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
+import { SPRING_PHYSICS, riseIn } from "config/animations";
 import {
   corkboardPosts,
   CorkboardPost,
@@ -58,19 +59,13 @@ const byNewestFirst = (a: CorkboardPost, b: CorkboardPost) =>
 
 const MotionDiv = motion.div;
 const MotionLink = motion.a;
+const MotionHeading = motion(Heading);
 
 const CorkboardPage = () => {
   const router = useRouter();
-  const bg = useColorModeValue("gray.100", "black");
-  const rowBorderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.200");
-  const rowHoverBg = useColorModeValue(
-    "rgba(15, 23, 42, 0.02)",
-    "rgba(148, 163, 184, 0.08)"
-  );
-  const emptyStateImageSrc = useColorModeValue(
-    "/mimikyu_shadow.png",
-    "/mimikyu.png"
-  );
+  const rowBorderColor = "panelBorder";
+  const rowHoverBg = "rgba(148, 163, 184, 0.08)";
+  const emptyStateImageSrc = "/mimikyu.png";
 
   const posts = useMemo(() => [...corkboardPosts].sort(byNewestFirst), []);
   const getDescription = (post: CorkboardPost): string => {
@@ -95,11 +90,16 @@ const CorkboardPage = () => {
       <Analytics />
       <OpenGraphHead />
       <Menu />
-      <Box as="main" bg={bg} minH="100vh" paddingTop={24}>
-        <Container maxW="6xl" pb={16}>
+      <Box as="main" bg="panel" color="body" minH="100vh" paddingTop={24}>
+        <Container maxW={{ base: "5xl", lg: "min(70vw, 56rem)" }} px={{ base: 6, md: 8 }} pb={16}>
           <FadeInLayout>
-            <Stack spacing={6} mb={10}>
-              <Box ml={{ base: 2, md: 0 }}>
+            <Stack spacing={0} mb={10}>
+              <Flex
+                ml={{ base: 2, md: 0 }}
+                mt={{ base: 2, md: 3 }}
+                mb={{ base: 5, md: 6 }}
+                align="center"
+              >
                 <NextLink href="/" prefetch passHref legacyBehavior>
                   <MotionLink
                     aria-label="Back to portfolio"
@@ -111,19 +111,22 @@ const CorkboardPage = () => {
                     <Icon as={ArrowBackIcon} boxSize={5} />
                   </MotionLink>
                 </NextLink>
-              </Box>
+              </Flex>
               <Heading
+                as={MotionHeading}
                 size="2xl"
                 fontFamily="name"
+                color="heading"
+                textTransform="lowercase"
                 pl={{ base: 2, md: 0 }}
-                style={{
-                  fontVariantCaps: "small-caps",
-                }}
+                initial="initial"
+                animate="animate"
+                variants={riseIn}
               >
-                Corkboard
+                corkboard
               </Heading>
               <Text variant="description" maxW={{ base: "90%", md: "70%" }} pl={{ base: 2, md: 0 }}>
-                My digital corkboard for half-baked ideas and anything that doesn&apos;t fit neatly elsewhere.
+                my digital space for half-baked ideas and anything that doesn&apos;t fit neatly elsewhere.
               </Text>
             </Stack>
           </FadeInLayout>
@@ -145,7 +148,7 @@ const CorkboardPage = () => {
                   opacity={0.92}
                 />
                 <Text fontSize="sm" variant="description" letterSpacing="0.02em">
-                  Nothing pinned yet 😔
+                  nothing pinned yet 😔
                 </Text>
               </Stack>
             ) : (
@@ -157,7 +160,7 @@ const CorkboardPage = () => {
                   animate: {
                     transition: {
                       delayChildren: 0.08,
-                      staggerChildren: 0.09,
+                      staggerChildren: 0.1,
                     },
                   },
                 }}
@@ -169,11 +172,11 @@ const CorkboardPage = () => {
                       <MotionDiv
                         key={post.id}
                         variants={{
-                          initial: { opacity: 0, y: 14 },
+                          initial: { opacity: 0, y: -20 },
                           animate: {
                             opacity: 1,
                             y: 0,
-                            transition: { duration: 0.35, ease: "easeOut" },
+                            transition: { ...SPRING_PHYSICS },
                           },
                         }}
                       >
@@ -201,7 +204,7 @@ const CorkboardPage = () => {
                               transition="background-color 0.15s ease-out"
                             >
                               <Stack spacing={1}>
-                                <Heading size="sm">{post.title}</Heading>
+                                <Heading size="sm" color="heading">{post.title}</Heading>
                                 {description && (
                                   <Text
                                     fontSize="sm"

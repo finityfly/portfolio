@@ -1,78 +1,39 @@
 "use client";
 
-import { memo } from "react";
+import { Fragment, memo } from "react";
 import {
   Heading,
   Text,
   Stack,
   Link,
-  Icon,
-  Box,
   useToast,
+  HStack,
 } from "@chakra-ui/react";
-import { motion, Variants } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { RiHeartPulseFill, RiCopyleftLine, RiGithubFill } from "react-icons/ri";
 import { SocialMedias } from "config/sidebar";
 
-const rimuruVariant: Variants = {
-  shake: {
-    rotate: [0, 15, 0, -15, 0],
-    transition: {
-      delay: 1.2,
-      duration: 0.5,
-      repeat: 2,
-      ease: "easeInOut",
-    },
-  },
-  jump: {
-    y: [0, -35, 0],
-    transition: {
-      delay: 1.8,
-      duration: 0.5,
-      repeat: 3,
-      ease: "easeInOut",
-    },
-  },
-};
-
 const GetInTouch = () => {
-  const [ref, inView] = useInView();
-  const MotionBox = motion(Box);
-  const currentYear = new Date().getFullYear();
   const toast = useToast();
 
   return (
     <Stack
-      width={{ base: "99%", lg: "100%", xl: "75%" }}
+      width="100%"
       height="100%"
-      spacing={{ base: 6, xl: 8 }}
-      as="footer"
+      spacing={{ base: 8, md: 10 }}
+      as="section"
       position="relative"
     >
       <Heading
-        size="2xl"
-        style={{
-          fontVariantCaps: "small-caps",
-        }}
+        size="xl"
         fontFamily="name"
         position="relative"
         zIndex={20}
+        color="heading"
+        textTransform="lowercase"
       >
-        Say hi!{" "}
-        <Text as="span" fontSize="2xl" variant="emphasis">
-          <motion.div
-            style={{ display: "inline-block" }}
-            variants={rimuruVariant}
-            ref={ref}
-            animate={inView ? ["shake", "jump"] : false}
-          >
-            (⁀ᗢ⁀)
-          </motion.div>
-        </Text>
+        get in touch
       </Heading>
-      <Text variant="description">
-        Shoot me an email @{" "}
+      <Text variant="description" maxW="40rem">
+        shoot me an email at{" "}
         <Link
           as="span"
           cursor="pointer"
@@ -85,57 +46,38 @@ const GetInTouch = () => {
               isClosable: true,
             });
           }}
+          variant="emphasis"
+          className="linkUnderline"
         >
           daniellu@cmail.carleton.ca
         </Link>{" "}
-        or any social media!
+        or connect through one of the links below.
       </Text>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        gap={12}
-        flexWrap="wrap"
-      >
-        {SocialMedias.map((socMedia) => (
-          <Link
-            variant="description"
-            key={socMedia.label}
-            aria-label={socMedia.label}
-            rel="noreferrer"
-            href={socMedia.href}
-            target="_blank"
-            _focus={{ boxShadow: "none" }}
-          >
-            <Stack direction="row" alignItems="center">
-              <Icon w={6} h={6} as={socMedia.icon} color="currentColor" />
-              <Text>{socMedia.label}</Text>
-            </Stack>
-          </Link>
+      <HStack spacing={{ base: 5, md: 7 }} flexWrap="wrap" align="center">
+        {SocialMedias.map((socMedia, index) => (
+          <Fragment key={socMedia.label}>
+            <Link
+              aria-label={socMedia.label}
+              rel="noreferrer"
+              href={socMedia.href}
+              target="_blank"
+              className="linkUnderline"
+              _focus={{ boxShadow: "none" }}
+              fontSize="sm"
+              letterSpacing="0.05em"
+              variant="description"
+              _hover={{ color: "sage.500", textDecoration: "none" }}
+            >
+              {socMedia.label}
+            </Link>
+            {index < SocialMedias.length - 1 && (
+              <Text as="span" variant="description" opacity={0.8}>
+                ·
+              </Text>
+            )}
+          </Fragment>
         ))}
-      </Box>
-
-      <Box
-        padding={0.5}
-        textAlign="center"
-        fontFamily="monospace"
-        paddingTop={{ base: 10, lg: 20, xl: 20 }}
-        paddingBottom={{ base: 5, lg: 18 }}
-      >
-        <Link
-          variant="description"
-          textDecoration="none"
-          rel="noreferrer"
-          href="https://github.com/FinityFly/portfolio"
-          target="_blank"
-          _focus={{ boxShadow: "none" }}
-        >
-          <Text as="span">
-            <Icon as={RiGithubFill} h={6} w={6} /> <br />
-            Daniel Lu <Icon as={RiHeartPulseFill} /> {currentYear}
-          </Text>
-        </Link>
-      </Box>
+      </HStack>
     </Stack>
   );
 };

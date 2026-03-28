@@ -19,7 +19,7 @@ export const SocialMedias: SocialMedia[] = [
     icon: FaLinkedin,
   },
   {
-    label: "Twitter",
+    label: "X",
     href: "https://x.com/daniel_jmlu",
     icon: FaXTwitter,
   },

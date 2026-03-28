@@ -7,11 +7,39 @@ body {
   padding: 0;
   margin: 0;
   scroll-behavior: smooth;
+  background-color: #0f110c;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+#__next {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a:focus,
+a:focus-visible,
+button:focus,
+button:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.chakra-link:focus,
+.chakra-link:focus-visible,
+.chakra-button:focus,
+.chakra-button:focus-visible,
+[data-focus-visible-added] {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 * {
@@ -25,8 +53,8 @@ body::-webkit-scrollbar-track-piece {
   width: 10px;
 }
 body::-webkit-scrollbar-thumb {
-  background: var(--chakra-colors-gray-600);
-  border-radius: 1em;
+  background: #2b3528;
+  border-radius: 4px;
 }
 
 /* Fallback */
@@ -39,36 +67,43 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-/* Fallback */
-@media (max-width: 1279px) {
-  #mainGrid {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(1, auto);
-  }
-}
-/* Tablet Support */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
-  body {
-    overflow-y: scroll !important;
-  }
-  #mainGrid {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(1, auto);
-  }
-  main {
-    overflow-y: unset !important;
-  }
-  #sidebarCircle {
-    display: none !important;
-  }
-  .contentRow {
-    min-height: auto !important;
-    padding: var(--chakra-space-14);
-    justify-content: center;
-  }
-}
-
 :root {
   --x: 0;
   --y: 0;
+  --section-gap: 160px;
+}
+
+.linkUnderline {
+  position: relative;
+  display: inline-block;
+  transition: color 300ms ease-in-out;
+}
+
+.linkUnderline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  opacity: 0;
+  transition: transform 300ms ease-in-out, opacity 300ms ease-in-out;
+}
+
+.linkUnderline:hover {
+  color: var(--chakra-colors-accent);
+}
+
+.linkUnderline:hover::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  :root {
+    --section-gap: 96px;
+  }
 }

@@ -151,7 +151,7 @@ type MarkdownPostWithContent = MarkdownPost & {
 type RenderableCorkboardPost = MarkdownPostWithContent | MediaPost;
 
 const MarkdownBlock = ({ content }: { content: string }) => {
-  const markdownColor = useColorModeValue("gray.900", "whiteAlpha.950");
+  const markdownColor = useColorModeValue("sage.700", "sage.500");
   const markdownSecondaryColor = useColorModeValue("gray.800", "whiteAlpha.900");
   const inlineCodeBg = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
   const blockCodeBg = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
@@ -327,7 +327,6 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
   post,
   readingTimeMinutes,
 }) => {
-  const bg = useColorModeValue("gray.100", "black");
   const bodyText = useColorModeValue("gray.700", "whiteAlpha.900");
   const mediaShellBg = useColorModeValue(
     "rgba(255, 255, 255, 0.72)",
@@ -354,8 +353,8 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
       <Analytics />
       <OpenGraphHead />
       <Menu />
-      <Box as="main" bg={bg} minH="100vh" paddingTop={{ base: 20, md: 24 }}>
-        <Container maxW={{ base: "95%", md: "4xl" }} pb={16}>
+      <Box as="main" bg="panel" color="body" minH="100vh" paddingTop={{ base: 20, md: 24 }}>
+        <Container maxW={{ base: "5xl", lg: "min(70vw, 56rem)" }} pb={16} px={{ base: 6, md: 8 }}>
           <FadeInLayout>
             <Box
               padding={{ base: 5, md: 7 }}
@@ -375,7 +374,7 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                   </NextLink>
                 </Box>
                 <Stack spacing={1}>
-                  <Heading size="xl" fontFamily="name">
+                  <Heading size="xl" fontFamily="name" color="heading">
                     {post.title}
                   </Heading>
                   <Text
