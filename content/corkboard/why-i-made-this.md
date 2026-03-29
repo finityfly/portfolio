@@ -14,13 +14,13 @@ Back in middle and high school, buried under a stack of essays I never asked for
 
 Something I've noticed is that the people who seem most clear-headed, the ones who are well-read, well-spoken, and hard to rattle, tend to share a few quiet habits. They read **a lot**. They feed their minds on purpose. And they're willing to sit with an idea for a while instead of reacting to it the second it shows up.
 
-Then, once they've actually made up their minds, they speak on it clearly. Through conversation, through their work, through something like this. Notably, a good friend of mine, [Farooq Qureshi](https://f-q.xyz/), is probably the person who made this click for me. Watching how he thinks, reads, and carries himself made me want to be more intentional about the same things.
+Then, once they've actually made up their minds, they speak on it clearly. Through conversation, through their work, through something like this. Notably, a good friend of mine, [Farooq Qureshi](https://f-q.xyz/), is probably the person who made this click for me. Watching how he thinks, reads, and carries himself made me want to be more intentional about the same things. Good leaders tend to be built like that, and it's no coincidence he ended up directing uOttaHack.
 
-I'm not saying I do any of this perfectly, far from it actually. Like anyone else with a blog, I'm just trying to get better at it, just like any muscle you'd strengthen at the gym. But the pattern, as best I can tell, goes something like:
+Truthfully, I'm nowhere close to any of this, far from it. But that's kind of the point - just like any muscle you'd strengthen at the gym, I'm just trying to get a little better at it. But the pattern, as best I can tell, goes something like:
 
 `receive → distill → express`
 
-When I skip the middle step, I usually end up handing out borrowed opinions like they're my own. When I actually do it, even briefly, even imperfectly, things come out cleaner.
+Skip the middle step and you're basically just recycling what someone else already thought. Do it, even badly, even for five minutes, and something shifts noticeably. Over a year of small shifts, I guarantee you'll end up somewhere you wouldn't have reached any other way.
 
 ## What This Corkboard Is For
 

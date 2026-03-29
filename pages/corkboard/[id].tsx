@@ -263,9 +263,9 @@ const MarkdownBlock = ({ content }: { content: string }) => {
             <Link
               href={href}
               isExternal
-              color={markdownColor}
-              textDecoration="underline"
-              _hover={{ color: markdownSecondaryColor }}
+              className="linkUnderline"
+              variant="emphasis"
+              _hover={{ textDecoration: "none" }}
             >
               {children}
             </Link>
