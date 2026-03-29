@@ -389,7 +389,12 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
   return (
     <>
       <Analytics />
-      <OpenGraphHead />
+      <OpenGraphHead
+        title={`${post.title} | Corkboard | Daniel Lu`}
+        path={`/corkboard/${post.id}`}
+        type="article"
+        publishedTime={post.date}
+      />
       <Menu />
       <Box as="main" bg="panel" color="body" minH="100vh" paddingTop={{ base: 20, md: 24 }}>
         <Container maxW={{ base: "5xl", lg: "min(70vw, 56rem)" }} pb={16} px={{ base: 6, md: 8 }}>

@@ -289,7 +289,11 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
   return (
     <>
       <Analytics />
-      <OpenGraphHead />
+      <OpenGraphHead
+        title="Corkboard | Daniel Lu"
+        path="/corkboard"
+        type="website"
+      />
       <Menu />
       <Box as="main" bg="panel" color="body" minH="100vh" paddingTop={24}>
         <Container

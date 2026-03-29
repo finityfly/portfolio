@@ -31,7 +31,11 @@ const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
         `}
       </Script>
       <Analytics />
-      <OpenGraphHead />
+      <OpenGraphHead
+        title="Daniel Lu"
+        path="/"
+        type="website"
+      />
       <Menu />
       <Container
         as="main"
