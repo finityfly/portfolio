@@ -38,6 +38,15 @@ export type CorkboardPost = MarkdownPost | MediaPost;
 
 export const corkboardPosts: CorkboardPost[] = [
   {
+    id: "quote-board",
+    kind: "markdown",
+    title: "Quote Board",
+    date: "2026-03-30",
+    description:
+      "A collection of quotes that have resonated with me over the years. I find myself returning to these often, and thought it would be nice to share them in a more permanent way.",
+    markdownPath: "content/corkboard/quote-board.md",
+  },
+  {
     id: "why-i-made-this",
     kind: "markdown",
     title: "Why I Made This",

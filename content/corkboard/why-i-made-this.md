@@ -1,4 +1,4 @@
-## Why Start a "Corkboard"?
+## Why Start a Corkboard?
 
 Lately, I kept running into the same problem with myself: I'd come across a good idea, feel it actually land, and then lose it somewhere between that moment and the next morning.
 
@@ -22,7 +22,7 @@ Truthfully, I'm nowhere close to any of this, far from it. But that's kind of th
 
 Skip the middle step and you're basically just recycling what someone else already thought. Do it, even badly, even for five minutes, and something shifts noticeably. Over a year of small shifts, I guarantee you'll end up somewhere you wouldn't have reached any other way.
 
-## What This Corkboard Is For
+## What This Space Is For
 
 Nevertheless, this is a *workshop*, not a showroom. Some rare entries will be polished while some will be rough around the edges. I guarantee a few will just be me thinking out loud while the idea is still taking shape - and that's fine. The goal was never to sound worldly. It's to think a little more clearly, write a little more honestly, and slowly become a little less wrong over time.
 

@@ -78,7 +78,7 @@ const MotionDiv = motion.div;
 const MotionLink = motion.a;
 const MotionHeading = motion(Heading);
 
-const AVERAGE_READING_SPEED_WPM = 200;
+const AVERAGE_READING_SPEED_WPM = 180;
 
 type MarkdownPostWithReadingTime = MarkdownPost & {
   readingTimeMinutes?: number;

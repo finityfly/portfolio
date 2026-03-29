@@ -103,7 +103,7 @@ const formatDate = (iso: string) => {
   return `${monthName} ${Number(day)}, ${year}`;
 };
 
-const AVERAGE_READING_SPEED_WPM = 200;
+const AVERAGE_READING_SPEED_WPM = 180;
 
 const calculateReadingTimeMinutes = (markdown: string): number => {
   const plainText = markdown
@@ -166,6 +166,9 @@ const MarkdownBlock = ({ content }: { content: string }) => {
   const inlineCodeBg = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
   const blockCodeBg = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
   const codeBorderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
+  const blockquoteBg = useColorModeValue("blackAlpha.50", "whiteAlpha.100");
+  const blockquoteBorderColor = useColorModeValue("sage.700", "sage.500");
+  const blockquoteAttributionColor = useColorModeValue("gray.600", "whiteAlpha.700");
   const codeTheme = useColorModeValue(atomOneLight, atomOneDark);
 
   return (
@@ -269,6 +272,43 @@ const MarkdownBlock = ({ content }: { content: string }) => {
             >
               {children}
             </Link>
+          ),
+          blockquote: ({ children }) => (
+            <Box
+              as="blockquote"
+              my={5}
+              px={{ base: 3, md: 4 }}
+              py={{ base: 2, md: 3 }}
+              borderLeftWidth="3px"
+              borderLeftColor={blockquoteBorderColor}
+              borderRadius="md"
+              bg={blockquoteBg}
+              sx={{
+                "p": {
+                  mb: 2,
+                },
+                "p:last-of-type": {
+                  mb: 0,
+                },
+                ul: {
+                  listStyleType: "none",
+                  pl: 0,
+                  mb: 0,
+                  mt: 1,
+                },
+                li: {
+                  mb: 0,
+                },
+                "li .chakra-text": {
+                  color: blockquoteAttributionColor,
+                  fontSize: "0.94em",
+                  letterSpacing: "0.01em",
+                  mb: 0,
+                },
+              }}
+            >
+              {children}
+            </Box>
           ),
           code: ({ className, children }) => {
             const languageMatch = /language-(\S+)/.exec(className || "");
