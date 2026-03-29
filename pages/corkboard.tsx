@@ -78,11 +78,13 @@ const MotionDiv = motion.div;
 const MotionLink = motion.a;
 const MotionHeading = motion(Heading);
 
-type MarkdownPostWithTeaser = MarkdownPost & {
-  teaser: string;
+const AVERAGE_READING_SPEED_WPM = 200;
+
+type MarkdownPostWithReadingTime = MarkdownPost & {
+  readingTimeMinutes?: number;
 };
 
-type RenderableCorkboardPost = MarkdownPostWithTeaser | MediaPost;
+type RenderableCorkboardPost = MarkdownPostWithReadingTime | MediaPost;
 
 type MediaFrameVariant = "wide" | "tall";
 
@@ -121,18 +123,11 @@ const truncateAtWord = (text: string, maxLength: number): string => {
   return `${candidate.trimEnd()}...`;
 };
 
-const extractTeaserFromMarkdown = (markdown: string): string => {
-  const withoutCodeFences = markdown.replace(/```[\s\S]*?```/g, " ");
-  const candidateParagraphs = withoutCodeFences
-    .split(/\n\s*\n/)
-    .map((paragraph) => paragraph.trim())
-    .filter(Boolean)
-    .filter((paragraph) => !/^(#{1,6}\s|>|-\s|\*\s|\d+\.\s)/.test(paragraph));
+const calculateReadingTimeMinutes = (markdown: string): number => {
+  const plainText = stripMarkdownToPlainText(markdown);
+  const wordCount = plainText ? plainText.split(" ").length : 0;
 
-  const sourceParagraph = candidateParagraphs[0] || withoutCodeFences;
-  const plainText = stripMarkdownToPlainText(sourceParagraph);
-
-  return truncateAtWord(plainText, 220);
+  return Math.max(1, Math.ceil(wordCount / AVERAGE_READING_SPEED_WPM));
 };
 
 const getYouTubeEmbedUrl = (src: string): string | null => {
@@ -183,10 +178,6 @@ const getMediaFrameVariant = (
 const estimateCardHeight = (post: RenderableCorkboardPost, index: number): number => {
   const baseHeight = 200;
   const frameVariant = getMediaFrameVariant(post, index);
-
-  if (post.kind === "markdown") {
-    return baseHeight + Math.min(170, post.teaser.length * 0.5);
-  }
 
   if (post.kind === "audio") {
     return baseHeight + 210;
@@ -335,7 +326,7 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
                 corkboard
               </Heading>
               <Text variant="description" maxW="44rem" pt={2}>
-                My digital space for half-baked ideas and anything that doesn&apos;t fit neatly elsewhere.
+                My digital space for half-baked ideas, sick finds, and anything that doesn&apos;t fit neatly elsewhere.
               </Text>
             </Stack>
           </FadeInLayout>
@@ -395,8 +386,7 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
                       {column.map(({ post, index }) => {
                         const youtubeEmbedSrc =
                           post.kind === "video" ? getYouTubeEmbedUrl(post.src) : null;
-                        const postExcerpt =
-                          post.kind === "markdown" ? post.teaser : post.description;
+                        const postExcerpt = post.description;
                         const mediaMetaLabel =
                           post.kind === "markdown" ? "" : getMediaMetaLabel(post.src);
                         const mediaFrameVariant = getMediaFrameVariant(post, index);
@@ -524,13 +514,28 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
                                         {post.title}
                                       </Box>
                                     </NextLink>
+                                    {post.kind === "markdown" && post.readingTimeMinutes ? (
+                                      <Text
+                                        as="span"
+                                        ml={2}
+                                        fontSize="11px"
+                                        fontFamily="mono"
+                                        variant="accentAlternative"
+                                        textTransform="uppercase"
+                                        letterSpacing="0.05em"
+                                        whiteSpace="nowrap"
+                                      >
+                                        {post.readingTimeMinutes} min read
+                                      </Text>
+                                    ) : null}
                                   </Heading>
 
                                   {post.kind === "audio" && (
                                     <Stack spacing={2.5} minW={0} maxW="100%" w="100%">
                                       <CustomAudioPlayer
                                         src={post.src}
-                                        title={post.title}
+                                        title={post.srcTitle || post.title}
+                                        thumbnail={post.thumbnail}
                                         metaLabel={mediaMetaLabel}
                                         compact
                                       />
@@ -582,9 +587,9 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
                                     <Stack spacing={2.5} minW={0} maxW="100%" w="100%">
                                       <CustomVideoPlayer
                                         src={post.src}
-                                        title={post.title}
+                                        title={post.srcTitle || post.title}
                                         metaLabel={mediaMetaLabel}
-                                        poster={post.thumbnail}
+                                        poster={post.poster}
                                         youtubeEmbedSrc={youtubeEmbedSrc}
                                         frameVariant={mediaFrameVariant}
                                         compact
@@ -596,6 +601,7 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
                                     <Text
                                       fontSize="sm"
                                       variant="description"
+                                      whiteSpace="pre-line"
                                       maxW="100%"
                                       w="100%"
                                       mt="auto"
@@ -634,17 +640,13 @@ export const getStaticProps: GetStaticProps<CorkboardPageProps> = async () => {
       try {
         const absolutePath = path.join(process.cwd(), post.markdownPath);
         const content = await fs.readFile(absolutePath, "utf8");
-        const teaser = extractTeaserFromMarkdown(content) || post.summary || "";
 
         return {
           ...post,
-          teaser,
+          readingTimeMinutes: calculateReadingTimeMinutes(content),
         };
       } catch {
-        return {
-          ...post,
-          teaser: post.summary || "",
-        };
+        return post;
       }
     })
   );

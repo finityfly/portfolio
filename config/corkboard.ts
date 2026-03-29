@@ -3,98 +3,79 @@ export type CorkboardPostKind = "markdown" | "audio" | "image" | "video";
 interface CorkboardPostBase {
   id: string;
   title: string;
-  /**
-   * ISO date string, e.g. "2026-03-26"
-   */
   date: string;
-  tags?: string[];
 }
 
 export interface MarkdownPost extends CorkboardPostBase {
   kind: "markdown";
-  /**
-   * Optional short summary that will be shown in the list.
-   */
-  summary?: string;
-  /**
-   * Path to a markdown file inside the project (e.g. "content/corkboard/welcome.md").
-   */
+  description?: string;
   markdownPath: string;
 }
 
-export interface MediaPost extends CorkboardPostBase {
-  kind: "audio" | "image" | "video";
-  /**
-  * Public path or remote URL to the media file.
-   * For local files, place them under /public/corkboard and reference
-   * them like "/corkboard/your-file.ext".
-  *
-  * Notes:
-  * - kind: "image" supports direct remote image URLs.
-  * - kind: "video" supports direct video URLs and YouTube links.
-   */
+interface MediaPostBase extends CorkboardPostBase {
   src: string;
-  /**
-   * Optional short description or caption shown under the media.
-   */
+  srcTitle?: string;
   description?: string;
-  /**
-   * Optional thumbnail image path for audio or video entries.
-   */
+}
+
+export interface AudioPost extends MediaPostBase {
+  kind: "audio";
   thumbnail?: string;
 }
 
+export interface ImagePost extends MediaPostBase {
+  kind: "image";
+}
+
+export interface VideoPost extends MediaPostBase {
+  kind: "video";
+  poster?: string;
+}
+
+export type MediaPost = AudioPost | ImagePost | VideoPost;
+
 export type CorkboardPost = MarkdownPost | MediaPost;
 
-/**
- * Corkboard content
- *
- * To add a new entry:
- * - For markdown posts (notes, essays): use kind: "markdown" and edit the
- *   `markdownPath` field to point to a .md file.
- * - For media-only posts (audio, image, video): use kind: "audio" | "image" | "video"
- *   and point `src` at a file inside /public/corkboard or a remote URL.
- */
 export const corkboardPosts: CorkboardPost[] = [
   {
-    id: "lorem-markdown",
+    id: "why-i-made-this",
     kind: "markdown",
-    title: "Lorem Markdownum",
-    date: "2026-03-26",
-    tags: ["lorem"],
-    summary:
-      "Et pectore dixut iugulo",
-    markdownPath: "content/corkboard/lorem-markdown.md",
+    title: "Why I Made This",
+    date: "2026-03-29",
+    description:
+      "A short note on why this space exists, and why I think everyone should have one.",
+    markdownPath: "content/corkboard/why-i-made-this.md",
   },
   {
     id: "been-so-long",
     kind: "audio",
     title: "been so long - mflo",
-    date: "2026-03-26",
-    tags: ["audio", "demo"],
+    date: "2026-03-25",
     src: "/corkboard/been_so_long.mp3",
+    srcTitle: "been so long - mflo",
     description:
-      "one of my favourite songs by mflo, check them out if you like what you hear!",
+      "One of my favourite songs by mflo.",
   },
   {
     id: "mimikyu-image",
     kind: "image",
-    title: "mimikyu.",
+    title: "mimikyu",
     date: "2026-03-25",
-    tags: ["image"],
     src: "/corkboard/mimi.jpg",
-    description:
-      "mimikyu.",
   },
   {
-    id: "manuel-whammy",
+    id: "manuel-riff",
     kind: "video",
-    title: "the best riff in the world",
-    date: "2026-03-26",
-    tags: ["video", "demo"],
+    title: "The Single Riff That Made Me Learn Guitar",
+    date: "2026-03-27",
     src: "https://www.youtube.com/watch?v=XGmoZn0nbrY",
+    srcTitle: "the biggest shred collab song in the world 5 - Manuel Gardner Fernandes part",
     description:
-      "all credit goes to manual gardner-fernandes 🐐",
+      `Introducing Manuel Gardner-Fernandes, a modern guitar player that I believe deserves far more recognition than he currently has.
+      
+      He's achieved the rare balance between technical precision and musicality without ever feeling forced. This particular riff is a great example of his style, and happens to be the one that made me lose my guitar virginity. 
+      
+      Check out his channel if you like what you hear, it's a gold mine for rhythmic guitar ideas.`,
   },
 ];
 

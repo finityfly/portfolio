@@ -67,12 +67,12 @@ const preventSliderPointer = (event: SyntheticEvent<HTMLInputElement>) => {
 interface MediaPlayerBaseProps {
   title: string;
   metaLabel?: string;
-  thumbnail?: string;
   compact?: boolean;
 }
 
 interface CustomAudioPlayerProps extends MediaPlayerBaseProps {
   src: string;
+  thumbnail?: string;
 }
 
 export const CustomAudioPlayer = ({
@@ -329,7 +329,6 @@ const inlinePlaybackAttrs = {
 export const CustomVideoPlayer = ({
   src,
   title,
-  thumbnail,
   poster,
   youtubeEmbedSrc,
   frameVariant = "wide",
@@ -450,17 +449,11 @@ export const CustomVideoPlayer = ({
         <Flex className={styles.mediaTitleBar}>
           <Flex className={styles.mediaTitleLead}>
             {!compact && (
-              <Box className={styles.mediaBadgeSquare}>
-                {thumbnail || poster ? (
-                  <Image
-                    src={thumbnail || poster}
-                    alt={`${title} cover`}
-                    className={styles.mediaBadgeImage}
-                    objectFit="cover"
-                  />
-                ) : (
-                  <Icon as={RiPlayCircleLine} boxSize={4.5} />
-                )}
+              <Box className={`${styles.mediaBadgeSquare} ${styles.mediaBadgeFallback}`}>
+                <Icon
+                  as={RiPlayCircleLine}
+                  className={styles.mediaBadgeFallbackIcon}
+                />
               </Box>
             )}
 

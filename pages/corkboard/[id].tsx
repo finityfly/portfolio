@@ -161,7 +161,7 @@ type MarkdownPostWithContent = MarkdownPost & {
 type RenderableCorkboardPost = MarkdownPostWithContent | MediaPost;
 
 const MarkdownBlock = ({ content }: { content: string }) => {
-  const markdownColor = useColorModeValue("sage.700", "sage.500");
+  const markdownColor = "emphasis";
   const markdownSecondaryColor = useColorModeValue("gray.800", "whiteAlpha.900");
   const inlineCodeBg = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
   const blockCodeBg = useColorModeValue("blackAlpha.100", "whiteAlpha.200");
@@ -393,7 +393,7 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                     {post.kind === "audio" && (
                       <CustomAudioPlayer
                         src={post.src}
-                        title={post.title}
+                        title={post.srcTitle || post.title}
                         thumbnail={post.thumbnail}
                       />
                     )}
@@ -410,14 +410,13 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                     {post.kind === "video" && (
                       <CustomVideoPlayer
                         src={post.src}
-                        title={post.title}
-                        thumbnail={post.thumbnail}
-                        poster={post.thumbnail}
+                        title={post.srcTitle || post.title}
+                        poster={post.poster}
                         youtubeEmbedSrc={youtubeEmbedSrc}
                       />
                     )}
                     {post.description && (
-                      <Text fontSize="md" color={bodyText}>
+                      <Text fontSize="md" color={bodyText} whiteSpace="pre-line">
                         {post.description}
                       </Text>
                     )}
