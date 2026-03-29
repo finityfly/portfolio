@@ -4,7 +4,7 @@ const OpenGraphHead = () => (
     <title> Daniel Lu</title>
     {/* <meta name="description" content="Daniel Lu" /> */}
     <meta property="og:title" content="Daniel Lu" />
-    <meta property="og:site_name" content="Daniel Lu" />
+    <meta property="og:site_name" content="daniellu.ca" />
     <meta property="og:url" content="https://daniellu.ca/" />
     {/* <meta
       property="og:description"
