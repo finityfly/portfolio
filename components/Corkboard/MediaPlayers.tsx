@@ -205,27 +205,25 @@ export const CustomAudioPlayer = ({
       <Stack spacing={1.5} maxW="100%" minW={0}>
         <Flex className={styles.mediaTitleBar}>
           <Flex className={styles.mediaTitleLead}>
-            {!compact && (
-              <Box
-                className={`${styles.mediaBadgeSquare} ${
-                  thumbnail ? "" : styles.mediaBadgeFallback
-                }`}
-              >
-                {thumbnail ? (
-                  <Image
-                    src={thumbnail}
-                    alt={`${title} cover`}
-                    className={styles.mediaBadgeImage}
-                    objectFit="cover"
-                  />
-                ) : (
-                  <Icon
-                    as={RiMusic2Line}
-                    className={styles.mediaBadgeFallbackIcon}
-                  />
-                )}
-              </Box>
-            )}
+            <Box
+              className={`${styles.mediaBadgeSquare} ${
+                thumbnail ? "" : styles.mediaBadgeFallback
+              }`}
+            >
+              {thumbnail ? (
+                <Image
+                  src={thumbnail}
+                  alt={`${title} cover`}
+                  className={styles.mediaBadgeImage}
+                  objectFit="cover"
+                />
+              ) : (
+                <Icon
+                  as={RiMusic2Line}
+                  className={styles.mediaBadgeFallbackIcon}
+                />
+              )}
+            </Box>
 
             <Text className={styles.mediaSourceTitle} noOfLines={1} minW={0}>
               {title}
@@ -448,14 +446,12 @@ export const CustomVideoPlayer = ({
       <Stack spacing={2.5} maxW="100%" minW={0}>
         <Flex className={styles.mediaTitleBar}>
           <Flex className={styles.mediaTitleLead}>
-            {!compact && (
-              <Box className={`${styles.mediaBadgeSquare} ${styles.mediaBadgeFallback}`}>
-                <Icon
-                  as={RiPlayCircleLine}
-                  className={styles.mediaBadgeFallbackIcon}
-                />
-              </Box>
-            )}
+            <Box className={`${styles.mediaBadgeSquare} ${styles.mediaBadgeFallback}`}>
+              <Icon
+                as={RiPlayCircleLine}
+                className={styles.mediaBadgeFallbackIcon}
+              />
+            </Box>
 
             <Text className={styles.mediaSourceTitle} noOfLines={1} minW={0}>
               {title}
