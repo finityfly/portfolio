@@ -13,7 +13,7 @@ const NavSfxProvider = ({ children }: NavSfxProviderProps) => {
   useEffect(() => {
 
     const playClick = (pitch: number) => {
-      if (!baseAudioRef.current) return;
+      if (!baseAudioRef.current) { return; }
       const audio = baseAudioRef.current.cloneNode(true) as HTMLAudioElement;
       audio.volume = 0.5;
       audio.preservesPitch = false;
@@ -26,10 +26,10 @@ const NavSfxProvider = ({ children }: NavSfxProviderProps) => {
 
     const onDocumentClick = (event: MouseEvent) => {
       const target = event.target as Element | null;
-      if (!target) return;
+      if (!target) { return; }
       const navTarget = target.closest("[data-nav-sfx]");
-      if (!navTarget) return;
-      if (navTarget.getAttribute("data-nav-sfx") !== "theme") return;
+      if (!navTarget) { return; }
+      if (navTarget.getAttribute("data-nav-sfx") !== "theme") { return; }
 
       const html = document.documentElement;
       const theme = html.getAttribute("data-theme");
