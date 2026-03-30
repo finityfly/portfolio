@@ -390,7 +390,7 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
     <>
       <Analytics />
       <OpenGraphHead
-        title={`${post.title} | Corkboard | Daniel Lu`}
+        title={`${post.title}`}
         path={`/corkboard/${post.id}`}
         type="article"
         publishedTime={post.date}
