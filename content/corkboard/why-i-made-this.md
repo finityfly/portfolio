@@ -8,7 +8,7 @@ It wasn't that the ideas were bad. Most of the time, I just never slowed down lo
 
 At least for me, having a space like this does more than just store ideas. It helps me figure out what I actually believe. When I write something down, I start to see where my logic skips a step, where I'm repeating something I heard somewhere instead of something I've genuinely worked through, and where things are still fuzzy enough that I couldn't explain them to anyone yet.
 
-Back in middle and high school, buried under a stack of essays I never asked for, I used to think writing was mostly output. You *think* the thing, then you *write* the thing. Nowadays, I think it's mostly processing. Sometimes writing is where my thinking ends. Other times, it's where it starts; that's when it stops feeling like a chore and actually *means* something.
+Back in middle and high school, I formally thought writing was mostly output. You *think* the thing, then you *write* the thing. Nowadays, I think it's mostly processing. Sometimes writing is where my thinking ends. Other times, it's where it starts; that's when it stops feeling like a chore and actually *means* something.
 
 ## A Pattern I Keep Noticing
 
@@ -24,6 +24,6 @@ Skip the middle step and you're basically just recycling what someone else alrea
 
 ## What This Space Is For
 
-Nevertheless, this is a *workshop*, not a showroom. Some rare entries will be polished while some will be rough around the edges. I guarantee a few will just be me thinking out loud while the idea is still taking shape - and that's fine. The goal was never to sound worldly. It's to think a little more clearly, write a little more honestly, and slowly become a little less wrong over time.
+Nevertheless, this is a *workshop*, not a showroom. Some rare entries will be polished while some will be rough around the edges. I guarantee a few will just be me thinking out loud while the idea is still taking shape - and that's fine. The goal was never to sound worldly. It's to think a little more clearly, write a little more honestly, and slowly become a little less wrong over time. The hope is that somewhere in here, something nudges you to start your own, the same way one inspired me.
 
 Consider this the first pin on the board, hopefully with plenty more to come.

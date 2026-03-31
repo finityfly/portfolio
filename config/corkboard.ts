@@ -38,6 +38,13 @@ export type CorkboardPost = MarkdownPost | MediaPost;
 
 export const corkboardPosts: CorkboardPost[] = [
   {
+    id: "hakone-image",
+    kind: "image",
+    title: "hakone",
+    date: "2026-04-01",
+    src: "/corkboard/DSC_05451.jpg",
+  },
+  {
     id: "quote-board",
     kind: "markdown",
     title: "Quote Board",
@@ -67,11 +74,11 @@ export const corkboardPosts: CorkboardPost[] = [
       "One of my favourite songs by mflo.",
   },
   {
-    id: "mimikyu-image",
+    id: "shrine-image",
     kind: "image",
-    title: "mimikyu",
+    title: "the lone tori bros",
     date: "2026-03-25",
-    src: "/corkboard/mimi.jpg",
+    src: "/corkboard/shrine.png",
   },
   {
     id: "manuel-riff",
