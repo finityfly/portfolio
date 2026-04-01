@@ -57,17 +57,17 @@ export const Works: {
       date: "December 2025",
     },
     {
-      title: "CloudQ",
-      description: "Streamlines queues with a decentralized virtual queue management system with Starknet (McHacks 2025 winner)",
-      thumbnail: "/works/cloudq/demo.webm",
-      url: "https://github.com/FinityFly/CloudQ",
-      date: "January 2025",
-    },
-    {
       title: "Clitris",
       description: "A minimalistic, high-fidelity, guideline Tetris implementation for the command line",
       thumbnail: "/works/clitris/demo.webm",
       url: "https://github.com/FinityFly/clitris",
+      date: "January 2025",
+    },
+    {
+      title: "CloudQ",
+      description: "Streamlines queues with a decentralized virtual queue management system with Starknet (McHacks 2025 winner)",
+      thumbnail: "/works/cloudq/demo.webm",
+      url: "https://github.com/FinityFly/CloudQ",
       date: "January 2025",
     },
     {
