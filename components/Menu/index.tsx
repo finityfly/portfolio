@@ -346,7 +346,7 @@ const Menu = () => {
               <Link
                 className="linkUnderline"
                 as={NextLink}
-                href="/DanielLu_Resume.pdf"
+                href="/Daniel_Lu_Resume.pdf"
                 target="_blank"
                 rel="noreferrer"
                 userSelect="none"
@@ -453,7 +453,7 @@ const Menu = () => {
                     <Link
                       className="linkUnderline"
                       as={NextLink}
-                      href="/DanielLu_Resume.pdf"
+                      href="/Daniel_Lu_Resume.pdf"
                       target="_blank"
                       rel="noreferrer"
                       userSelect="none"
