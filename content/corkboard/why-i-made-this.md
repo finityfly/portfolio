@@ -14,7 +14,7 @@ Back in middle and high school, I formally thought writing was mostly output. Yo
 
 Something I've noticed is that the people who seem most clear-headed, the ones who are well-read, well-spoken, and hard to rattle, tend to share a few quiet habits. They read **a lot**. They feed their minds on purpose. And they're willing to sit with an idea for a while instead of reacting to it the second it shows up.
 
-Then, once they've actually made up their minds, they speak on it clearly. Through conversation, through their work, through something like this. Notably, a good friend of mine, [Farooq Qureshi](https://f-q.xyz/), is probably the person who made this click for me. Watching how he thinks, reads, and carries himself made me want to be more intentional about the same things. Good leaders tend to be built like that, and it's no coincidence he ended up directing uOttaHack.
+Then, once they've actually made up their minds, they speak on it clearly. Through conversation, through their work, through something like this. Notably, a recent friend of mine, [Farooq Qureshi](https://f-q.xyz/), is the person who made this click for me. Noticing how he engages with ideas, what he reads, and how he carries himself, made me want to be more intentional about the same things. Good leaders tend to be built like that, and it's no coincidence he ended up directing uOttaHack. I highly recommend checking out his writing on his website for examples of the clearest thinking I've come across from someone our age.
 
 Truthfully, I'm nowhere close to any of this, far from it. But that's kind of the point - just like any muscle you'd strengthen at the gym, I'm just trying to get a little better at it. But the pattern, as best I can tell, goes something like:
 
