@@ -40,8 +40,9 @@ export const corkboardPosts: CorkboardPost[] = [
   {
     id: "hakone-image",
     kind: "image",
-    title: "hakone",
+    title: "minecraft in real life",
     date: "2026-04-01",
+    description: "09/01/2025 - hakone",
     src: "/corkboard/DSC_05451.jpg",
   },
   {
@@ -76,8 +77,9 @@ export const corkboardPosts: CorkboardPost[] = [
   {
     id: "shrine-image",
     kind: "image",
-    title: "the lone tori bros",
+    title: "overdressed tori gates",
     date: "2026-03-25",
+    description: "09/03/2025 - kyoto",
     src: "/corkboard/shrine.png",
   },
   {
