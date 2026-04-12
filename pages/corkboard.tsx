@@ -72,8 +72,12 @@ const formatDate = (iso: string) => {
 };
 
 const byPinnedThenNewest = (a: CorkboardPost, b: CorkboardPost) => {
-  if (a.pinned && !b.pinned) return -1;
-  if (!a.pinned && b.pinned) return 1;
+  if (a.pinned && !b.pinned) {
+    return -1;
+  }
+  if (!a.pinned && b.pinned) {
+    return 1;
+  }
   return new Date(b.date).getTime() - new Date(a.date).getTime();
 };
 
