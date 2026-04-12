@@ -71,8 +71,11 @@ const formatDate = (iso: string) => {
   return `${monthName} ${Number(day)}, ${year}`;
 };
 
-const byNewestFirst = (a: CorkboardPost, b: CorkboardPost) =>
-  new Date(b.date).getTime() - new Date(a.date).getTime();
+const byPinnedThenNewest = (a: CorkboardPost, b: CorkboardPost) => {
+  if (a.pinned && !b.pinned) return -1;
+  if (!a.pinned && b.pinned) return 1;
+  return new Date(b.date).getTime() - new Date(a.date).getTime();
+};
 
 const MotionDiv = motion.div;
 const MotionLink = motion.a;
@@ -463,9 +466,13 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
                                   right={3}
                                   boxSize="10px"
                                   borderRadius="full"
-                                  background={pinColor}
-                                  borderWidth="1px"
-                                  borderColor={pinBorderColor}
+                                  background={post.pinned ? 'accent' : 'accentAlternative'}
+                                  borderWidth="1.5px"
+                                  borderColor={post.pinned ? 'accent' : 'accentAlternative'}
+                                  display="flex"
+                                  alignItems="center"
+                                  justifyContent="center"
+                                  transition="all 0.2s"
                                 />
 
                                 <Flex
@@ -633,7 +640,7 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
 };
 
 export const getStaticProps: GetStaticProps<CorkboardPageProps> = async () => {
-  const sortedPosts = [...corkboardPosts].sort(byNewestFirst);
+  const sortedPosts = [...corkboardPosts].sort(byPinnedThenNewest);
 
   const posts = await Promise.all(
     sortedPosts.map(async (post): Promise<RenderableCorkboardPost> => {

@@ -4,6 +4,7 @@ interface CorkboardPostBase {
   id: string;
   title: string;
   date: string;
+  pinned?: boolean;
 }
 
 export interface MarkdownPost extends CorkboardPostBase {
@@ -40,7 +41,7 @@ export const corkboardPosts: CorkboardPost[] = [
   {
     id: "hakone-image",
     kind: "image",
-    title: "minecraft in real life",
+    title: "they made minecraft in real life",
     date: "2026-04-01",
     description: "09/01/2025 - hakone",
     src: "/corkboard/DSC_05451.jpg",
@@ -62,6 +63,7 @@ export const corkboardPosts: CorkboardPost[] = [
     description:
       "A short note on why this space exists, and why I think everyone should have one.",
     markdownPath: "content/corkboard/why-i-made-this.md",
+    pinned: true,
   },
   {
     id: "been-so-long",
