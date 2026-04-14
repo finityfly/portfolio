@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { Link } from "@chakra-ui/react";
 
 export type Company = "QNX" | "Trend_Micro" | "uOttahack" | "Spark_Youth_Robotics_Club";
@@ -13,7 +14,7 @@ export type CompanyDetail = {
     light: string;
     dark?: string;
   };
-  roles?: JSX.Element[];
+  roles?: ReactElement[];
 };
 
 export const Experiences: {

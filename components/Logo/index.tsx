@@ -16,7 +16,7 @@ const logoEntrance = {
       ease: "easeOut",
     },
   },
-};
+} as const;
 
 const Logo = () => {
   const { colorMode } = useColorMode();

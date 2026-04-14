@@ -44,7 +44,7 @@ export const corkboardPosts: CorkboardPost[] = [
     title: "they made minecraft in real life",
     date: "2026-04-01",
     description: "09/01/2025 - hakone",
-    src: "/corkboard/DSC_05451.jpg",
+    src: "/corkboard/DSC_05451.webp",
   },
   {
     id: "quote-board",
@@ -82,7 +82,7 @@ export const corkboardPosts: CorkboardPost[] = [
     title: "overdressed tori gates",
     date: "2026-03-25",
     description: "09/03/2025 - kyoto",
-    src: "/corkboard/shrine.png",
+    src: "/corkboard/shrine.webp",
   },
   {
     id: "manuel-riff",

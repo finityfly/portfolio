@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useColorModeValue } from "@chakra-ui/react";
@@ -11,7 +12,6 @@ export type WorkCardProps = {
   mediaSrc: string;
   mediaType?: "video" | "image";
   href: string;
-  thumbnailFit?: "cover" | "contain";
 };
 
 // Helper function to detect media type from file extension
@@ -34,9 +34,8 @@ export function WorkCard({
   mediaSrc,
   mediaType,
   href,
-  thumbnailFit = "cover",
 }: WorkCardProps) {
-  void thumbnailFit;
+  const [isHovered, setIsHovered] = useState(false);
   // Auto-detect media type if not provided, prioritizing webm videos
   const detectedMediaType = mediaType || detectMediaType(mediaSrc);
   const isVideo = detectedMediaType === "video";
@@ -53,7 +52,6 @@ export function WorkCard({
   };
 
   const cleanDescription = stripHtml(description);
-  const mediaObjectFit = "cover" as const;
 
   const borderColor = useColorModeValue("#C7D2C0", "#2B3528");
   const hoverBorderColor = useColorModeValue("#8EA187", "#4B5E45");
@@ -78,19 +76,14 @@ export function WorkCard({
         )}
         style={{
           backgroundColor: cardBg,
-          border: `1px solid ${borderColor}`,
+          border: `1px solid ${isHovered ? hoverBorderColor : borderColor}`,
           height: "100%",
           minHeight: "390px",
           borderRadius: "4px",
+          transform: isHovered ? "translateY(-1px)" : "translateY(0)",
         }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.borderColor = hoverBorderColor;
-          e.currentTarget.style.transform = "translateY(-1px)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.borderColor = borderColor;
-          e.currentTarget.style.transform = "translateY(0)";
-        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         <div className="px-5 pt-5 pb-4 flex flex-col gap-2.5">
           <div className="flex items-center justify-between gap-3">
@@ -149,7 +142,7 @@ export function WorkCard({
                   "group-hover:scale-[1.02]"
                 )}
                 style={{
-                  objectFit: mediaObjectFit,
+                  objectFit: "cover",
                   objectPosition: "center",
                 }}
               />
@@ -163,7 +156,7 @@ export function WorkCard({
                   "group-hover:scale-[1.02]"
                 )}
                 style={{
-                  objectFit: mediaObjectFit,
+                  objectFit: "cover",
                   objectPosition: "center",
                 }}
                 unoptimized={mediaSrc.toLowerCase().endsWith(".gif")}

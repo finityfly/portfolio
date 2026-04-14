@@ -113,20 +113,6 @@ const Detail = ({ onOpen }: ISkillSetModal) => {
         </Heading>
         <Text variant="description" fontSize="lg">
           Check out some of the stuff I&apos;ve been working on!
-          {/* I engineer high-performance distributed systems and scalable full-stack
-        applications. My focus is on{" "}
-        <Text as="span" variant="emphasis">
-          velocity
-        </Text>
-        ,{" "}
-        <Text as="span" variant="emphasis">
-          robustness
-        </Text>
-        , and{" "}
-        <Text as="span" variant="emphasis">
-          shipping code
-        </Text>{" "}
-        that matters. */}
         </Text>
 
         <Box mt={4}>

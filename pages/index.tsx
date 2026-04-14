@@ -12,11 +12,7 @@ import Profile from "components/Profile";
 import Footer from "components/Footer";
 import FeaturedWorks from "components/Sections/FeaturedWorks";
 import GetInTouch from "components/Sections/GetInTouch";
-import { Article } from "types/article";
-
-const Portfolio = ({ articles }: { articles: Article[] }): JSX.Element => {
-  void articles;
-
+const Portfolio = () => {
   return (
     <>
       <Script

@@ -18,7 +18,7 @@ export default function SmoothScroll({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return (
     <ReactLenis root options={LENIS_OPTIONS}>
       {children}

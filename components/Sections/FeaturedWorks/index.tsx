@@ -25,9 +25,6 @@ function FeaturedWorksSection() {
         >
           selected works
         </Heading>
-        {/* <Text variant="description" maxW="42rem">
-          Last updated: March 2026
-        </Text> */}
       </Stack>
       <MotionDiv
         className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"
@@ -46,7 +43,6 @@ function FeaturedWorksSection() {
               description={work.description}
               mediaSrc={work.thumbnail || ""}
               href={work.url}
-              thumbnailFit={work.thumbnailFit}
             />
           </MotionDiv>
         ))}

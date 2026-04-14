@@ -1,4 +1,3 @@
-/* eslint-disable react/no-multi-comp, react/prop-types, @typescript-eslint/no-var-requires */
 import fs from "fs/promises";
 import path from "path";
 import {
@@ -20,6 +19,14 @@ import { motion } from "framer-motion";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import NextLink from "next/link";
 import ReactMarkdown from "react-markdown";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/light";
+import hljsJavascript from "react-syntax-highlighter/dist/cjs/languages/hljs/javascript";
+import hljsTypescript from "react-syntax-highlighter/dist/cjs/languages/hljs/typescript";
+import hljsBash from "react-syntax-highlighter/dist/cjs/languages/hljs/bash";
+import hljsJson from "react-syntax-highlighter/dist/cjs/languages/hljs/json";
+import hljsPython from "react-syntax-highlighter/dist/cjs/languages/hljs/python";
+import hljsCpp from "react-syntax-highlighter/dist/cjs/languages/hljs/cpp";
+import hljsC from "react-syntax-highlighter/dist/cjs/languages/hljs/c";
 import {
   atomOneDark,
   atomOneLight,
@@ -37,15 +44,12 @@ import {
   MarkdownPost,
   MediaPost,
 } from "config/corkboard";
-
-const SyntaxHighlighter = require("react-syntax-highlighter/dist/cjs/light").default;
-const hljsJavascript = require("react-syntax-highlighter/dist/cjs/languages/hljs/javascript").default;
-const hljsTypescript = require("react-syntax-highlighter/dist/cjs/languages/hljs/typescript").default;
-const hljsBash = require("react-syntax-highlighter/dist/cjs/languages/hljs/bash").default;
-const hljsJson = require("react-syntax-highlighter/dist/cjs/languages/hljs/json").default;
-const hljsPython = require("react-syntax-highlighter/dist/cjs/languages/hljs/python").default;
-const hljsCpp = require("react-syntax-highlighter/dist/cjs/languages/hljs/cpp").default;
-const hljsC = require("react-syntax-highlighter/dist/cjs/languages/hljs/c").default;
+import {
+  formatDate,
+  calculateReadingTimeMinutes,
+  getYouTubeEmbedUrl,
+  getMediaMetaLabel,
+} from "lib/utils";
 
 SyntaxHighlighter.registerLanguage("javascript", hljsJavascript);
 SyntaxHighlighter.registerLanguage("typescript", hljsTypescript);
@@ -73,85 +77,6 @@ const normalizeCodeLanguage = (rawLanguage: string): string => {
     default:
       return language;
   }
-};
-
-const formatDate = (iso: string) => {
-  const [year, month, day] = iso.split("-");
-  if (!year || !month || !day) {
-    return iso;
-  }
-  const monthIndex = Number(month) - 1;
-  const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const monthName =
-    monthIndex >= 0 && monthIndex < monthNames.length
-      ? monthNames[monthIndex]
-      : month;
-
-  return `${monthName} ${Number(day)}, ${year}`;
-};
-
-const AVERAGE_READING_SPEED_WPM = 180;
-
-const calculateReadingTimeMinutes = (markdown: string): number => {
-  const plainText = markdown
-    .replace(/```[\s\S]*?```/g, " ")
-    .replace(/`[^`]*`/g, " ")
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
-    .replace(/<[^>]*>/g, " ")
-    .replace(/[#>*_~\-|]/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-
-  const wordCount = plainText ? plainText.split(" ").length : 0;
-  return Math.max(1, Math.ceil(wordCount / AVERAGE_READING_SPEED_WPM));
-};
-
-const getYouTubeEmbedUrl = (src: string): string | null => {
-  try {
-    const url = new URL(src);
-    const hostname = url.hostname.toLowerCase().replace(/^www\./, "");
-
-    if (hostname === "youtube.com" || hostname === "m.youtube.com") {
-      const videoId =
-        url.searchParams.get("v") ||
-        url.pathname.split("/").filter(Boolean)[1] ||
-        null;
-
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-    }
-
-    if (hostname === "youtu.be") {
-      const videoId = url.pathname.replace(/^\//, "");
-      return videoId ? `https://www.youtube.com/embed/${videoId}` : null;
-    }
-  } catch {
-    return null;
-  }
-
-  return null;
-};
-
-const getMediaMetaLabel = (src: string): string => {
-  const cleanPath = src.split("?")[0].split("#")[0];
-  const filename = cleanPath.split("/").filter(Boolean).pop() || "media";
-  const extension = filename.includes(".")
-    ? filename.split(".").pop()?.toUpperCase() || "MEDIA"
-    : "MEDIA";
-  return extension;
 };
 
 type MarkdownPostWithContent = MarkdownPost & {

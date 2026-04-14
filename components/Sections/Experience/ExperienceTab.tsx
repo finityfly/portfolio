@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   Text,
   Link,
@@ -31,14 +30,14 @@ const ExperienceTab = () => {
   const activeBordercolor = useColorModeValue("teal.500", "#97DFFC");
   const isMobile = useBreakpointValue(mobileBreakpointsMap);
 
-  const tabOrientation =
+  const tabOrientation: "horizontal" | "vertical" =
     useBreakpointValue({
-      base: "horizontal",
-      sm: "horizontal",
-      md: "vertical",
-      lg: "vertical",
-      xl: "vertical",
-    }) ?? ("vertical" as any);
+      base: "horizontal" as const,
+      sm: "horizontal" as const,
+      md: "vertical" as const,
+      lg: "vertical" as const,
+      xl: "vertical" as const,
+    }) ?? "vertical";
 
   const tabMinWidth = useBreakpointValue({
     base: "160px",
@@ -69,7 +68,7 @@ const ExperienceTab = () => {
         overflowY={"hidden"}
         className={styles.experienceTabs}
       >
-        {(ExperiencesList as any[]).map((company) => (
+        {ExperiencesList.map((company) => (
           <Tab
             key={`Tab-${company.name}`}
             fontSize="smaller"

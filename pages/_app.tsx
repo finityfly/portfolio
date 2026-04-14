@@ -7,10 +7,10 @@ import FavIconProvider from "components/Misc/FavIconProvider";
 import SmoothScroll from "components/Misc/SmoothScroll";
 import NavSfxProvider from "components/Misc/NavSfxProvider";
 
-function DLSite({ Component, pageProps }: AppProps): JSX.Element {
+function DLSite({ Component, pageProps }: AppProps) {
   return (
     <SmoothScroll>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode="wait">
         <ChakraProvider theme={theme}>
           <FavIconProvider>
             <NavSfxProvider>
