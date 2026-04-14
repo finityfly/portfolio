@@ -29,7 +29,7 @@ import {
   preventSliderPointer,
   progressToStyle,
   volumeToStyle,
-} from "./mediaPlayerShared";
+} from "./mediaPlayerUtils";
 
 interface CustomVideoPlayerProps extends MediaPlayerBaseProps {
   src: string;

@@ -30,7 +30,7 @@ import {
   preventSliderPointer,
   progressToStyle,
   volumeToStyle,
-} from "./mediaPlayerShared";
+} from "./mediaPlayerUtils";
 
 interface CustomAudioPlayerProps extends MediaPlayerBaseProps {
   src: string;
