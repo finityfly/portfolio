@@ -35,7 +35,6 @@ interface CorkboardPostPageProps {
   readingTimeMinutes?: number;
 }
 
-const MotionLink = motion.a;
 
 const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
   post,
@@ -68,17 +67,16 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
             >
               <Stack spacing={4}>
                 <Box>
-                  <NextLink href="/corkboard" prefetch passHref legacyBehavior>
-                    <MotionLink
-                      aria-label="Back to corkboard"
-                      style={{ display: "inline-flex", alignItems: "center" }}
-                      whileHover={{ x: -3 }}
-                      whileTap={{ x: -1, scale: 0.98 }}
-                      transition={{ duration: 0.18, ease: "easeOut" }}
-                    >
+                  <motion.div
+                    style={{ display: "inline-flex" }}
+                    whileHover={{ x: -3 }}
+                    whileTap={{ x: -1, scale: 0.98 }}
+                    transition={{ duration: 0.18, ease: "easeOut" }}
+                  >
+                    <NextLink href="/corkboard" prefetch aria-label="Back to corkboard">
                       <Icon as={ArrowBackIcon} boxSize={5} />
-                    </MotionLink>
-                  </NextLink>
+                    </NextLink>
+                  </motion.div>
                 </Box>
                 <Stack spacing={1}>
                   <Heading size="xl" fontFamily="name" color="heading">

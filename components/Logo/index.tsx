@@ -18,29 +18,28 @@ const logoEntrance = {
   },
 } as const;
 
+const MotionImage = motion.create(Image);
+
 const Logo = () => {
   const { colorMode } = useColorMode();
-  const MotionImage = motion(Image);
   const logoSrc =
     colorMode === ThemeMode.Dark ? "/logo_dark_trans.png" : "/logo_trans.png";
 
   return (
-    <Link href="/" passHref legacyBehavior>
-      <a aria-label="Back to portfolio home">
-        <MotionImage
-          className={styles.logo}
-          boxSize={{ base: "30px", xl: "50px" }}
-          objectFit="cover"
-          src={logoSrc}
-          alt="Daniel Lu Logo"
-          variants={logoEntrance}
-          initial="initial"
-          animate="animate"
-          zIndex={2}
-          loading="eager"
-          style={{ willChange: "opacity, transform" }}
-        />
-      </a>
+    <Link href="/" aria-label="Back to portfolio home">
+      <MotionImage
+        className={styles.logo}
+        boxSize={{ base: "30px", xl: "50px" }}
+        objectFit="cover"
+        src={logoSrc}
+        alt="Daniel Lu Logo"
+        variants={logoEntrance}
+        initial="initial"
+        animate="animate"
+        zIndex={2}
+        loading="eager"
+        style={{ willChange: "opacity, transform" }}
+      />
     </Link>
   );
 };

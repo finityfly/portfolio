@@ -150,6 +150,7 @@ export function WorkCard({
                 src={mediaSrc || "/placeholder.svg"}
                 alt={title}
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className={cn(
                   "transition-transform duration-500 ease-out",
                   "group-hover:scale-[1.02]"

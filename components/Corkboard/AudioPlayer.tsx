@@ -18,6 +18,7 @@ import {
   RiMusic2Line,
   RiPauseFill,
   RiPlayFill,
+  RiVolumeMuteLine,
   RiVolumeUpLine,
 } from "react-icons/ri";
 import styles from "@/pages/corkboard/PostMedia.module.css";
@@ -48,8 +49,32 @@ export const CustomAudioPlayer = ({
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
   const [hasError, setHasError] = useState(false);
   const isLinkedContent = isLinkedSource(src);
+  const preMuteVolumeRef = useRef(1);
+  const fadeAnimRef = useRef<number | null>(null);
+
+  const animateVolume = (from: number, to: number) => {
+    if (fadeAnimRef.current) cancelAnimationFrame(fadeAnimRef.current);
+    const media = audioRef.current;
+    const start = performance.now();
+    const duration = 120;
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / duration, 1);
+      // cubic ease-in-out
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      const vol = Math.min(1, Math.max(0, from + (to - from) * eased));
+      if (media) {
+        media.volume = vol;
+        setVolume(vol);
+      }
+      if (t < 1) {
+        fadeAnimRef.current = requestAnimationFrame(tick);
+      }
+    };
+    fadeAnimRef.current = requestAnimationFrame(tick);
+  };
 
   const progressPercent = useMemo(() => {
     if (duration <= 0) {
@@ -104,6 +129,12 @@ export const CustomAudioPlayer = ({
     };
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (fadeAnimRef.current) cancelAnimationFrame(fadeAnimRef.current);
+    };
+  }, []);
+
   const togglePlayPause = async () => {
     const media = audioRef.current;
     if (!media || hasError) {
@@ -133,15 +164,31 @@ export const CustomAudioPlayer = ({
     setCurrentTime(nextValue);
   };
 
+  const toggleMute = (event: React.MouseEvent<HTMLButtonElement>) => {
+    preventNav(event);
+    const media = audioRef.current;
+    if (!media || hasError) return;
+    if (!isMuted) {
+      preMuteVolumeRef.current = volume > 0 ? volume : 1;
+      setIsMuted(true);
+      animateVolume(volume, 0);
+    } else {
+      setIsMuted(false);
+      animateVolume(0, preMuteVolumeRef.current);
+    }
+  };
+
   const onVolumeChange = (event: ChangeEvent<HTMLInputElement>) => {
     const media = audioRef.current;
     if (!media || hasError) {
       return;
     }
 
+    if (fadeAnimRef.current) cancelAnimationFrame(fadeAnimRef.current);
     const nextValue = Number(event.target.value);
     media.volume = nextValue;
     setVolume(nextValue);
+    if (isMuted) setIsMuted(false);
   };
 
   return (
@@ -216,8 +263,17 @@ export const CustomAudioPlayer = ({
                   disabled={hasError}
                 />
               </Box>
-              <Box className={styles.volumeIcon}>
-                <Icon as={RiVolumeUpLine} boxSize={4.5} display="block" />
+              <Box
+                as="button"
+                className={styles.volumeIcon}
+                onClick={toggleMute}
+                onMouseDown={preventNav}
+                onPointerDown={preventNav}
+                aria-label={isMuted ? "Unmute" : "Mute"}
+                disabled={hasError}
+                style={{ cursor: "pointer", background: "none", border: "none", padding: 0 }}
+              >
+                <Icon as={isMuted ? RiVolumeMuteLine : RiVolumeUpLine} boxSize={4.5} display="block" />
               </Box>
             </Box>
           ) : null}

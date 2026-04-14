@@ -1,5 +1,5 @@
 
-import { Fragment, memo } from "react";
+import { memo } from "react";
 import {
   Box,
   Heading,
@@ -20,6 +20,8 @@ const GetInTouch = () => {
   const toastBorder = useColorModeValue("#D4DCCE", "#263220");
   const toastText = useColorModeValue("#1B2219", "#E8EFE2");
   const toastAccent = useColorModeValue("#5A7D59", "#AFC98D");
+  const socialBorder = useColorModeValue("blackAlpha.200", "whiteAlpha.200");
+  const socialHoverBg = useColorModeValue("blackAlpha.50", "whiteAlpha.50");
 
   return (
     <Stack
@@ -98,29 +100,39 @@ const GetInTouch = () => {
         </Link>{" "}
         or connect through one of the links below.
       </Text>
-      <HStack spacing={{ base: 5, md: 7 }} flexWrap="wrap" align="center">
-        {SocialMedias.map((socMedia, index) => (
-          <Fragment key={socMedia.label}>
-            <Link
-              aria-label={socMedia.label}
-              rel="noreferrer"
-              href={socMedia.href}
-              target="_blank"
-              className="linkUnderline"
-              _focus={{ boxShadow: "none" }}
-              fontSize="sm"
-              letterSpacing="0.05em"
-              variant="description"
-              _hover={{ color: "sage.500", textDecoration: "none" }}
+      <HStack spacing={4} flexWrap="wrap" align="center">
+        {SocialMedias.map((socMedia) => (
+          <Link
+            key={socMedia.label}
+            aria-label={socMedia.label}
+            rel="noreferrer"
+            href={socMedia.href}
+            target="_blank"
+            _focus={{ boxShadow: "none" }}
+            textDecoration="none"
+            _hover={{ textDecoration: "none" }}
+          >
+            <HStack
+              spacing={2.5}
+              px={5}
+              py={3}
+              borderRadius="10px"
+              border="1px solid"
+              borderColor={socialBorder}
+              color="description"
+              transition="all 0.2s"
+              _hover={{
+                borderColor: "sage.500",
+                color: "sage.500",
+                bg: socialHoverBg,
+              }}
             >
-              {socMedia.label}
-            </Link>
-            {index < SocialMedias.length - 1 && (
-              <Text as="span" variant="description" opacity={0.8}>
-                ·
+              <Box as={socMedia.icon} boxSize={5} />
+              <Text fontSize="sm" fontWeight="medium" letterSpacing="0.04em">
+                {socMedia.label}
               </Text>
-            )}
-          </Fragment>
+            </HStack>
+          </Link>
         ))}
       </HStack>
     </Stack>

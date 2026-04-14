@@ -25,8 +25,7 @@ import {
   getRenderableCorkboardCardPosts,
 } from "@/lib/corkboard.server";
 
-const MotionLink = motion.a;
-const MotionHeading = motion(Heading);
+const MotionHeading = motion.create(Heading);
 
 interface CorkboardPageProps {
   posts: RenderableCorkboardCardPost[];
@@ -61,17 +60,16 @@ const CorkboardPage: NextPage<CorkboardPageProps> = ({ posts }) => {
           <FadeInLayout>
             <Stack spacing={0} mb={{ base: 12, md: 16 }}>
               <Flex mt={{ base: 2, md: 3 }} mb={{ base: 5, md: 6 }} align="center">
-                <NextLink href="/" prefetch passHref legacyBehavior>
-                  <MotionLink
-                    aria-label="Back to portfolio"
-                    style={{ display: "inline-flex", alignItems: "center" }}
-                    whileHover={{ x: -3 }}
-                    whileTap={{ x: -1, scale: 0.98 }}
-                    transition={{ duration: 0.18, ease: "easeOut" }}
-                  >
+                <motion.div
+                  style={{ display: "inline-flex" }}
+                  whileHover={{ x: -3 }}
+                  whileTap={{ x: -1, scale: 0.98 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                >
+                  <NextLink href="/" prefetch aria-label="Back to portfolio">
                     <Icon as={ArrowBackIcon} boxSize={5} />
-                  </MotionLink>
-                </NextLink>
+                  </NextLink>
+                </motion.div>
               </Flex>
 
               <Heading

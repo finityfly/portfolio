@@ -1,8 +1,6 @@
 import {
   Box,
   Image as ChkImage,
-  Text,
-  Link,
   SkeletonCircle,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -21,8 +19,9 @@ declare global {
   }
 }
 
+const MotionBox = motion.create(Box);
+
 const Avatar = () => {
-  const MotionBox = motion(Box);
   const imgAvatar = useColorModeValue(
     AvatarImages.LightMode,
     AvatarImages.DarkMode

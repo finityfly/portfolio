@@ -26,9 +26,10 @@ const introGroup = {
   },
 };
 
+const MotionHeading = motion.create(Heading);
+const MotionStack = motion.create(Stack);
+
 const Profile = () => {
-  const MotionHeading = motion(Heading);
-  const MotionStack = motion(Stack);
 
   return (
     <Container p={0} m={0} maxW="100%">
