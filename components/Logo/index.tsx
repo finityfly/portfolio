@@ -3,7 +3,7 @@ import { useColorMode, Image } from "@chakra-ui/react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import styles from "./styles.module.css";
-import { ThemeMode } from "config/theme";
+import { ThemeMode } from "@/config/theme";
 
 const logoEntrance = {
   initial: {

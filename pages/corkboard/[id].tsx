@@ -32,24 +32,24 @@ import {
   atomOneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
-import OpenGraphHead from "components/SEO/OpenGraphHead";
-import Menu from "components/Menu";
-import FadeInLayout from "components/Layout/FadeWhenVisible";
+import OpenGraphHead from "@/components/SEO/OpenGraphHead";
+import Menu from "@/components/Menu";
+import FadeInLayout from "@/components/Layout/FadeWhenVisible";
 import {
   CustomAudioPlayer,
   CustomVideoPlayer,
-} from "components/Corkboard/MediaPlayers";
+} from "@/components/Corkboard/MediaPlayers";
 import {
   corkboardPosts,
   MarkdownPost,
   MediaPost,
-} from "data/corkboard";
+} from "@/data/corkboard";
 import {
   formatDate,
   calculateReadingTimeMinutes,
   getYouTubeEmbedUrl,
   getMediaMetaLabel,
-} from "lib/utils";
+} from "@/lib/utils";
 
 SyntaxHighlighter.registerLanguage("javascript", hljsJavascript);
 SyntaxHighlighter.registerLanguage("typescript", hljsTypescript);
@@ -266,7 +266,7 @@ const MarkdownBlock = ({ content }: { content: string }) => {
                 >
                   <SyntaxHighlighter
                     language={normalizeCodeLanguage(languageMatch[1])}
-                    style={codeTheme}
+                    style={codeTheme as any}
                     customStyle={{
                       margin: 0,
                       padding: "12px",

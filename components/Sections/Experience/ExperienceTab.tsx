@@ -19,9 +19,9 @@ import {
 } from "@chakra-ui/react";
 import { BiRightArrow } from "react-icons/bi";
 import styles from "./styles.module.css";
-import { ThemeMode } from "config/theme";
-import { ExperiencesList } from "data/experience";
-import { mobileBreakpointsMap } from "config/theme";
+import { ThemeMode } from "@/config/theme";
+import { ExperiencesList } from "@/data/experience";
+import { mobileBreakpointsMap } from "@/config/theme";
 
 const ExperienceTab = () => {
   const { colorMode } = useColorMode();

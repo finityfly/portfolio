@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
-import { fadeInUpSlower } from "config/animations";
+import { fadeInUpSlower } from "@/config/animations";
 
 interface FadeInWhenVisibleProps {
   children: React.ReactNode;

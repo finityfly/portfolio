@@ -26,26 +26,26 @@ import {
   RiMusic2Line,
   RiPlayCircleLine,
 } from "react-icons/ri";
-import OpenGraphHead from "components/SEO/OpenGraphHead";
-import Menu from "components/Menu";
-import FadeInLayout from "components/Layout/FadeWhenVisible";
+import OpenGraphHead from "@/components/SEO/OpenGraphHead";
+import Menu from "@/components/Menu";
+import FadeInLayout from "@/components/Layout/FadeWhenVisible";
 import {
   CustomAudioPlayer,
   CustomVideoPlayer,
-} from "components/Corkboard/MediaPlayers";
-import { SPRING_PHYSICS, riseIn } from "config/animations";
+} from "@/components/Corkboard/MediaPlayers";
+import { SPRING_PHYSICS, riseIn } from "@/config/animations";
 import {
   corkboardPosts,
   CorkboardPost,
   MarkdownPost,
   MediaPost,
-} from "data/corkboard";
+} from "@/data/corkboard";
 import {
   formatDate,
   calculateReadingTimeMinutes,
   getYouTubeEmbedUrl,
   getMediaMetaLabel,
-} from "lib/utils";
+} from "@/lib/utils";
 
 const byPinnedThenNewest = (a: CorkboardPost, b: CorkboardPost) => {
   if (a.pinned && !b.pinned) {
@@ -573,7 +573,7 @@ export const getStaticProps: GetStaticProps<CorkboardPageProps> = async () => {
       }
 
       try {
-        const absolutePath = path.join(process.cwd(), "data", "corkboard", post.markdownPath);
+        const absolutePath = path.join(process.cwd(), "@/data", "corkboard", post.markdownPath);
         const content = await fs.readFile(absolutePath, "utf8");
 
         return {

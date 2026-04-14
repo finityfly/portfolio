@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
-import { avatarAnimation } from "config/animations";
+import { avatarAnimation } from "@/config/animations";
 
 const AvatarImages = {
   DarkMode: "/pfp.png",

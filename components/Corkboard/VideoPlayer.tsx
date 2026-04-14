@@ -19,7 +19,7 @@ import {
   RiPlayFill,
   RiVolumeUpLine,
 } from "react-icons/ri";
-import styles from "pages/corkboard/PostMedia.module.css";
+import styles from "@/pages/corkboard/PostMedia.module.css";
 import {
   formatTime,
   isLinkedSource,

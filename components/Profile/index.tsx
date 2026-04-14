@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import {
   letterSpace,
   SPRING_PHYSICS,
-} from "config/animations";
+} from "@/config/animations";
 
 const introGroup = {
   initial: {

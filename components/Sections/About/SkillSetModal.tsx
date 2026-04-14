@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styles from "./styles.module.css";
-import { Skill, Skills, splitSkills } from "data/skills";
+import { Skill, Skills, splitSkills } from "@/data/skills";
 
 type ISkillSetModal = {
   isOpen: boolean;

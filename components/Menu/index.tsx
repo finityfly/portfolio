@@ -13,7 +13,7 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.css";
-import { menuAnim, SPRING_PHYSICS } from "config/animations";
+import { menuAnim, SPRING_PHYSICS } from "@/config/animations";
 
 const dockContentVariants = {
   hidden: {

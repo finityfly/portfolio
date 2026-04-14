@@ -5,13 +5,13 @@ import {
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
-import OpenGraphHead from "components/SEO/OpenGraphHead";
-import FadeInLayout from "components/Layout/FadeWhenVisible";
-import Menu from "components/Menu";
-import Profile from "components/Profile";
-import Footer from "components/Footer";
-import FeaturedWorks from "components/Sections/FeaturedWorks";
-import GetInTouch from "components/Sections/GetInTouch";
+import OpenGraphHead from "@/components/SEO/OpenGraphHead";
+import FadeInLayout from "@/components/Layout/FadeWhenVisible";
+import Menu from "@/components/Menu";
+import Profile from "@/components/Profile";
+import Footer from "@/components/Footer";
+import FeaturedWorks from "@/components/Sections/FeaturedWorks";
+import GetInTouch from "@/components/Sections/GetInTouch";
 const Portfolio = () => {
   return (
     <>

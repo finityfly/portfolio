@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { motion, Variants } from "framer-motion";
-import { Works } from "data/works";
+import { Works } from "@/data/works";
 
 type ISkillSetModal = {
   onOpen(): void;
