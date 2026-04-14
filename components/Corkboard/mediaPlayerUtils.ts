@@ -23,6 +23,7 @@ export const volumeToStyle = (value: number): CSSProperties => ({
 });
 
 export const preventNav = (event: SyntheticEvent<HTMLElement>) => {
+  event.preventDefault();
   event.stopPropagation();
   event.nativeEvent.stopImmediatePropagation();
 };

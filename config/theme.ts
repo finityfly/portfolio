@@ -24,6 +24,7 @@ export const mobileBreakpointsMap = {
 const config = {
   initialColorMode: ThemeMode.Light,
   useSystemColorMode: false,
+  disableTransitionOnChange: false,
 };
 
 // Centralized text colors: update only these to retheme body/emphasis text app-wide.
