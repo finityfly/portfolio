@@ -136,29 +136,6 @@ export const Experiences: {
       </>,
     ],
   },
-  // iLeap_Club: {
-  //   name: "iLeap Club",
-  //   longName: "Children & Youth Soft Skills Leadership Program",
-  //   subDetail: "Ottawa, Ontario",
-  //   url: "https://www.ileapclub.com/",
-  //   position: "Coordinator and Mentor",
-  //   duration: "Sept 2019 - Jun 2022, Part-time",
-  //   logo: {
-  //     light: "/worked_at_logos/ileap/ileap_logo.png",
-  //     dark: "/worked_at_logos/ileap/ileap_logo.png",
-  //   },
-  //   roles: [
-  //     <>
-  //       Volunteered as a club meeting coordinator for weekly public speaking,
-  //       soft skills, and leadership meetings for young teenage leaders.
-  //     </>,
-  //     <>Organized and administered weekly in-person and online meetings.</>,
-  //     <>
-  //       Worked closely alongside colleagues to manage each week’s content and
-  //       provided valuable guidance and feedback to members.
-  //     </>,
-  //   ],
-  // },
 };
 
 export const ExperiencesList = [

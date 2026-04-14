@@ -1,4 +1,3 @@
-"use client";
 
 import { Fragment, memo } from "react";
 import {
@@ -13,7 +12,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
-import { SocialMedias } from "config/profile";
+import { SocialMedias } from "data/profile";
 
 const GetInTouch = () => {
   const toast = useToast();

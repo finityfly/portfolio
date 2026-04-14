@@ -8,7 +8,18 @@ import {
   Divider,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { Article } from "types/article";
+/* eslint-disable camelcase */
+interface Article {
+  id: string;
+  type_of: string;
+  title: string;
+  description: string;
+  readable_publish_date: string;
+  slug: string;
+  url: string;
+  tag_list: string[];
+  social_image: string;
+}
 
 const DevToArticles = ({ articles }: { articles: Article[] }) => {
   const bg = useColorModeValue("blackAlpha.50", "whiteAlpha.100");

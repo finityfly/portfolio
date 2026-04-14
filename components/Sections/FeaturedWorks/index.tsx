@@ -1,11 +1,10 @@
-"use client";
 
 import { memo } from "react";
 import { Heading, Stack, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import WorkCard from "./WorkCard";
 import { fadeInUpSlower, galleryStagger } from "config/animations";
-import { Work, Works } from "config/works";
+import { Work, Works } from "data/works";
 
 const MotionDiv = motion.div;
 function FeaturedWorksSection() {

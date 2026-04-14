@@ -53,7 +53,7 @@ export const corkboardPosts: CorkboardPost[] = [
     date: "2026-03-30",
     description:
       "A collection of quotes that have resonated with me over the years. I find myself returning to these often, and thought it would be nice to share them in a more permanent way.",
-    markdownPath: "content/corkboard/quote-board.md",
+    markdownPath: "quote-board.md",
   },
   {
     id: "why-i-made-this",
@@ -62,7 +62,7 @@ export const corkboardPosts: CorkboardPost[] = [
     date: "2026-03-29",
     description:
       "A short note on why this space exists, and why I think everyone should have one.",
-    markdownPath: "content/corkboard/why-i-made-this.md",
+    markdownPath: "why-i-made-this.md",
     pinned: true,
   },
   {

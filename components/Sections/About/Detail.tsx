@@ -2,29 +2,15 @@ import { memo, useState, useEffect } from "react";
 import {
   Heading,
   Text,
-  List,
-  ListItem,
-  ListIcon,
   Icon,
-  SimpleGrid,
   Box,
   Stack,
   useColorModeValue,
   Flex,
 } from "@chakra-ui/react";
-import {
-  SiPython,
-  SiCplusplus,
-  SiAmazonaws,
-  SiDocker,
-  SiRust,
-  SiPytorch,
-  SiNextdotjs,
-} from "react-icons/si";
-import { IoMdOpen } from "react-icons/io";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { motion, Variants } from "framer-motion";
-import { Works } from "config/works";
+import { Works } from "data/works";
 
 type ISkillSetModal = {
   onOpen(): void;

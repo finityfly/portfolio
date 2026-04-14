@@ -1,4 +1,3 @@
-"use client";
 
 import { memo } from "react";
 import { Box, Icon, Link, Text } from "@chakra-ui/react";

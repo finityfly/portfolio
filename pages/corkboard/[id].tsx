@@ -32,7 +32,7 @@ import {
   atomOneLight,
 } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import remarkGfm from "remark-gfm";
-import OpenGraphHead from "components/Misc/OpenGraphHead";
+import OpenGraphHead from "components/SEO/OpenGraphHead";
 import Menu from "components/Menu";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
 import {
@@ -43,7 +43,7 @@ import {
   corkboardPosts,
   MarkdownPost,
   MediaPost,
-} from "config/corkboard";
+} from "data/corkboard";
 import {
   formatDate,
   calculateReadingTimeMinutes,
@@ -429,7 +429,7 @@ export const getStaticProps: GetStaticProps<
   }
 
   if (post.kind === "markdown") {
-    const absolutePath = path.join(process.cwd(), post.markdownPath);
+    const absolutePath = path.join(process.cwd(), "data", "corkboard", post.markdownPath);
     const content = await fs.readFile(absolutePath, "utf8");
     const readingTimeMinutes = calculateReadingTimeMinutes(content);
 

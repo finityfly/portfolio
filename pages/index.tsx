@@ -5,7 +5,7 @@ import {
 import React from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
-import OpenGraphHead from "components/Misc/OpenGraphHead";
+import OpenGraphHead from "components/SEO/OpenGraphHead";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
 import Menu from "components/Menu";
 import Profile from "components/Profile";

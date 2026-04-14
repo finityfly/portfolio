@@ -26,7 +26,7 @@ import {
   RiMusic2Line,
   RiPlayCircleLine,
 } from "react-icons/ri";
-import OpenGraphHead from "components/Misc/OpenGraphHead";
+import OpenGraphHead from "components/SEO/OpenGraphHead";
 import Menu from "components/Menu";
 import FadeInLayout from "components/Layout/FadeWhenVisible";
 import {
@@ -39,7 +39,7 @@ import {
   CorkboardPost,
   MarkdownPost,
   MediaPost,
-} from "config/corkboard";
+} from "data/corkboard";
 import {
   formatDate,
   calculateReadingTimeMinutes,
@@ -573,7 +573,7 @@ export const getStaticProps: GetStaticProps<CorkboardPageProps> = async () => {
       }
 
       try {
-        const absolutePath = path.join(process.cwd(), post.markdownPath);
+        const absolutePath = path.join(process.cwd(), "data", "corkboard", post.markdownPath);
         const content = await fs.readFile(absolutePath, "utf8");
 
         return {

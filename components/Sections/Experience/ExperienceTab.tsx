@@ -20,7 +20,7 @@ import {
 import { BiRightArrow } from "react-icons/bi";
 import styles from "./styles.module.css";
 import { ThemeMode } from "config/theme";
-import { ExperiencesList } from "config/experience";
+import { ExperiencesList } from "data/experience";
 import { mobileBreakpointsMap } from "config/theme";
 
 const ExperienceTab = () => {
