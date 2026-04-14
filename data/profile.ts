@@ -15,7 +15,7 @@ export const SocialMedias: SocialMedia[] = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/daniel-lu-9575a0176/",
+    href: "https://www.linkedin.com/in/daniel-jmlu/",
     icon: FaLinkedin,
   },
   {
