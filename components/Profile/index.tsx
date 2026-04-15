@@ -11,6 +11,26 @@ import {
   SPRING_PHYSICS,
 } from "@/config/animations";
 
+const lastUpdatedLabel = (() => {
+  const lastUpdatedIso = process.env.NEXT_PUBLIC_LAST_UPDATED;
+  const date = lastUpdatedIso ? new Date(lastUpdatedIso) : new Date();
+
+  if (Number.isNaN(date.valueOf())) {
+    return "april 2026";
+  }
+
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      year: "numeric",
+    })
+      .format(date)
+      .toLowerCase();
+  } catch {
+    return "april 2026";
+  }
+})();
+
 const introGroup = {
   initial: {
     opacity: 0,
@@ -91,6 +111,17 @@ const Profile = () => {
               Hugging Face
             </Link>
             {" "}ecosystem, specifically refining transformer models.
+          </Text>
+
+          <Text
+            fontSize="xs"
+            fontWeight="normal"
+            color="accentAlternative"
+            maxW="38rem"
+            letterSpacing="0.06em"
+            textTransform="lowercase"
+          >
+            updated {lastUpdatedLabel}
           </Text>
         </MotionStack>
       </MotionStack>

@@ -262,7 +262,7 @@ const CorkboardMasonry = ({ posts }: CorkboardMasonryProps) => {
                           ratio={mediaFrameVariant === "tall" ? 1 : 16 / 9}
                           w="100%"
                           maxW="100%"
-                          maxH="400px"
+                          maxH="280px"
                         >
                           <Box
                             w="100%"

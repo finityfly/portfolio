@@ -8,7 +8,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ArrowUpIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { MouseEvent, useEffect, useRef, useState } from "react";
@@ -50,6 +50,18 @@ const dockSpineVariants = {
   },
   show: {
     scaleY: 1,
+    opacity: 1,
+    transition: {
+      ...SPRING_PHYSICS,
+    },
+  },
+};
+
+const dockContainerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  show: {
     opacity: 1,
     transition: {
       ...SPRING_PHYSICS,
@@ -266,6 +278,8 @@ const Menu = () => {
   };
 
   const shouldShowTopBar = isAtTop || (isMobileNav && isScrollingUp);
+  const shouldShowDock = !isAtTop && !isCorkboardHome;
+  const dockTabIndex = shouldShowDock ? undefined : -1;
 
   return (
     <motion.div
@@ -379,119 +393,125 @@ const Menu = () => {
         </Container>
       </motion.div>
 
-      <AnimatePresence>
-        {!isAtTop && !isCorkboardHome && (
-          <motion.aside
-            className={styles.dockContainer}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+      <motion.aside
+        className={styles.dockContainer}
+        variants={dockContainerVariants}
+        initial={false}
+        animate={shouldShowDock ? "show" : "hidden"}
+        transition={{ ...SPRING_PHYSICS }}
+        aria-label="dock navigation"
+        aria-hidden={!shouldShowDock}
+      >
+        <Box
+          className={styles.dockInner}
+          pointerEvents={shouldShowDock ? "auto" : "none"}
+        >
+          <motion.div
+            className={styles.dockSpine}
+            style={{ backgroundColor: spineColor, transformOrigin: "top" }}
             transition={{ ...SPRING_PHYSICS }}
-            aria-label="dock navigation"
+            variants={dockSpineVariants}
+            initial={false}
+            animate={shouldShowDock ? "show" : "hidden"}
+          />
+          <Flex
+            as={motion.div}
+            direction="column"
+            align="flex-start"
+            gap={4}
+            pl={5}
+            variants={dockContentVariants}
+            initial={false}
+            animate={shouldShowDock ? "show" : "hidden"}
           >
-            <Box className={styles.dockInner} pointerEvents="auto">
-              <motion.div
-                className={styles.dockSpine}
-                style={{ backgroundColor: spineColor, transformOrigin: "top" }}
-                transition={{ ...SPRING_PHYSICS }}
-                variants={dockSpineVariants}
-                initial="hidden"
-                animate="show"
-                exit="hidden"
+            <motion.div variants={dockItemVariants}>
+              <IconButton
+                aria-label="scroll to top"
+                icon={<ArrowUpIcon />}
+                variant="ghost"
+                size="sm"
+                color={iconColor}
+                onClick={scrollToTop}
+                ml="-8px"
+                w="2.25rem"
+                h="2.25rem"
+                transition={themeFade}
+                tabIndex={dockTabIndex}
+                _hover={{ background: "transparent", color: "sage.500", transform: "translateY(-1px)" }}
+                _focus={{ boxShadow: "none", outline: "none" }}
+                _focusVisible={{ boxShadow: "none", outline: "none" }}
               />
-              <Flex
-                as={motion.div}
-                direction="column"
-                align="flex-start"
-                gap={3}
-                pl={4}
-                variants={dockContentVariants}
-                initial="hidden"
-                animate="show"
-                exit="hidden"
-              >
-                <motion.div variants={dockItemVariants}>
-                  <IconButton
-                    aria-label="scroll to top"
-                    icon={<ArrowUpIcon />}
-                    variant="ghost"
-                    size="sm"
-                    color={iconColor}
-                    onClick={scrollToTop}
-                    ml="-8px"
-                    transition={themeFade}
-                    _hover={{ background: "transparent", color: "sage.500", transform: "translateY(-1px)" }}
-                    _focus={{ boxShadow: "none", outline: "none" }}
-                    _focusVisible={{ boxShadow: "none", outline: "none" }}
-                  />
-                </motion.div>
-                {contextualDockLinks.map((link) => (
-                  <motion.div key={`dock-wrap-${link.label}`} variants={dockItemVariants}>
-                    <Link
-                      key={`dock-${link.label}`}
-                      className="linkUnderline"
-                      as={NextLink}
-                      href={link.href}
-                      onClick={(e) => onNavClick(link.href, e, link.sectionId)}
-                      userSelect="none"
-                      variant="description"
-                      fontSize="sm"
-                      fontWeight="medium"
-                      letterSpacing="0.04em"
-                      textTransform="lowercase"
-                      _hover={{ color: "sage.500", textDecoration: "none", transform: "translateX(2px)" }}
-                      _focus={{ boxShadow: "none", outline: "none" }}
-                      _focusVisible={{ boxShadow: "none", outline: "none" }}
-                      transition="transform 0.3s ease, color 0.3s ease"
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                ))}
-                {!isCorkboardRoute && (
-                  <motion.div variants={dockItemVariants}>
-                    <Link
-                      className="linkUnderline"
-                      as={NextLink}
-                      href="/Daniel_Lu_Resume.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      userSelect="none"
-                      variant="description"
-                      fontSize="sm"
-                      fontWeight="medium"
-                      letterSpacing="0.04em"
-                      textTransform="lowercase"
-                      _hover={{ color: "sage.500", textDecoration: "none", transform: "translateX(2px)" }}
-                      _focus={{ boxShadow: "none", outline: "none" }}
-                      _focusVisible={{ boxShadow: "none", outline: "none" }}
-                      transition="transform 0.3s ease, color 0.3s ease"
-                    >
-                      cv
-                    </Link>
-                  </motion.div>
-                )}
-                <motion.div variants={dockItemVariants}>
-                  <IconButton
-                    aria-label="toggle color mode"
-                    icon={<ModeIcon />}
-                    variant="ghost"
-                    size="sm"
-                    color={iconColor}
-                    onClick={toggleColorMode}
-                    ml="-8px"
-                    transition={themeFade}
-                    _hover={{ background: "transparent", color: "sage.500" }}
-                    _focus={{ boxShadow: "none", outline: "none" }}
-                    _focusVisible={{ boxShadow: "none", outline: "none" }}
-                    data-nav-sfx="theme"
-                  />
-                </motion.div>
-              </Flex>
-            </Box>
-          </motion.aside>
-        )}
-      </AnimatePresence>
+            </motion.div>
+            {contextualDockLinks.map((link) => (
+              <motion.div key={`dock-wrap-${link.label}`} variants={dockItemVariants}>
+                <Link
+                  key={`dock-${link.label}`}
+                  className="linkUnderline"
+                  as={NextLink}
+                  href={link.href}
+                  onClick={(e) => onNavClick(link.href, e, link.sectionId)}
+                  userSelect="none"
+                  variant="description"
+                  fontSize="sm"
+                  fontWeight="medium"
+                  letterSpacing="0.04em"
+                  textTransform="lowercase"
+                  tabIndex={dockTabIndex}
+                  _hover={{ color: "sage.500", textDecoration: "none", transform: "translateX(2px)" }}
+                  _focus={{ boxShadow: "none", outline: "none" }}
+                  _focusVisible={{ boxShadow: "none", outline: "none" }}
+                  transition="transform 0.3s ease, color 0.3s ease"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
+            ))}
+            {!isCorkboardRoute && (
+              <motion.div variants={dockItemVariants}>
+                <Link
+                  className="linkUnderline"
+                  as={NextLink}
+                  href="/Daniel_Lu_Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  userSelect="none"
+                  variant="description"
+                  fontSize="sm"
+                  fontWeight="medium"
+                  letterSpacing="0.04em"
+                  textTransform="lowercase"
+                  tabIndex={dockTabIndex}
+                  _hover={{ color: "sage.500", textDecoration: "none", transform: "translateX(2px)" }}
+                  _focus={{ boxShadow: "none", outline: "none" }}
+                  _focusVisible={{ boxShadow: "none", outline: "none" }}
+                  transition="transform 0.3s ease, color 0.3s ease"
+                >
+                  cv
+                </Link>
+              </motion.div>
+            )}
+            <motion.div variants={dockItemVariants}>
+              <IconButton
+                aria-label="toggle color mode"
+                icon={<ModeIcon />}
+                variant="ghost"
+                size="sm"
+                color={iconColor}
+                onClick={toggleColorMode}
+                ml="-8px"
+                w="2.25rem"
+                h="2.25rem"
+                transition={themeFade}
+                tabIndex={dockTabIndex}
+                _hover={{ background: "transparent", color: "sage.500" }}
+                _focus={{ boxShadow: "none", outline: "none" }}
+                _focusVisible={{ boxShadow: "none", outline: "none" }}
+                data-nav-sfx="theme"
+              />
+            </motion.div>
+          </Flex>
+        </Box>
+      </motion.aside>
     </motion.div>
   );
 };
