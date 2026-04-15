@@ -1,13 +1,17 @@
 
 import { memo } from "react";
-import { Heading, Stack, Text } from "@chakra-ui/react";
+import { Heading, Stack } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import WorkCard from "./WorkCard";
 import { fadeInUpSlower, galleryStagger } from "@/config/animations";
 import { Work, Works } from "@/data/works";
 
 const MotionDiv = motion.div;
+
 function FeaturedWorksSection() {
+  const featuredWorks = Works.work.filter((w: Work) => w.featured);
+  const regularWorks = Works.work.filter((w: Work) => !w.featured);
+
   return (
     <Stack
       width="100%"
@@ -26,25 +30,40 @@ function FeaturedWorksSection() {
         </Heading>
       </Stack>
       <MotionDiv
-        className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch"
+        className="flex flex-col gap-8"
         initial="initial"
         animate="animate"
         variants={galleryStagger}
       >
-        {Works.work.map((work: Work) => (
-          <MotionDiv
-            key={work.title}
-            variants={fadeInUpSlower}
-            className="h-full"
-          >
+        {featuredWorks.map((work: Work) => (
+          <MotionDiv key={work.title} variants={fadeInUpSlower}>
             <WorkCard
               title={work.title}
               description={work.description}
               mediaSrc={work.thumbnail || ""}
               href={work.url}
+              featured
             />
           </MotionDiv>
         ))}
+        {regularWorks.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {regularWorks.map((work: Work) => (
+              <MotionDiv
+                key={work.title}
+                variants={fadeInUpSlower}
+                className="h-full"
+              >
+                <WorkCard
+                  title={work.title}
+                  description={work.description}
+                  mediaSrc={work.thumbnail || ""}
+                  href={work.url}
+                />
+              </MotionDiv>
+            ))}
+          </div>
+        )}
       </MotionDiv>
     </Stack>
   );

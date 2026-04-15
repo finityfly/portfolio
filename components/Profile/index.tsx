@@ -114,6 +114,25 @@ const Profile = () => {
           </Text>
 
           <Text
+            fontSize="md"
+            fontWeight="normal"
+            color="body"
+            maxW="38rem"
+          >
+            Outside of CS, volleyball and guitar keep me sane. Feel free to say hi or browse my{" "}
+            <Link
+              className="linkUnderline inlineAccent"
+              href="/corkboard"
+              rel="noreferrer"
+              variant="emphasis"
+              fontWeight="medium"
+            >
+              corkboard
+            </Link>
+            .
+          </Text>
+
+          <Text
             fontSize="xs"
             fontWeight="normal"
             color="accentAlternative"

@@ -98,7 +98,10 @@ const GetInTouch = () => {
         >
           daniellu@cmail.carleton.ca
         </Link>{" "}
-        or connect through one of the links below. Always happy to connect with interesting people working on interesting problems. If something here resonates, I'd love to talk.
+        or connect through one of the links below.
+      </Text>
+      <Text variant="description" maxW="40rem">
+        I'm always happy to connect with interesting people working on interesting problems. If something here resonates, I'd love to talk.
       </Text>
       <HStack spacing={4} flexWrap="wrap" align="center">
         {SocialMedias.map((socMedia) => (

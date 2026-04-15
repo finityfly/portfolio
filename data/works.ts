@@ -42,6 +42,7 @@ export type Work = {
   thumbnail: string;
   url: string;
   date?: string;
+  featured?: boolean;
 };
 
 export const Works: {
@@ -54,6 +55,7 @@ export const Works: {
       thumbnail: "/works/tobio/demo.webm",
       url: "https://tobio.daniellu.ca/",
       date: "December 2025",
+      featured: true,
     },
     {
       title: "Clitris",
