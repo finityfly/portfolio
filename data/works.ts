@@ -51,7 +51,7 @@ export const Works: {
   work: [
     {
       title: "Beat Battle",
-      description: "Ranked music production web platform with a growing community of 2k+ concurrent users, 80k+ accounts, and 30k+ Discord members.",
+      description: "Ranked music production web platform with a growing community of 2k+ concurrent users, 150k+ accounts, and 50k+ Discord members.",
       thumbnail: "/works/beatbattle/demo.webm",
       url: "https://beat-battle.net/",
       date: "April 2026",
