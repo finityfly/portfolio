@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 import { execSync } from "node:child_process";
-import { createRequire } from "node:module";
-
-const require = createRequire(import.meta.url);
 
 const resolveLastUpdatedIso = () => {
   if (process.env.NEXT_PUBLIC_LAST_UPDATED) {
@@ -28,9 +25,6 @@ const lastUpdatedIso = resolveLastUpdatedIso();
 // so it keeps running as a normal Next.js server with next/image optimization.
 const isStaticExport = process.env.STATIC_EXPORT === "true";
 
-const emotionReactPath = require.resolve("@emotion/react");
-const emotionStyledPath = require.resolve("@emotion/styled");
-
 const nextConfig = {
   ...(isStaticExport ? { output: "export" } : {}),
   images: {
@@ -43,15 +37,15 @@ const nextConfig = {
   },
   turbopack: {
     resolveAlias: {
-      "@emotion/react": emotionReactPath,
-      "@emotion/styled": emotionStyledPath,
+      "@emotion/react": "@emotion/react/dist/emotion-react.cjs.js",
+      "@emotion/styled": "@emotion/styled/dist/emotion-styled.cjs.js",
     },
   },
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      "@emotion/react": emotionReactPath,
-      "@emotion/styled": emotionStyledPath,
+      "@emotion/react": "@emotion/react/dist/emotion-react.cjs.js",
+      "@emotion/styled": "@emotion/styled/dist/emotion-styled.cjs.js",
     };
     return config;
   },
