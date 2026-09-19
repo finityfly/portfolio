@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useInView } from "react-intersection-observer";
 import { useColorModeValue } from "@chakra-ui/react";
 import { cn } from "@/lib/utils";
 
@@ -41,6 +42,13 @@ export function WorkCard({
   const detectedMediaType = mediaType || detectMediaType(mediaSrc);
   const isVideo = detectedMediaType === "video";
 
+  // Videos are heavy (multi-MB); defer mounting (and autoplay) until the
+  // card is about to scroll into view instead of loading all of them upfront.
+  const [mediaRef, mediaInView] = useInView({
+    triggerOnce: true,
+    rootMargin: "200px 0px",
+  });
+
   // Strip HTML tags from description for display
   const stripHtml = (html: string) => {
     if (typeof window === "undefined") {
@@ -62,22 +70,25 @@ export function WorkCard({
   const dividerColor = useColorModeValue("#C7D2C0", "#2B3528");
 
   const mediaEl = isVideo ? (
-    <video
-      src={mediaSrc}
-      muted
-      loop
-      playsInline
-      autoPlay
-      className={cn(
-        "h-full w-full block",
-        "transition-transform duration-500 ease-out",
-        "group-hover:scale-[1.02]"
-      )}
-      style={{
-        objectFit: "cover",
-        objectPosition: "center",
-      }}
-    />
+    mediaInView ? (
+      <video
+        src={mediaSrc}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="metadata"
+        className={cn(
+          "h-full w-full block",
+          "transition-transform duration-500 ease-out",
+          "group-hover:scale-[1.02]"
+        )}
+        style={{
+          objectFit: "cover",
+          objectPosition: "center",
+        }}
+      />
+    ) : null
   ) : (
     <Image
       src={mediaSrc || "/placeholder.svg"}
@@ -158,6 +169,7 @@ export function WorkCard({
 
           {/* Media pane */}
           <div
+            ref={mediaRef}
             className="relative w-full overflow-hidden aspect-[4/3] md:aspect-auto md:flex-1"
             style={{ backgroundColor: mediaBg }}
           >
@@ -230,6 +242,7 @@ export function WorkCard({
         </div>
 
         <div
+          ref={mediaRef}
           className="relative w-full overflow-hidden aspect-[4/3]"
           style={{
             backgroundColor: mediaBg,
