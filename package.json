@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:cloudflare": "cross-env STATIC_EXPORT=true next build",
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit"
@@ -42,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
     "autoprefixer": "^10.4.19",
+    "cross-env": "^10.1.0",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.3",
     "eslint-config-prettier": "^8.3.0",

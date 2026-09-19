@@ -21,9 +21,15 @@ const resolveLastUpdatedIso = () => {
 
 const lastUpdatedIso = resolveLastUpdatedIso();
 
+// Only for the Cloudflare static build — Vercel's own build never sets this,
+// so it keeps running as a normal Next.js server with next/image optimization.
+const isStaticExport = process.env.STATIC_EXPORT === "true";
+
 const nextConfig = {
+  ...(isStaticExport ? { output: "export" } : {}),
   images: {
     formats: ['image/avif', 'image/webp'],
+    ...(isStaticExport ? { unoptimized: true } : {}),
   },
   compress: true,
   env: {
