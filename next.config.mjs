@@ -21,8 +21,6 @@ const resolveLastUpdatedIso = () => {
 
 const lastUpdatedIso = resolveLastUpdatedIso();
 
-// Only for the Cloudflare static build — Vercel's own build never sets this,
-// so it keeps running as a normal Next.js server with next/image optimization.
 const isStaticExport = process.env.STATIC_EXPORT === "true";
 
 const nextConfig = {
@@ -34,20 +32,6 @@ const nextConfig = {
   compress: true,
   env: {
     NEXT_PUBLIC_LAST_UPDATED: lastUpdatedIso,
-  },
-  turbopack: {
-    resolveAlias: {
-      "@emotion/react": "@emotion/react/dist/emotion-react.cjs.js",
-      "@emotion/styled": "@emotion/styled/dist/emotion-styled.cjs.js",
-    },
-  },
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "@emotion/react": "@emotion/react/dist/emotion-react.cjs.js",
-      "@emotion/styled": "@emotion/styled/dist/emotion-styled.cjs.js",
-    };
-    return config;
   },
 };
 
