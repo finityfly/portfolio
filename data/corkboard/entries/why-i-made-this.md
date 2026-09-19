@@ -1,3 +1,10 @@
+---
+kind: markdown
+title: Why I Made This
+date: "2026-03-29"
+pinned: true
+description: A short note on why this space exists, and why I think everyone should have one.
+---
 ## Why Start a Corkboard?
 
 Lately, I kept running into the same problem with myself: I'd come across a good idea, feel it actually land, and then lose it somewhere between that moment and the next morning.

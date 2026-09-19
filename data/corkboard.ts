@@ -10,7 +10,6 @@ interface CorkboardPostBase {
 export interface MarkdownPost extends CorkboardPostBase {
   kind: "markdown";
   description?: string;
-  markdownPath: string;
 }
 
 interface MediaPostBase extends CorkboardPostBase {
@@ -36,67 +35,4 @@ export interface VideoPost extends MediaPostBase {
 export type MediaPost = AudioPost | ImagePost | VideoPost;
 
 export type CorkboardPost = MarkdownPost | MediaPost;
-
-export const corkboardPosts: CorkboardPost[] = [
-  {
-    id: "hakone-image",
-    kind: "image",
-    title: "they made minecraft in real life",
-    date: "2026-04-01",
-    description: "09/01/2025 - hakone",
-    src: "/corkboard/DSC_05451.webp",
-  },
-  {
-    id: "quote-board",
-    kind: "markdown",
-    title: "Quote Board",
-    date: "2026-03-30",
-    description:
-      "A collection of quotes that have resonated with me over the years. I find myself returning to these often, and thought it would be nice to share them in a more permanent way.",
-    markdownPath: "quote-board.md",
-  },
-  {
-    id: "why-i-made-this",
-    kind: "markdown",
-    title: "Why I Made This",
-    date: "2026-03-29",
-    description:
-      "A short note on why this space exists, and why I think everyone should have one.",
-    markdownPath: "why-i-made-this.md",
-    pinned: true,
-  },
-  {
-    id: "been-so-long",
-    kind: "audio",
-    title: "been so long - mflo",
-    date: "2026-03-25",
-    src: "/corkboard/been_so_long.mp3",
-    srcTitle: "been so long - mflo",
-    thumbnail: "/corkboard/beensolong.jpg",
-    description:
-      "One of my favourite songs by mflo.",
-  },
-  {
-    id: "shrine-image",
-    kind: "image",
-    title: "overdressed tori gates",
-    date: "2026-03-25",
-    description: "09/03/2025 - kyoto",
-    src: "/corkboard/shrine.webp",
-  },
-  {
-    id: "manuel-riff",
-    kind: "video",
-    title: "The Riff That Made Me Learn Guitar",
-    date: "2026-03-27",
-    src: "https://www.youtube.com/watch?v=XGmoZn0nbrY",
-    srcTitle: "the biggest shred collab song in the world 5 - Manuel Gardner Fernandes part",
-    description:
-      `Not many players stop you mid-scroll. Introducing Manuel Gardner-Fernandes, a player who did exactly what I needed to see.
-      
-      He sits in that rare space where technical precision and unforced musicality don't fight each other. This particular riff is a great example of his style, and happens to be the one that made me lose my guitar virginity. 
-      
-      His channel is a goldmine - especially if rhythmic guitar is your thing.`,
-  },
-];
 

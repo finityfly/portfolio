@@ -20,12 +20,13 @@ import {
   CustomAudioPlayer,
   CustomVideoPlayer,
 } from "@/components/Corkboard/MediaPlayers";
-import { corkboardPosts, MediaPost } from "@/data/corkboard";
+import { MediaPost } from "@/data/corkboard";
 import {
   MarkdownPostWithContent,
   RenderableCorkboardPost,
 } from "@/lib/corkboard";
 import {
+  getAllCorkboardPostIds,
   getRenderableCorkboardPostById,
 } from "@/lib/corkboard.server";
 import { formatDate, getYouTubeEmbedUrl } from "@/lib/utils";
@@ -143,12 +144,10 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = corkboardPosts.map((post) => ({
-    params: { id: post.id },
-  }));
+  const ids = await getAllCorkboardPostIds();
 
   return {
-    paths,
+    paths: ids.map((id) => ({ params: { id } })),
     fallback: false,
   };
 };
