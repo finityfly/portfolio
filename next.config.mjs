@@ -35,6 +35,14 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_LAST_UPDATED: lastUpdatedIso,
   },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@emotion/react": require.resolve("@emotion/react"),
+      "@emotion/styled": require.resolve("@emotion/styled"),
+    };
+    return config;
+  },
 };
 
 export default nextConfig;
