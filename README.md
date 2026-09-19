@@ -1,5 +1,7 @@
 # portfolio
 
+> daniel lu
+
 <div align="center">
   <img src="public/screenshot.png" alt="portfolio screenshot" width="100%" />
   <br/><br/>
