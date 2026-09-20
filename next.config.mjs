@@ -35,6 +35,12 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_LAST_UPDATED: lastUpdatedIso,
   },
+  // lib/corkboard.server.ts reads this directory with fs.readdir at request
+  // time; Next's file tracer only follows static imports, so it never
+  // bundles these on its own and the Workers deploy 500s without this.
+  outputFileTracingIncludes: {
+    "/**": ["./data/corkboard/entries/**"],
+  },
 };
 
 export default nextConfig;
