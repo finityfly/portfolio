@@ -1,8 +1,4 @@
-import {
-  Box,
-  Container,
-} from "@chakra-ui/react";
-import React from "react";
+import { Box, Container } from "@chakra-ui/react";
 import { Analytics } from "@vercel/analytics/react";
 import Script from "next/script";
 import OpenGraphHead from "@/components/SEO/OpenGraphHead";
@@ -27,11 +23,7 @@ const Portfolio = () => {
         `}
       </Script>
       <Analytics />
-      <OpenGraphHead
-        title="Daniel Lu"
-        path="/"
-        type="website"
-      />
+      <OpenGraphHead title="Daniel Lu" path="/" type="website" />
       <Menu />
       <Container
         as="main"
@@ -48,12 +40,7 @@ const Portfolio = () => {
           </FadeInLayout>
 
           <FadeInLayout delay={0.6}>
-            <Box
-              as="section"
-              id="works"
-              className="contentRow"
-              mb="100px"
-            >
+            <Box as="section" id="works" className="contentRow" mb="100px">
               <FeaturedWorks />
             </Box>
           </FadeInLayout>
