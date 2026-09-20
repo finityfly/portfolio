@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:corkboard": "node scripts/generate-corkboard-data.mjs",
+    "predev": "npm run generate:corkboard",
+    "prebuild": "npm run generate:corkboard",
     "dev": "next dev",
     "build": "next build",
+    "prebuild:cloudflare": "npm run generate:corkboard",
     "build:cloudflare": "opennextjs-cloudflare build",
     "preview:cloudflare": "npm run build:cloudflare && wrangler dev",
     "deploy:cloudflare": "npm run build:cloudflare && wrangler deploy",

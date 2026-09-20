@@ -1,15 +1,12 @@
-import fs from "fs/promises";
-import path from "path";
 import matter from "gray-matter";
 import { CorkboardPost, MediaPost } from "@/data/corkboard";
+import generatedEntries from "@/data/corkboard/entries.generated.json";
 import { calculateReadingTimeMinutes } from "@/lib/utils";
 import {
   byPinnedThenNewest,
   RenderableCorkboardCardPost,
   RenderableCorkboardPost,
 } from "@/lib/corkboard";
-
-const ENTRIES_DIR = path.join(process.cwd(), "data", "corkboard", "entries");
 
 interface CorkboardEntry {
   id: string;
@@ -87,28 +84,14 @@ const toCorkboardPost = (id: string, data: Record<string, unknown>): CorkboardPo
   }
 };
 
-const readEntries = async (): Promise<CorkboardEntry[]> => {
-  const filenames = await fs.readdir(ENTRIES_DIR);
+const readEntries = (): CorkboardEntry[] =>
+  generatedEntries.map(({ id, raw }) => {
+    const { data, content } = matter(raw);
+    return { id, post: toCorkboardPost(id, data), content };
+  });
 
-  return Promise.all(
-    filenames
-      .filter((name) => name.endsWith(".md"))
-      .map(async (filename) => {
-        const id = filename.replace(/\.md$/, "");
-        const raw = await fs.readFile(path.join(ENTRIES_DIR, filename), "utf8");
-        const { data, content } = matter(raw);
-
-        return { id, post: toCorkboardPost(id, data), content };
-      })
-  );
-};
-
-export const getAllCorkboardPostIds = async (): Promise<string[]> => {
-  const filenames = await fs.readdir(ENTRIES_DIR);
-  return filenames
-    .filter((name) => name.endsWith(".md"))
-    .map((name) => name.replace(/\.md$/, ""));
-};
+export const getAllCorkboardPostIds = async (): Promise<string[]> =>
+  generatedEntries.map(({ id }) => id);
 
 export const getRenderableCorkboardCardPosts = async (): Promise<
   RenderableCorkboardCardPost[]
