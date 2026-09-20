@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
@@ -42,12 +42,31 @@ export function WorkCard({
   const detectedMediaType = mediaType || detectMediaType(mediaSrc);
   const isVideo = detectedMediaType === "video";
 
-  // Videos are heavy (multi-MB); defer mounting (and autoplay) until the
-  // card is about to scroll into view instead of loading all of them upfront.
-  const [mediaRef, mediaInView] = useInView({
-    triggerOnce: true,
-    rootMargin: "200px 0px",
-  });
+  // Videos are heavy (multi-MB, continuous decode); defer mounting until
+  // the card is about to scroll into view, then keep it mounted but pause
+  // decode whenever it scrolls back out — several concurrently-playing
+  // videos is real, ongoing CPU/GPU cost on weak devices.
+  const [mediaRef, mediaInView] = useInView({ rootMargin: "200px 0px" });
+  const [everInView, setEverInView] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    if (mediaInView) {
+      setEverInView(true);
+    }
+  }, [mediaInView]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+    if (mediaInView) {
+      void video.play();
+    } else {
+      video.pause();
+    }
+  }, [mediaInView]);
 
   // Strip HTML tags from description for display
   const stripHtml = (html: string) => {
@@ -70,13 +89,13 @@ export function WorkCard({
   const dividerColor = useColorModeValue("#C7D2C0", "#2B3528");
 
   const mediaEl = isVideo ? (
-    mediaInView ? (
+    everInView ? (
       <video
+        ref={videoRef}
         src={mediaSrc}
         muted
         loop
         playsInline
-        autoPlay
         preload="metadata"
         className={cn(
           "h-full w-full block",

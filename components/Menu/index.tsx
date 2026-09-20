@@ -68,7 +68,7 @@ const Menu = () => {
   const topBarLineRef = useRef<HTMLDivElement | null>(null);
   const dockAnchorRef = useRef<HTMLDivElement | null>(null);
   const [zipPath, setZipPath] = useState<ZipPath | null>(null);
-  const spineColor = useColorModeValue("#C7D2C0", "#2B3528");
+  const spineColor = useColorModeValue("#9EBD99", "#677359");
   const iconColor = useColorModeValue("#526E52", "#A3B18A");
   const topBg = useColorModeValue("rgba(243, 244, 239, 0.94)", "rgba(15, 17, 12, 0.94)");
   const themeFade = "background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease";
@@ -558,6 +558,7 @@ const Menu = () => {
         pathLength={zipPathLength}
         pathOffset={zipPathOffset}
         color={spineColor}
+        entranceDelay={isAtTop && !hasPlayedTopBarEntrance ? 0.4 : 0}
       />
     </motion.div>
   );

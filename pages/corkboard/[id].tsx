@@ -11,11 +11,12 @@ import { ArrowBackIcon } from "@chakra-ui/icons";
 import { Analytics } from "@vercel/analytics/react";
 import { motion } from "framer-motion";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import NextLink from "next/link";
 import OpenGraphHead from "@/components/SEO/OpenGraphHead";
 import Menu from "@/components/Menu";
 import FadeInLayout from "@/components/Layout/FadeWhenVisible";
-import MarkdownBlock from "@/components/Corkboard/MarkdownBlock";
 import {
   CustomAudioPlayer,
   CustomVideoPlayer,
@@ -30,6 +31,11 @@ import {
   getRenderableCorkboardPostById,
 } from "@/lib/corkboard.server";
 import { formatDate, getYouTubeEmbedUrl } from "@/lib/utils";
+
+// react-syntax-highlighter + react-markdown are only needed for markdown
+// posts — split into their own chunk so image/audio/video posts don't
+// download them.
+const MarkdownBlock = dynamic(() => import("@/components/Corkboard/MarkdownBlock"));
 
 interface CorkboardPostPageProps {
   post: RenderableCorkboardPost;
@@ -106,12 +112,17 @@ const CorkboardPostPage: NextPage<CorkboardPostPageProps> = ({
                       />
                     )}
                     {post.kind === "image" && (
-                      <Box borderRadius="lg" overflow="hidden">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
+                      // width/height set the 3:2 aspect ratio (current image posts'
+                      // real dimensions); a differently-shaped future upload would
+                      // need its own values here to avoid stretching.
+                      <Box position="relative" w="100%" borderRadius="lg" overflow="hidden">
+                        <Image
                           src={post.src}
                           alt={post.title}
-                          style={{ width: "100%", display: "block" }}
+                          width={1500}
+                          height={1000}
+                          sizes="(min-width: 62em) min(70vw, 56rem), 100vw"
+                          style={{ width: "100%", height: "auto", display: "block" }}
                         />
                       </Box>
                     )}

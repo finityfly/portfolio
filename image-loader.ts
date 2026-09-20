@@ -1,14 +1,9 @@
 import type { ImageLoaderProps } from "next/image";
 
-const normalizeSrc = (src: string) => (src.startsWith("/") ? src.slice(1) : src);
-
-export default function cloudflareLoader({ src, width, quality }: ImageLoaderProps) {
-  const params = [`width=${width}`];
-  if (quality) {
-    params.push(`quality=${quality}`);
-  }
-  if (process.env.NODE_ENV === "development") {
-    return `${src}?${params.join("&")}`;
-  }
-  return `/cdn-cgi/image/${params.join(",")}/${normalizeSrc(src)}`;
+// daniellu.ca is on Cloudflare's Free plan, which doesn't have the
+// /cdn-cgi/image/ resizing endpoint enabled — every request to it 404s.
+// Serve the original file directly (no resize/reformat) until that's
+// replaced with a Worker route backed by the Images binding.
+export default function cloudflareLoader({ src }: ImageLoaderProps) {
+  return src;
 }

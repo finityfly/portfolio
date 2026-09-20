@@ -126,10 +126,10 @@ const CorkboardMasonry = ({ posts }: CorkboardMasonryProps) => {
               borderColor={cardBorderColor}
               borderRadius="2xl"
               background={cardBackground}
-              backdropFilter="blur(10px)"
+              backdropFilter="blur(6px)"
               boxShadow="sm"
               _hover={{ boxShadow: cardHoverGlow }}
-              transition="all 0.3s ease-in-out"
+              transition="box-shadow 0.3s ease-in-out"
               position="relative"
               px={{ base: 5, md: 5 }}
               py={{ base: 5, md: 5 }}
@@ -146,7 +146,7 @@ const CorkboardMasonry = ({ posts }: CorkboardMasonryProps) => {
                 display="flex"
                 alignItems="center"
                 justifyContent="center"
-                transition="all 0.2s"
+                transition="background-color 0.2s, border-color 0.2s"
               />
 
               <Flex

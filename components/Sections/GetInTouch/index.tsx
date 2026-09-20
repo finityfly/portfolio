@@ -123,7 +123,7 @@ const GetInTouch = () => {
               border="1px solid"
               borderColor={socialBorder}
               color="description"
-              transition="all 0.2s"
+              transition="border-color 0.2s, color 0.2s, background-color 0.2s"
               _hover={{
                 borderColor: "sage.500",
                 color: "sage.500",

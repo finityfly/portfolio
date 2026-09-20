@@ -194,7 +194,6 @@ export const CustomAudioPlayer = ({
   return (
     <Box
       className={compact ? styles.mediaShellCompact : styles.mediaShell}
-      transition="all 0.3s ease-in-out"
       maxW="100%"
       boxSizing="border-box"
       onClick={preventNav}

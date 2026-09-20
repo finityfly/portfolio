@@ -10,7 +10,6 @@
   border: 1px solid rgba(148, 163, 184, 0.22);
   background: rgba(148, 163, 184, 0.12);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease-in-out;
 }
 
 .mediaShell *,
@@ -44,7 +43,7 @@
   justify-content: center;
   cursor: pointer;
   line-height: 1;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .transportButton {
@@ -87,7 +86,8 @@
     rgba(148, 163, 184, 0.3) var(--progress),
     rgba(148, 163, 184, 0.3) 100%
   );
-  transition: all 0.3s ease-in-out;
+  /* No transition: --progress updates on every timeupdate tick during
+     playback, and animating that would fight itself continuously. */
 }
 
 .progressTrack:disabled {
@@ -335,7 +335,6 @@
   background: #0f172a;
   box-shadow: 0 14px 28px rgba(2, 6, 23, 0.28);
   aspect-ratio: 16 / 9;
-  transition: all 0.3s ease-in-out;
 }
 
 .videoFrameTall {
