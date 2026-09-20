@@ -2,15 +2,23 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "portfolio",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2026-09-18",
-  "compatibility_flags": [
-    "nodejs_compat"
-  ],
+  "compatibility_date": "2026-09-20",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "account_id": "0344d21c0b6d424e346fd9a4759f5307",
+  "observability": {
+    "enabled": true
+  },
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
   },
-  "observability": {
-    "enabled": true
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "portfolio"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
   }
 }

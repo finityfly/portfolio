@@ -21,13 +21,15 @@ const resolveLastUpdatedIso = () => {
 
 const lastUpdatedIso = resolveLastUpdatedIso();
 
-const isStaticExport = process.env.STATIC_EXPORT === "true";
+// Vercel always sets VERCEL=1 during its own builds; Cloudflare's build
+// doesn't. On Cloudflare, next/image routes through a custom loader that
+// hits Cloudflare's Images binding instead of Vercel's optimizer.
+const isVercel = Boolean(process.env.VERCEL);
 
 const nextConfig = {
-  ...(isStaticExport ? { output: "export" } : {}),
   images: {
     formats: ["image/avif", "image/webp"],
-    ...(isStaticExport ? { unoptimized: true } : {}),
+    ...(isVercel ? {} : { loader: "custom", loaderFile: "./image-loader.ts" }),
   },
   compress: true,
   env: {
