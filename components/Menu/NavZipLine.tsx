@@ -8,6 +8,7 @@ export interface ZipPath {
   // Length of the resting horizontal (top bar) and vertical (dock spine)
   // segments, each as a fraction of the whole track's length.
   restingHorizontalFraction: number;
+  restingHorizontalOffset: number;
   restingVerticalFraction: number;
 }
 
@@ -19,11 +20,6 @@ interface NavZipLineProps {
   entranceDelay?: number;
 }
 
-// A fixed-length dash sliding along a fixed L-shaped track (pathLength +
-// pathOffset together, mapped by Framer to stroke-dasharray/dashoffset —
-// paint-only, no opacity fade). On mount it draws in from zero length at
-// the same offset, then settles — a slide-in using the same technique as
-// the scroll-triggered transitions, instead of a separate opacity fade.
 const NavZipLine = ({
   path,
   pathLength,
@@ -43,8 +39,9 @@ const NavZipLine = ({
         d={path.d}
         fill="none"
         stroke={color}
-        strokeWidth={1}
+        strokeWidth={1.5}
         strokeLinecap="round"
+        shapeRendering="crispEdges"
         initial={{ pathLength: 0, pathOffset }}
         animate={{ pathLength, pathOffset }}
         transition={

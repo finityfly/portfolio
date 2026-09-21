@@ -37,7 +37,6 @@ export function WorkCard({
   href,
   featured = false,
 }: WorkCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
   // Auto-detect media type if not provided, prioritizing webm videos
   const detectedMediaType = mediaType || detectMediaType(mediaSrc);
   const isVideo = detectedMediaType === "video";
@@ -136,17 +135,19 @@ export function WorkCard({
         className="group block"
       >
         <article
-          className="relative overflow-hidden transition-all duration-300 ease-out flex flex-col md:flex-row"
+          className={cn(
+            "relative overflow-hidden flex flex-col md:flex-row",
+            "border-[1px] border-[color:var(--card-border)] rounded-[4px]",
+            "hover:border-[color:var(--card-border-hover)] hover:-translate-y-px",
+            "transition-[border-color,transform] duration-300 ease-out"
+          )}
           style={{
+            "--card-border": borderColor,
+            "--card-border-hover": hoverBorderColor,
             backgroundColor: "transparent",
-            border: `1px solid ${isHovered ? hoverBorderColor : borderColor}`,
-            borderRadius: "4px",
-            transform: isHovered ? "translateY(-1px)" : "translateY(0)",
             minHeight: "300px",
             boxShadow: "inset 3px 0 0 0 var(--chakra-colors-accent)",
-          }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          } as React.CSSProperties}
         >
           {/* Text pane */}
           <div className="px-5 pt-5 pb-5 flex flex-col gap-2.5 md:w-2/5">
@@ -211,19 +212,17 @@ export function WorkCard({
     >
       <article
         className={cn(
-          "relative overflow-hidden",
-          "transition-all duration-300 ease-out",
-          "flex flex-col"
+          "relative overflow-hidden flex flex-col",
+          "border-[1px] border-[color:var(--card-border)] rounded-[4px]",
+          "hover:border-[color:var(--card-border-hover)] hover:-translate-y-px",
+          "transition-[border-color,transform] duration-300 ease-out"
         )}
         style={{
+          "--card-border": borderColor,
+          "--card-border-hover": hoverBorderColor,
           backgroundColor: "transparent",
-          border: `1px solid ${isHovered ? hoverBorderColor : borderColor}`,
           height: "100%",
-          borderRadius: "4px",
-          transform: isHovered ? "translateY(-1px)" : "translateY(0)",
-        }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        } as React.CSSProperties}
       >
         <div className="px-5 pt-4 pb-3 flex flex-col gap-1.5">
           <div className="flex items-center justify-between gap-3">

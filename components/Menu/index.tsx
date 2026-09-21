@@ -68,7 +68,8 @@ const Menu = () => {
   const topBarLineRef = useRef<HTMLDivElement | null>(null);
   const dockAnchorRef = useRef<HTMLDivElement | null>(null);
   const [zipPath, setZipPath] = useState<ZipPath | null>(null);
-  const spineColor = useColorModeValue("#9EBD99", "#677359");
+  const [topBarInset, setTopBarInset] = useState(0);
+  const spineColor = useColorModeValue("#74A771", "#A3B18A");
   const iconColor = useColorModeValue("#526E52", "#A3B18A");
   const topBg = useColorModeValue("rgba(243, 244, 239, 0.94)", "rgba(15, 17, 12, 0.94)");
   const themeFade = "background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, fill 0.3s ease, stroke 0.3s ease";
@@ -137,26 +138,35 @@ const Menu = () => {
         return;
       }
 
-      // Track for NavZipLine's sliding dash: start -> corner -> end.
-      const start = { x: topRect.left, y: topRect.bottom };
-      const corner = { x: dockRect.left, y: topRect.bottom };
-      const end = { x: dockRect.left, y: dockRect.bottom };
+      const round = (value: number) => Math.round(value);
 
-      const horizontalRestLength = Math.max(0, topRect.right - topRect.left);
+      const start = { x: round(topRect.left), y: round(topRect.bottom) };
+      const corner = { x: round(dockRect.left), y: round(topRect.bottom) };
+      const end = { x: round(dockRect.left), y: round(dockRect.bottom) };
+
       const horizontalTotalLength = Math.max(0, corner.x - start.x);
       const verticalTotalLength = Math.max(0, end.y - corner.y);
+      const totalLength = horizontalTotalLength + verticalTotalLength;
+
+      const navbarWidth = Math.max(0, topRect.right - topRect.left);
+      const overshoot = Math.max(0, navbarWidth - horizontalTotalLength);
+      const horizontalRestLength = Math.max(0, navbarWidth - 2 * overshoot);
+      const horizontalRestInset = overshoot;
+
       // Only the dock's own height, not the full drop from the top bar.
       const verticalRestLength = Math.max(0, dockRect.bottom - dockRect.top);
-      const totalLength = horizontalTotalLength + verticalTotalLength;
 
       setZipPath({
         d: `M ${start.x} ${start.y} L ${corner.x} ${corner.y} L ${end.x} ${end.y}`,
         viewBox: `0 0 ${window.innerWidth} ${window.innerHeight}`,
         restingHorizontalFraction:
           totalLength > 0 ? horizontalRestLength / totalLength : 0,
+        restingHorizontalOffset:
+          totalLength > 0 ? horizontalRestInset / totalLength : 0,
         restingVerticalFraction:
           totalLength > 0 ? verticalRestLength / totalLength : 0,
       });
+      setTopBarInset(overshoot);
     };
 
     recomputeZipPath();
@@ -321,13 +331,14 @@ const Menu = () => {
   const shouldShowDock = !isAtTop && !isCorkboardHome;
   const dockTabIndex = shouldShowDock ? undefined : -1;
   const zipRestH = zipPath?.restingHorizontalFraction ?? 0;
+  const zipRestHOffset = zipPath?.restingHorizontalOffset ?? 0;
   const zipRestV = zipPath?.restingVerticalFraction ?? 0;
   // Mobile never shows the spine — the dock itself is CSS-hidden there.
   const zipShowsSpine = shouldShowDock && !isMobileNav;
   const zipPathLength = zipShowsSpine
     ? zipRestV
     : (shouldShowTopBar ? zipRestH : 0);
-  const zipPathOffset = zipShowsSpine ? 1 - zipRestV : 0;
+  const zipPathOffset = zipShowsSpine ? 1 - zipRestV : zipRestHOffset;
 
   return (
     <motion.div
@@ -354,43 +365,62 @@ const Menu = () => {
         }}
         style={{ pointerEvents: shouldShowTopBar ? "auto" : "none" }}
       >
-        <Container
-          ref={topBarLineRef}
-          maxW="5xl"
-          px={{ base: 6, md: 8 }}
-          py={{ base: 5, md: 6 }}
-          backgroundColor={topBg}
-          transition={themeFade}
-        >
-          <Flex
-            justify={{ base: "flex-end", lg: "space-between" }}
-            align="center"
-            w="100%"
-            pointerEvents="auto"
+        <Container ref={topBarLineRef} maxW="5xl" px={0} py={0}>
+          <Box
+            mx={topBarInset > 0 ? `${topBarInset}px` : undefined}
+            px={{ base: 6, md: 8 }}
+            py={{ base: 5, md: 6 }}
+            backgroundColor={topBg}
+            transition={themeFade}
           >
-            <Link
-              as={NextLink}
-              href="/"
-              fontFamily="name"
-              fontSize={{ base: "lg", md: "xl" }}
-              fontWeight="semibold"
-              letterSpacing="0.06em"
-              color="heading"
-              display={{ base: "none", lg: "inline-flex" }}
-              transition={themeFade}
-              _hover={{ textDecoration: "none", color: "sage.500" }}
+            <Flex
+              justify={{ base: "flex-end", lg: "space-between" }}
+              align="center"
+              w="100%"
+              pointerEvents="auto"
             >
-              陆
-            </Link>
+              <Link
+                as={NextLink}
+                href="/"
+                fontFamily="name"
+                fontSize={{ base: "lg", md: "xl" }}
+                fontWeight="semibold"
+                letterSpacing="0.06em"
+                color="heading"
+                display={{ base: "none", lg: "inline-flex" }}
+                transition={themeFade}
+                _hover={{ textDecoration: "none", color: "sage.500" }}
+              >
+                陆
+              </Link>
 
-            <Flex align="center" gap={{ base: 5, md: 7 }}>
-              {topLinks.map((link) => (
+              <Flex align="center" gap={{ base: 5, md: 7 }}>
+                {topLinks.map((link) => (
+                  <Link
+                    key={`top-${link.label}`}
+                    className="linkUnderline"
+                    as={NextLink}
+                    href={link.href}
+                    onClick={(e) => onNavClick(link.href, e, link.sectionId)}
+                    userSelect="none"
+                    variant="description"
+                    fontSize="sm"
+                    fontWeight="medium"
+                    letterSpacing="0.04em"
+                    textTransform="lowercase"
+                    _hover={{ color: "sage.500", textDecoration: "none" }}
+                    _focus={{ boxShadow: "none", outline: "none" }}
+                    _focusVisible={{ boxShadow: "none", outline: "none" }}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
                 <Link
-                  key={`top-${link.label}`}
                   className="linkUnderline"
                   as={NextLink}
-                  href={link.href}
-                  onClick={(e) => onNavClick(link.href, e, link.sectionId)}
+                  href="/Daniel_Lu_Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
                   userSelect="none"
                   variant="description"
                   fontSize="sm"
@@ -401,42 +431,24 @@ const Menu = () => {
                   _focus={{ boxShadow: "none", outline: "none" }}
                   _focusVisible={{ boxShadow: "none", outline: "none" }}
                 >
-                  {link.label}
+                  cv
                 </Link>
-              ))}
-              <Link
-                className="linkUnderline"
-                as={NextLink}
-                href="/Daniel_Lu_Resume.pdf"
-                target="_blank"
-                rel="noreferrer"
-                userSelect="none"
-                variant="description"
-                fontSize="sm"
-                fontWeight="medium"
-                letterSpacing="0.04em"
-                textTransform="lowercase"
-                _hover={{ color: "sage.500", textDecoration: "none" }}
-                _focus={{ boxShadow: "none", outline: "none" }}
-                _focusVisible={{ boxShadow: "none", outline: "none" }}
-              >
-                cv
-              </Link>
-              <IconButton
-                aria-label="toggle color mode"
-                icon={<ModeIcon />}
-                variant="ghost"
-                size="sm"
-                color={iconColor}
-                onClick={toggleColorMode}
-                transition={themeFade}
-                _hover={{ background: "transparent", color: "sage.500" }}
-                _focus={{ boxShadow: "none", outline: "none" }}
-                _focusVisible={{ boxShadow: "none", outline: "none" }}
-                data-nav-sfx="theme"
-              />
+                <IconButton
+                  aria-label="toggle color mode"
+                  icon={<ModeIcon />}
+                  variant="ghost"
+                  size="sm"
+                  color={iconColor}
+                  onClick={toggleColorMode}
+                  transition={themeFade}
+                  _hover={{ background: "transparent", color: "sage.500" }}
+                  _focus={{ boxShadow: "none", outline: "none" }}
+                  _focusVisible={{ boxShadow: "none", outline: "none" }}
+                  data-nav-sfx="theme"
+                />
+              </Flex>
             </Flex>
-          </Flex>
+          </Box>
         </Container>
       </motion.div>
 
